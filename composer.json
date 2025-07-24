@@ -15,7 +15,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "TextProbe\\": "src/"
+            "TextProbe\\": "src/",
+            "Tests\\": "tests/"
         }
-    }
+    },
+  "require": {
+      "php": ">=8.1",
+      "ext-mbstring": "*"
+  }
 }
