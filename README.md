@@ -31,6 +31,8 @@ You can also implement your own probes by creating classes that implement the `I
 ## Usage Example
 
 ```php
+require __DIR__ . '/vendor/autoload.php';
+
 use TextProbe\TextProbe;
 use TextProbe\Probes\EmailProbe;
 
@@ -44,7 +46,7 @@ $results = $probe->analyze($text);
 foreach ($results as $result) {
     echo sprintf(
         "[%s] %s (position %d-%d)\n",
-        $result->getProbeEnum(),
+        $result->getProbeEnum()->name,
         $result->getResult(),
         $result->getStart(),
         $result->getEnd()
