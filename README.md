@@ -1,3 +1,4 @@
+[![Latest Stable Version](http://poser.pugx.org/makarms/text-probe/v)](https://packagist.org/packages/makarms/text-probe) [![Total Downloads](http://poser.pugx.org/makarms/text-probe/downloads)](https://packagist.org/packages/makarms/text-probe) [![License](http://poser.pugx.org/makarms/text-probe/license)](https://packagist.org/packages/makarms/text-probe) [![PHP Version Require](http://poser.pugx.org/makarms/text-probe/require/php)](https://packagist.org/packages/makarms/text-probe)
 # TextProbe
 
 **TextProbe** is a simple and extensible PHP library for text analysis and pattern matching. It is designed to help developers probe, parse, and manipulate text efficiently using customizable rules and matchers.
