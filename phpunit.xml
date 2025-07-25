@@ -5,17 +5,22 @@
          cacheDirectory=".phpunit.cache"
          executionOrder="depends,defects"
          beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
          failOnRisky="true"
          failOnWarning="true">
+
     <testsuites>
         <testsuite name="default">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
 
-    <source beStrictAboutTodoAnnotatedTests="true" includeUncoveredFiles="true">
+    <coverage includeUncoveredFiles="true"/>
+
+    <source>
         <include>
             <directory suffix=".php">src</directory>
         </include>
     </source>
+
 </phpunit>
