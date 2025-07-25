@@ -11,33 +11,31 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        php-version: ['8.0', '8.1', '8.2', '8.3', '8.4']
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, xdebug
+          coverage: xdebug
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Enable xdebug coverage mode
+        run: echo "XDEBUG_MODE=coverage" >> $GITHUB_ENV
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-    - name: Run tests with coverage
-      run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
+      - name: Run tests with coverage
+        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        files: ./coverage.xml
-        token: ${{ secrets.CODECOV_TOKEN }}
-
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
