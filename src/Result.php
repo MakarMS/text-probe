@@ -6,22 +6,22 @@ use BackedEnum;
 
 class Result
 {
-    private BackedEnum $probeEnum;
+    private BackedEnum $probeType;
     private string $result;
     private int $start;
     private int $end;
 
-    public function __construct(BackedEnum $probeEnum, string $result, int $start, int $end)
+    public function __construct(BackedEnum $probeType, string $result, int $start, int $end)
     {
-        $this->probeEnum = $probeEnum;
+        $this->probeType = $probeType;
         $this->result = $result;
         $this->start = $start;
         $this->end = $end;
     }
 
-    public function getProbeEnum(): BackedEnum
+    public function getProbeType(): BackedEnum
     {
-        return $this->probeEnum;
+        return $this->probeType;
     }
 
     public function getResult(): string

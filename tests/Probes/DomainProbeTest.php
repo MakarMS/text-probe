@@ -25,7 +25,7 @@ class DomainProbeTest extends TestCase
         $this->assertEquals(22, $results[1]->getStart());
         $this->assertEquals(38, $results[1]->getEnd());
 
-        $this->assertEquals(ProbeType::DOMAIN, $results[0]->getProbeEnum());
+        $this->assertEquals(ProbeType::DOMAIN, $results[0]->getProbeType());
     }
 
     public function testUnicodeDomains(): void
@@ -110,7 +110,7 @@ class DomainProbeTest extends TestCase
         $this->assertEquals(42, $results[1]->getStart());
         $this->assertEquals(58, $results[1]->getEnd());
 
-        $this->assertEquals(ProbeType::DOMAIN, $results[0]->getProbeEnum());
+        $this->assertEquals(ProbeType::DOMAIN, $results[0]->getProbeType());
     }
 
     public function testDomainWithoutProtocol(): void

@@ -47,7 +47,7 @@ $results = $probe->analyze($text);
 foreach ($results as $result) {
     echo sprintf(
         "[%s] %s (position %d-%d)\n",
-        $result->getProbeEnum()->name,
+        $result->getProbeType()->name,
         $result->getResult(),
         $result->getStart(),
         $result->getEnd()

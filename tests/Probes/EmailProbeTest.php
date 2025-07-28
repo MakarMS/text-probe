@@ -23,7 +23,7 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('test@example.com', $result->getResult());
         $this->assertEquals(14, $result->getStart());
         $this->assertEquals(30, $result->getEnd());
-        $this->assertEquals(ProbeType::EMAIL, $result->getProbeEnum());
+        $this->assertEquals(ProbeType::EMAIL, $result->getProbeType());
     }
 
     public function testMultipleEmailsFound(): void

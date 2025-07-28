@@ -22,7 +22,7 @@ class PhoneProbeTest extends TestCase
         $this->assertEquals('+7 (495) 123-45-67', $result->getResult());
         $this->assertEquals(11, $result->getStart());
         $this->assertEquals(29, $result->getEnd());
-        $this->assertEquals(ProbeType::PHONE, $result->getProbeEnum());
+        $this->assertEquals(ProbeType::PHONE, $result->getProbeType());
     }
 
     public function testMultiplePhonesFound(): void

@@ -17,7 +17,7 @@ class ResultTest extends TestCase
 
         $result = new Result($type, $value, $start, $end);
 
-        $this->assertSame($type, $result->getProbeEnum());
+        $this->assertSame($type, $result->getProbeType());
         $this->assertSame($value, $result->getResult());
         $this->assertSame($start, $result->getStart());
         $this->assertSame($end, $result->getEnd());

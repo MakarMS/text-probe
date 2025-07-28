@@ -25,7 +25,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals(30, $results[1]->getStart());
         $this->assertEquals(58, $results[1]->getEnd());
 
-        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeEnum());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testFindsMixedLinks(): void
