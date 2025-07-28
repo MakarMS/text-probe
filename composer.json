@@ -1,26 +1,26 @@
 {
-    "name": "makarms/text-probe",
-    "description": "Simple and extensible PHP library for text analysis and pattern matching, designed to help developers probe, parse, and manipulate text efficiently.",
-    "type": "library",
-    "require-dev": {
-        "phpunit/phpunit": "^11.5"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Makar Mikhalchenko",
-            "email": "makar.mikhalchenko@bk.ru"
-        }
-    ],
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {
-            "TextProbe\\": "src/",
-            "Tests\\": "tests/"
-        }
-    },
+  "name": "makarms/text-probe",
+  "description": "Simple and extensible PHP library for text analysis and pattern matching, designed to help developers probe, parse, and manipulate text efficiently.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Makar Mikhalchenko",
+      "email": "makar.mikhalchenko@bk.ru"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "TextProbe\\": "src/",
+      "Tests\\": "tests/"
+    }
+  },
   "require": {
-      "php": ">=8.1",
-      "ext-mbstring": "*"
+    "php": ">=8.1",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10"
   }
 }
