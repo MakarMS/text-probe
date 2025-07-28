@@ -21,11 +21,11 @@ composer require makarms/text-probe
 
 The library comes with several built-in probes to detect common patterns in text:
 
-- EmailProbe — extracts email addresses
+- `EmailProbe` — extracts email addresses
 
-- PhoneProbe — extracts phone numbers (supports various formats)
+- `PhoneProbe` — extracts phone numbers (supports various formats)
 
-- DomainProbe — extracts domain names, including internationalized (Unicode) domains
+- `DomainProbe` — extracts domain names, including internationalized (Unicode) domains
 
 You can also implement your own probes by creating classes that implement the `IProbe` interface.
 
