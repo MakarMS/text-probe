@@ -5,9 +5,8 @@ namespace TextProbe\Probes;
 use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
-use TextProbe\Probes\Probe;
 
-class LinkProbe extends Probe implements Contracts\IProbe
+class LinkProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
     {

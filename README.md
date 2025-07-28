@@ -27,6 +27,18 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `DomainProbe` — extracts domain names, including internationalized (Unicode) domains
 
+- `LinkProbe` — extracts hyperlinks, including ones with IP addresses, ports, or without a protocol
+
+- `TelegramUserLinkProbe` — extracts t.me links pointing to Telegram users
+
+- `TelegramUsernameProbe` — extracts Telegram usernames (e.g., `@username`)
+
+- `DiscordNewUsernameProbe` — extracts Discord usernames in the new format (e.g., `@username`), enforcing Discord’s
+  updated naming rules (length, characters, no consecutive dots)
+
+- `DiscordOldUsernameProbe` — extracts classic Discord usernames in the format `username#1234`, ensuring proper
+  structure and valid discriminator
+
 You can also implement your own probes by creating classes that implement the `IProbe` interface.
 
 ## Usage Example
