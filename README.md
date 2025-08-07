@@ -39,6 +39,9 @@ The library comes with several built-in probes to detect common patterns in text
 - `DiscordOldUsernameProbe` — extracts classic Discord usernames in the format `username#1234`, ensuring proper
   structure and valid discriminator
 
+- `SlackUsernameProbe` — extracts Slack usernames (e.g., @username), supporting Slack-specific username rules such as
+  allowed characters, length limits, and no consecutive dots
+
 You can also implement your own probes by creating classes that implement the `IProbe` interface.
 
 ## Usage Example

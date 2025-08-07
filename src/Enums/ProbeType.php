@@ -12,4 +12,5 @@ enum ProbeType: int
     case TELEGRAM_USER_LINK = 6;
     case DISCORD_OLD_USERNAME = 7;
     case DISCORD_NEW_USERNAME = 8;
+    case SLACK_USERNAME = 9;
 }
