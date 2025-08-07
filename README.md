@@ -42,6 +42,11 @@ The library comes with several built-in probes to detect common patterns in text
 - `SlackUsernameProbe` — extracts Slack usernames (e.g., @username), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots
 
+- `IPv4Probe` — extracts IPv4 addresses, supporting standard formats and excluding reserved/bogus ranges if necessary
+
+- `IPv6Probe` — extracts IPv6 addresses, including compressed formats, IPv4-mapped addresses, and zone indexes (e.g.,
+  %eth0)
+
 You can also implement your own probes by creating classes that implement the `IProbe` interface.
 
 ## Usage Example

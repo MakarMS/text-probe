@@ -40,8 +40,8 @@ class DiscordNewUsernameProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
-        $this->assertEquals('@valid.user', $results[0]->getResult());
 
+        $this->assertEquals('@valid.user', $results[0]->getResult());
         $this->assertEquals(12, $results[0]->getStart());
         $this->assertEquals(23, $results[0]->getEnd());
     }
@@ -54,8 +54,8 @@ class DiscordNewUsernameProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
-        $this->assertEquals('@validuser', $results[0]->getResult());
 
+        $this->assertEquals('@validuser', $results[0]->getResult());
         $this->assertEquals(10, $results[0]->getStart());
         $this->assertEquals(20, $results[0]->getEnd());
     }
@@ -68,8 +68,8 @@ class DiscordNewUsernameProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
-        $this->assertEquals('@valid_user', $results[0]->getResult());
 
+        $this->assertEquals('@valid_user', $results[0]->getResult());
         $this->assertEquals(14, $results[0]->getStart());
         $this->assertEquals(25, $results[0]->getEnd());
     }

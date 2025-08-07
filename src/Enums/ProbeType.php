@@ -13,4 +13,6 @@ enum ProbeType: int
     case DISCORD_OLD_USERNAME = 7;
     case DISCORD_NEW_USERNAME = 8;
     case SLACK_USERNAME = 9;
+    case IPV4 = 10;
+    case IPV6 = 11;
 }
