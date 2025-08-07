@@ -47,6 +47,9 @@ The library comes with several built-in probes to detect common patterns in text
 - `IPv6Probe` — extracts IPv6 addresses, including compressed formats, IPv4-mapped addresses, and zone indexes (e.g.,
   %eth0)
 
+- `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., 00:1A:2B:3C:4D:5E or
+  00-1A-2B-3C-4D-5E), accurately detecting valid addresses while excluding invalid patterns.
+
 You can also implement your own probes by creating classes that implement the `IProbe` interface.
 
 ## Usage Example

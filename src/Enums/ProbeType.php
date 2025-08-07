@@ -15,4 +15,5 @@ enum ProbeType: int
     case SLACK_USERNAME = 9;
     case IPV4 = 10;
     case IPV6 = 11;
+    case MAC_ADDRESS = 12;
 }
