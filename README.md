@@ -21,7 +21,7 @@ composer require makarms/text-probe
 
 The library comes with several built-in probes to detect common patterns in text:
 
-### Contact & Identity
+### 🧑‍💻 Contact & Identity
 
 - `EmailProbe` — extracts email addresses
 
@@ -40,7 +40,7 @@ The library comes with several built-in probes to detect common patterns in text
 - `SlackUsernameProbe` — extracts Slack usernames (e.g., @username), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots
 
-### Web & Network
+### 🌐 Web & Network
 
 - `DomainProbe` — extracts domain names, including internationalized (Unicode) domains
 
@@ -54,12 +54,12 @@ The library comes with several built-in probes to detect common patterns in text
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., 00:1A:2B:3C:4D:5E or
   00-1A-2B-3C-4D-5E), accurately detecting valid addresses while excluding invalid patterns.
 
-### Social & Tags
+### 🏷 Social & Tags
 
 - `HashtagProbe` — extracts hashtags from text (e.g., #example), supporting Unicode letters, numbers, and underscores,
   detecting hashtags in any position of the text.
 
-### UUID & Identifiers
+### 🆔 UUID & Identifiers
 
 - `UUIDProbe` — extracts any valid UUID (v1–v6) without checking the specific version. Supports standard UUID formats with hyphens.
 
