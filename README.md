@@ -21,13 +21,11 @@ composer require makarms/text-probe
 
 The library comes with several built-in probes to detect common patterns in text:
 
+### Contact & Identity
+
 - `EmailProbe` — extracts email addresses
 
 - `PhoneProbe` — extracts phone numbers (supports various formats)
-
-- `DomainProbe` — extracts domain names, including internationalized (Unicode) domains
-
-- `LinkProbe` — extracts hyperlinks, including ones with IP addresses, ports, or without a protocol
 
 - `TelegramUserLinkProbe` — extracts t.me links pointing to Telegram users
 
@@ -42,6 +40,12 @@ The library comes with several built-in probes to detect common patterns in text
 - `SlackUsernameProbe` — extracts Slack usernames (e.g., @username), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots
 
+### Web & Network
+
+- `DomainProbe` — extracts domain names, including internationalized (Unicode) domains
+
+- `LinkProbe` — extracts hyperlinks, including ones with IP addresses, ports, or without a protocol
+
 - `IPv4Probe` — extracts IPv4 addresses, supporting standard formats and excluding reserved/bogus ranges if necessary
 
 - `IPv6Probe` — extracts IPv6 addresses, including compressed formats, IPv4-mapped addresses, and zone indexes (e.g.,
@@ -49,6 +53,27 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., 00:1A:2B:3C:4D:5E or
   00-1A-2B-3C-4D-5E), accurately detecting valid addresses while excluding invalid patterns.
+
+### Social & Tags
+
+- `HashtagProbe` — extracts hashtags from text (e.g., #example), supporting Unicode letters, numbers, and underscores,
+  detecting hashtags in any position of the text.
+
+### UUID & Identifiers
+
+- `UUIDProbe` — extracts any valid UUID (v1–v6) without checking the specific version. Supports standard UUID formats with hyphens.
+
+- `UUIDv1Probe` — extracts UUID version 1, matching the format `xxxxxxxx-xxxx-1xxx-xxxx-xxxxxxxxxxxx`, commonly used for time-based identifiers.
+
+- `UUIDv2Probe` — extracts UUID version 2, matching the format `xxxxxxxx-xxxx-2xxx-xxxx-xxxxxxxxxxxx`, typically used in DCE Security contexts.
+
+- `UUIDv3Probe` — extracts UUID version 3, matching the format `xxxxxxxx-xxxx-3xxx-xxxx-xxxxxxxxxxxx`, generated using MD5 hashing of names and namespaces.
+
+- `UUIDv4Probe` — extracts UUID version 4, matching the format `xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx`, randomly generated and commonly used for unique identifiers.
+
+- `UUIDv5Probe` — extracts UUID version 5, matching the format `xxxxxxxx-xxxx-5xxx-xxxx-xxxxxxxxxxxx`, generated using SHA-1 hashing of names and namespaces.
+
+- `UUIDv6Probe` — extracts UUID version 6, matching the format `xxxxxxxx-xxxx-6xxx-xxxx-xxxxxxxxxxxx`, an ordered version for better indexing and sorting.
 
 You can also implement your own probes by creating classes that implement the `IProbe` interface.
 

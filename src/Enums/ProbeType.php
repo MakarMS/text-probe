@@ -16,4 +16,12 @@ enum ProbeType: int
     case IPV4 = 10;
     case IPV6 = 11;
     case MAC_ADDRESS = 12;
+    case HASHTAG = 13;
+    case UUID = 14;
+    case UUIDv1 = 15;
+    case UUIDv2 = 16;
+    case UUIDv3 = 17;
+    case UUIDv4 = 18;
+    case UUIDv5 = 19;
+    case UUIDv6 = 20;
 }
