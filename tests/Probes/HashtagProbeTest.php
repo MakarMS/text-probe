@@ -1,6 +1,6 @@
 <?php
 
-namespace Probes;
+namespace Tests\Probes;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
@@ -20,12 +20,11 @@ class HashtagProbeTest extends TestCase
         $this->assertEquals('#php', $results[0]->getResult());
         $this->assertEquals(9, $results[0]->getStart());
         $this->assertEquals(13, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[0]->getProbeType());
 
         $this->assertEquals('#coding', $results[1]->getResult());
         $this->assertEquals(18, $results[1]->getStart());
         $this->assertEquals(25, $results[1]->getEnd());
-
-        $this->assertEquals(ProbeType::HASHTAG, $results[0]->getProbeType());
         $this->assertEquals(ProbeType::HASHTAG, $results[1]->getProbeType());
     }
 
@@ -51,10 +50,12 @@ class HashtagProbeTest extends TestCase
         $this->assertEquals('#hello_world', $results[0]->getResult());
         $this->assertEquals(10, $results[0]->getStart());
         $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[0]->getProbeType());
 
         $this->assertEquals('#php8', $results[1]->getResult());
         $this->assertEquals(27, $results[1]->getStart());
         $this->assertEquals(32, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[1]->getProbeType());
     }
 
     public function testHashtagsNextToPunctuation(): void
@@ -69,10 +70,12 @@ class HashtagProbeTest extends TestCase
         $this->assertEquals('#dev', $results[0]->getResult());
         $this->assertEquals(11, $results[0]->getStart());
         $this->assertEquals(15, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[0]->getProbeType());
 
         $this->assertEquals('#AI', $results[1]->getResult());
         $this->assertEquals(31, $results[1]->getStart());
         $this->assertEquals(34, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[1]->getProbeType());
     }
 
     public function testFindsUnicodeHashtags(): void
@@ -87,9 +90,11 @@ class HashtagProbeTest extends TestCase
         $this->assertEquals('#разработчик', $results[0]->getResult());
         $this->assertEquals(11, $results[0]->getStart());
         $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[0]->getProbeType());
 
         $this->assertEquals('#нейронки', $results[1]->getResult());
         $this->assertEquals(39, $results[1]->getStart());
         $this->assertEquals(48, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::HASHTAG, $results[1]->getProbeType());
     }
 }

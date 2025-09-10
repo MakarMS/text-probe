@@ -1,6 +1,6 @@
 <?php
 
-namespace Probes;
+namespace Tests\Probes;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;

@@ -10,7 +10,8 @@ class IPv6Probe extends Probe implements IProbe
 {
     public function probe(string $text): array
     {
-        $regex = '/(?<![0-9a-f:])' .
+        return $this->findByRegex(
+            '/(?<![0-9a-f:])' .
             '((' .
             '(([0-9A-Fa-f]{1,4}:){6}|::([0-9A-Fa-f]{1,4}:){0,5})' .
             '(' .
@@ -32,9 +33,9 @@ class IPv6Probe extends Probe implements IProbe
             ')' .
             ')' .
             '(?:%\S+)?' .
-            '(?![0-9a-f:])/i';
-
-        return $this->findByRegex($regex, $text);
+            '(?![0-9a-f:])/i',
+            $text
+        );
     }
 
 

@@ -6,17 +6,17 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 
-class MacAddressProbe extends Probe implements IProbe
+class UserAgentProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
     {
         return $this->findByRegex(
-            '/(?<![0-9A-Fa-f:-])(?:[0-9A-Fa-f]{2}([-:])){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:-])/', $text
+            '/\b([a-z][\w-]*\/[\w.-]+(?:\s*(?:[a-z][\w-]*\/[\w.-]+|\( [^)]+ \)))*)/ixu', $text
         );
     }
 
     protected function getProbeType(): BackedEnum
     {
-        return ProbeType::MAC_ADDRESS;
+        return ProbeType::USER_AGENT;
     }
 }

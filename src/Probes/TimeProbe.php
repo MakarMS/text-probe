@@ -6,17 +6,15 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 
-class MacAddressProbe extends Probe implements IProbe
+class TimeProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
     {
-        return $this->findByRegex(
-            '/(?<![0-9A-Fa-f:-])(?:[0-9A-Fa-f]{2}([-:])){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:-])/', $text
-        );
+        return $this->findByRegex('/\b\d{1,2}:\d{2}(?::\d{2}(?:\.\d+)?)?\s*(?:AM|PM)?(?=[\s,;]|$)/i', $text);
     }
 
     protected function getProbeType(): BackedEnum
     {
-        return ProbeType::MAC_ADDRESS;
+        return ProbeType::TIME;
     }
 }

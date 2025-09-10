@@ -20,12 +20,12 @@ class TelegramUserLinkProbeTest extends TestCase
         $this->assertEquals('https://t.me/username', $results[0]->getResult());
         $this->assertEquals(5, $results[0]->getStart());
         $this->assertEquals(26, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
 
         $this->assertEquals('https://telegram.me/user_name123', $results[1]->getResult());
         $this->assertEquals(31, $results[1]->getStart());
         $this->assertEquals(63, $results[1]->getEnd());
-
-        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[1]->getProbeType());
     }
 
     public function testFindsTelegramDogLinks(): void
@@ -40,6 +40,7 @@ class TelegramUserLinkProbeTest extends TestCase
         $this->assertEquals('http://telegram.dog/my_user', $results[0]->getResult());
         $this->assertEquals(16, $results[0]->getStart());
         $this->assertEquals(43, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
     }
 
     public function testIgnoresInvalidTelegramLinks(): void
@@ -64,10 +65,12 @@ class TelegramUserLinkProbeTest extends TestCase
         $this->assertEquals('https://t.me/startUser', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
 
         $this->assertEquals('https://telegram.me/endUser', $results[1]->getResult());
         $this->assertEquals(33, $results[1]->getStart());
         $this->assertEquals(60, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[1]->getProbeType());
     }
 
     public function testFindsTelegramLinksWithNumbersAndUnderscores(): void
@@ -82,10 +85,12 @@ class TelegramUserLinkProbeTest extends TestCase
         $this->assertEquals('https://t.me/user123', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(26, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
 
         $this->assertEquals('http://telegram.me/user_name_456', $results[1]->getResult());
         $this->assertEquals(31, $results[1]->getStart());
         $this->assertEquals(63, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[1]->getProbeType());
     }
 
     public function testFindsTelegramLinksWithParameters(): void
@@ -100,5 +105,6 @@ class TelegramUserLinkProbeTest extends TestCase
         $this->assertEquals('https://t.me/username?start=123&ref=abc#section', $results[0]->getResult());
         $this->assertEquals(17, $results[0]->getStart());
         $this->assertEquals(64, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
     }
 }

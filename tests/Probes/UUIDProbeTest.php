@@ -1,6 +1,6 @@
 <?php
 
-namespace Probes;
+namespace Tests\Probes;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
@@ -36,10 +36,8 @@ class UUIDProbeTest extends TestCase
 
         foreach ($results as $i => $result) {
             $this->assertEquals(array_keys($expectedUUIDs)[$i], $result->getResult());
-
             $this->assertEquals($expectedUUIDs[$result->getResult()]['start'], $result->getStart());
             $this->assertEquals($expectedUUIDs[$result->getResult()]['end'], $result->getEnd());
-
             $this->assertEquals(ProbeType::UUID, $result->getProbeType());
         }
     }

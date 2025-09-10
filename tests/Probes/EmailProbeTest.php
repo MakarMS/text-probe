@@ -5,7 +5,6 @@ namespace Tests\Probes;
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\EmailProbe;
-use TextProbe\Result;
 
 class EmailProbeTest extends TestCase
 {
@@ -18,14 +17,10 @@ class EmailProbeTest extends TestCase
 
         $this->assertCount(1, $results);
 
-        /** @var Result $result */
-        $result = $results[0];
-
-        $this->assertEquals('test@example.com', $result->getResult());
-        $this->assertEquals(14, $result->getStart());
-        $this->assertEquals(30, $result->getEnd());
-
-        $this->assertEquals(ProbeType::EMAIL, $result->getProbeType());
+        $this->assertEquals('test@example.com', $results[0]->getResult());
+        $this->assertEquals(14, $results[0]->getStart());
+        $this->assertEquals(30, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
     }
 
     public function testMultipleEmailsFound(): void
@@ -40,10 +35,12 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('one@example.com', $results[0]->getResult());
         $this->assertEquals(8, $results[0]->getStart());
         $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
 
         $this->assertEquals('two@example.org', $results[1]->getResult());
         $this->assertEquals(25, $results[1]->getStart());
         $this->assertEquals(40, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[1]->getProbeType());
     }
 
     public function testNoEmailsFound(): void
@@ -67,6 +64,7 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('start@example.com', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(17, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
     }
 
     public function testEmailAtEndOfString(): void
@@ -81,6 +79,7 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('end@example.org', $results[0]->getResult());
         $this->assertEquals(12, $results[0]->getStart());
         $this->assertEquals(27, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
     }
 
     public function testEmailWithPlusSign(): void
@@ -95,6 +94,7 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('dev+test@example.com', $results[0]->getResult());
         $this->assertEquals(8, $results[0]->getStart());
         $this->assertEquals(28, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
     }
 
     public function testEmailWithSubdomain(): void
@@ -109,6 +109,7 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('admin@support.mail.co.uk', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
     }
 
     public function testDuplicateEmails(): void
@@ -123,10 +124,12 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('repeat@example.com', $results[0]->getResult());
         $this->assertEquals(12, $results[0]->getStart());
         $this->assertEquals(30, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
 
         $this->assertEquals('repeat@example.com', $results[1]->getResult());
         $this->assertEquals(34, $results[1]->getStart());
         $this->assertEquals(52, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[1]->getProbeType());
     }
 
     public function testEmailSurroundedByPunctuation(): void
@@ -141,6 +144,7 @@ class EmailProbeTest extends TestCase
         $this->assertEquals('test@example.com', $results[0]->getResult());
         $this->assertEquals(15, $results[0]->getStart());
         $this->assertEquals(31, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::EMAIL, $results[0]->getProbeType());
     }
 
     public function testTextWithFakeEmail(): void

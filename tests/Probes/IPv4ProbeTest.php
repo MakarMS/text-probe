@@ -20,7 +20,6 @@ class IPv4ProbeTest extends TestCase
         $this->assertEquals('192.168.1.1', $results[0]->getResult());
         $this->assertEquals(16, $results[0]->getStart());
         $this->assertEquals(27, $results[0]->getEnd());
-
         $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
     }
 
@@ -36,14 +35,17 @@ class IPv4ProbeTest extends TestCase
         $this->assertEquals('8.8.8.8', $results[0]->getResult());
         $this->assertEquals(5, $results[0]->getStart());
         $this->assertEquals(12, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
 
         $this->assertEquals('127.0.0.1', $results[1]->getResult());
         $this->assertEquals(14, $results[1]->getStart());
         $this->assertEquals(23, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[1]->getProbeType());
 
         $this->assertEquals('255.255.255.255', $results[2]->getResult());
         $this->assertEquals(29, $results[2]->getStart());
         $this->assertEquals(44, $results[2]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[2]->getProbeType());
     }
 
     public function testRejectsInvalidIPv4Addresses(): void
@@ -68,10 +70,12 @@ class IPv4ProbeTest extends TestCase
         $this->assertEquals('0.0.0.0', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(7, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
 
         $this->assertEquals('255.255.255.255', $results[1]->getResult());
         $this->assertEquals(32, $results[1]->getStart());
         $this->assertEquals(47, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[1]->getProbeType());
     }
 
     public function testRejectsIPsWithLeadingZerosInOctets(): void
@@ -86,6 +90,7 @@ class IPv4ProbeTest extends TestCase
         $this->assertEquals('10.0.0.1', $results[0]->getResult());
         $this->assertEquals(42, $results[0]->getStart());
         $this->assertEquals(50, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
     }
 
     public function testDoesNotMatchPartialIPsInText(): void
@@ -110,14 +115,17 @@ class IPv4ProbeTest extends TestCase
         $this->assertEquals('127.0.0.1', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(15, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
 
         $this->assertEquals('192.168.0.1', $results[1]->getResult());
         $this->assertEquals(19, $results[1]->getStart());
         $this->assertEquals(30, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[1]->getProbeType());
 
         $this->assertEquals('10.10.10.10', $results[2]->getResult());
         $this->assertEquals(37, $results[2]->getStart());
         $this->assertEquals(48, $results[2]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[2]->getProbeType());
     }
 
     public function testFindsIPv4InLongText(): void
@@ -130,7 +138,14 @@ class IPv4ProbeTest extends TestCase
         $this->assertCount(2, $results);
 
         $this->assertEquals('10.0.0.1', $results[0]->getResult());
+        $this->assertEquals(28, $results[0]->getStart());
+        $this->assertEquals(36, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
+
         $this->assertEquals('172.16.0.254', $results[1]->getResult());
+        $this->assertEquals(88, $results[1]->getStart());
+        $this->assertEquals(100, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[1]->getProbeType());
     }
 
     public function testDoesNotMatchIPv6Addresses(): void
@@ -153,5 +168,6 @@ class IPv4ProbeTest extends TestCase
         $this->assertEquals('127.0.0.1', $results[0]->getResult());
         $this->assertEquals(8, $results[0]->getStart());
         $this->assertEquals(17, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::IPV4, $results[0]->getProbeType());
     }
 }

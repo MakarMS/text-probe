@@ -20,12 +20,12 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://example.com', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
 
         $this->assertEquals('http://sub.domain.co.uk/page', $results[1]->getResult());
         $this->assertEquals(30, $results[1]->getStart());
         $this->assertEquals(58, $results[1]->getEnd());
-
-        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
+        $this->assertEquals(ProbeType::LINK, $results[1]->getProbeType());
     }
 
     public function testFindsMixedLinks(): void
@@ -40,10 +40,12 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://site.com', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
 
         $this->assertEquals('http://another-site.org/page', $results[1]->getResult());
         $this->assertEquals(43, $results[1]->getStart());
         $this->assertEquals(71, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[1]->getProbeType());
     }
 
     public function testNoLinksReturnsEmpty(): void
@@ -69,6 +71,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('http://example.org', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testLinkWithGetParameters(): void
@@ -83,6 +86,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://example.com/search?q=php+regex&sort=asc', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(53, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testLinkWithLinkAsGetParameter(): void
@@ -97,6 +101,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://example.com/redirect?url=https%3A%2F%2Fother-site.com%2Fpage', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(74, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testLinkSurroundedByText(): void
@@ -111,6 +116,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://example.com/page.html', $results[0]->getResult());
         $this->assertEquals(16, $results[0]->getStart());
         $this->assertEquals(45, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testFindsLinksWithoutProtocol(): void
@@ -125,10 +131,12 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('www.example.com', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(21, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
 
         $this->assertEquals('another.net/path', $results[1]->getResult());
         $this->assertEquals(26, $results[1]->getStart());
         $this->assertEquals(42, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[1]->getProbeType());
     }
 
     public function testFindsIpv4Links(): void
@@ -143,6 +151,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://8.8.8.8:8080/dns-query', $results[0]->getResult());
         $this->assertEquals(24, $results[0]->getStart());
         $this->assertEquals(54, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testFindsIpv6Links(): void
@@ -157,6 +166,7 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('http://[2001:db8::1]/test', $results[0]->getResult());
         $this->assertEquals(7, $results[0]->getStart());
         $this->assertEquals(32, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 
     public function testCorrectlyStripsTrailingPunctuation(): void
@@ -169,25 +179,29 @@ class LinkProbeTest extends TestCase
         $this->assertCount(5, $results);
 
         $this->assertEquals('example.com', $results[0]->getResult());
-        $this->assertEquals('example.net', $results[1]->getResult());
-        $this->assertEquals('example.org', $results[2]->getResult());
-        $this->assertEquals('example.edu', $results[3]->getResult());
-        $this->assertEquals('example.io', $results[4]->getResult());
-
         $this->assertEquals(7, $results[0]->getStart());
         $this->assertEquals(18, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
 
+        $this->assertEquals('example.net', $results[1]->getResult());
         $this->assertEquals(20, $results[1]->getStart());
         $this->assertEquals(31, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[1]->getProbeType());
 
+        $this->assertEquals('example.org', $results[2]->getResult());
         $this->assertEquals(33, $results[2]->getStart());
         $this->assertEquals(44, $results[2]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[2]->getProbeType());
 
+        $this->assertEquals('example.edu', $results[3]->getResult());
         $this->assertEquals(46, $results[3]->getStart());
         $this->assertEquals(57, $results[3]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[3]->getProbeType());
 
+        $this->assertEquals('example.io', $results[4]->getResult());
         $this->assertEquals(63, $results[4]->getStart());
         $this->assertEquals(73, $results[4]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[4]->getProbeType());
     }
 
     public function testKnownLimitationUrlEndingInQuestionMark(): void
@@ -201,5 +215,6 @@ class LinkProbeTest extends TestCase
         $this->assertEquals('https://example.com/search', $results[0]->getResult());
         $this->assertEquals(15, $results[0]->getStart());
         $this->assertEquals(41, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::LINK, $results[0]->getProbeType());
     }
 }

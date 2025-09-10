@@ -20,16 +20,17 @@ class DiscordOldUsernameProbeTest extends TestCase
         $this->assertEquals('JohnDoe#1234', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(12, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_OLD_USERNAME, $results[0]->getProbeType());
 
         $this->assertEquals('user_99#0001', $results[1]->getResult());
         $this->assertEquals(13, $results[1]->getStart());
         $this->assertEquals(25, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_OLD_USERNAME, $results[1]->getProbeType());
 
         $this->assertEquals('Some_Guy#9999', $results[2]->getResult());
         $this->assertEquals(26, $results[2]->getStart());
         $this->assertEquals(39, $results[2]->getEnd());
-
-        $this->assertEquals(ProbeType::DISCORD_OLD_USERNAME, $results[0]->getProbeType());
+        $this->assertEquals(ProbeType::DISCORD_OLD_USERNAME, $results[2]->getProbeType());
     }
 
     public function testRejectsInvalidUsernames(): void

@@ -20,7 +20,6 @@ class MacAddressProbeTest extends TestCase
         $this->assertEquals('00:1A:2B:3C:4D:5E', $results[0]->getResult());
         $this->assertEquals(12, $results[0]->getStart());
         $this->assertEquals(29, $results[0]->getEnd());
-
         $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
     }
 
@@ -36,10 +35,12 @@ class MacAddressProbeTest extends TestCase
         $this->assertEquals('00:1A:2B:3C:4D:5E', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
 
         $this->assertEquals('01-23-45-67-89-AB', $results[1]->getResult());
         $this->assertEquals(28, $results[1]->getStart());
         $this->assertEquals(45, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[1]->getProbeType());
     }
 
     public function testRejectsInvalidMacAddresses(): void
@@ -64,10 +65,12 @@ class MacAddressProbeTest extends TestCase
         $this->assertEquals('00:1A:2B:3C:4D:5E', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(17, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
 
         $this->assertEquals('01-23-45-67-89-AB', $results[1]->getResult());
         $this->assertEquals(34, $results[1]->getStart());
         $this->assertEquals(51, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[1]->getProbeType());
     }
 
     public function testDoesNotMatchMacLikeStrings(): void
@@ -92,5 +95,6 @@ class MacAddressProbeTest extends TestCase
         $this->assertEquals('12-34-56-78-9A-BC', $results[0]->getResult());
         $this->assertEquals(29, $results[0]->getStart());
         $this->assertEquals(46, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
     }
 }

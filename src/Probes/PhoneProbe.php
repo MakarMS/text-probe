@@ -11,8 +11,7 @@ class PhoneProbe extends Probe implements IProbe
     public function probe(string $text): array
     {
         return $this->findByRegex(
-            '/(?<!\d)(?:\+?\d{1,3}[\s-]?)?\(?\d{2,4}\)?[\s-]?(?:\d{2,4}[\s-]?){2,4}(?=\s|$|\W)/',
-            $text
+            '/(?<!\d)(?:\+?\d{1,3}[\s-]?)?\(?\d{2,4}\)?[\s-]?(?:\d{2,4}[\s-]?){2,4}(?=\s|$|\W)/', $text
         );
     }
 

@@ -20,12 +20,12 @@ class TelegramUsernameProbeTest extends TestCase
         $this->assertEquals('@username', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(15, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[0]->getProbeType());
 
         $this->assertEquals('@user_name123', $results[1]->getResult());
         $this->assertEquals(20, $results[1]->getStart());
         $this->assertEquals(33, $results[1]->getEnd());
-
-        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[0]->getProbeType());
+        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[1]->getProbeType());
 
     }
 
@@ -41,10 +41,12 @@ class TelegramUsernameProbeTest extends TestCase
         $this->assertEquals('@startUser', $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
         $this->assertEquals(10, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[0]->getProbeType());
 
         $this->assertEquals('@endUser', $results[1]->getResult());
         $this->assertEquals(21, $results[1]->getStart());
         $this->assertEquals(29, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[1]->getProbeType());
     }
 
     public function testIgnoresInvalidUsernames(): void
@@ -69,9 +71,11 @@ class TelegramUsernameProbeTest extends TestCase
         $this->assertEquals('@user123', $results[0]->getResult());
         $this->assertEquals(8, $results[0]->getStart());
         $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[0]->getProbeType());
 
         $this->assertEquals('@user_name_456', $results[1]->getResult());
         $this->assertEquals(21, $results[1]->getStart());
         $this->assertEquals(35, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[1]->getProbeType());
     }
 }

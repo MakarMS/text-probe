@@ -24,4 +24,9 @@ enum ProbeType: int
     case UUIDv4 = 18;
     case UUIDv5 = 19;
     case UUIDv6 = 20;
+    case GEO_COORDINATES = 21;
+    case USER_AGENT = 22;
+    case DATE = 23;
+    case TIME = 24;
+    case DATETIME = 25;
 }
