@@ -108,7 +108,7 @@ You can also implement your own probes by creating classes that implement the `I
 require __DIR__ . '/vendor/autoload.php';
 
 use TextProbe\TextProbe;
-use TextProbe\Probes\EmailProbe;
+use TextProbe\Probes\Contact\EmailProbe;
 
 $text = "Please contact us at info@example.com for more details.";
 
