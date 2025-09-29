@@ -54,7 +54,7 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `BankCardNumberProbe` — extracts bank card numbers in common formats: plain digits (e.g., 4111111111111111), digits
   separated by spaces (e.g., 4111 1111 1111 1111) or dashes (e.g., 4111-1111-1111-1111). Only Luhn-valid numbers by
-  defaults.
+  default.
 
 ### 🗺 Geolocation
 
