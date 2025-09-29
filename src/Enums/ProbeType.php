@@ -29,4 +29,5 @@ enum ProbeType: int
     case DATE = 23;
     case TIME = 24;
     case DATETIME = 25;
+    case BANK_CARD_NUMBER = 26;
 }

@@ -4,9 +4,18 @@ namespace TextProbe\Probes;
 
 use BackedEnum;
 use TextProbe\Result;
+use TextProbe\Validator\Contracts\IValidator;
+use TextProbe\Validator\NoopValidator;
 
 abstract class Probe
 {
+    protected IValidator $validator;
+
+    public function __construct(?IValidator $validator = null)
+    {
+        $this->validator = $validator ?? new NoopValidator();
+    }
+
     /** @return Array<Result> */
     protected function findByRegex(string $regex, string $text): array
     {
@@ -14,6 +23,10 @@ abstract class Probe
 
         $results = [];
         foreach ($matches[0] as [$match, $byteOffset]) {
+            if (!$this->validator->validate($match)) {
+                continue;
+            }
+
             $charOffset = mb_strlen(substr($text, 0, $byteOffset));
             $charLength = mb_strlen($match);
 
