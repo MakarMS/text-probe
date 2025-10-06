@@ -52,9 +52,35 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 💳 Finance
 
-- `BankCardNumberProbe` — extracts bank card numbers in common formats: plain digits (e.g., 4111111111111111), digits
-  separated by spaces (e.g., 4111 1111 1111 1111) or dashes (e.g., 4111-1111-1111-1111). Only Luhn-valid numbers by
-  default.
+> Supported formats: plain digits (e.g., 4111111111111111), digits separated by spaces (e.g., 4111 1111 1111 1111) or
+> dashes (e.g., 4111-1111-1111-1111). Only Luhn-valid numbers by default.
+
+- `BankCardNumberProbe` — extracts major card schemes like Visa, Mastercard, Amex, and all other supported schemes
+  listed below.
+
+- `BankAmexCardProbe` — American Express (prefixes: 34, 37), 15 digits.
+
+- `BankDinersClubCardProbe` — Diners Club (prefixes: 30[0-5], 309, 36, 38, 39), 13–14 digits.
+
+- `BankDiscoverCardProbe` — Discover (prefixes: 6011, 65, 644–649, 622126–622925), 16 digits.
+
+- `BankJcbCardProbe` — JCB (prefixes: 3528–3589), 16 digits.
+
+- `BankMaestroCardProbe` — Maestro (prefixes: 5018, 5020, 5038, 5612, 5893, 6304, 6759, 6761–6763), 16–19 digits.
+
+- `BankMastercardCardProbe` — Mastercard (prefixes: 51–55, 2221–2720), 16 digits.
+
+- `BankMirCardProbe` — MIR (prefixes: 2200–2204), 16 digits.
+
+- `BankRupayCardProbe` — RuPay (prefixes: 508, 60, 65, 81, 82), 16 digits.
+
+- `BankTroyCardProbe` — Troy (prefixes: 9792), 16 digits.
+
+- `BankUnionpayCardProbe` — UnionPay (prefixes: 62), 16–19 digits.
+
+- `BankVerveCardProbe` — Verve (prefixes: 5060, 5061, 6500–6509), 13–19 digits.
+
+- `BankVisaCardProbe` — Visa (prefixes: 4), 13–19 digits.
 
 ### 🗺 Geolocation
 

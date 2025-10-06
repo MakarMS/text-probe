@@ -1,0 +1,28 @@
+<?php
+
+namespace TextProbe\Probes\Finance\Bank\Card;
+
+use BackedEnum;
+use TextProbe\Enums\ProbeType;
+use TextProbe\Probes\Contracts\IProbe;
+use TextProbe\Probes\Probe;
+use TextProbe\Validator\BankCardNumberValidator;
+use TextProbe\Validator\Contracts\IValidator;
+
+class BankUnionpayCardProbe extends Probe implements IProbe
+{
+    public function __construct(?IValidator $validator = null)
+    {
+        parent::__construct($validator ?? new BankCardNumberValidator());
+    }
+
+    public function probe(string $text): array
+    {
+        return $this->findByRegex('/(?<!\d)62(?:[ -]?\d){14,17}(?!\d)/', $text);
+    }
+
+    protected function getProbeType(): BackedEnum
+    {
+        return ProbeType::BANK_UNIONPAY_CARD_NUMBER;
+    }
+}
