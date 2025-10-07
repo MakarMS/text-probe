@@ -6,8 +6,8 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
-use TextProbe\Validator\BankCardNumberValidator;
 use TextProbe\Validator\Contracts\IValidator;
+use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
 
 class BankUnionpayCardProbe extends Probe implements IProbe
 {

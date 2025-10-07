@@ -3,7 +3,7 @@
 namespace Tests\Validator\Finance\Bank\Card;
 
 use PHPUnit\Framework\TestCase;
-use TextProbe\Validator\BankCardNumberValidator;
+use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
 
 class BankCardNumberValidatorTest extends TestCase
 {

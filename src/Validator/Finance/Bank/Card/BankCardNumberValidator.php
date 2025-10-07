@@ -1,6 +1,6 @@
 <?php
 
-namespace TextProbe\Validator;
+namespace TextProbe\Validator\Finance\Bank\Card;
 
 use TextProbe\Validator\Contracts\IValidator;
 
