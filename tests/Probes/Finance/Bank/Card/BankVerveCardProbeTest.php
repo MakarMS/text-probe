@@ -16,6 +16,7 @@ class BankVerveCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('5060771326392463', $results[0]->getResult());
         $this->assertEquals(15, $results[0]->getStart());
         $this->assertEquals(31, $results[0]->getEnd());
@@ -30,6 +31,7 @@ class BankVerveCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('5061 1412 6412 6928', $results[0]->getResult());
         $this->assertEquals(7, $results[0]->getStart());
         $this->assertEquals(26, $results[0]->getEnd());
@@ -44,6 +46,7 @@ class BankVerveCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('6500-0052-5264-4134', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(25, $results[0]->getEnd());
@@ -88,6 +91,7 @@ class BankVerveCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('5060771326392463', $results[0]->getResult());
         $this->assertEquals(34, $results[0]->getStart());
         $this->assertEquals(50, $results[0]->getEnd());

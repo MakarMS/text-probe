@@ -52,6 +52,16 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 💳 Finance
 
+#### 🏦 Bank Account
+
+- `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., DEUTDEFF500).
+
+- `BankIbanNumberProbe` — Extracts IBAN numbers, supports spaces, validates using Mod-97.
+
+- `BankRoutingNumberProbe` — Extracts US Routing Numbers (9 digits), validates the checksum.
+
+#### 💳 Bank Cards
+
 > Supported formats: plain digits (e.g., 4111111111111111), digits separated by spaces (e.g., 4111 1111 1111 1111) or
 > dashes (e.g., 4111-1111-1111-1111). Only Luhn-valid numbers by default.
 
@@ -81,6 +91,12 @@ The library comes with several built-in probes to detect common patterns in text
 - `BankVerveCardProbe` — Verve (prefixes: 5060, 5061, 6500–6509), 13–19 digits.
 
 - `BankVisaCardProbe` — Visa (prefixes: 4), 13–19 digits.
+
+#### 🔒 Card Security & Expiration
+
+- `BankCardCvvCvcCodeProbe` — Extracts CVV/CVC codes (3–4 digits).
+
+- `BankCardExpiryProbe` — Extracts card expiration dates (formats MM/YY, MM/YYYY, MM-YY, MM-YYYY, etc.).
 
 ### 🗺 Geolocation
 

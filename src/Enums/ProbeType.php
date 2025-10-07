@@ -42,4 +42,9 @@ enum ProbeType: int
     case BANK_RUPAY_CARD_NUMBER = 36;
     case BANK_TROY_CARD_NUMBER = 37;
     case BANK_VERVE_CARD_NUMBER = 38;
+    case BANK_IBAN_NUMBER = 39;
+    case BANK_BIC_CODE = 40;
+    case BANK_ROUTING_NUMBER = 41;
+    case BANK_CARD_EXPIRY_DATE = 42;
+    case BANK_CARD_CVV_CVC_CODE = 43;
 }

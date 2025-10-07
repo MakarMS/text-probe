@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Validator;
+namespace Tests\Validator\Finance\Bank\Card;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\BankCardNumberValidator;

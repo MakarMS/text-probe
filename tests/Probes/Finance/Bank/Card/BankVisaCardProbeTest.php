@@ -16,6 +16,7 @@ class BankVisaCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('4111111111111111', $results[0]->getResult());
         $this->assertEquals(14, $results[0]->getStart());
         $this->assertEquals(30, $results[0]->getEnd());
@@ -30,6 +31,7 @@ class BankVisaCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('4111 1111 1111 1111', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(25, $results[0]->getEnd());
@@ -44,6 +46,7 @@ class BankVisaCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('4012-8888-8888-1881', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(25, $results[0]->getEnd());
@@ -58,6 +61,7 @@ class BankVisaCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('4222222222222', $results[0]->getResult());
         $this->assertEquals(12, $results[0]->getStart());
         $this->assertEquals(25, $results[0]->getEnd());
@@ -82,6 +86,7 @@ class BankVisaCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
+
         $this->assertEquals('4111111111111111', $results[0]->getResult());
         $this->assertEquals(7, $results[0]->getStart());
         $this->assertEquals(23, $results[0]->getEnd());
@@ -101,6 +106,7 @@ class BankVisaCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('4111111111111111', $results[0]->getResult());
         $this->assertEquals(33, $results[0]->getStart());
         $this->assertEquals(49, $results[0]->getEnd());

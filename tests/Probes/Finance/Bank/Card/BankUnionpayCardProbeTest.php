@@ -16,6 +16,7 @@ class BankUnionpayCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('6249166746947115', $results[0]->getResult());
         $this->assertEquals(18, $results[0]->getStart());
         $this->assertEquals(34, $results[0]->getEnd());
@@ -30,6 +31,7 @@ class BankUnionpayCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('6288 2340 3193 2390', $results[0]->getResult());
         $this->assertEquals(10, $results[0]->getStart());
         $this->assertEquals(29, $results[0]->getEnd());
@@ -44,6 +46,7 @@ class BankUnionpayCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('6264-9399-6927-53984', $results[0]->getResult());
         $this->assertEquals(6, $results[0]->getStart());
         $this->assertEquals(26, $results[0]->getEnd());
@@ -88,6 +91,7 @@ class BankUnionpayCardProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
+
         $this->assertEquals('629831196200679717', $results[0]->getResult());
         $this->assertEquals(34, $results[0]->getStart());
         $this->assertEquals(52, $results[0]->getEnd());
