@@ -50,7 +50,7 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `TimeProbe` — extracts times (e.g., 14:30, 14:30:15, optional AM/PM).
 
-### 💳 Finance
+### 💰 Finance
 
 #### 🏦 Bank Account
 
@@ -97,6 +97,32 @@ The library comes with several built-in probes to detect common patterns in text
 - `BankCardCvvCvcCodeProbe` — Extracts CVV/CVC codes (3–4 digits).
 
 - `BankCardExpiryProbe` — Extracts card expiration dates (formats MM/YY, MM/YYYY, MM-YY, MM-YYYY, etc.).
+
+#### 🔗 Crypto
+
+- `BitcoinAddressProbe` — Extracts Bitcoin addresses (Base58 and Bech32 formats).
+
+- `EthereumAddressProbe` — Extracts Ethereum addresses (0x-prefixed, 40 hex characters).
+
+- `LitecoinAddressProbe` — Extracts Litecoin addresses (Base58 or Bech32).
+
+- `RippleAddressProbe` — Extracts Ripple/XRP addresses (starts with 'r', Base58).
+
+- `SolanaAddressProbe` — Extracts Solana addresses (Base58, 32–44 chars).
+
+- `TronAddressProbe` — Extracts TRON addresses (Base58, starts with 'T', 34 chars).
+
+- `UsdcAlgorandAddressProbe` — Extracts USDC addresses on Algorand (Base32, 58 chars).
+
+- `UsdcErc20AddressProbe` — Extracts USDC ERC20 addresses (Ethereum-compatible, 0x-prefixed).
+
+- `UsdcSolanaAddressProbe` — Extracts USDC addresses on Solana (same format as Solana addresses).
+
+- `UsdtErc20AddressProbe` — Extracts USDT ERC20 addresses (Ethereum-compatible, 0x-prefixed).
+
+- `UsdtOmniAddressProbe` — Extracts USDT Omni addresses (Bitcoin-based, starts with 1 or 3, 26–35 chars).
+
+- `UsdtTrc20AddressProbe` — Extracts USDT TRC20 addresses (TRON-based, Base58, starts with 'T', 34 chars).
 
 ### 🗺 Geolocation
 
