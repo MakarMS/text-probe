@@ -55,7 +55,6 @@ class LinkProbeTest extends TestCase
         $text = 'No links here, just plain text.';
         $results = $probe->probe($text);
 
-        $this->assertIsArray($results);
         $this->assertEmpty($results);
     }
 

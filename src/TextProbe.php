@@ -6,7 +6,7 @@ use TextProbe\Probes\Contracts\IProbe;
 
 class TextProbe
 {
-    /** @var $probes Array<IProbe> */
+    /** @var IProbe[] */
     private array $probes = [];
 
     public function addProbe(IProbe $probe): void
@@ -14,7 +14,9 @@ class TextProbe
         $this->probes[] = $probe;
     }
 
-    /** @return Array<Result> */
+    /**
+     * @return Result[]
+     */
     public function analyze(string $text): array
     {
         $results = [];

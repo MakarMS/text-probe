@@ -75,7 +75,6 @@ class DomainProbeTest extends TestCase
         $text = 'This is just some text without domains.';
         $results = $probe->probe($text);
 
-        $this->assertIsArray($results);
         $this->assertEmpty($results);
     }
 

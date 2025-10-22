@@ -34,7 +34,6 @@ class TextProbeTest extends TestCase
         $probe = new TextProbe();
         $results = $probe->analyze('some text');
 
-        $this->assertIsArray($results);
         $this->assertEmpty($results);
     }
 

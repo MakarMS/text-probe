@@ -10,7 +10,12 @@ class BankCardNumberValidator implements IValidator
     {
         $normalized = preg_replace('/\D+/', '', $raw);
 
+        if (empty($normalized)) {
+            return false;
+        }
+
         $len = strlen($normalized);
+
         if ($len < 13 || $len > 19) {
             return false;
         }

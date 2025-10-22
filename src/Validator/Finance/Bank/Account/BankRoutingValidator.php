@@ -9,7 +9,8 @@ class BankRoutingValidator implements IValidator
     public function validate(string $raw): bool
     {
         $number = preg_replace('/\D/', '', $raw);
-        if (strlen($number) !== 9) {
+
+        if (empty($number) || strlen($number) !== 9) {
             return false;
         }
 
