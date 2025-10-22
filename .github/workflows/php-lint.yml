@@ -37,4 +37,4 @@ jobs:
         run: vendor/bin/phpstan analyse src tests --level=max
 
       - name: Check code style (PHP-CS-Fixer)
-        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+        run: vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff
