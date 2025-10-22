@@ -12,7 +12,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "BTC address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
+        $text = 'BTC address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "Send BTC to 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy";
+        $text = 'Send BTC to 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "Bech32 address: bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq";
+        $text = 'Bech32 address: bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "Multiple: 1BoatSLRHtKNngkdXEeobR76b53LETtpyT and 3Ai1JZ8pdJb2ksieUV8FsxSNVJCpoPi8W6";
+        $text = 'Multiple: 1BoatSLRHtKNngkdXEeobR76b53LETtpyT and 3Ai1JZ8pdJb2ksieUV8FsxSNVJCpoPi8W6';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -77,7 +77,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "Invalid: 1InvalidBTCAddr and bc1xyz123";
+        $text = 'Invalid: 1InvalidBTCAddr and bc1xyz123';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -87,7 +87,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "Lowercase bech32: bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kygt080";
+        $text = 'Lowercase bech32: bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kygt080';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "Mixed: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa and 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy";
+        $text = 'Mixed: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa and 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -122,7 +122,7 @@ class BitcoinAddressProbeTest extends TestCase
     {
         $probe = new BitcoinAddressProbe();
 
-        $text = "BTC address: 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy,";
+        $text = 'BTC address: 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy,';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

@@ -12,7 +12,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "My LTC address: LZHVjYyLkJ5PaKbYXbW8s2mhN4Uu4f2rFq";
+        $text = 'My LTC address: LZHVjYyLkJ5PaKbYXbW8s2mhN4Uu4f2rFq';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Pay to LTC address: M9Bszq7ZrZ7Bv9H7h1RfHJe1f8RpmQ7bB3";
+        $text = 'Pay to LTC address: M9Bszq7ZrZ7Bv9H7h1RfHJe1f8RpmQ7bB3';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Send to ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m";
+        $text = 'Send to ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Invalid LTC: L123";
+        $text = 'Invalid LTC: L123';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Pay to LTC address: ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m,";
+        $text = 'Pay to LTC address: ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m,';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -82,7 +82,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Addresses: LZHVjYyLkJ5PaKbYXbW8s2mhN4Uu4f2rFq and ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m";
+        $text = 'Addresses: LZHVjYyLkJ5PaKbYXbW8s2mhN4Uu4f2rFq and ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -102,7 +102,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Send to LTC address: LzHVjYyLkJ5PaKbYXbW8s2mhN4Uu4f2rFq";
+        $text = 'Send to LTC address: LzHVjYyLkJ5PaKbYXbW8s2mhN4Uu4f2rFq';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -117,7 +117,7 @@ class LitecoinAddressProbeTest extends TestCase
     {
         $probe = new LitecoinAddressProbe();
 
-        $text = "Pay to address: ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m";
+        $text = 'Pay to address: ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

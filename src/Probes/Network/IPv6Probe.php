@@ -39,7 +39,6 @@ class IPv6Probe extends Probe implements IProbe
         );
     }
 
-
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV6;

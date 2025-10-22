@@ -12,7 +12,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "My Discover card: 6011000990139424";
+        $text = 'My Discover card: 6011000990139424';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "Discover: 6011 0009 9013 9424";
+        $text = 'Discover: 6011 0009 9013 9424';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "Card: 6011-0009-9013-9424";
+        $text = 'Card: 6011-0009-9013-9424';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "Invalid Discover: 6011000990139423";
+        $text = 'Invalid Discover: 6011000990139423';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "Discover cards: 6011000990139424 and 6221260000000000";
+        $text = 'Discover cards: 6011000990139424 and 6221260000000000';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 6011000990139424 and 5500000000000004";
+        $text = 'Mixed cards: 4111111111111111 and 6011000990139424 and 5500000000000004';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankDiscoverCardProbeTest extends TestCase
     {
         $probe = new BankDiscoverCardProbe();
 
-        $text = "Short: 6011000990139";
+        $text = 'Short: 6011000990139';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

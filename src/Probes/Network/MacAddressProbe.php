@@ -12,7 +12,8 @@ class MacAddressProbe extends Probe implements IProbe
     public function probe(string $text): array
     {
         return $this->findByRegex(
-            '/(?<![0-9A-Fa-f:-])(?:[0-9A-Fa-f]{2}([-:])){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:-])/', $text
+            '/(?<![0-9A-Fa-f:-])(?:[0-9A-Fa-f]{2}([-:])){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:-])/',
+            $text
         );
     }
 

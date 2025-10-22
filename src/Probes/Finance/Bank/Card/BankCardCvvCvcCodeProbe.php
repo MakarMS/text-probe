@@ -20,7 +20,6 @@ class BankCardCvvCvcCodeProbe extends Probe implements IProbe
         return $this->findByRegex('/\b\d{3,4}\b/', $text);
     }
 
-
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_CARD_CVV_CVC_CODE;

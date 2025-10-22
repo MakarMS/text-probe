@@ -12,7 +12,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Expiry: 05/24";
+        $text = 'Expiry: 05/24';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Expiry: 05-2025";
+        $text = 'Expiry: 05-2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Expiry: 5.25";
+        $text = 'Expiry: 5.25';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Expiry: 05 25";
+        $text = 'Expiry: 05 25';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -72,7 +72,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Expiry: 12/2026";
+        $text = 'Expiry: 12/2026';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -87,7 +87,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Expiry: 13/25";
+        $text = 'Expiry: 13/25';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -97,7 +97,7 @@ class BankCardExpiryProbeTest extends TestCase
     {
         $probe = new BankCardExpiryProbe();
 
-        $text = "Cards: 05/24 and 11/2025";
+        $text = 'Cards: 05/24 and 11/2025';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);

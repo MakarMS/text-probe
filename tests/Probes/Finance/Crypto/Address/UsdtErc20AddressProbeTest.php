@@ -12,7 +12,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "My USDT address: 0xAbC1234567890abcdef1234567890ABCDEF12345";
+        $text = 'My USDT address: 0xAbC1234567890abcdef1234567890ABCDEF12345';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "Addresses: 0x1a8b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b and 0xbadc0ffeea8b3c4d5e6f7a8b9c0d1e2f3a4b5c6d";
+        $text = 'Addresses: 0x1a8b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b and 0xbadc0ffeea8b3c4d5e6f7a8b9c0d1e2f3a4b5c6d';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -47,7 +47,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "Invalid: 0x12345 or 0xGHIJK1234567890abcdef1234567890ABCDE";
+        $text = 'Invalid: 0x12345 or 0xGHIJK1234567890abcdef1234567890ABCDE';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -57,7 +57,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "Lowercase: 0xabcdef1234567890abcdef1234567890abcdef12";
+        $text = 'Lowercase: 0xabcdef1234567890abcdef1234567890abcdef12';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -72,7 +72,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "Send to: 0x9876543210fedcba9876543210fedcba98765432.";
+        $text = 'Send to: 0x9876543210fedcba9876543210fedcba98765432.';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -87,7 +87,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "Short: 0x12345, Long: 0x1234567890abcdef1234567890abcdef1234567890123456";
+        $text = 'Short: 0x12345, Long: 0x1234567890abcdef1234567890abcdef1234567890123456';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -97,7 +97,7 @@ class UsdtErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdtErc20AddressProbe();
 
-        $text = "Transfer to 0xf0e1d2c3b4a59876543210fedcba9876543210fe, then check balance.";
+        $text = 'Transfer to 0xf0e1d2c3b4a59876543210fedcba9876543210fe, then check balance.';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

@@ -12,7 +12,7 @@ class BankRoutingNumberProbeTest extends TestCase
     {
         $probe = new BankRoutingNumberProbe();
 
-        $text = "Valid routing number: 011000015";
+        $text = 'Valid routing number: 011000015';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,12 +27,12 @@ class BankRoutingNumberProbeTest extends TestCase
     {
         $probe = new BankRoutingNumberProbe();
 
-        $text = "Too short: 12345678";
+        $text = 'Too short: 12345678';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
 
-        $text = "Too long: 1234567890";
+        $text = 'Too long: 1234567890';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -42,7 +42,7 @@ class BankRoutingNumberProbeTest extends TestCase
     {
         $probe = new BankRoutingNumberProbe();
 
-        $text = "Multiple routing numbers: 011000015 and 021000021";
+        $text = 'Multiple routing numbers: 011000015 and 021000021';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -62,7 +62,7 @@ class BankRoutingNumberProbeTest extends TestCase
     {
         $probe = new BankRoutingNumberProbe();
 
-        $text = "Invalid: ABCDEFGHI";
+        $text = 'Invalid: ABCDEFGHI';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

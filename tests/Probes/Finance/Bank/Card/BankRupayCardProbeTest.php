@@ -12,7 +12,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "My RuPay card: 6023540132499349";
+        $text = 'My RuPay card: 6023540132499349';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "RuPay: 5081 8165 5773 2146";
+        $text = 'RuPay: 5081 8165 5773 2146';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "Card: 6023-5401-3249-9349";
+        $text = 'Card: 6023-5401-3249-9349';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "Invalid RuPay: 6023540132499340";
+        $text = 'Invalid RuPay: 6023540132499340';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "RuPay cards: 6023540132499349 and 5081816557732146";
+        $text = 'RuPay cards: 6023540132499349 and 5081816557732146';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 6023540132499349 and 5555555555554444";
+        $text = 'Mixed cards: 4111111111111111 and 6023540132499349 and 5555555555554444';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankRupayCardProbeTest extends TestCase
     {
         $probe = new BankRupayCardProbe();
 
-        $text = "Short: 6081251234567";
+        $text = 'Short: 6081251234567';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

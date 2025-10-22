@@ -12,7 +12,7 @@ class UsdtOmniAddressProbeTest extends TestCase
     {
         $probe = new UsdtOmniAddressProbe();
 
-        $text = "Send USDT to address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
+        $text = 'Send USDT to address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class UsdtOmniAddressProbeTest extends TestCase
     {
         $probe = new UsdtOmniAddressProbe();
 
-        $text = "Multiple addresses: 1BoatSLRHtKNngkdXEeobR76b53LETtpyT and 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy";
+        $text = 'Multiple addresses: 1BoatSLRHtKNngkdXEeobR76b53LETtpyT and 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -47,7 +47,7 @@ class UsdtOmniAddressProbeTest extends TestCase
     {
         $probe = new UsdtOmniAddressProbe();
 
-        $text = "Invalid addresses: 1ABC123, 2J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy";
+        $text = 'Invalid addresses: 1ABC123, 2J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -57,7 +57,7 @@ class UsdtOmniAddressProbeTest extends TestCase
     {
         $probe = new UsdtOmniAddressProbe();
 
-        $text = "Send to 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa, quickly!";
+        $text = 'Send to 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa, quickly!';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -72,7 +72,7 @@ class UsdtOmniAddressProbeTest extends TestCase
     {
         $probe = new UsdtOmniAddressProbe();
 
-        $text = "Random string: abcdefghijklmnopqrstuvwxyz123456";
+        $text = 'Random string: abcdefghijklmnopqrstuvwxyz123456';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -82,7 +82,7 @@ class UsdtOmniAddressProbeTest extends TestCase
     {
         $probe = new UsdtOmniAddressProbe();
 
-        $text = "Address with prefix 3: 3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5";
+        $text = 'Address with prefix 3: 3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

@@ -12,14 +12,14 @@ class UUIDProbeTest extends TestCase
     {
         $probe = new UUIDProbe();
 
-        $text = "
+        $text = '
             v1: f47ac10b-58cc-11e4-8a5c-0002a5d5c51b
             v2: f47ac10b-58cc-21e4-8a5c-0002a5d5c51b
             v3: f47ac10b-58cc-31e4-8a5c-0002a5d5c51b
             v4: f47ac10b-58cc-41e4-8a5c-0002a5d5c51b
             v5: f47ac10b-58cc-51e4-8a5c-0002a5d5c51b
             v6: f47ac10b-58cc-61e4-8a5c-0002a5d5c51b
-        ";
+        ';
 
         $results = $probe->probe($text);
 
@@ -46,12 +46,12 @@ class UUIDProbeTest extends TestCase
     {
         $probe = new UUIDProbe();
 
-        $text = "
+        $text = '
             Invalid UUIDs:
             short: f47ac10b-58cc-41e4-8a5c-0002a5d5c51
             wrong char: f47ac10b-58cc-41g4-8a5c-0002a5d5c51b
             no dashes: 6f47ac10b58cc41e48a5c0002a5d5c51b
-        ";
+        ';
 
         $results = $probe->probe($text);
 
@@ -62,7 +62,7 @@ class UUIDProbeTest extends TestCase
     {
         $probe = new UUIDProbe();
 
-        $text = "Uppercase UUID: F47AC10B-58CC-41E4-8A5C-0002A5D5C51B";
+        $text = 'Uppercase UUID: F47AC10B-58CC-41E4-8A5C-0002A5D5C51B';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -78,7 +78,7 @@ class UUIDProbeTest extends TestCase
     {
         $probe = new UUIDProbe();
 
-        $text = "v4: f47ac10b-58cc-41e4-8a5c-0002a5d5c51b, v5: f47ac10b-58cc-51e4-8a5c-0002a5d5c51b; v6: f47ac10b-58cc-61e4-8a5c-0002a5d5c51b.";
+        $text = 'v4: f47ac10b-58cc-41e4-8a5c-0002a5d5c51b, v5: f47ac10b-58cc-51e4-8a5c-0002a5d5c51b; v6: f47ac10b-58cc-61e4-8a5c-0002a5d5c51b.';
         $results = $probe->probe($text);
 
         $this->assertCount(3, $results);
@@ -104,7 +104,7 @@ class UUIDProbeTest extends TestCase
     {
         $probe = new UUIDProbe();
 
-        $text = "Check UUID: (f47ac10b-58cc-41e4-8a5c-0002a5d5c51b). Another: [f47ac10b-58cc-51e4-8a5c-0002a5d5c51b]!";
+        $text = 'Check UUID: (f47ac10b-58cc-41e4-8a5c-0002a5d5c51b). Another: [f47ac10b-58cc-51e4-8a5c-0002a5d5c51b]!';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);

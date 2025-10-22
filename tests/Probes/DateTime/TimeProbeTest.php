@@ -12,7 +12,7 @@ class TimeProbeTest extends TestCase
     {
         $probe = new TimeProbe();
 
-        $text = "Meeting at 09:30";
+        $text = 'Meeting at 09:30';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class TimeProbeTest extends TestCase
     {
         $probe = new TimeProbe();
 
-        $text = "The alarm is set for 14:45:30";
+        $text = 'The alarm is set for 14:45:30';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class TimeProbeTest extends TestCase
     {
         $probe = new TimeProbe();
 
-        $text = "Timestamp: 08:12:59.123 processed";
+        $text = 'Timestamp: 08:12:59.123 processed';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class TimeProbeTest extends TestCase
     {
         $probe = new TimeProbe();
 
-        $text = "Start: 09:00, Break: 12:30, End: 17:45";
+        $text = 'Start: 09:00, Break: 12:30, End: 17:45';
         $results = $probe->probe($text);
 
         $this->assertCount(3, $results);
@@ -82,7 +82,7 @@ class TimeProbeTest extends TestCase
     {
         $probe = new TimeProbe();
 
-        $text = "The meeting starts at 08:30 PM and ends at 10:15 AM";
+        $text = 'The meeting starts at 08:30 PM and ends at 10:15 AM';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -102,7 +102,7 @@ class TimeProbeTest extends TestCase
     {
         $probe = new TimeProbe();
 
-        $text = "There is no time here!";
+        $text = 'There is no time here!';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

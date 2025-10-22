@@ -12,7 +12,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "My Visa card: 4111111111111111";
+        $text = 'My Visa card: 4111111111111111';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Visa: 4111 1111 1111 1111";
+        $text = 'Visa: 4111 1111 1111 1111';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Card: 4012-8888-8888-1881";
+        $text = 'Card: 4012-8888-8888-1881';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Visa short: 4222222222222";
+        $text = 'Visa short: 4222222222222';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -72,7 +72,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Invalid Visa: 4111111111111112";
+        $text = 'Invalid Visa: 4111111111111112';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -82,7 +82,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Visas: 4111111111111111 and 4012888888881881";
+        $text = 'Visas: 4111111111111111 and 4012888888881881';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -102,7 +102,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Mixed cards: 378282246310005 and 4111111111111111 and 5500000000000004";
+        $text = 'Mixed cards: 378282246310005 and 4111111111111111 and 5500000000000004';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -117,7 +117,7 @@ class BankVisaCardProbeTest extends TestCase
     {
         $probe = new BankVisaCardProbe();
 
-        $text = "Short: 41111";
+        $text = 'Short: 41111';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

@@ -12,7 +12,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "My MasterCard: 5555555555554444";
+        $text = 'My MasterCard: 5555555555554444';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "MasterCard: 5555 5555 5555 4444";
+        $text = 'MasterCard: 5555 5555 5555 4444';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "Card: 5555-5555-5555-4444";
+        $text = 'Card: 5555-5555-5555-4444';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "Invalid MasterCard: 5555555555554445";
+        $text = 'Invalid MasterCard: 5555555555554445';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "MasterCards: 5555555555554444 and 2221000000000009";
+        $text = 'MasterCards: 5555555555554444 and 2221000000000009';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 5555555555554444 and 378282246310005";
+        $text = 'Mixed cards: 4111111111111111 and 5555555555554444 and 378282246310005';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankMastercardCardProbeTest extends TestCase
     {
         $probe = new BankMastercardCardProbe();
 
-        $text = "Short: 55555555555544";
+        $text = 'Short: 55555555555544';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

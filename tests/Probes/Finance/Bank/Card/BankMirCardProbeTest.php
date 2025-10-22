@@ -12,7 +12,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "My Mir card: 2202018221284841";
+        $text = 'My Mir card: 2202018221284841';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "Mir: 2200 5168 8733 1568";
+        $text = 'Mir: 2200 5168 8733 1568';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "Card: 2201-2622-6018-7462";
+        $text = 'Card: 2201-2622-6018-7462';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "Invalid Mir: 2200123456789011";
+        $text = 'Invalid Mir: 2200123456789011';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "Mir cards: 2203884600821696 and 2204014351265708";
+        $text = 'Mir cards: 2203884600821696 and 2204014351265708';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 2202018221284841 and 5555555555554444";
+        $text = 'Mixed cards: 4111111111111111 and 2202018221284841 and 5555555555554444';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankMirCardProbeTest extends TestCase
     {
         $probe = new BankMirCardProbe();
 
-        $text = "Short: 2200123456789";
+        $text = 'Short: 2200123456789';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

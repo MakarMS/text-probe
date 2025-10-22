@@ -12,7 +12,7 @@ class DateTimeProbeTest extends TestCase
     {
         $probe = new DateTimeProbe();
 
-        $text = "Event starts at 2025-12-31 14:30";
+        $text = 'Event starts at 2025-12-31 14:30';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -26,7 +26,7 @@ class DateTimeProbeTest extends TestCase
     {
         $probe = new DateTimeProbe();
 
-        $text = "Meeting at 14:30 31/12/2025";
+        $text = 'Meeting at 14:30 31/12/2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -40,7 +40,7 @@ class DateTimeProbeTest extends TestCase
     {
         $probe = new DateTimeProbe();
 
-        $text = "Deadline: 02:30 PM 31 Dec 2025";
+        $text = 'Deadline: 02:30 PM 31 Dec 2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -54,7 +54,7 @@ class DateTimeProbeTest extends TestCase
     {
         $probe = new DateTimeProbe();
 
-        $text = "Start: 09:00 10/09/2025, Break: 12:30 2025-12-01, End: 17:45 31.10.2025";
+        $text = 'Start: 09:00 10/09/2025, Break: 12:30 2025-12-01, End: 17:45 31.10.2025';
         $results = $probe->probe($text);
 
         $this->assertCount(3, $results);
@@ -68,7 +68,7 @@ class DateTimeProbeTest extends TestCase
     {
         $probe = new DateTimeProbe();
 
-        $text = "Event scheduled at 08:12:59.123 PM 31/12/2025";
+        $text = 'Event scheduled at 08:12:59.123 PM 31/12/2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -82,7 +82,7 @@ class DateTimeProbeTest extends TestCase
     {
         $probe = new DateTimeProbe();
 
-        $text = "No dates or times here!";
+        $text = 'No dates or times here!';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

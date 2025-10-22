@@ -12,7 +12,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "My XRP address: r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59";
+        $text = 'My XRP address: r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "Invalid: R9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59";
+        $text = 'Invalid: R9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -37,7 +37,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "My XRP address: r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59,";
+        $text = 'My XRP address: r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59,';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -52,7 +52,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "Too short: r12345";
+        $text = 'Too short: r12345';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -62,7 +62,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "Too long: r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59234567890";
+        $text = 'Too long: r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59234567890';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -72,7 +72,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "Send to r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59 or rLUEXYuLiQptky37CqLcm9USQpPiz5rkpD";
+        $text = 'Send to r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59 or rLUEXYuLiQptky37CqLcm9USQpPiz5rkpD';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -92,7 +92,7 @@ class RippleAddressProbeTest extends TestCase
     {
         $probe = new RippleAddressProbe();
 
-        $text = "No crypto address here.";
+        $text = 'No crypto address here.';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

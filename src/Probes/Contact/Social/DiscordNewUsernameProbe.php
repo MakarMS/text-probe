@@ -12,7 +12,8 @@ class DiscordNewUsernameProbe extends Probe implements IProbe
     public function probe(string $text): array
     {
         return $this->findByRegex(
-            '/(?<![a-z0-9_@])@(?=[a-z0-9_.]{2,32}\b)(?!.*\.\.)[a-z0-9_]+(?:\.[a-z0-9_]+)*(?=[\s.,!?]|$)/i', $text
+            '/(?<![a-z0-9_@])@(?=[a-z0-9_.]{2,32}\b)(?!.*\.\.)[a-z0-9_]+(?:\.[a-z0-9_]+)*(?=[\s.,!?]|$)/i',
+            $text
         );
     }
 

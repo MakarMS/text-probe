@@ -12,7 +12,7 @@ class DateProbeTest extends TestCase
     {
         $probe = new DateProbe();
 
-        $text = "Event on 10/09/2025";
+        $text = 'Event on 10/09/2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class DateProbeTest extends TestCase
     {
         $probe = new DateProbe();
 
-        $text = "Deadline: 2025-12-01";
+        $text = 'Deadline: 2025-12-01';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class DateProbeTest extends TestCase
     {
         $probe = new DateProbe();
 
-        $text = "Birthday: 31.10.2025";
+        $text = 'Birthday: 31.10.2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class DateProbeTest extends TestCase
     {
         $probe = new DateProbe();
 
-        $text = "Events: 10/09/2025, 2025-12-01 and 31.10.2025";
+        $text = 'Events: 10/09/2025, 2025-12-01 and 31.10.2025';
         $results = $probe->probe($text);
 
         $this->assertCount(3, $results);
@@ -82,7 +82,7 @@ class DateProbeTest extends TestCase
     {
         $probe = new DateProbe();
 
-        $text = "Meeting scheduled on 1st Jan 2025";
+        $text = 'Meeting scheduled on 1st Jan 2025';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -97,7 +97,7 @@ class DateProbeTest extends TestCase
     {
         $probe = new DateProbe();
 
-        $text = "No date here!";
+        $text = 'No date here!';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

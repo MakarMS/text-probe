@@ -12,7 +12,7 @@ class UserAgentProbeTest extends TestCase
     {
         $probe = new UserAgentProbe();
 
-        $text = "Log entry: curl/7.68.0 requested /index.html";
+        $text = 'Log entry: curl/7.68.0 requested /index.html';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class UserAgentProbeTest extends TestCase
     {
         $probe = new UserAgentProbe();
 
-        $text = "Error: Mozilla/5.0 (Windows NT 10.0; Win64; x64), connection failed";
+        $text = 'Error: Mozilla/5.0 (Windows NT 10.0; Win64; x64), connection failed';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class UserAgentProbeTest extends TestCase
     {
         $probe = new UserAgentProbe();
 
-        $text = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) accessed the page";
+        $text = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) accessed the page';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -53,12 +53,11 @@ class UserAgentProbeTest extends TestCase
         $this->assertEquals(ProbeType::USER_AGENT, $results[0]->getProbeType());
     }
 
-
     public function testFindsUAAtEndOfText(): void
     {
         $probe = new UserAgentProbe();
 
-        $text = "Request sent by Opera/88.0";
+        $text = 'Request sent by Opera/88.0';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -73,7 +72,7 @@ class UserAgentProbeTest extends TestCase
     {
         $probe = new UserAgentProbe();
 
-        $text = "User accessed:CustomBot/1.2(Linux x86_64)next log line";
+        $text = 'User accessed:CustomBot/1.2(Linux x86_64)next log line';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -88,7 +87,7 @@ class UserAgentProbeTest extends TestCase
     {
         $probe = new UserAgentProbe();
 
-        $text = "Start curl/7.68.0, then Mozilla/5.0 (Windows) accessed site";
+        $text = 'Start curl/7.68.0, then Mozilla/5.0 (Windows) accessed site';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -108,7 +107,7 @@ class UserAgentProbeTest extends TestCase
     {
         $probe = new UserAgentProbe();
 
-        $text = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) extra info";
+        $text = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) extra info';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

@@ -29,7 +29,6 @@ class DateTimeProbe extends Probe implements IProbe
         );
     }
 
-
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DATETIME;

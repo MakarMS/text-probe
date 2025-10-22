@@ -30,7 +30,6 @@ class BankDiscoverCardProbe extends Probe implements IProbe
         return $this->findByRegex("/$pattern/", $text);
     }
 
-
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_DISCOVER_CARD_NUMBER;

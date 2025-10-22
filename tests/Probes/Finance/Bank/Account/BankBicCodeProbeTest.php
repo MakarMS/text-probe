@@ -12,7 +12,7 @@ class BankBicCodeProbeTest extends TestCase
     {
         $probe = new BankBicCodeProbe();
 
-        $text = "My BIC is DEUTDEFF500";
+        $text = 'My BIC is DEUTDEFF500';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankBicCodeProbeTest extends TestCase
     {
         $probe = new BankBicCodeProbe();
 
-        $text = "BIC: NEDSZAJJ";
+        $text = 'BIC: NEDSZAJJ';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankBicCodeProbeTest extends TestCase
     {
         $probe = new BankBicCodeProbe();
 
-        $text = "BIC codes: DEUTDEFF500, NEDSZAJJ";
+        $text = 'BIC codes: DEUTDEFF500, NEDSZAJJ';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -62,7 +62,7 @@ class BankBicCodeProbeTest extends TestCase
     {
         $probe = new BankBicCodeProbe();
 
-        $text = "Invalid BIC: DEUT1234";
+        $text = 'Invalid BIC: DEUT1234';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -72,7 +72,7 @@ class BankBicCodeProbeTest extends TestCase
     {
         $probe = new BankBicCodeProbe();
 
-        $text = "Short BIC: ABCD";
+        $text = 'Short BIC: ABCD';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -82,7 +82,7 @@ class BankBicCodeProbeTest extends TestCase
     {
         $probe = new BankBicCodeProbe();
 
-        $text = "Lowercase bic: deutdeff500";
+        $text = 'Lowercase bic: deutdeff500';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

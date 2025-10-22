@@ -12,7 +12,7 @@ class BankCardCvvCvcCodeProbeTest extends TestCase
     {
         $probe = new BankCardCvvCvcCodeProbe();
 
-        $text = "My CVV is 123";
+        $text = 'My CVV is 123';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankCardCvvCvcCodeProbeTest extends TestCase
     {
         $probe = new BankCardCvvCvcCodeProbe();
 
-        $text = "Amex CVV: 1234";
+        $text = 'Amex CVV: 1234';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,12 +42,12 @@ class BankCardCvvCvcCodeProbeTest extends TestCase
     {
         $probe = new BankCardCvvCvcCodeProbe();
 
-        $text = "Too short: 12";
+        $text = 'Too short: 12';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
 
-        $text = "Too long: 12345";
+        $text = 'Too long: 12345';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -57,7 +57,7 @@ class BankCardCvvCvcCodeProbeTest extends TestCase
     {
         $probe = new BankCardCvvCvcCodeProbe();
 
-        $text = "CVVs: 123 and 9876";
+        $text = 'CVVs: 123 and 9876';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -77,7 +77,7 @@ class BankCardCvvCvcCodeProbeTest extends TestCase
     {
         $probe = new BankCardCvvCvcCodeProbe();
 
-        $text = "Invalid: abc";
+        $text = 'Invalid: abc';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

@@ -12,7 +12,7 @@ class BankCardNumberProbeTest extends TestCase
     {
         $probe = new BankCardNumberProbe();
 
-        $text = "My card: 4111111111111111";
+        $text = 'My card: 4111111111111111';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankCardNumberProbeTest extends TestCase
     {
         $probe = new BankCardNumberProbe();
 
-        $text = "Card number: 4111 1111 1111 1111";
+        $text = 'Card number: 4111 1111 1111 1111';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankCardNumberProbeTest extends TestCase
     {
         $probe = new BankCardNumberProbe();
 
-        $text = "Number: 4111-1111-1111-1111";
+        $text = 'Number: 4111-1111-1111-1111';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankCardNumberProbeTest extends TestCase
     {
         $probe = new BankCardNumberProbe();
 
-        $text = "Invalid card: 1234567890123";
+        $text = 'Invalid card: 1234567890123';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankCardNumberProbeTest extends TestCase
     {
         $probe = new BankCardNumberProbe();
 
-        $text = "Cards: 4111111111111111 and 5500000000000004";
+        $text = 'Cards: 4111111111111111 and 5500000000000004';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankCardNumberProbeTest extends TestCase
     {
         $probe = new BankCardNumberProbe();
 
-        $text = "Short number: 4111111";
+        $text = 'Short number: 4111111';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

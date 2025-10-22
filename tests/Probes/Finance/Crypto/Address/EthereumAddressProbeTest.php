@@ -12,7 +12,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "ETH address: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
+        $text = 'ETH address: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "Lowercase: 0x742d35cc6634c0532925a3b844bc454e4438f44e";
+        $text = 'Lowercase: 0x742d35cc6634c0532925a3b844bc454e4438f44e';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "Uppercase: 0X742D35CC6634C0532925A3B844BC454E4438F44E";
+        $text = 'Uppercase: 0X742D35CC6634C0532925A3B844BC454E4438F44E';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "ETH: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and 0x53d284357ec70cE289D6D64134DfAc8E511c8a3D";
+        $text = 'ETH: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and 0x53d284357ec70cE289D6D64134DfAc8E511c8a3D';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -78,7 +78,7 @@ class EthereumAddressProbeTest extends TestCase
         $probe = new EthereumAddressProbe();
 
         // 1 char short
-        $text = "Invalid ETH: 0x742d35Cc6634C0532925a3b844Bc454e4438f44";
+        $text = 'Invalid ETH: 0x742d35Cc6634C0532925a3b844Bc454e4438f44';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -88,7 +88,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "Non-hex: 0xG42d35Cc6634C0532925a3b844Bc454e4438f44e";
+        $text = 'Non-hex: 0xG42d35Cc6634C0532925a3b844Bc454e4438f44e';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -98,7 +98,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "Mixed: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and 0X53D284357EC70CE289D6D64134DFAC8E511C8A3D";
+        $text = 'Mixed: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and 0X53D284357EC70CE289D6D64134DFAC8E511C8A3D';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -118,7 +118,7 @@ class EthereumAddressProbeTest extends TestCase
     {
         $probe = new EthereumAddressProbe();
 
-        $text = "ETH address: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e,";
+        $text = 'ETH address: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e,';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

@@ -19,7 +19,8 @@ class BankDinersClubCardProbe extends Probe implements IProbe
     public function probe(string $text): array
     {
         return $this->findByRegex(
-            '/(?<!\d)(?:(?:30[0-5]|309)(?:[ -]?\d){11}|(?:36|38|39)(?:[ -]?\d){12})(?!\d)/', $text
+            '/(?<!\d)(?:(?:30[0-5]|309)(?:[ -]?\d){11}|(?:36|38|39)(?:[ -]?\d){12})(?!\d)/',
+            $text
         );
     }
 

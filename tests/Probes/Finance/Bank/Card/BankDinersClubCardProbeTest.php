@@ -12,7 +12,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "My Diners Club card: 30569309025904";
+        $text = 'My Diners Club card: 30569309025904';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "Diners Club: 38 464089 882389";
+        $text = 'Diners Club: 38 464089 882389';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "Card: 38-464089-882389";
+        $text = 'Card: 38-464089-882389';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "Invalid Diners Club: 30123456789";
+        $text = 'Invalid Diners Club: 30123456789';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "Diners cards: 30075751658960 and 30584241670923";
+        $text = 'Diners cards: 30075751658960 and 30584241670923';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 30569309025904 and 5500000000000004";
+        $text = 'Mixed cards: 4111111111111111 and 30569309025904 and 5500000000000004';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankDinersClubCardProbeTest extends TestCase
     {
         $probe = new BankDinersClubCardProbe();
 
-        $text = "Short: 30569309025";
+        $text = 'Short: 30569309025';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

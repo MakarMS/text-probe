@@ -12,7 +12,7 @@ class BankIbanNumberProbeTest extends TestCase
     {
         $probe = new BankIbanNumberProbe();
 
-        $text = "My IBAN: DE89370400440532013000";
+        $text = 'My IBAN: DE89370400440532013000';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankIbanNumberProbeTest extends TestCase
     {
         $probe = new BankIbanNumberProbe();
 
-        $text = "IBAN with spaces: DE89 3704 0044 0532 0130 00";
+        $text = 'IBAN with spaces: DE89 3704 0044 0532 0130 00';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankIbanNumberProbeTest extends TestCase
     {
         $probe = new BankIbanNumberProbe();
 
-        $text = "lowercase iban: de89370400440532013000";
+        $text = 'lowercase iban: de89370400440532013000';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankIbanNumberProbeTest extends TestCase
     {
         $probe = new BankIbanNumberProbe();
 
-        $text = "Invalid IBAN: DE8937040044053201300";
+        $text = 'Invalid IBAN: DE8937040044053201300';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankIbanNumberProbeTest extends TestCase
     {
         $probe = new BankIbanNumberProbe();
 
-        $text = "Multiple IBANs: DE89370400440532013000 FR1420041010050500013M02606";
+        $text = 'Multiple IBANs: DE89370400440532013000 FR1420041010050500013M02606';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankIbanNumberProbeTest extends TestCase
     {
         $probe = new BankIbanNumberProbe();
 
-        $text = "This is just random text without IBAN numbers.";
+        $text = 'This is just random text without IBAN numbers.';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

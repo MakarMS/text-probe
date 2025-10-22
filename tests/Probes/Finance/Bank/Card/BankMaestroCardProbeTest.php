@@ -12,7 +12,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "My Maestro card: 6759649826438453";
+        $text = 'My Maestro card: 6759649826438453';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "Maestro: 6759 6498 2643 8453";
+        $text = 'Maestro: 6759 6498 2643 8453';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "Card: 6759-6498-2643-8453";
+        $text = 'Card: 6759-6498-2643-8453';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "Invalid Maestro: 6759649826438452";
+        $text = 'Invalid Maestro: 6759649826438452';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "Maestro cards: 6759649826438453 and 5018250000000000";
+        $text = 'Maestro cards: 6759649826438453 and 5018250000000000';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 6759649826438453 and 5500000000000004";
+        $text = 'Mixed cards: 4111111111111111 and 6759649826438453 and 5500000000000004';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankMaestroCardProbeTest extends TestCase
     {
         $probe = new BankMaestroCardProbe();
 
-        $text = "Short: 67596498264";
+        $text = 'Short: 67596498264';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

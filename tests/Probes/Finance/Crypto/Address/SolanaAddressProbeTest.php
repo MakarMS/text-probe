@@ -12,7 +12,7 @@ class SolanaAddressProbeTest extends TestCase
     {
         $probe = new SolanaAddressProbe();
 
-        $text = "My Solana address: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN";
+        $text = 'My Solana address: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class SolanaAddressProbeTest extends TestCase
     {
         $probe = new SolanaAddressProbe();
 
-        $text = "Solana long: 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp";
+        $text = 'Solana long: 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class SolanaAddressProbeTest extends TestCase
     {
         $probe = new SolanaAddressProbe();
 
-        $text = "Solana addresses: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN and 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp";
+        $text = 'Solana addresses: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN and 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -62,7 +62,7 @@ class SolanaAddressProbeTest extends TestCase
     {
         $probe = new SolanaAddressProbe();
 
-        $text = "Too short: 1234567890";
+        $text = 'Too short: 1234567890';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -72,7 +72,7 @@ class SolanaAddressProbeTest extends TestCase
     {
         $probe = new SolanaAddressProbe();
 
-        $text = "Too long: 1234567890123456789012345678901234567890123456789012345";
+        $text = 'Too long: 1234567890123456789012345678901234567890123456789012345';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -82,7 +82,7 @@ class SolanaAddressProbeTest extends TestCase
     {
         $probe = new SolanaAddressProbe();
 
-        $text = "Send to Solana: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN,";
+        $text = 'Send to Solana: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN,';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

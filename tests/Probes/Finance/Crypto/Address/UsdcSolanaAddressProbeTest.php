@@ -12,7 +12,7 @@ class UsdcSolanaAddressProbeTest extends TestCase
     {
         $probe = new UsdcSolanaAddressProbe();
 
-        $text = "My Solana address: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN";
+        $text = 'My Solana address: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -26,7 +26,7 @@ class UsdcSolanaAddressProbeTest extends TestCase
     {
         $probe = new UsdcSolanaAddressProbe();
 
-        $text = "Solana addresses: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN and 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp";
+        $text = 'Solana addresses: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN and 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -46,7 +46,7 @@ class UsdcSolanaAddressProbeTest extends TestCase
     {
         $probe = new UsdcSolanaAddressProbe();
 
-        $text = "Too short: 1234567890";
+        $text = 'Too short: 1234567890';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -56,7 +56,7 @@ class UsdcSolanaAddressProbeTest extends TestCase
     {
         $probe = new UsdcSolanaAddressProbe();
 
-        $text = "Too long: 1234567890123456789012345678901234567890123456789012345";
+        $text = 'Too long: 1234567890123456789012345678901234567890123456789012345';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -66,7 +66,7 @@ class UsdcSolanaAddressProbeTest extends TestCase
     {
         $probe = new UsdcSolanaAddressProbe();
 
-        $text = "Send to Solana: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN,";
+        $text = 'Send to Solana: 4Nd1mZy6Xf8hR7vU3t9aBcD5fG2hJkLmN,';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -80,7 +80,7 @@ class UsdcSolanaAddressProbeTest extends TestCase
     {
         $probe = new UsdcSolanaAddressProbe();
 
-        $text = "Random string: abcdefghijklmnopqrstuvwxyz123456";
+        $text = 'Random string: abcdefghijklmnopqrstuvwxyz123456';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

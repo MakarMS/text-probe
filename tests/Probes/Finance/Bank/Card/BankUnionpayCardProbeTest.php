@@ -12,7 +12,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "My UnionPay card: 6249166746947115";
+        $text = 'My UnionPay card: 6249166746947115';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "UnionPay: 6288 2340 3193 2390";
+        $text = 'UnionPay: 6288 2340 3193 2390';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -42,7 +42,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "Card: 6264-9399-6927-53984";
+        $text = 'Card: 6264-9399-6927-53984';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -57,7 +57,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "Invalid UnionPay: 6249166746947114";
+        $text = 'Invalid UnionPay: 6249166746947114';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "UnionPay cards: 629831196200679717 and 6205590089026178861";
+        $text = 'UnionPay cards: 629831196200679717 and 6205590089026178861';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -87,7 +87,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "Mixed cards: 4111111111111111 and 629831196200679717 and 5555555555554444";
+        $text = 'Mixed cards: 4111111111111111 and 629831196200679717 and 5555555555554444';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -102,7 +102,7 @@ class BankUnionpayCardProbeTest extends TestCase
     {
         $probe = new BankUnionpayCardProbe();
 
-        $text = "Short: 6249166746947";
+        $text = 'Short: 6249166746947';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);

@@ -12,7 +12,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "My ERC20 address: 0xAb5801a7D398351b8bE11C439e05C5B3259aec9B";
+        $text = 'My ERC20 address: 0xAb5801a7D398351b8bE11C439e05C5B3259aec9B';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -27,7 +27,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "Addresses: 0xAb5801a7D398351b8bE11C439e05C5B3259aec9B and 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe";
+        $text = 'Addresses: 0xAb5801a7D398351b8bE11C439e05C5B3259aec9B and 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -47,7 +47,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "Too short: 0x1234567890abcdef";
+        $text = 'Too short: 0x1234567890abcdef';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -57,7 +57,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "Too long: 0x1234567890abcdef1234567890abcdef1234567890abcdef";
+        $text = 'Too long: 0x1234567890abcdef1234567890abcdef1234567890abcdef';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
@@ -67,7 +67,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "Lowercase: 0xab5801a7d398351b8be11c439e05c5b3259aec9b";
+        $text = 'Lowercase: 0xab5801a7d398351b8be11c439e05c5b3259aec9b';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -82,7 +82,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "Send to ERC20: 0xAb5801a7D398351b8bE11C439e05C5B3259aec9B.";
+        $text = 'Send to ERC20: 0xAb5801a7D398351b8bE11C439e05C5B3259aec9B.';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -97,7 +97,7 @@ class UsdcErc20AddressProbeTest extends TestCase
     {
         $probe = new UsdcErc20AddressProbe();
 
-        $text = "Random string: 0xGHIJK12345ABCDE67890";
+        $text = 'Random string: 0xGHIJK12345ABCDE67890';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
