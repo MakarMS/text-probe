@@ -6,7 +6,7 @@ We currently support the following versions of the library:
 
 | Version | Supported          |
 |---------|--------------------|
-| 1.x     | ✅ Yes              |
+| 4.x     | ✅ Yes              |
 
 ## Reporting a Vulnerability
 
