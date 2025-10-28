@@ -16,10 +16,16 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          tools: composer
+
+      - name: Cache vendor
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --no-progress --prefer-dist
+        run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: Run composer-unused
         run: vendor/bin/composer-unused --no-interaction --ansi
