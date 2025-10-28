@@ -1,0 +1,27 @@
+name: Docs Lint
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Markdown Lint
+        uses: avto-dev/markdown-lint@v1
+        with:
+          config: .markdownlint.yml
+
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run codespell
+        uses: codespell-project/actions-codespell@master
+        with:
+          skip: "*.lock,*.json,*.xml,*.yml,*.yaml,*.php"
+          ignore_words_list: teh,fo
