@@ -23,6 +23,9 @@
   "require-dev": {
     "phpunit/phpunit": "^10",
     "phpstan/phpstan": "^2.1",
-    "friendsofphp/php-cs-fixer": "^3.89"
+    "friendsofphp/php-cs-fixer": "^3.89",
+    "infection/infection": "^0.29",
+    "phpcompatibility/php-compatibility": "^10.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
   }
 }
