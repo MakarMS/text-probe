@@ -1,0 +1,28 @@
+name: Infection (Mutation Testing)
+
+on:
+  pull_request:
+      branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  infection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Run PHPUnit (baseline coverage)
+        run: vendor/bin/phpunit --coverage-xml=build/coverage-xml --log-junit=build/phpunit.junit.xml
+
+      - name: Run Infection
+        run: vendor/bin/infection --min-msi=80 --threads=4 --coverage=build
