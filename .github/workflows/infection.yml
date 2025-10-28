@@ -19,15 +19,24 @@ jobs:
           coverage: xdebug
           extensions: pcntl
 
-      - name: Install dependencies
-        run: composer install --no-progress --prefer-dist
+      - name: Cache vendor
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
-      - name: Run PHPUnit (baseline coverage)
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Prepare baseline coverage
         run: |
           mkdir -p build
           vendor/bin/phpunit \
             --coverage-xml=build/coverage-xml \
             --log-junit=build/phpunit.junit.xml
+        env:
+          XDEBUG_MODE: coverage
 
       - name: Run Infection
-        run: vendor/bin/infection --threads=4 --coverage=build
+        run: vendor/bin/infection --threads=4 --coverage=build --no-progress
