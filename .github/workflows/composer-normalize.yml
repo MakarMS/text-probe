@@ -1,0 +1,25 @@
+name: Composer Normalize
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  composer-normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: composer
+
+      - name: Install composer-normalize
+        run: composer global require ergebnis/composer-normalize
+
+      - name: Check composer.json normalization
+        run: composer normalize --dry-run
