@@ -27,5 +27,11 @@
     "infection/infection": "^0.29",
     "phpcompatibility/php-compatibility": "^9.3",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "infection/extension-installer": true
+    }
   }
 }
