@@ -14,7 +14,7 @@ If you discover a security vulnerability in this project, **do not** create a pu
 
 Instead, please report it via email:
 
-**📧 makar.mikhalchenko@bk.ru**
+📧 **makar.mikhalchenko@bk.ru**
 
 In your report, please include:
 
