@@ -51,6 +51,7 @@ composer install
 ```bash
 ./vendor/bin/phpunit
 ```
+
 All contributions **must** pass the full test suite. Add tests for any new features or bug fixes.
 
 ## Reporting Bugs
