@@ -15,6 +15,7 @@ jobs:
         uses: avto-dev/markdown-lint@v1
         with:
           config: .markdownlint.yml
+          args: .
 
   spellcheck:
     runs-on: ubuntu-latest
@@ -23,5 +24,6 @@ jobs:
       - name: Run codespell
         uses: codespell-project/actions-codespell@master
         with:
-          skip: "*.lock,*.json,*.xml,*.yml,*.yaml,*.php"
+          path: .
+          skip: "*.lock,*.json,*.xml,*.yml,*.yaml"
           ignore_words_list: teh,fo
