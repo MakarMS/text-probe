@@ -26,4 +26,4 @@ jobs:
         with:
           path: .
           skip: "*.lock,*.json,*.xml,*.yml,*.yaml"
-          ignore_words_list: teh,fo
+          ignore_words_list: teh,fo,nd
