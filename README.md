@@ -1,6 +1,6 @@
-[![PHP Version Require](http://poser.pugx.org/makarms/text-probe/require/php)](https://packagist.org/packages/makarms/text-probe) [![Latest Stable Version](http://poser.pugx.org/makarms/text-probe/v)](https://packagist.org/packages/makarms/text-probe) [![PHP Tests](https://github.com/MakarMS/text-probe/actions/workflows/php-tests.yml/badge.svg?branch=main)](https://github.com/MakarMS/text-probe/actions/workflows/php-tests.yml) [![codecov](https://codecov.io/github/MakarMS/text-probe/graph/badge.svg?token=HFDSEGHGH4)](https://codecov.io/github/MakarMS/text-probe) [![License](http://poser.pugx.org/makarms/text-probe/license)](https://packagist.org/packages/makarms/text-probe)
-
 # TextProbe
+
+[![PHP Version Require](http://poser.pugx.org/makarms/text-probe/require/php)](https://packagist.org/packages/makarms/text-probe) [![Latest Stable Version](http://poser.pugx.org/makarms/text-probe/v)](https://packagist.org/packages/makarms/text-probe) [![PHP Tests](https://github.com/MakarMS/text-probe/actions/workflows/php-tests.yml/badge.svg?branch=main)](https://github.com/MakarMS/text-probe/actions/workflows/php-tests.yml) [![codecov](https://codecov.io/github/MakarMS/text-probe/graph/badge.svg?token=HFDSEGHGH4)](https://codecov.io/github/MakarMS/text-probe) [![License](http://poser.pugx.org/makarms/text-probe/license)](https://packagist.org/packages/makarms/text-probe)
 
 **TextProbe** is a simple and extensible PHP library for text analysis and pattern matching. It is designed to help
 developers probe, parse, and manipulate text efficiently using customizable rules and matchers.
@@ -208,8 +208,8 @@ foreach ($results as $result) {
 }
 ```
 
-### Expected output:
+### Expected output
 
-```
+```text
 [EMAIL] info@example.com (position 21-37)
 ```
