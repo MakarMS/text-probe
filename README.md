@@ -174,6 +174,12 @@ The library comes with several built-in probes to detect common patterns in text
 - `UserAgentProbe` — extracts User-Agent strings from text, supporting complex structures like multiple product tokens,
   OS information, and browser identifiers.
 
+### 🐳 Docker
+
+- `DockerImageProbe` — extracts Docker image names with tags only (e.g., nginx:1.25.1, redis:latest, ghcr.io/app/api:
+  v2). Supports registries, multi-level namespaces, semantic and custom tags, while ignoring invalid or tagless image
+  names (e.g., python, myapp/web).
+
 You can implement your own probes by creating classes that implement the `IProbe` interface.
 Each probe also supports using a different validator for the returned values by passing an instance of a class
 implementing the `IValidator` interface to the probe’s constructor. This allows you to override the default validation

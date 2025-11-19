@@ -36,5 +36,9 @@
       "ergebnis/composer-normalize": true,
       "infection/extension-installer": true
     }
+  },
+  "scripts": {
+    "cs:check": "php-cs-fixer fix --verbose --config=.php-cs-fixer.dist.php --dry-run --diff",
+    "cs:fix": "php-cs-fixer fix --verbose --config=.php-cs-fixer.dist.php"
   }
 }
