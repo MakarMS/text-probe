@@ -180,6 +180,10 @@ The library comes with several built-in probes to detect common patterns in text
   v2). Supports registries, multi-level namespaces, semantic and custom tags, while ignoring invalid or tagless image
   names (e.g., python, myapp/web).
 
+- `DockerContainerIdProbe` — extracts Docker container IDs in short and full formats from logs and CLI output (e.g.,
+  docker ps, docker logs, CI, orchestration traces). Detects lowercase hexadecimal IDs of 12 or 64 characters, ignoring
+  strings of other lengths or with non-hex characters.
+
 You can implement your own probes by creating classes that implement the `IProbe` interface.
 Each probe also supports using a different validator for the returned values by passing an instance of a class
 implementing the `IValidator` interface to the probe’s constructor. This allows you to override the default validation
