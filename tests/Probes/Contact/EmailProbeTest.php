@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contact\EmailProbe;
 
+/**
+ * @internal
+ */
 class EmailProbeTest extends TestCase
 {
     public function testSingleEmailFound(): void

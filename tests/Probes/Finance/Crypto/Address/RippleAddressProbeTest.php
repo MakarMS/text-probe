@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\RippleAddressProbe;
 
+/**
+ * @internal
+ */
 class RippleAddressProbeTest extends TestCase
 {
     public function testFindsValidAddress(): void

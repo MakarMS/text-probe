@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Geo\GeoCoordinatesProbe;
 
+/**
+ * @internal
+ */
 class GeoCoordinatesProbeTest extends TestCase
 {
     public function testFindsDecimalDegrees(): void

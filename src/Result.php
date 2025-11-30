@@ -7,8 +7,11 @@ use BackedEnum;
 class Result
 {
     private BackedEnum $probeType;
+
     private string $result;
+
     private int $start;
+
     private int $end;
 
     public function __construct(BackedEnum $probeType, string $result, int $start, int $end)

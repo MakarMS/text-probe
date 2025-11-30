@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\UsdcSolanaAddressProbe;
 
+/**
+ * @internal
+ */
 class UsdcSolanaAddressProbeTest extends TestCase
 {
     public function testFindsValidSolanaAddress(): void

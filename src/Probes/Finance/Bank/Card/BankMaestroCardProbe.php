@@ -20,7 +20,7 @@ class BankMaestroCardProbe extends Probe implements IProbe
     {
         return $this->findByRegex(
             '/(?<!\d)(?:5018|5020|5038|5612|5893|6304|6759|6761|6762|6763)(?:[ -]?\d){8,15}(?!\d)/',
-            $text
+            $text,
         );
     }
 

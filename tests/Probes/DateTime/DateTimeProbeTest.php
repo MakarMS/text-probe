@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\DateTime\DateTimeProbe;
 
+/**
+ * @internal
+ */
 class DateTimeProbeTest extends TestCase
 {
     public function testFindsISODateWithTime(): void

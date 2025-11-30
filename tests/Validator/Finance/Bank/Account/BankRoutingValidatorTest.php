@@ -5,6 +5,9 @@ namespace Tests\Validator\Finance\Bank\Account;
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\Finance\Bank\Account\BankRoutingValidator;
 
+/**
+ * @internal
+ */
 class BankRoutingValidatorTest extends TestCase
 {
     public function testValidRoutingNumber(): void

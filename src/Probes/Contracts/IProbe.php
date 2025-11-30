@@ -6,6 +6,6 @@ use TextProbe\Result;
 
 interface IProbe
 {
-    /** @return Array<Result> */
+    /** @return array<Result> */
     public function probe(string $text): array;
 }

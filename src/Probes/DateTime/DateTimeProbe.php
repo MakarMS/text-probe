@@ -25,7 +25,7 @@ class DateTimeProbe extends Probe implements IProbe
             . '|'
             . '\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}\s+\d{1,2}:\d{2}(?::\d{2}(?:\.\d{1,3})?)?(?:\s?[AP]M)?'
             . ')\b/i',
-            $text
+            $text,
         );
     }
 

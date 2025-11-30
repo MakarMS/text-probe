@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\UsdcErc20AddressProbe;
 
+/**
+ * @internal
+ */
 class UsdcErc20AddressProbeTest extends TestCase
 {
     public function testFindsValidErc20Address(): void

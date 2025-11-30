@@ -9,6 +9,9 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Result;
 use TextProbe\TextProbe;
 
+/**
+ * @internal
+ */
 class TextProbeTest extends TestCase
 {
     /**

@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\UUID\UUIDProbe;
 
+/**
+ * @internal
+ */
 class UUIDProbeTest extends TestCase
 {
     public function testFindsAllUUIDVersions(): void
@@ -71,7 +74,6 @@ class UUIDProbeTest extends TestCase
         $this->assertEquals(16, $results[0]->getStart());
         $this->assertEquals(52, $results[0]->getEnd());
         $this->assertEquals(ProbeType::UUID, $results[0]->getProbeType());
-
     }
 
     public function testMatchesMultipleUUIDsInOneLine(): void
@@ -97,7 +99,6 @@ class UUIDProbeTest extends TestCase
         $this->assertEquals(88, $results[2]->getStart());
         $this->assertEquals(124, $results[2]->getEnd());
         $this->assertEquals(ProbeType::UUID, $results[2]->getProbeType());
-
     }
 
     public function testUUIDsNextToPunctuation(): void
@@ -118,6 +119,5 @@ class UUIDProbeTest extends TestCase
         $this->assertEquals(62, $results[1]->getStart());
         $this->assertEquals(98, $results[1]->getEnd());
         $this->assertEquals(ProbeType::UUID, $results[1]->getProbeType());
-
     }
 }

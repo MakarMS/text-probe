@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\UsdtTrc20AddressProbe;
 
+/**
+ * @internal
+ */
 class UsdtTrc20AddressProbeTest extends TestCase
 {
     public function testFindsValidTrc20Address(): void

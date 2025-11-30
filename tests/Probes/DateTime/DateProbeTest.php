@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\DateTime\DateProbe;
 
+/**
+ * @internal
+ */
 class DateProbeTest extends TestCase
 {
     public function testFindsSlashFormat(): void

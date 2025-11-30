@@ -35,7 +35,7 @@ class IPv6Probe extends Probe implements IProbe
             ')' .
             '(?:%\S+)?' .
             '(?![0-9a-f:])/i',
-            $text
+            $text,
         );
     }
 

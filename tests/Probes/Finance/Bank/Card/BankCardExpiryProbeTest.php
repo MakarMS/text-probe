@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Bank\Card\BankCardExpiryProbe;
 
+/**
+ * @internal
+ */
 class BankCardExpiryProbeTest extends TestCase
 {
     public function testFindsExpiryWithSlash(): void

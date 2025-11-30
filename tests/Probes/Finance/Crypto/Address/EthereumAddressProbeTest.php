@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\EthereumAddressProbe;
 
+/**
+ * @internal
+ */
 class EthereumAddressProbeTest extends TestCase
 {
     public function testFindsValidAddress(): void

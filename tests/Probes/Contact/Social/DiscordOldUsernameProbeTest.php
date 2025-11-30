@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contact\Social\DiscordOldUsernameProbe;
 
+/**
+ * @internal
+ */
 class DiscordOldUsernameProbeTest extends TestCase
 {
     public function testFindsValidUsernamesWithPositions(): void

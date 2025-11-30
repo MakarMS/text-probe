@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\DateTime\TimeProbe;
 
+/**
+ * @internal
+ */
 class TimeProbeTest extends TestCase
 {
     public function testFindsSimpleTime(): void

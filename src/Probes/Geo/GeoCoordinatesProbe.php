@@ -19,7 +19,7 @@ class GeoCoordinatesProbe extends Probe implements IProbe
             . '|'
             . '\d{1,2}°\s*\d{1,2}[\'′’]?\s*\d{1,2}(?:\.\d+)?[\"″]?\s*[NS]?\s*[,;\s]\s*\d{1,3}°\s*\d{1,2}[\'′’]?\s*\d{1,2}(?:\.\d+)?[\"″]?\s*[EW]?'
             . ')/xiu',
-            $text
+            $text,
         );
     }
 

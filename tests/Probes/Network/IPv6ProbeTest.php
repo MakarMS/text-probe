@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Network\IPv6Probe;
 
+/**
+ * @internal
+ */
 class IPv6ProbeTest extends TestCase
 {
     public function testFindsSingleFullIPv6Address(): void

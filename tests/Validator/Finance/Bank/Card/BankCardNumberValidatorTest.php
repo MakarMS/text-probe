@@ -5,6 +5,9 @@ namespace Tests\Validator\Finance\Bank\Card;
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
 
+/**
+ * @internal
+ */
 class BankCardNumberValidatorTest extends TestCase
 {
     public function testValidVisaCard(): void

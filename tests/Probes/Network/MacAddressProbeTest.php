@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Network\MacAddressProbe;
 
+/**
+ * @internal
+ */
 class MacAddressProbeTest extends TestCase
 {
     public function testFindsSingleValidMacAddress(): void

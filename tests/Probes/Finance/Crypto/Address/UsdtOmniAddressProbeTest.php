@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\UsdtOmniAddressProbe;
 
+/**
+ * @internal
+ */
 class UsdtOmniAddressProbeTest extends TestCase
 {
     public function testFindsValidOmniAddress(): void

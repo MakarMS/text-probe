@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Network\IPv4Probe;
 
+/**
+ * @internal
+ */
 class IPv4ProbeTest extends TestCase
 {
     public function testFindsSingleValidIPv4Address(): void

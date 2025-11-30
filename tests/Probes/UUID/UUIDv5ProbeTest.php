@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\UUID\UUIDv5Probe;
 
+/**
+ * @internal
+ */
 class UUIDv5ProbeTest extends TestCase
 {
     public function testFindsSingleUUIDv5(): void

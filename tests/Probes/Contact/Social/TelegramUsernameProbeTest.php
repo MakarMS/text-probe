@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contact\Social\TelegramUsernameProbe;
 
+/**
+ * @internal
+ */
 class TelegramUsernameProbeTest extends TestCase
 {
     public function testFindsSimpleUsernamesWithPositions(): void
@@ -26,7 +29,6 @@ class TelegramUsernameProbeTest extends TestCase
         $this->assertEquals(20, $results[1]->getStart());
         $this->assertEquals(33, $results[1]->getEnd());
         $this->assertEquals(ProbeType::TELEGRAM_USERNAME, $results[1]->getProbeType());
-
     }
 
     public function testFindsUsernamesAtTextEdges(): void

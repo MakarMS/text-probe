@@ -13,7 +13,7 @@ class TelegramUserLinkProbe extends Probe implements IProbe
     {
         return $this->findByRegex(
             '/https?:\/\/(?:t\.me|telegram\.me|telegram\.dog)\/[a-zA-Z0-9_]{5,32}(?:[?#]\S*)?/',
-            $text
+            $text,
         );
     }
 

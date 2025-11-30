@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\LitecoinAddressProbe;
 
+/**
+ * @internal
+ */
 class LitecoinAddressProbeTest extends TestCase
 {
     public function testFindsP2PKHAddress(): void

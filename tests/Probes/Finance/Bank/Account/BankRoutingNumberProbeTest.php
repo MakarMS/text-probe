@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Bank\Account\BankRoutingNumberProbe;
 
+/**
+ * @internal
+ */
 class BankRoutingNumberProbeTest extends TestCase
 {
     public function testFindsValidRoutingNumber(): void

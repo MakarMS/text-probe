@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\UUID\UUIDv1Probe;
 
+/**
+ * @internal
+ */
 class UUIDv1ProbeTest extends TestCase
 {
     public function testFindsSingleUUIDv1(): void
@@ -86,7 +89,6 @@ class UUIDv1ProbeTest extends TestCase
         $this->assertEquals(41, $results[1]->getStart());
         $this->assertEquals(77, $results[1]->getEnd());
         $this->assertEquals(ProbeType::UUID_V1, $results[1]->getProbeType());
-
     }
 
     public function testInvalidUUIDsAreIgnored(): void

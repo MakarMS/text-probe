@@ -17,7 +17,7 @@ class LinkProbe extends Probe implements IProbe
             . '|'
             . '(?:www\.|(?:[a-z0-9-]+\.)+[a-z]{2,})(?:\/\S*)?'
             . ')(?<![.,;:!?\s])/i',
-            $text
+            $text,
         );
     }
 

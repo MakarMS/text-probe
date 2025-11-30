@@ -21,7 +21,7 @@ class SlackUsernameProbe extends Probe implements IProbe
             . '(?!^[.-])'
             . '[a-z0-9](?:[a-z0-9._-]*[a-z0-9])?'
             . '(?=[\s.,!?]|$)/i',
-            $text
+            $text,
         );
     }
 

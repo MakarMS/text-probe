@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Social\HashtagProbe;
 
+/**
+ * @internal
+ */
 class HashtagProbeTest extends TestCase
 {
     public function testFindsSimpleHashtagsWithPositions(): void

@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Result;
 
+/**
+ * @internal
+ */
 class ResultTest extends TestCase
 {
     public function testResultProperties(): void

@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\UsdcAlgorandAddressProbe;
 
+/**
+ * @internal
+ */
 class UsdcAlgorandAddressProbeTest extends TestCase
 {
     public function testFindsValidAlgorandAddress(): void

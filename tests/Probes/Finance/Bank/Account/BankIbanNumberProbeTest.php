@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Bank\Account\BankIbanNumberProbe;
 
+/**
+ * @internal
+ */
 class BankIbanNumberProbeTest extends TestCase
 {
     public function testFindsValidIban(): void

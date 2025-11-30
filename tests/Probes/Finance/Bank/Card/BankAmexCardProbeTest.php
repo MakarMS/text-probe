@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Bank\Card\BankAmexCardProbe;
 
+/**
+ * @internal
+ */
 class BankAmexCardProbeTest extends TestCase
 {
     public function testFindsPlainCardNumber(): void

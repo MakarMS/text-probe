@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Bank\Account\BankBicCodeProbe;
 
+/**
+ * @internal
+ */
 class BankBicCodeProbeTest extends TestCase
 {
     public function testFindsPlainBic(): void

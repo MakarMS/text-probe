@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\TronAddressProbe;
 
+/**
+ * @internal
+ */
 class TronAddressProbeTest extends TestCase
 {
     public function testFindsValidTronAddress(): void

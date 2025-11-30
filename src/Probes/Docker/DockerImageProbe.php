@@ -18,7 +18,7 @@ class DockerImageProbe extends Probe implements IProbe
             . ':'
             . '(?:latest|[A-Za-z0-9._-]+)'
             . ')\b/x',
-            $text
+            $text,
         );
     }
 

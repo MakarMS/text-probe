@@ -30,9 +30,11 @@ class BankCardNumberValidator implements IValidator
         $parity = $len % 2;
 
         for ($i = 0; $i < $len; $i++) {
-            $digit = (int)$number[$i];
+            $digit = (int) $number[$i];
+
             if ($i % 2 === $parity) {
                 $digit *= 2;
+
                 if ($digit > 9) {
                     $digit -= 9;
                 }

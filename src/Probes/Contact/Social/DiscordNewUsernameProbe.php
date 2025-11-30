@@ -13,7 +13,7 @@ class DiscordNewUsernameProbe extends Probe implements IProbe
     {
         return $this->findByRegex(
             '/(?<![a-z0-9_@])@(?=[a-z0-9_.]{2,32}\b)(?!.*\.\.)[a-z0-9_]+(?:\.[a-z0-9_]+)*(?=[\s.,!?]|$)/i',
-            $text
+            $text,
         );
     }
 

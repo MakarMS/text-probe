@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Docker\DockerImageProbe;
 
+/**
+ * @internal
+ */
 class DockerImageProbeTest extends TestCase
 {
     public function testFindsSimpleImage(): void

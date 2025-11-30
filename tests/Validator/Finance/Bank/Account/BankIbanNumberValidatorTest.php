@@ -5,6 +5,9 @@ namespace Tests\Validator\Finance\Bank\Account;
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\Finance\Bank\Account\BankIbanNumberValidator;
 
+/**
+ * @internal
+ */
 class BankIbanNumberValidatorTest extends TestCase
 {
     public function testValidIbanSimple(): void

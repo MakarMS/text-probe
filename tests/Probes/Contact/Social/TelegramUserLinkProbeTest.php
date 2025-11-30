@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contact\Social\TelegramUserLinkProbe;
 
+/**
+ * @internal
+ */
 class TelegramUserLinkProbeTest extends TestCase
 {
     public function testFindsSimpleTelegramLinks(): void

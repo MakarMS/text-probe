@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Bank\Card\BankCardCvvCvcCodeProbe;
 
+/**
+ * @internal
+ */
 class BankCardCvvCvcCodeProbeTest extends TestCase
 {
     public function testFinds3DigitCvv(): void

@@ -20,7 +20,7 @@ class DateProbe extends Probe implements IProbe
             . '\d{1,2}(?:st|nd|rd|th)?\s+'
             . '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[ ,]\s?\d{2,4}'
             . ')\b/ix',
-            $text
+            $text,
         );
     }
 

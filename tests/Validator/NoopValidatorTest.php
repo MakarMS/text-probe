@@ -5,6 +5,9 @@ namespace Tests\Validator;
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\NoopValidator;
 
+/**
+ * @internal
+ */
 class NoopValidatorTest extends TestCase
 {
     public function testNoopValidatorAlwaysTrue(): void

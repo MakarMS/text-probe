@@ -16,7 +16,7 @@ abstract class Probe
         $this->validator = $validator ?? new NoopValidator();
     }
 
-    /** @return Array<Result> */
+    /** @return array<Result> */
     protected function findByRegex(string $regex, string $text): array
     {
         preg_match_all($regex, $text, $matches, PREG_OFFSET_CAPTURE);

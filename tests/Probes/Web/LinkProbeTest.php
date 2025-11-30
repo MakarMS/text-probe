@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Web\LinkProbe;
 
+/**
+ * @internal
+ */
 class LinkProbeTest extends TestCase
 {
     public function testFindsHttpLinks(): void

@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Finance\Crypto\Address\BitcoinAddressProbe;
 
+/**
+ * @internal
+ */
 class BitcoinAddressProbeTest extends TestCase
 {
     public function testFindsP2PKHAddress(): void

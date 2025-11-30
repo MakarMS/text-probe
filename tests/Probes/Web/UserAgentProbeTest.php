@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Web\UserAgentProbe;
 
+/**
+ * @internal
+ */
 class UserAgentProbeTest extends TestCase
 {
     public function testFindsUAWithSurroundingText(): void

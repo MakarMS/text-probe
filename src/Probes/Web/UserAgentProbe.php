@@ -13,7 +13,7 @@ class UserAgentProbe extends Probe implements IProbe
     {
         return $this->findByRegex(
             '/\b([a-z][\w-]*\/[\w.-]+(?:\s*(?:[a-z][\w-]*\/[\w.-]+|\( [^)]+ \)))*)/ixu',
-            $text
+            $text,
         );
     }
 

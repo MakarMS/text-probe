@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Web\DomainProbe;
 
+/**
+ * @internal
+ */
 class DomainProbeTest extends TestCase
 {
     public function testAsciiDomains(): void
