@@ -7,6 +7,13 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 
+/**
+ * Probe that extracts dates in various human-readable formats.
+ *
+ * This probe supports ISO-like numeric dates (e.g. "2023-10-21"), common
+ * separator-based formats such as "DD/MM/YYYY" or "DD.MM.YY", and textual
+ * dates like "2nd Jan 2023".
+ */
 class DateProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
@@ -24,6 +31,9 @@ class DateProbe extends Probe implements IProbe
         );
     }
 
+    /**
+     * @return ProbeType returns ProbeType::DATE
+     */
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DATE;

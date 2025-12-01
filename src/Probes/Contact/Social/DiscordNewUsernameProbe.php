@@ -7,6 +7,12 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 
+/**
+ * Probe that extracts Discord usernames in the new global format (e.g. "@username").
+ *
+ * This probe enforces Discord’s updated username rules, including allowed characters,
+ * length limits and prevention of consecutive dots in the name.
+ */
 class DiscordNewUsernameProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
@@ -17,6 +23,9 @@ class DiscordNewUsernameProbe extends Probe implements IProbe
         );
     }
 
+    /**
+     * @return ProbeType returns ProbeType::DISCORD_NEW_USERNAME
+     */
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DISCORD_NEW_USERNAME;

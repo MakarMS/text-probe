@@ -7,6 +7,17 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 
+/**
+ * Probe that extracts geographic coordinates from text.
+ *
+ * This probe supports:
+ * - Decimal degrees (e.g. "55.7558, 37.6173" or "-34.6037; -58.3816")
+ * - Degrees and minutes (DMM) with optional N/S/E/W suffixes
+ * - Degrees, minutes and seconds (DMS) with optional N/S/E/W suffixes
+ *
+ * It recognises common separators such as commas, semicolons and whitespace
+ * between latitude and longitude components.
+ */
 class GeoCoordinatesProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
@@ -23,6 +34,9 @@ class GeoCoordinatesProbe extends Probe implements IProbe
         );
     }
 
+    /**
+     * @return ProbeType returns ProbeType::GEO_COORDINATES
+     */
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GEO_COORDINATES;

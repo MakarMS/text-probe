@@ -7,6 +7,15 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 
+/**
+ * Probe that extracts combined date and time values from text.
+ *
+ * This probe supports multiple common datetime formats, including:
+ * - time first, then date (e.g. "14:30 2023-10-21", "09:15 AM 21/10/2023")
+ * - ISO-like formats (e.g. "2023-10-21T14:30:00", "2023-10-21 14:30")
+ * - textual dates with times (e.g. "2nd Jan 2023 14:30")
+ * with optional seconds, milliseconds and AM/PM markers.
+ */
 class DateTimeProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
@@ -29,6 +38,9 @@ class DateTimeProbe extends Probe implements IProbe
         );
     }
 
+    /**
+     * @return ProbeType returns ProbeType::DATETIME
+     */
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DATETIME;
