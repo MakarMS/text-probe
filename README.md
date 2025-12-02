@@ -35,26 +35,26 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `PhoneProbe` — extracts phone numbers (supports various formats).
 
-- `SlackUsernameProbe` — extracts Slack usernames (e.g., @username), supporting Slack-specific username rules such as
+- `SlackUsernameProbe` — extracts Slack usernames (e.g., `@username`), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots.
 
-- `TelegramUserLinkProbe` — extracts t.me links pointing to Telegram users.
+- `TelegramUserLinkProbe` — extracts `t.me` links pointing to Telegram users.
 
 - `TelegramUsernameProbe` — extracts Telegram usernames (e.g., `@username`).
 
 ### 📅 Date & Time
 
-- `DateProbe` — extracts dates in various formats (e.g., YYYY-MM-DD, DD/MM/YYYY, 2nd Jan 2023).
+- `DateProbe` — extracts dates in various formats (e.g., `YYYY-MM-DD`, `DD/MM/YYYY`, `2nd Jan 2023`).
 
 - `DateTimeProbe` — extracts combined date and time in multiple common formats.
 
-- `TimeProbe` — extracts times (e.g., 14:30, 14:30:15, optional AM/PM).
+- `TimeProbe` — extracts times (e.g., `14:30`, `14:30:15`, optional AM/PM).
 
 ### 💰 Finance
 
 #### 🏦 Bank Account
 
-- `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., DEUTDEFF500).
+- `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., `DEUTDEFF500`).
 
 - `BankIbanNumberProbe` — Extracts IBAN numbers, supports spaces, validates using Mod-97.
 
@@ -62,8 +62,9 @@ The library comes with several built-in probes to detect common patterns in text
 
 #### 💳 Bank Cards
 
-> Supported formats: plain digits (e.g., 4111111111111111), digits separated by spaces (e.g., 4111 1111 1111 1111) or
-> dashes (e.g., 4111-1111-1111-1111). Only Luhn-valid numbers by default.
+> Supported formats: plain digits (e.g., `4111111111111111`), digits separated by spaces (e.g., `4111 1111 1111 1111`)
+> or
+> dashes (e.g., `4111-1111-1111-1111`). Only Luhn-valid numbers by default.
 
 - `BankCardNumberProbe` — extracts major card schemes like Visa, Mastercard, Amex, and all other supported schemes
   listed below.
@@ -96,7 +97,7 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `BankCardCvvCvcCodeProbe` — Extracts CVV/CVC codes (3–4 digits).
 
-- `BankCardExpiryProbe` — Extracts card expiration dates (formats MM/YY, MM/YYYY, MM-YY, MM-YYYY, etc.).
+- `BankCardExpiryProbe` — Extracts card expiration dates (formats `MM/YY`, `MM/YYYY`, `MM-YY`, `MM-YYYY`, etc.).
 
 #### 🔗 Crypto
 
@@ -126,12 +127,12 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 🗺 Geolocation
 
-- `GeoCoordinatesProbe` — extracts geographic coordinates in various formats (decimal or degrees/minutes/seconds,
-  N/S/E/W).
+- `GeoCoordinatesProbe` — extracts geographic coordinates in various formats (`decimal` or `degrees/minutes/seconds`,
+  `N/S/E/W`).
 
 ### 🏷 Social & Tags
 
-- `HashtagProbe` — extracts hashtags from text (e.g., #example), supporting Unicode letters, numbers, and underscores,
+- `HashtagProbe` — extracts hashtags from text (e.g., `#example`), supporting Unicode letters, numbers, and underscores,
   detecting hashtags in any position of the text.
 
 ### 🆔 UUID & Identifiers
@@ -164,20 +165,20 @@ The library comes with several built-in probes to detect common patterns in text
 - `IPv4Probe` — extracts IPv4 addresses, supporting standard formats and excluding reserved/bogus ranges if necessary.
 
 - `IPv6Probe` — extracts IPv6 addresses, including compressed formats, IPv4-mapped addresses, and zone indexes (e.g.,
-  %eth0).
+  `%eth0`).
 
 - `LinkProbe` — extracts hyperlinks, including ones with IP addresses, ports, or without a protocol.
 
-- `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., 00:1A:2B:3C:4D:5E or
-  00-1A-2B-3C-4D-5E), accurately detecting valid addresses while excluding invalid patterns.
+- `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or
+  `00-1A-2B-3C-4D-5E`), accurately detecting valid addresses while excluding invalid patterns.
 
 - `UserAgentProbe` — extracts User-Agent strings from text, supporting complex structures like multiple product tokens,
   OS information, and browser identifiers.
 
 ### 🐳 Docker
 
-- `DockerImageProbe` — extracts Docker image names with tags only (e.g., nginx:1.25.1, redis:latest, ghcr.io/app/api:
-  v2). Supports registries, multi-level namespaces, semantic and custom tags, while ignoring invalid or tagless image
+- `DockerImageProbe` — extracts Docker image names with tags only (e.g., `nginx:1.25.1`, `redis:latest`, `ghcr.io/app/api:
+  v2`). Supports registries, multi-level namespaces, semantic and custom tags, while ignoring invalid or tagless image
   names (e.g., python, myapp/web).
 
 - `DockerContainerIdProbe` — extracts Docker container IDs in short and full formats from logs and CLI output (e.g.,
@@ -185,8 +186,13 @@ The library comes with several built-in probes to detect common patterns in text
   strings of other lengths or with non-hex characters.
 
 - `DockerLabelProbe` — extracts Docker label key/value pairs from Dockerfiles and CLI commands (e.g.,
-  LABEL version="1.0.0" description="API" vendor=acme). Detects fragments in the form key=value and key="value",
+  `LABEL version="1.0.0" description="API" vendor=acme`). Detects fragments in the form `key=value` and `key="value"`,
   including multiple labels in a single instruction, without fully parsing Dockerfile syntax.
+
+- `DockerCliFlagProbe` — extracts Docker CLI flags from arbitrary text (e.g., `-p 8080:80`, `-v ./src:/app`,
+  `--env KEY=VALUE`, `--name api`, `--rm`). Detects short and long options in both space and equals forms, with or
+  without arguments, making it suitable for parsing docker run commands, CI scripts, and orchestration logs without
+  full CLI parsing.
 
 You can implement your own probes by creating classes that implement the `IProbe` interface.
 Each probe also supports using a different validator for the returned values by passing an instance of a class
