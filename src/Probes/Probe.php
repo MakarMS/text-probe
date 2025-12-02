@@ -53,6 +53,10 @@ abstract class Probe
     {
         preg_match_all($regex, $text, $matches, PREG_OFFSET_CAPTURE);
 
+        if (!isset($matches[0])) {
+            return [];
+        }
+
         $results = [];
         foreach ($matches[0] as [$match, $byteOffset]) {
             if (!$this->validator->validate($match)) {

@@ -21,7 +21,8 @@
     "infection/infection": "^0.29",
     "phpcompatibility/php-compatibility": "^9.3",
     "phpstan/phpstan": "^2.1",
-    "phpunit/phpunit": "^10"
+    "phpunit/phpunit": "^10",
+    "phpstan/phpstan-strict-rules": "^2.0"
   },
   "minimum-stability": "stable",
   "autoload": {
@@ -39,6 +40,7 @@
   },
   "scripts": {
     "cs:check": "php-cs-fixer fix --verbose --config=.php-cs-fixer.dist.php --dry-run --diff",
-    "cs:fix": "php-cs-fixer fix --verbose --config=.php-cs-fixer.dist.php"
+    "cs:fix": "php-cs-fixer fix --verbose --config=.php-cs-fixer.dist.php",
+    "phpstan": "phpstan analyse -c phpstan.neon.dist -v"
   }
 }

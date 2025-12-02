@@ -31,7 +31,7 @@ class BankCardNumberValidator implements IValidator
     {
         $normalized = preg_replace('/\D+/', '', $raw);
 
-        if (empty($normalized)) {
+        if (!isset($normalized)) {
             return false;
         }
 

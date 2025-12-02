@@ -1,0 +1,30 @@
+parameters:
+    level: 10
+
+    paths:
+        - src
+
+    excludePaths:
+        analyseAndScan:
+            - tests
+
+    phpVersion:
+        min: 80100
+        max: 80400
+
+    checkUninitializedProperties: true
+    checkMissingCallableSignature: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+
+    checkBenevolentUnionTypes: true
+    reportPossiblyNonexistentGeneralArrayOffset: true
+    reportPossiblyNonexistentConstantArrayOffset: true
+
+    rememberPossiblyImpureFunctionValues: false
+
+    reportUnmatchedIgnoredErrors: true
+    reportAnyTypeWideningInVarTag: true
+    checkMissingOverrideMethodAttribute: true
+
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon

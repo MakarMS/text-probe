@@ -34,7 +34,7 @@ class BankRoutingValidator implements IValidator
     {
         $number = preg_replace('/\D/', '', $raw);
 
-        if (empty($number) || strlen($number) !== 9) {
+        if (!isset($number) || strlen($number) !== 9) {
             return false;
         }
 
