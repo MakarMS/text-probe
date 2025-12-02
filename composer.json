@@ -21,8 +21,8 @@
     "infection/infection": "^0.29",
     "phpcompatibility/php-compatibility": "^9.3",
     "phpstan/phpstan": "^2.1",
-    "phpunit/phpunit": "^10",
-    "phpstan/phpstan-strict-rules": "^2.0"
+    "phpstan/phpstan-strict-rules": "^2.0",
+    "phpunit/phpunit": "^10"
   },
   "minimum-stability": "stable",
   "autoload": {
