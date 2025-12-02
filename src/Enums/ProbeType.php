@@ -61,4 +61,5 @@ enum ProbeType: int
     case CRYPTO_USDC_ALGORAND_ADDRESS = 55;
     case DOCKER_IMAGE = 56;
     case DOCKER_CONTAINER_ID = 57;
+    case DOCKER_LABEL = 58;
 }

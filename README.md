@@ -1,4 +1,4 @@
-# TextProbe
+_# TextProbe
 
 [![PHP Version Require](http://poser.pugx.org/makarms/text-probe/require/php)](https://packagist.org/packages/makarms/text-probe) [![Latest Stable Version](http://poser.pugx.org/makarms/text-probe/v)](https://packagist.org/packages/makarms/text-probe) [![PHP Tests](https://github.com/MakarMS/text-probe/actions/workflows/php-tests.yml/badge.svg?branch=main)](https://github.com/MakarMS/text-probe/actions/workflows/php-tests.yml) [![codecov](https://codecov.io/github/MakarMS/text-probe/graph/badge.svg?token=HFDSEGHGH4)](https://codecov.io/github/MakarMS/text-probe) [![License](http://poser.pugx.org/makarms/text-probe/license)](https://packagist.org/packages/makarms/text-probe)
 
@@ -183,6 +183,10 @@ The library comes with several built-in probes to detect common patterns in text
 - `DockerContainerIdProbe` — extracts Docker container IDs in short and full formats from logs and CLI output (e.g.,
   docker ps, docker logs, CI, orchestration traces). Detects lowercase hexadecimal IDs of 12 or 64 characters, ignoring
   strings of other lengths or with non-hex characters.
+
+- `DockerLabelProbe` — extracts Docker label key/value pairs from Dockerfiles and CLI commands (e.g.,
+  LABEL version="1.0.0" description="API" vendor=acme). Detects fragments in the form key=value and key="value",
+  including multiple labels in a single instruction, without fully parsing Dockerfile syntax.
 
 You can implement your own probes by creating classes that implement the `IProbe` interface.
 Each probe also supports using a different validator for the returned values by passing an instance of a class
