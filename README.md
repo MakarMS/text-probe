@@ -194,6 +194,10 @@ The library comes with several built-in probes to detect common patterns in text
   without arguments, making it suitable for parsing docker run commands, CI scripts, and orchestration logs without
   full CLI parsing.
 
+- `DockerfileInstructionProbe` — extracts Dockerfile instructions such as `FROM`, `RUN`, `COPY`, `ENV`, `HEALTHCHECK`,
+  including multiline continuations with `\`. Matches instruction blocks regardless of indentation and supports
+  case-insensitive detection of all core Dockerfile directives.
+
 You can implement your own probes by creating classes that implement the `IProbe` interface.
 Each probe also supports using a different validator for the returned values by passing an instance of a class
 implementing the `IValidator` interface to the probe’s constructor. This allows you to override the default validation

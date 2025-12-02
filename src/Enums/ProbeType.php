@@ -63,4 +63,5 @@ enum ProbeType: int
     case DOCKER_CONTAINER_ID = 57;
     case DOCKER_LABEL = 58;
     case DOCKER_CLI_FLAG = 59;
+    case DOCKERFILE_INSTRUCTION = 60;
 }
