@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ruleset name="Project Standards">
+    <description>PHPCS configuration with PHPCompatibility for PHP 8.1–8.4</description>
+
+    <file>src</file>
+    <file>tests</file>
+
+    <arg name="encoding" value="utf-8"/>
+    <arg name="colors"/>
+    <arg value="p"/>
+
+    <rule ref="PHPCompatibility">
+        <exclude name="PHPCompatibility.Miscellaneous.ValidIntegers"/>
+    </rule>
+
+    <config name="testVersion" value="8.1-8.4"/>
+
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+</ruleset>
