@@ -198,6 +198,10 @@ The library comes with several built-in probes to detect common patterns in text
   including multiline continuations with `\`. Matches instruction blocks regardless of indentation and supports
   case-insensitive detection of all core Dockerfile directives.
 
+- `DockerImageDigestProbe` — extracts Docker image digests in the form `sha256:<64-hex>` from logs, Docker/registry
+  output
+  and SBOM metadata, including references like `image@sha256:<digest>`, while always returning only the digest value.
+
 You can implement your own probes by creating classes that implement the `IProbe` interface.
 Each probe also supports using a different validator for the returned values by passing an instance of a class
 implementing the `IValidator` interface to the probe’s constructor. This allows you to override the default validation
