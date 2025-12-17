@@ -85,4 +85,5 @@ enum ProbeType: int
     case HEX_COLOR = 79;
     case RGB_RGBA_COLOR = 80;
     case HEX_HASH = 81;
+    case FILE_PATH = 82;
 }

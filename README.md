@@ -243,6 +243,10 @@ The library comes with several built-in probes to detect common patterns in text
 - `UserAgentProbe` — extracts User-Agent strings from text, supporting complex structures like multiple product tokens,
   OS information, and browser identifiers.
 
+- `FilePathProbe` — extracts absolute file paths in Linux (e.g., `/etc/passwd`) and Windows (e.g.,
+  `C:\\Windows\\System32`)
+  formats.
+
 ### 🐳 Docker
 
 - `DockerImageProbe` — extracts Docker image names with tags only (e.g., `nginx:1.25.1`, `redis:latest`, `ghcr.io/app/api:
