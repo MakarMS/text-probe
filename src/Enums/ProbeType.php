@@ -79,4 +79,5 @@ enum ProbeType: int
     case RUSSIAN_OGRN_NUMBER = 73;
     case US_SOCIAL_SECURITY_NUMBER = 74;
     case POSTAL_CODE = 75;
+    case PRIVATE_IPV4 = 76;
 }

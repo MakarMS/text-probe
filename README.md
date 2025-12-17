@@ -206,6 +206,8 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `IPv4Probe` — extracts IPv4 addresses, supporting standard formats and excluding reserved/bogus ranges if necessary.
 
+- `PrivateIPv4Probe` — extracts private IPv4 addresses from the 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 ranges.
+
 - `IPv6Probe` — extracts IPv6 addresses, including compressed formats, IPv4-mapped addresses, and zone indexes (e.g.,
   `%eth0`).
 
