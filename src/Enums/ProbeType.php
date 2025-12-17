@@ -75,4 +75,5 @@ enum ProbeType: int
     case GOOGLE_DOCS_LINK = 69;
     case GITHUB_REPOSITORY_LINK = 70;
     case JWT_TOKEN = 71;
+    case RUSSIAN_SNILS = 72;
 }

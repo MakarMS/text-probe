@@ -40,6 +40,9 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `RussianInnProbe` — extracts Russian tax identification numbers (INN) for organizations (10 digits) and individuals (12 digits), validating checksums.
 
+- `RussianSnilsProbe` — extracts Russian SNILS numbers (11 digits with checksum),
+  supporting compact or dashed formats like `11223344595` or `112-233-445 95`.
+
 - `SlackUsernameProbe` — extracts Slack usernames (e.g., `@username`), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots.
 
