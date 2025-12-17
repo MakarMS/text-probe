@@ -83,4 +83,5 @@ enum ProbeType: int
     case HTTP_COOKIE = 77;
     case HTML_TAG = 78;
     case HEX_COLOR = 79;
+    case RGB_RGBA_COLOR = 80;
 }

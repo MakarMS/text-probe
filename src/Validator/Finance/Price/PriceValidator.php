@@ -23,7 +23,7 @@ class PriceValidator implements IValidator
 
     public function validate(string $raw): bool
     {
-        if (preg_match('/\d/u', $raw) === false) {
+        if (preg_match('/\d/u', $raw) !== 1) {
             return false;
         }
 

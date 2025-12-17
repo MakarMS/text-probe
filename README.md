@@ -226,6 +226,8 @@ The library comes with several built-in probes to detect common patterns in text
 - `HexColorProbe` — extracts CSS-style hexadecimal color codes (`#fff`, `#ffffff`), ensuring only 3- or 6-digit values
   are matched while ignoring longer hexadecimal tokens.
 
+- `RgbRgbaColorProbe` — extracts RGB/RGBA color strings (e.g., `rgb(255,0,0)`, `rgba(255,0,0,0.5)`, `255,0,0`).
+
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or
   `00-1A-2B-3C-4D-5E`), accurately detecting valid addresses while excluding invalid patterns.
 
