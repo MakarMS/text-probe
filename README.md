@@ -35,6 +35,8 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `PhoneProbe` — extracts phone numbers (supports various formats).
 
+- `RussianInnProbe` — extracts Russian tax identification numbers (INN) for organizations (10 digits) and individuals (12 digits), validating checksums.
+
 - `SlackUsernameProbe` — extracts Slack usernames (e.g., `@username`), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots.
 
