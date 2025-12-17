@@ -52,6 +52,10 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 💰 Finance
 
+#### 🏢 Company Registration
+
+- `OgrnNumberProbe` — Extracts Russian OGRN numbers (13 digits) and validates the checksum.
+
 #### 🏦 Bank Account
 
 - `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., `DEUTDEFF500`).

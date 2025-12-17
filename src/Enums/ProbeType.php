@@ -65,4 +65,5 @@ enum ProbeType: int
     case DOCKER_CLI_FLAG = 59;
     case DOCKERFILE_INSTRUCTION = 60;
     case DOCKER_IMAGE_DIGEST = 61;
+    case OGRN_NUMBER = 62;
 }
