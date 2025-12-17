@@ -170,6 +170,10 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 🆔 UUID & Identifiers
 
+- `HexHashProbe` — extracts common hexadecimal hash strings such as MD5, SHA-1,
+  SHA-224, SHA-256, SHA-384, and SHA-512, matching 32–128 hex characters while
+  avoiding partial matches inside longer strings.
+
 - `UUIDProbe` — extracts any valid UUID (v1–v6) without checking the specific version. Supports standard UUID formats
   with hyphens.
 

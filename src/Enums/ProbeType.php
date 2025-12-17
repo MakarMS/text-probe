@@ -84,4 +84,5 @@ enum ProbeType: int
     case HTML_TAG = 78;
     case HEX_COLOR = 79;
     case RGB_RGBA_COLOR = 80;
+    case HEX_HASH = 81;
 }
