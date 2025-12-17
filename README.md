@@ -197,6 +197,8 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `LinkProbe` — extracts hyperlinks, including ones with IP addresses, ports, or without a protocol.
 
+- `GoogleDocsLinkProbe` — extracts Google Docs, Sheets, Slides, and Forms links hosted on docs.google.com.
+
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or
   `00-1A-2B-3C-4D-5E`), accurately detecting valid addresses while excluding invalid patterns.
 
