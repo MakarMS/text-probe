@@ -76,4 +76,5 @@ enum ProbeType: int
     case GITHUB_REPOSITORY_LINK = 70;
     case JWT_TOKEN = 71;
     case RUSSIAN_SNILS = 72;
+    case RUSSIAN_OGRN_NUMBER = 73;
 }

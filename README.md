@@ -69,6 +69,10 @@ The library comes with several built-in probes to detect common patterns in text
   ISO currency codes, including slash-separated pairs (e.g., `100 USD`, `99 EUR/UAH`). Supports spaces or commas as
   thousand separators and dots or commas for decimal fractions.
 
+#### 🏢 Company Registration
+
+- `RussianOgrnNumberProbe` — Extracts Russian OGRN numbers (13 digits) and validates the checksum.
+
 #### 🏦 Bank Account
 
 - `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., `DEUTDEFF500`).
