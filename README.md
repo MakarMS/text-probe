@@ -221,6 +221,8 @@ The library comes with several built-in probes to detect common patterns in text
 - `CookieProbe` — extracts HTTP cookie key/value pairs from `Set-Cookie` or `Cookie` headers, filtering out common
   attributes like `Path` or `Expires`.
 
+- `HtmlTagProbe` — extracts HTML tags, returning full paired segments with their content or standalone/self-closing tags.
+
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or
   `00-1A-2B-3C-4D-5E`), accurately detecting valid addresses while excluding invalid patterns.
 
