@@ -38,6 +38,9 @@ The library comes with several built-in probes to detect common patterns in text
 - `SlackUsernameProbe` — extracts Slack usernames (e.g., `@username`), supporting Slack-specific username rules such as
   allowed characters, length limits, and no consecutive dots.
 
+- `InstagramUsernameProbe` — extracts Instagram usernames (e.g., `@username`), allowing letters, digits, underscores,
+  and dots while rejecting invalid boundaries or consecutive dots.
+
 - `TelegramUserLinkProbe` — extracts `t.me` links pointing to Telegram users.
 
 - `TelegramUsernameProbe` — extracts Telegram usernames (e.g., `@username`).
