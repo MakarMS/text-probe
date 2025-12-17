@@ -154,6 +154,9 @@ The library comes with several built-in probes to detect common patterns in text
 - `GeoCoordinatesProbe` — extracts geographic coordinates in various formats (`decimal` or `degrees/minutes/seconds`,
   `N/S/E/W`).
 
+- `PostalCodeProbe` — extracts postal codes across multiple regions, including US ZIP (+4), Russian six-digit, UK,
+  Canadian, and Dutch-style codes.
+
 ### 🏷 Social & Tags
 
 - `HashtagProbe` — extracts hashtags from text (e.g., `#example`), supporting Unicode letters, numbers, and underscores,
