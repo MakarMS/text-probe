@@ -71,4 +71,5 @@ enum ProbeType: int
     case CAR_VIN = 65;
     case PRICE = 66;
     case RUSSIAN_PASSPORT_NUMBER = 67;
+    case ALL_CAPS_SEQUENCE = 68;
 }

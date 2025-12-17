@@ -149,6 +149,11 @@ The library comes with several built-in probes to detect common patterns in text
 - `HashtagProbe` — extracts hashtags from text (e.g., `#example`), supporting Unicode letters, numbers, and underscores,
   detecting hashtags in any position of the text.
 
+### ✍️ Text
+
+- `AllCapsSequenceProbe` — extracts sequences of two or more consecutive uppercase letters (Unicode-aware), making it
+  easy to detect acronyms or emphasised ALL CAPS tokens in text.
+
 ### 🆔 UUID & Identifiers
 
 - `UUIDProbe` — extracts any valid UUID (v1–v6) without checking the specific version. Supports standard UUID formats
