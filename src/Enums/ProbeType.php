@@ -80,4 +80,5 @@ enum ProbeType: int
     case US_SOCIAL_SECURITY_NUMBER = 74;
     case POSTAL_CODE = 75;
     case PRIVATE_IPV4 = 76;
+    case HTTP_COOKIE = 77;
 }
