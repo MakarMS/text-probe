@@ -225,7 +225,8 @@ The library comes with several built-in probes to detect common patterns in text
 - `CookieProbe` — extracts HTTP cookie key/value pairs from `Set-Cookie` or `Cookie` headers, filtering out common
   attributes like `Path` or `Expires`.
 
-- `HtmlTagProbe` — extracts HTML tags, returning full paired segments with their content or standalone/self-closing tags.
+- `HtmlTagProbe` — extracts HTML tags, returning full paired segments with their content or standalone/self-closing
+  tags.
 
 - `HexColorProbe` — extracts CSS-style hexadecimal color codes (`#fff`, `#ffffff`), ensuring only 3- or 6-digit values
   are matched while ignoring longer hexadecimal tokens.
