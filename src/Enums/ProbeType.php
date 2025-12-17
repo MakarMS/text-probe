@@ -68,4 +68,5 @@ enum ProbeType: int
     case SEMANTIC_VERSION = 62;
     case INSTAGRAM_USERNAME = 63;
     case RUSSIAN_INN = 64;
+    case CAR_VIN = 65;
 }
