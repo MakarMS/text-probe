@@ -33,6 +33,9 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `EmailProbe` — extracts email addresses.
 
+- `RussianPassportNumberProbe` — extracts Russian internal passport numbers (series and six-digit number), supporting
+  spaces or dashes between parts with basic structure validation.
+
 - `PhoneProbe` — extracts phone numbers (supports various formats).
 
 - `RussianInnProbe` — extracts Russian tax identification numbers (INN) for organizations (10 digits) and individuals (12 digits), validating checksums.
