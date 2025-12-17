@@ -158,6 +158,12 @@ The library comes with several built-in probes to detect common patterns in text
 - `UUIDv6Probe` — extracts UUID version 6, matching the format `xxxxxxxx-xxxx-6xxx-xxxx-xxxxxxxxxxxx`, an ordered
   version for better indexing and sorting.
 
+### ⚙️ Versioning
+
+- `SemanticVersionProbe` — extracts semantic version numbers in `MAJOR.MINOR.PATCH` format with optional pre-release
+  identifiers and build metadata, ensuring numeric identifiers avoid leading zeros while supporting dot-separated
+  alphanumeric segments.
+
 ### 🌐 Web & Network
 
 - `DomainProbe` — extracts domain names, including internationalized (Unicode) domains.
