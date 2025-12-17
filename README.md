@@ -57,6 +57,12 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 💰 Finance
 
+#### 🧾 Prices
+
+- `PriceProbe` — extracts price expressions combining numeric amounts with currency symbols (e.g., `$199`, `1 500₽`) or
+  ISO currency codes, including slash-separated pairs (e.g., `100 USD`, `99 EUR/UAH`). Supports spaces or commas as
+  thousand separators and dots or commas for decimal fractions.
+
 #### 🏦 Bank Account
 
 - `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., `DEUTDEFF500`).
