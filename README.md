@@ -205,6 +205,9 @@ The library comes with several built-in probes to detect common patterns in text
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or
   `00-1A-2B-3C-4D-5E`), accurately detecting valid addresses while excluding invalid patterns.
 
+- `JwtTokenProbe` — extracts JSON Web Tokens (JWT) in compact format (`xxxxx.yyyyy.zzzzz`), supporting Base64url segments
+  with optional padding.
+
 - `UserAgentProbe` — extracts User-Agent strings from text, supporting complex structures like multiple product tokens,
   OS information, and browser identifiers.
 
