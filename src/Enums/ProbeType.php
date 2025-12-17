@@ -82,4 +82,5 @@ enum ProbeType: int
     case PRIVATE_IPV4 = 76;
     case HTTP_COOKIE = 77;
     case HTML_TAG = 78;
+    case HEX_COLOR = 79;
 }

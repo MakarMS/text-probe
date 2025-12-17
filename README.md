@@ -223,6 +223,9 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `HtmlTagProbe` — extracts HTML tags, returning full paired segments with their content or standalone/self-closing tags.
 
+- `HexColorProbe` — extracts CSS-style hexadecimal color codes (`#fff`, `#ffffff`), ensuring only 3- or 6-digit values
+  are matched while ignoring longer hexadecimal tokens.
+
 - `MacAddressProbe` — extracts MAC addresses in standard formats using colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or
   `00-1A-2B-3C-4D-5E`), accurately detecting valid addresses while excluding invalid patterns.
 
