@@ -77,4 +77,5 @@ enum ProbeType: int
     case JWT_TOKEN = 71;
     case RUSSIAN_SNILS = 72;
     case RUSSIAN_OGRN_NUMBER = 73;
+    case US_SOCIAL_SECURITY_NUMBER = 74;
 }

@@ -53,6 +53,9 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `TelegramUsernameProbe` — extracts Telegram usernames (e.g., `@username`).
 
+- `UsSocialSecurityNumberProbe` — extracts U.S. Social Security Numbers (SSN) in the `XXX-XX-XXXX` format while
+  discarding structurally invalid area, group, or serial combinations.
+
 ### 📅 Date & Time
 
 - `DateProbe` — extracts dates in various formats (e.g., `YYYY-MM-DD`, `DD/MM/YYYY`, `2nd Jan 2023`).
