@@ -73,4 +73,5 @@ enum ProbeType: int
     case RUSSIAN_PASSPORT_NUMBER = 67;
     case ALL_CAPS_SEQUENCE = 68;
     case GOOGLE_DOCS_LINK = 69;
+    case GITHUB_REPOSITORY_LINK = 70;
 }
