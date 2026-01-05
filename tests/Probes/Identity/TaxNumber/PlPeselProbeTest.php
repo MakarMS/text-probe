@@ -1,0 +1,226 @@
+<?php
+
+namespace Tests\Probes\Identity\TaxNumber;
+
+use PHPUnit\Framework\TestCase;
+use TextProbe\Enums\ProbeType;
+use TextProbe\Probes\Identity\TaxNumber\PlPeselProbe;
+
+/**
+ * @internal
+ */
+class PlPeselProbeTest extends TestCase
+{
+    public function testFindsSingleMatch(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '44051401359';
+        $prefix = 'Value:
+';
+        $text = $prefix . $expected;
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(strlen($prefix), $results[0]->getStart());
+        $this->assertSame(strlen($prefix) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+    }
+
+    public function testFindsSecondSingleMatch(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '02211301453';
+        $prefix = 'Value:
+';
+        $text = $prefix . $expected;
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(strlen($prefix), $results[0]->getStart());
+        $this->assertSame(strlen($prefix) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+    }
+
+    public function testFindsMultipleMatches(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expectedFirst = '44051401359';
+        $expectedSecond = '02211301453';
+        $text = 'First
+' . $expectedFirst . '
+then
+' . $expectedSecond;
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $firstStart = strpos($text, $expectedFirst);
+        $firstEnd = $firstStart + strlen($expectedFirst);
+        $this->assertSame($expectedFirst, $results[0]->getResult());
+        $this->assertSame($firstStart, $results[0]->getStart());
+        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+
+        $secondStart = strpos($text, $expectedSecond, $firstEnd);
+        $secondEnd = $secondStart + strlen($expectedSecond);
+        $this->assertSame($expectedSecond, $results[1]->getResult());
+        $this->assertSame($secondStart, $results[1]->getStart());
+        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[1]->getProbeType());
+    }
+
+    public function testMatchesAtStart(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '44051401359';
+        $text = $expected . '
+Tail';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(strlen($expected), $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+    }
+
+    public function testMatchesAtEnd(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '44051401359';
+        $prefix = 'Head
+';
+        $text = $prefix . $expected;
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(strlen($prefix), $results[0]->getStart());
+        $this->assertSame(strlen($prefix) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+    }
+
+    public function testMatchesWithPunctuation(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '44051401359';
+        $text = 'Check
+' . $expected . '
+End.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(strlen('Check
+'), $results[0]->getStart());
+        $this->assertSame(strlen('Check
+') + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+    }
+
+    public function testHandlesDuplicateMatches(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '44051401359';
+        $text = $expected . '
+AND
+' . $expected;
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $firstStart = 0;
+        $firstEnd = strlen($expected);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame($firstStart, $results[0]->getStart());
+        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+
+        $secondStart = strpos($text, $expected, $firstEnd);
+        $secondEnd = $secondStart + strlen($expected);
+        $this->assertSame($expected, $results[1]->getResult());
+        $this->assertSame($secondStart, $results[1]->getStart());
+        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[1]->getProbeType());
+    }
+
+    public function testMatchesWithinSentence(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expected = '02211301453';
+        $text = 'Prefix
+' . $expected . '
+Suffix';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(strlen('Prefix
+'), $results[0]->getStart());
+        $this->assertSame(strlen('Prefix
+') + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+    }
+
+    public function testFindsMultipleWithPunctuation(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $expectedFirst = '44051401359';
+        $expectedSecond = '02211301453';
+        $text = 'First:
+' . $expectedFirst . '
+And:
+' . $expectedSecond . '
+End.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $firstStart = strpos($text, $expectedFirst);
+        $firstEnd = $firstStart + strlen($expectedFirst);
+        $this->assertSame($expectedFirst, $results[0]->getResult());
+        $this->assertSame($firstStart, $results[0]->getStart());
+        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[0]->getProbeType());
+
+        $secondStart = strpos($text, $expectedSecond, $firstEnd);
+        $secondEnd = $secondStart + strlen($expectedSecond);
+        $this->assertSame($expectedSecond, $results[1]->getResult());
+        $this->assertSame($secondStart, $results[1]->getStart());
+        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(ProbeType::PL_PESEL, $results[1]->getProbeType());
+    }
+
+    public function testRejectsInvalidChecksum(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $text = 'Invalid
+44051401358
+Tail';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
+
+    public function testRejectsInvalidFormat(): void
+    {
+        $probe = new PlPeselProbe();
+
+        $text = 'Invalid
+INVALID
+Tail';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
+}

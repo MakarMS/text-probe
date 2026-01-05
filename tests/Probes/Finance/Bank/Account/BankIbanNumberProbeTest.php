@@ -41,6 +41,21 @@ class BankIbanNumberProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_IBAN_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsIbanWithDashes(): void
+    {
+        $probe = new BankIbanNumberProbe();
+
+        $text = 'IBAN: DE89-3704-0044-0532-0130-00';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('DE89-3704-0044-0532-0130-00', $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(33, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_IBAN_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testFindsLowercaseIban(): void
     {
         $probe = new BankIbanNumberProbe();

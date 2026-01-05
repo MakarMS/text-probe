@@ -38,9 +38,6 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `PhoneProbe` — extracts phone numbers (supports various formats).
 
-- `RussianInnProbe` — extracts Russian tax identification numbers (INN) for organizations (10 digits) and individuals (
-  12 digits), validating checksums.
-
 - `RussianSnilsProbe` — extracts Russian SNILS numbers (11 digits with checksum),
   supporting compact or dashed formats like `11223344595` or `112-233-445 95`.
 
@@ -57,6 +54,80 @@ The library comes with several built-in probes to detect common patterns in text
 - `UsSocialSecurityNumberProbe` — extracts U.S. Social Security Numbers (SSN) in the `XXX-XX-XXXX` format while
   discarding structurally invalid area, group, or serial combinations.
 
+### 🔐 Security & Auth
+
+- `ApiKeyProbe` — extracts API keys from common provider prefixes (Stripe, GitHub, Google, AWS).
+
+- `StripeSecretKeyProbe` — extracts Stripe secret keys (e.g., `sk_live_...`).
+
+- `StripePublishableKeyProbe` — extracts Stripe publishable keys (e.g., `pk_test_...`).
+
+- `GitHubClassicTokenProbe` — extracts GitHub classic personal access tokens (`ghp_...`).
+
+- `GitHubFineGrainedTokenProbe` — extracts GitHub fine-grained personal access tokens (`github_pat_...`).
+
+- `GoogleApiKeyProbe` — extracts Google API keys starting with `AIza`.
+
+- `AwsAccessKeyIdProbe` — extracts AWS access key IDs (`AKIA`/`ASIA` + 16 chars).
+
+- `BearerTokenProbe` — extracts bearer token strings (JWT or opaque).
+
+- `OpaqueTokenProbe` — extracts opaque token strings (base64url-ish).
+
+- `BasicAuthProbe` — extracts HTTP Basic auth base64 blobs.
+
+- `BasicAuthBase64Probe` — extracts base64 blobs suitable for Basic auth.
+
+- `OAuthAccessTokenProbe` — extracts OAuth access tokens in JWT or opaque form.
+
+- `OAuthAccessTokenJwtProbe` — extracts OAuth access tokens in JWT form.
+
+- `OAuthAccessTokenOpaqueProbe` — extracts opaque OAuth access tokens.
+
+- `OAuthRefreshTokenProbe` — extracts OAuth refresh tokens in JWT or opaque form.
+
+- `OAuthRefreshTokenJwtProbe` — extracts OAuth refresh tokens in JWT form.
+
+- `OAuthRefreshTokenOpaqueProbe` — extracts opaque OAuth refresh tokens.
+
+- `CsrfTokenProbe` — extracts CSRF tokens in hex, base64url, or UUID form.
+
+- `CsrfTokenHexProbe` — extracts 32–128 character hexadecimal CSRF tokens.
+
+- `CsrfTokenBase64UrlProbe` — extracts base64url-style CSRF tokens.
+
+- `CsrfTokenUuidProbe` — extracts UUID-shaped CSRF tokens.
+
+- `PasswordHashProbe` — extracts bcrypt and Argon2 password hashes.
+
+- `BcryptHashProbe` — extracts bcrypt hashes with supported cost factors.
+
+- `Argon2idHashProbe` — extracts Argon2id hashes with non-zero parameters.
+
+- `Argon2iHashProbe` — extracts Argon2i hashes with non-zero parameters.
+
+- `PrivateKeyProbe` — extracts PEM/OpenSSH private key blocks.
+
+- `PemRsaPrivateKeyProbe` — extracts PEM-encoded RSA private key blocks.
+
+- `PemPkcs8PrivateKeyProbe` — extracts PEM-encoded PKCS#8 private key blocks.
+
+- `OpenSshPrivateKeyProbe` — extracts OpenSSH private key blocks.
+
+- `PublicKeyProbe` — extracts PEM public keys and certificates.
+
+- `PemPublicKeyProbe` — extracts PEM public key blocks.
+
+- `PemCertificateProbe` — extracts PEM certificate blocks.
+
+- `SshPublicKeyProbe` — extracts OpenSSH public key lines.
+
+- `SshRsaPublicKeyProbe` — extracts ssh-rsa public keys.
+
+- `SshEd25519PublicKeyProbe` — extracts ssh-ed25519 public keys.
+
+- `SshEcdsaPublicKeyProbe` — extracts ECDSA OpenSSH public keys.
+
 ### 📅 Date & Time
 
 - `DateProbe` — extracts dates in various formats (e.g., `YYYY-MM-DD`, `DD/MM/YYYY`, `2nd Jan 2023`).
@@ -67,6 +138,300 @@ The library comes with several built-in probes to detect common patterns in text
 
 ### 💰 Finance
 
+#### 💱 Currency
+
+- `Iso4217CurrencyCodeProbe` — extracts ISO-4217 currency codes (e.g., `USD`, `EUR`) using a whitelist validator.
+
+#### 🔗 Crypto transaction IDs
+
+- `BitcoinTxIdProbe` — extracts Bitcoin transaction IDs (64 hex characters).
+
+- `EthereumTxHashProbe` — extracts Ethereum transaction hashes (`0x` + 64 hex characters).
+
+- `LitecoinTxIdProbe` — extracts Litecoin transaction IDs (64 hex characters).
+
+- `RippleTxIdProbe` — extracts Ripple transaction IDs (64 uppercase hex characters).
+
+- `SolanaTxSignatureProbe` — extracts Solana transaction signatures (87–88 base58 characters).
+
+- `TronTxIdProbe` — extracts Tron transaction IDs (64 hex characters).
+
+- `UsdcAlgorandTxIdProbe` — extracts USDC Algorand transaction IDs (52 base32 characters).
+
+- `UsdcErc20TxHashProbe` — extracts USDC ERC-20 transaction hashes (`0x` + 64 hex characters).
+
+- `UsdcSolanaTxSignatureProbe` — extracts USDC Solana transaction signatures (87–88 base58 characters).
+
+- `UsdtErc20TxHashProbe` — extracts USDT ERC-20 transaction hashes (`0x` + 64 hex characters).
+
+- `UsdtOmniTxIdProbe` — extracts USDT Omni transaction IDs (64 hex characters).
+
+- `UsdtTrc20TxIdProbe` — extracts USDT TRC-20 transaction IDs (64 hex characters).
+
+- `CryptoTransactionIdProbe` — extracts transaction IDs across supported crypto networks.
+
+#### 🧾 Invoices & payment references
+
+- `InvoiceNumericIdProbe` — extracts numeric invoice identifiers (6+ digits).
+
+- `InvoiceAlnumIdProbe` — extracts alphanumeric invoice identifiers (uppercase letters, digits, `-` and `/`).
+
+- `InvoiceNumberProbe` — extracts invoice identifiers in numeric or alphanumeric form.
+
+- `SepaRfReferenceProbe` — extracts SEPA RF references and validates Mod-97 checksums.
+
+- `PaymentReferenceProbe` — extracts SEPA RF references or invoice identifiers.
+
+#### 🏛 VAT numbers
+
+- `AtUidProbe` — extracts Austria VAT numbers (`ATU########`).
+
+- `BeVatNumberProbe` — extracts Belgium VAT numbers (`BE0#########`).
+
+- `BgVatNumberProbe` — extracts Bulgaria VAT numbers (`BG#########` or `BG##########`).
+
+- `CyVatNumberProbe` — extracts Cyprus VAT numbers (`CY########X`).
+
+- `CzDicProbe` — extracts Czech VAT numbers (`CZ########`–`CZ##########`).
+
+- `DeUstIdNrProbe` — extracts Germany VAT numbers (`DE#########`).
+
+- `DkCvrProbe` — extracts Denmark VAT numbers (`DK########`).
+
+- `EeKmkrProbe` — extracts Estonia VAT numbers (`EE#########`).
+
+- `EsNifIvaProbe` — extracts Spain VAT numbers (`ES#########`).
+
+- `FiAlvNumeroProbe` — extracts Finland VAT numbers (`FI########`).
+
+- `FrNumeroTvaIntracommunautaireProbe` — extracts France VAT numbers (`FR**#########`).
+
+- `GrAfmVatProbe` — extracts Greece VAT numbers (`EL#########`).
+
+- `HrOibVatProbe` — extracts Croatia VAT numbers (`HR###########`).
+
+- `HuAdoazonositoJelVatProbe` — extracts Hungary VAT numbers (`HU########`).
+
+- `IeVatNumberProbe` — extracts Ireland VAT numbers (legacy and new formats).
+
+- `ItPartitaIvaProbe` — extracts Italy VAT numbers (`IT###########`).
+
+- `LtPvmMoketojoKodasProbe` — extracts Lithuania VAT numbers (`LT#########` or `LT############`).
+
+- `LuNumeroTvaProbe` — extracts Luxembourg VAT numbers (`LU########`).
+
+- `LvPvnRegNrProbe` — extracts Latvia VAT numbers (`LV###########`).
+
+- `MtVatNumberProbe` — extracts Malta VAT numbers (`MT########`).
+
+- `NlBtwNummerProbe` — extracts Netherlands VAT numbers (`NL#########B##`).
+
+- `PlNipVatProbe` — extracts Poland VAT numbers (`PL##########`).
+
+- `PtNifIvaProbe` — extracts Portugal VAT numbers (`PT#########`).
+
+- `RoCuiVatProbe` — extracts Romania VAT numbers (`RO##`–`RO##########`).
+
+- `SeVatNummerProbe` — extracts Sweden VAT numbers (`SE##########01`).
+
+- `SiDavcnaStevilkaVatProbe` — extracts Slovenia VAT numbers (`SI########`).
+
+- `SkDicVatProbe` — extracts Slovakia VAT numbers (`SK##########`).
+
+- `GbVatNumberProbe` — extracts Great Britain VAT numbers (`GB#########`).
+
+- `XiVatNumberProbe` — extracts Northern Ireland VAT numbers (`XI#########`).
+
+- `ChUidMwstProbe` — extracts Switzerland VAT numbers (`CHE#########MWST|TVA|IVA`).
+
+- `NoOrgnrMvaProbe` — extracts Norway VAT numbers (`NO#########MVA`).
+
+- `VatNumberProbe` — extracts VAT numbers across supported regions.
+
+#### 🏦 SWIFT references
+
+- `UetrProbe` — extracts SWIFT UETR identifiers (UUID-like with constrained version/variant).
+
+- `SwiftField20ReferenceProbe` — extracts SWIFT field 20 references (6–16 chars: A–Z, 0–9, `/` or `-`).
+
+- `SwiftReferenceProbe` — extracts SWIFT references (UETR or field 20 reference).
+
+#### 💸 PayPal
+
+- `PaypalTransactionIdProbeStrict` — extracts strict PayPal transaction IDs (17 uppercase alphanumeric characters).
+
+#### 💳 Stripe object IDs
+
+- `StripePaymentIntentIdProbe` — extracts Stripe payment intent IDs (`pi_...`).
+
+- `StripeChargeIdProbe` — extracts Stripe charge IDs (`ch_...`).
+
+- `StripeCustomerIdProbe` — extracts Stripe customer IDs (`cus_...`).
+
+- `StripeInvoiceIdProbe` — extracts Stripe invoice IDs (`in_...`).
+
+- `StripeSubscriptionIdProbe` — extracts Stripe subscription IDs (`sub_...`).
+
+- `StripePaymentMethodIdProbe` — extracts Stripe payment method IDs (`pm_...`).
+
+- `StripeEventIdProbe` — extracts Stripe event IDs (`evt_...`).
+
+- `StripeObjectIdProbe` — extracts Stripe object IDs across supported types.
+
+#### 🛂 Passports (MRZ)
+
+- `MrzTd1Probe` — extracts MRZ TD1 blocks (3 lines × 30 chars).
+
+- `MrzTd2Probe` — extracts MRZ TD2 blocks (2 lines × 36 chars).
+
+- `MrzTd3Probe` — extracts MRZ TD3 blocks (2 lines × 44 chars).
+
+- `InternationalPassportProbe` — extracts MRZ passport blocks across TD1/TD2/TD3 formats.
+
+#### 🧾 Tax Numbers
+
+- `DeSteuerIdProbe` — extracts German Steuer-ID numbers.
+
+- `DeSteuernummerProbe` — extracts German Steuernummer identifiers.
+
+- `FrNumeroFiscalReferenceProbe` — extracts French numero fiscal reference numbers.
+
+- `ItCodiceFiscaleProbe` — extracts Italian Codice Fiscale identifiers.
+
+- `EsNifProbe` — extracts Spanish NIF identifiers.
+
+- `NlBsnProbe` — extracts Dutch BSN numbers.
+
+- `PlPeselProbe` — extracts Polish PESEL numbers.
+
+- `PlNipProbe` — extracts Polish NIP numbers.
+
+- `SePersonnummerProbe` — extracts Swedish personnummer identifiers.
+
+- `NoFoedselsnummerProbe` — extracts Norwegian fødselsnummer identifiers.
+
+- `ChAhvNummerProbe` — extracts Swiss AHV numbers.
+
+- `GbUtrProbe` — extracts UK Unique Taxpayer Reference (UTR) numbers.
+
+- `RuInnProbe` — extracts Russian tax identification numbers (INN).
+
+- `UsEinProbe` — extracts US EIN numbers.
+
+- `TaxNumberProbe` — extracts tax numbers across supported regions.
+
+#### 🏥 Medical Policy
+
+- `DeKrankenversichertennummerProbe` — extracts German Krankenversichertennummer numbers.
+
+- `FrNirProbe` — extracts French NIR numbers.
+
+- `ItTesseraSanitariaProbe` — extracts Italian tessera sanitaria identifiers.
+
+- `EsSipNumberProbe` — extracts Spanish SIP numbers.
+
+- `NlBsnMedicalProbe` — extracts Dutch BSN medical identifiers.
+
+- `PlPeselMedicalProbe` — extracts Polish PESEL medical identifiers.
+
+- `SePersonnummerMedicalProbe` — extracts Swedish personnummer medical identifiers.
+
+- `NoFoedselsnummerMedicalProbe` — extracts Norwegian fødselsnummer medical identifiers.
+
+- `ChAhvMedicalProbe` — extracts Swiss AHV medical identifiers.
+
+- `GbNhsNumberProbe` — extracts UK NHS numbers.
+
+- `RuOmsEnp16Probe` — extracts Russian OMS ENP16 numbers.
+
+- `UsMemberIdProbe` — extracts US member identifiers.
+
+- `MedicalPolicyNumberProbe` — extracts medical policy numbers across supported regions.
+
+#### 📦 Tracking numbers
+
+- `Ups1ZTrackingProbe` — extracts UPS 1Z tracking numbers.
+
+- `Fedex12Probe` — extracts FedEx 12-digit tracking numbers.
+
+- `Fedex15Probe` — extracts FedEx 15-digit tracking numbers.
+
+- `Fedex20Probe` — extracts FedEx 20-digit tracking numbers.
+
+- `UspsNumeric20Probe` — extracts USPS 20-digit tracking numbers.
+
+- `UspsNumeric22Probe` — extracts USPS 22-digit tracking numbers.
+
+- `UspsIntlS10Probe` — extracts USPS S10-format tracking numbers.
+
+- `DhlExpress10Probe` — extracts DHL Express 10-digit tracking numbers.
+
+- `DpdTrackingProbe` — extracts DPD 14-digit tracking numbers.
+
+- `GlsTrackingProbe` — extracts GLS tracking numbers (11–14 digits).
+
+- `HermesEvriTrackingProbe` — extracts Hermes/Evri tracking numbers.
+
+- `RoyalMailS10Probe` — extracts Royal Mail S10 tracking numbers.
+
+- `LaPosteColissimoS10Probe` — extracts La Poste/Colissimo S10 tracking numbers.
+
+- `CorreosS10Probe` — extracts Correos S10 tracking numbers.
+
+- `PostnlTrackingProbe` — extracts PostNL tracking numbers.
+
+- `BpostS10Probe` — extracts bpost S10 tracking numbers.
+
+- `DeutschePostS10Probe` — extracts Deutsche Post S10 tracking numbers.
+
+- `SwissPostS10Probe` — extracts Swiss Post S10 tracking numbers.
+
+- `PosteItalianeS10Probe` — extracts Poste Italiane S10 tracking numbers.
+
+- `PocztaPolskaS10Probe` — extracts Poczta Polska S10 tracking numbers.
+
+- `PostNordS10Probe` — extracts PostNord S10 tracking numbers.
+
+- `RussiaPostS10Probe` — extracts Russia Post S10 tracking numbers.
+
+- `TrackingNumberProbe` — extracts tracking numbers across supported carriers.
+
+#### 🏷 Barcodes
+
+- `Ean13Probe` — extracts EAN-13 barcodes.
+
+- `UpcAProbe` — extracts UPC-A barcodes.
+
+- `BarcodeValueProbe` — extracts barcode values across supported formats.
+
+#### 🪪 Driver Licenses
+
+- `UkDrivingLicenceNumberProbe` — extracts UK driving licence numbers.
+
+- `DeFuehrerscheinnummerProbe` — extracts German driving licence numbers.
+
+- `FrNumeroPermisDeConduireProbe` — extracts French driving licence numbers.
+
+- `ItNumeroPatenteProbe` — extracts Italian driving licence numbers.
+
+- `EsNumeroPermisoConducirProbe` — extracts Spanish driving licence numbers.
+
+- `NlRijbewijsNummerProbe` — extracts Dutch driving licence numbers.
+
+- `PlNumerPrawaJazdyProbe` — extracts Polish driving licence numbers.
+
+- `SeKoerkortsnummerProbe` — extracts Swedish driving licence numbers.
+
+- `NoFoererkortnummerProbe` — extracts Norwegian driving licence numbers.
+
+- `ChFuehrerausweisNummerProbe` — extracts Swiss driving licence numbers.
+
+- `RuVoditelskoeUdostoverenieProbe` — extracts Russian driving licence numbers.
+
+- `UsDriverLicenseNumberProbe` — extracts US driving licence numbers.
+
+- `DriverLicenseProbe` — extracts driver licence numbers across supported regions.
+
 #### 🧾 Prices
 
 - `PriceProbe` — extracts price expressions combining numeric amounts with currency symbols (e.g., `$199`, `1 500₽`) or
@@ -75,7 +440,33 @@ The library comes with several built-in probes to detect common patterns in text
 
 #### 🏢 Company Registration
 
-- `RussianOgrnNumberProbe` — Extracts Russian OGRN numbers (13 digits) and validates the checksum.
+- `DeHandelsregisternummerProbe` — extracts German Handelsregister numbers.
+
+- `FrSirenProbe` — extracts French SIREN numbers.
+
+- `FrSiretProbe` — extracts French SIRET numbers.
+
+- `ItCodiceReaProbe` — extracts Italian codice REA numbers.
+
+- `EsCifProbe` — extracts Spanish CIF numbers.
+
+- `NlKvKNummerProbe` — extracts Dutch KvK numbers.
+
+- `PlKrsProbe` — extracts Polish KRS numbers.
+
+- `SeOrganisationsnummerProbe` — extracts Swedish organisation numbers.
+
+- `NoOrganisasjonsnummerProbe` — extracts Norwegian organisation numbers.
+
+- `ChUidiProbe` — extracts Swiss UIDI numbers.
+
+- `UkCompanyNumberProbe` — extracts UK company registration numbers.
+
+- `RuOgrnProbe` — extracts Russian OGRN numbers.
+
+- `UsCompanyRegistrationNumberProbe` — extracts US company registration numbers.
+
+- `CompanyRegistrationNumberProbe` — extracts company registration numbers across supported regions.
 
 #### 🏦 Bank Account
 
@@ -246,6 +637,104 @@ The library comes with several built-in probes to detect common patterns in text
 - `FilePathProbe` — extracts absolute file paths in Linux (e.g., `/etc/passwd`) and Windows (e.g.,
   `C:\\Windows\\System32`)
   formats.
+
+- `HttpStatusLineProbe` — extracts HTTP status lines like `HTTP/1.1 200` with valid status ranges.
+
+- `HttpStatusCodeProbe` — extracts HTTP status codes from status lines or standalone numeric codes.
+
+- `AbsoluteHttpUrlProbe` — extracts absolute HTTP/HTTPS URLs with optional ports and paths.
+
+- `AbsolutePathProbe` — extracts absolute paths that start with `/`.
+
+- `RestEndpointProbe` — extracts REST endpoints from absolute URLs or absolute paths.
+
+- `QueryParamPairProbe` — extracts query parameter key/value pairs.
+
+- `QueryStringProbe` — extracts full query strings starting with `?` and containing key/value pairs.
+
+- `QueryParameterProbe` — extracts query parameters or query strings.
+
+- `JsonQuotedKeyProbe` — extracts quoted JSON keys (e.g., `"name"`).
+
+- `JsonKeyProbe` — extracts unquoted JSON-like keys (e.g., `name`).
+
+- `JsonStringValueProbe` — extracts JSON string values.
+
+- `JsonNumberValueProbe` — extracts JSON numeric values.
+
+- `JsonBooleanValueProbe` — extracts JSON boolean values.
+
+- `JsonNullValueProbe` — extracts JSON null values.
+
+- `JsonValueProbe` — extracts JSON primitive values (string, number, boolean, null).
+
+- `GraphqlOperationKeywordProbe` — extracts GraphQL operation keywords (`query`, `mutation`, `subscription`).
+
+- `GraphqlSelectionSetProbe` — extracts GraphQL selection sets with balanced braces.
+
+- `GraphqlQueryProbe` — extracts GraphQL query components (operation keywords or selection sets).
+
+- `WsUrlProbe` — extracts `ws://` WebSocket URLs.
+
+- `WssUrlProbe` — extracts `wss://` WebSocket URLs.
+
+- `WebsocketUrlProbe` — extracts WebSocket URLs across `ws://` and `wss://` schemes.
+
+- `CorsAllowOriginProbe` — extracts `Access-Control-Allow-Origin` headers.
+
+- `CorsAllowMethodsProbe` — extracts `Access-Control-Allow-Methods` headers.
+
+- `CorsAllowHeadersProbe` — extracts `Access-Control-Allow-Headers` headers.
+
+- `CorsAllowCredentialsProbe` — extracts `Access-Control-Allow-Credentials` headers.
+
+- `CorsExposeHeadersProbe` — extracts `Access-Control-Expose-Headers` headers.
+
+- `CorsMaxAgeProbe` — extracts `Access-Control-Max-Age` headers.
+
+- `CorsHeaderProbe` — extracts CORS headers across supported variants.
+
+### ⚙️ System & DevOps
+
+- `K8sDnsLabelProbe` — extracts Kubernetes DNS labels (RFC1123 label format).
+
+- `K8sDnsSubdomainProbe` — extracts Kubernetes DNS subdomains (RFC1123 subdomain format).
+
+- `KubernetesResourceNameProbe` — extracts Kubernetes resource names.
+
+- `KubernetesNamespaceStrictProbe` — extracts Kubernetes namespaces using DNS label rules.
+
+- `KubernetesNamespaceProbe` — extracts Kubernetes namespaces using DNS subdomain rules.
+
+- `HelmSemverProbe` — extracts Helm semantic versions.
+
+- `HelmChartVersionProbe` — extracts Helm chart versions.
+
+- `EnvAssignmentProbe` — extracts environment variable assignments like `KEY=value`.
+
+- `EnvVariableProbe` — extracts environment variable names.
+
+- `GithubActionsRunIdUrlProbe` — extracts GitHub Actions run URLs.
+
+- `GitlabPipelineIdUrlProbe` — extracts GitLab pipeline URLs.
+
+- `CircleciWorkflowUuidProbe` — extracts CircleCI workflow UUIDs.
+
+- `CiPipelineIdProbe` — extracts CI pipeline IDs.
+
+- `GitFullShaProbe` — extracts 40-character Git commit SHAs.
+
+- `GitShortShaProbe` — extracts short Git commit SHAs.
+
+- `GitCommitHashProbe` — extracts Git commit hashes (short or full).
+
+- `GitRefHeadsProbe` — extracts `refs/heads/*` Git references.
+
+- `GitBranchNameProbe` — extracts Git branch names.
+
+- `GitRefTagsProbe` — extracts `refs/tags/*` Git references.
+
+- `GitTagProbe` — extracts Git tag names.
 
 ### 🐳 Docker
 

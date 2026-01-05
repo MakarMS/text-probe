@@ -1,0 +1,27 @@
+<?php
+
+namespace TextProbe\Probes\Finance\Crypto\Transaction;
+
+use BackedEnum;
+use TextProbe\Enums\ProbeType;
+use TextProbe\Probes\Contracts\IProbe;
+use TextProbe\Probes\Probe;
+
+/**
+ * Probe that extracts UsdtErc20 transaction Hash values.
+ */
+class UsdtErc20TxHashProbe extends Probe implements IProbe
+{
+    public function probe(string $text): array
+    {
+        return $this->findByRegex('/\b0x[a-fA-F0-9]{64}\b/', $text);
+    }
+
+    /**
+     * @return ProbeType returns ProbeType::CRYPTO_USDT_ERC20_TX_HASH
+     */
+    protected function getProbeType(): BackedEnum
+    {
+        return ProbeType::CRYPTO_USDT_ERC20_TX_HASH;
+    }
+}

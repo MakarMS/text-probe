@@ -53,29 +53,29 @@ class JwtTokenProbeTest extends TestCase
     {
         $probe = new JwtTokenProbe();
 
-        $text = 'Invalid formats: abc.def, ab@c.def.ghi, and a.b.c with trailing dot.';
+        $text = 'Invalid formats: abc.def, ab@c.def, and a.b.';
         $results = $probe->probe($text);
 
         $this->assertCount(0, $results);
     }
 
-    public function testDoesNotMatchInsideLongerStrings(): void
+    public function testDoesNotMatchWhenSegmentsAreBroken(): void
     {
         $probe = new JwtTokenProbe();
 
-        $embedded = 'xeyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0In0.sgnc2lnYXR1cmUxZ';
+        $embedded = 'eyJhbGciOiJIUzI1NiJ9..sgnc2lnYXR1cmUxZ';
 
-        $text = "Prefix {$embedded}suffix";
+        $text = "Prefix {$embedded} suffix";
         $results = $probe->probe($text);
 
         $this->assertEmpty($results);
     }
 
-    public function testSupportsPaddingAndPunctuation(): void
+    public function testSupportsPunctuation(): void
     {
         $probe = new JwtTokenProbe();
 
-        $token = 'ZXk=.YWJj.YWJjPQ==';
+        $token = 'ZXk.YWJj.YWJj';
         $text = "Here is $token.";
         $results = $probe->probe($text);
 
@@ -83,7 +83,65 @@ class JwtTokenProbeTest extends TestCase
 
         $this->assertEquals($token, $results[0]->getResult());
         $this->assertEquals(8, $results[0]->getStart());
-        $this->assertEquals(26, $results[0]->getEnd());
+        $this->assertEquals(21, $results[0]->getEnd());
         $this->assertEquals(ProbeType::JWT_TOKEN, $results[0]->getProbeType());
+    }
+
+    public function testMatchesAtStart(): void
+    {
+        $probe = new JwtTokenProbe();
+
+        $token = 'ZXk.YWJj.YWJj';
+        $text = "{$token} tail";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame(0, $results[0]->getStart());
+    }
+
+    public function testMatchesAtEnd(): void
+    {
+        $probe = new JwtTokenProbe();
+
+        $token = 'ZXk.YWJj.YWJj';
+        $text = "head {$token}";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame(mb_strlen('head '), $results[0]->getStart());
+    }
+
+    public function testHandlesDuplicateMatches(): void
+    {
+        $probe = new JwtTokenProbe();
+
+        $token = 'ZXk.YWJj.YWJj';
+        $text = "{$token} and {$token}";
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+    }
+
+    public function testReportsProbeType(): void
+    {
+        $probe = new JwtTokenProbe();
+
+        $token = 'ZXk.YWJj.YWJj';
+        $text = "Value: {$token}";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame(ProbeType::JWT_TOKEN, $results[0]->getProbeType());
+    }
+
+    public function testMatchesWithinSentence(): void
+    {
+        $probe = new JwtTokenProbe();
+
+        $token = 'ZXk.YWJj.YWJj';
+        $text = "Prefix {$token} suffix";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
     }
 }

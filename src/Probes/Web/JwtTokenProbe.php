@@ -18,12 +18,9 @@ class JwtTokenProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
     {
-        $seg = '[A-Za-z0-9_-]{2,}={0,2}';
-        $jwt = $seg . '\.' . $seg . '\.' . $seg;
+        $pattern = '(?<![A-Za-z0-9_-])[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?![A-Za-z0-9_-])';
 
-        $regex = '/(?<![A-Za-z0-9_-])(' . $jwt . ')(?=[\s.,;:!?)}\]\r\n\t])/';
-
-        return $this->findByRegex($regex, $text);
+        return $this->findByRegex('~' . $pattern . '~', $text);
     }
 
     /**

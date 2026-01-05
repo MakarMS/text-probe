@@ -1,0 +1,181 @@
+<?php
+
+namespace Tests\Probes\Web;
+
+use PHPUnit\Framework\TestCase;
+use TextProbe\Enums\ProbeType;
+use TextProbe\Probes\Web\CsrfTokenBase64UrlProbe;
+
+/**
+ * @internal
+ */
+class CsrfTokenBase64UrlProbeTest extends TestCase
+{
+    public function testFindsSingleMatch(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $text = 'Value: ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(37, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+
+    public function testFindsSecondSingleMatch(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'token_token_token_12345';
+        $text = 'Value: token_token_token_12345';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(30, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+
+    public function testFindsMultipleMatches(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expectedFirst = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $expectedSecond = 'token_token_token_12345';
+        $text = 'First ABCDEFGHIJKLMNOPQRSTUVWXYZ1234 then token_token_token_12345';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $this->assertSame($expectedFirst, $results[0]->getResult());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(36, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+
+        $this->assertSame($expectedSecond, $results[1]->getResult());
+        $this->assertSame(42, $results[1]->getStart());
+        $this->assertSame(65, $results[1]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[1]->getProbeType());
+    }
+
+    public function testMatchesAtStart(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234 tail';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(30, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+
+    public function testMatchesAtEnd(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $text = 'head ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(5, $results[0]->getStart());
+        $this->assertSame(35, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+
+    public function testMatchesWithPunctuation(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $text = 'Check ABCDEFGHIJKLMNOPQRSTUVWXYZ1234, next.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(36, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+
+    public function testHandlesDuplicateMatches(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expectedFirst = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $expectedSecond = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234 and ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $this->assertSame($expectedFirst, $results[0]->getResult());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(30, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+
+        $this->assertSame($expectedSecond, $results[1]->getResult());
+        $this->assertSame(35, $results[1]->getStart());
+        $this->assertSame(65, $results[1]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[1]->getProbeType());
+    }
+
+    public function testMatchesWithinSentence(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'token_token_token_12345';
+        $text = 'Prefix token_token_token_12345 suffix';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(30, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+
+    public function testFindsMultipleWithPunctuation(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expectedFirst = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $expectedSecond = 'token_token_token_12345';
+        $text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234, token_token_token_12345';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $this->assertSame($expectedFirst, $results[0]->getResult());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(30, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+
+        $this->assertSame($expectedSecond, $results[1]->getResult());
+        $this->assertSame(32, $results[1]->getStart());
+        $this->assertSame(55, $results[1]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[1]->getProbeType());
+    }
+
+    public function testReportsProbeType(): void
+    {
+        $probe = new CsrfTokenBase64UrlProbe();
+
+        $expected = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $text = 'Value: ABCDEFGHIJKLMNOPQRSTUVWXYZ1234';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($expected, $results[0]->getResult());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(37, $results[0]->getEnd());
+        $this->assertSame(ProbeType::CSRF_TOKEN_BASE64URL, $results[0]->getProbeType());
+    }
+}

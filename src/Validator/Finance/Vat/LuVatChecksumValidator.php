@@ -1,0 +1,22 @@
+<?php
+
+namespace TextProbe\Validator\Finance\Vat;
+
+use TextProbe\Validator\Contracts\IValidator;
+
+/**
+ * Validator for LuVatChecksumValidator.
+ */
+class LuVatChecksumValidator implements IValidator
+{
+    public function validate(string $raw): bool
+    {
+        $value = substr($raw, 2);
+
+        if (preg_match('/^\d{8}$/', $value) !== 1) {
+            return false;
+        }
+
+        return ((int) $value) % 89 === 0;
+    }
+}

@@ -43,7 +43,10 @@ class BankIbanNumberValidator implements IValidator
      */
     private function normalize(string $iban): string
     {
-        return strtoupper(str_replace(' ', '', trim($iban)));
+        $iban = trim($iban);
+        $iban = preg_replace('/[\s-]+/', '', $iban) ?? '';
+
+        return strtoupper($iban);
     }
 
     /**

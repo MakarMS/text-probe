@@ -30,7 +30,7 @@ class BankIbanNumberProbe extends Probe implements IProbe
 
     public function probe(string $text): array
     {
-        return $this->findByRegex('/\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]){10,30}\b/i', $text);
+        return $this->findByRegex('/\b[A-Z]{2}\d{2}(?:[ -]?[A-Z0-9]){10,30}\b/i', $text);
     }
 
     /**

@@ -22,6 +22,12 @@ class BankIbanNumberValidatorTest extends TestCase
         $this->assertTrue($validator->validate('DE44 5001 0517 5407 3249 31'));
     }
 
+    public function testValidIbanWithDashes(): void
+    {
+        $validator = new BankIbanNumberValidator();
+        $this->assertTrue($validator->validate('DE44-5001-0517-5407-3249-31'));
+    }
+
     public function testValidIbanLowercase(): void
     {
         $validator = new BankIbanNumberValidator();
