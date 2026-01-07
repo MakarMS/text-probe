@@ -273,7 +273,7 @@ The library comes with several built-in probes to detect common patterns in text
 
 #### 💱 Currency
 
-- `Iso4217CurrencyCodeProbe` — extracts ISO-4217 currency codes (e.g., `USD`, `EUR`) using a whitelist validator.
+- `CurrencyCodeProbe` — extracts ISO-4217 currency codes (e.g., `USD`, `EUR`) using a whitelist validator.
 
 #### 🔗 Crypto transaction IDs
 
@@ -391,7 +391,7 @@ The library comes with several built-in probes to detect common patterns in text
 
 #### 💸 PayPal
 
-- `PaypalTransactionIdProbeStrict` — extracts strict PayPal transaction IDs (17 uppercase alphanumeric characters).
+- `PaypalTransactionIdProbe` — extracts PayPal transaction IDs (17 uppercase alphanumeric characters).
 
 #### 💳 Stripe object IDs
 
@@ -592,7 +592,6 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `UUIDv6Probe` — extracts UUID version 6, matching the format `xxxxxxxx-xxxx-6xxx-xxxx-xxxxxxxxxxxx`, an ordered
   version for better indexing and sorting.
-
 
 ### ⚙️ Versioning
 
