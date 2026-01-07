@@ -54,8 +54,138 @@ The library comes with several built-in probes to detect common patterns in text
 - `UsSocialSecurityNumberProbe` — extracts U.S. Social Security Numbers (SSN) in the `XXX-XX-XXXX` format while
   discarding structurally invalid area, group, or serial combinations.
 
+#### 🚗 Vehicle
+
 - `CarVinProbe` — extracts vehicle identification numbers (VINs), enforcing allowed characters and validating the
   checksum digit.
+
+#### 🛂 Passports (MRZ)
+
+- `MrzTd1Probe` — extracts MRZ TD1 blocks (3 lines × 30 chars).
+
+- `MrzTd2Probe` — extracts MRZ TD2 blocks (2 lines × 36 chars).
+
+- `MrzTd3Probe` — extracts MRZ TD3 blocks (2 lines × 44 chars).
+
+- `InternationalPassportProbe` — extracts MRZ passport blocks across TD1/TD2/TD3 formats.
+
+#### 🧾 Tax Numbers
+
+- `DeSteuerIdProbe` — extracts German Steuer-ID numbers.
+
+- `DeSteuernummerProbe` — extracts German Steuernummer identifiers.
+
+- `FrNumeroFiscalReferenceProbe` — extracts French numero fiscal reference numbers.
+
+- `ItCodiceFiscaleProbe` — extracts Italian Codice Fiscale identifiers.
+
+- `EsNifProbe` — extracts Spanish NIF identifiers.
+
+- `NlBsnProbe` — extracts Dutch BSN numbers.
+
+- `PlPeselProbe` — extracts Polish PESEL numbers.
+
+- `PlNipProbe` — extracts Polish NIP numbers.
+
+- `SePersonnummerProbe` — extracts Swedish personnummer identifiers.
+
+- `NoFoedselsnummerProbe` — extracts Norwegian fødselsnummer identifiers.
+
+- `ChAhvNummerProbe` — extracts Swiss AHV numbers.
+
+- `GbUtrProbe` — extracts UK Unique Taxpayer Reference (UTR) numbers.
+
+- `RuInnProbe` — extracts Russian tax identification numbers (INN).
+
+- `UsEinProbe` — extracts US EIN numbers.
+
+- `TaxNumberProbe` — extracts tax numbers across supported regions.
+
+#### 🏥 Medical Policy
+
+- `DeKrankenversichertennummerProbe` — extracts German Krankenversichertennummer numbers.
+
+- `FrNirProbe` — extracts French NIR numbers.
+
+- `ItTesseraSanitariaProbe` — extracts Italian tessera sanitaria identifiers.
+
+- `EsSipNumberProbe` — extracts Spanish SIP numbers.
+
+- `NlBsnMedicalProbe` — extracts Dutch BSN medical identifiers.
+
+- `PlPeselMedicalProbe` — extracts Polish PESEL medical identifiers.
+
+- `SePersonnummerMedicalProbe` — extracts Swedish personnummer medical identifiers.
+
+- `NoFoedselsnummerMedicalProbe` — extracts Norwegian fødselsnummer medical identifiers.
+
+- `ChAhvMedicalProbe` — extracts Swiss AHV medical identifiers.
+
+- `GbNhsNumberProbe` — extracts UK NHS numbers.
+
+- `RuOmsEnp16Probe` — extracts Russian OMS ENP16 numbers.
+
+- `UsMemberIdProbe` — extracts US member identifiers.
+
+- `MedicalPolicyNumberProbe` — extracts medical policy numbers across supported regions.
+
+#### 🪪 Driver Licenses
+
+- `UkDrivingLicenceNumberProbe` — extracts UK driving licence numbers.
+
+- `DeFuehrerscheinnummerProbe` — extracts German driving licence numbers.
+
+- `FrNumeroPermisDeConduireProbe` — extracts French driving licence numbers.
+
+- `ItNumeroPatenteProbe` — extracts Italian driving licence numbers.
+
+- `EsNumeroPermisoConducirProbe` — extracts Spanish driving licence numbers.
+
+- `NlRijbewijsNummerProbe` — extracts Dutch driving licence numbers.
+
+- `PlNumerPrawaJazdyProbe` — extracts Polish driving licence numbers.
+
+- `SeKoerkortsnummerProbe` — extracts Swedish driving licence numbers.
+
+- `NoFoererkortnummerProbe` — extracts Norwegian driving licence numbers.
+
+- `ChFuehrerausweisNummerProbe` — extracts Swiss driving licence numbers.
+
+- `RuVoditelskoeUdostoverenieProbe` — extracts Russian driving licence numbers.
+
+- `UsDriverLicenseNumberProbe` — extracts US driving licence numbers.
+
+- `DriverLicenseProbe` — extracts driver licence numbers across supported regions.
+
+#### 🏢 Company Registration
+
+- `DeHandelsregisternummerProbe` — extracts German Handelsregister numbers.
+
+- `FrSirenProbe` — extracts French SIREN numbers.
+
+- `FrSiretProbe` — extracts French SIRET numbers.
+
+- `ItCodiceReaProbe` — extracts Italian codice REA numbers.
+
+- `EsCifProbe` — extracts Spanish CIF numbers.
+
+- `NlKvKNummerProbe` — extracts Dutch KvK numbers.
+
+- `PlKrsProbe` — extracts Polish KRS numbers.
+
+- `SeOrganisationsnummerProbe` — extracts Swedish organisation numbers.
+
+- `NoOrganisasjonsnummerProbe` — extracts Norwegian organisation numbers.
+
+- `ChUidiProbe` — extracts Swiss UIDI numbers.
+
+- `UkCompanyNumberProbe` — extracts UK company registration numbers.
+
+- `RuOgrnProbe` — extracts Russian OGRN numbers.
+
+- `UsCompanyRegistrationNumberProbe` — extracts US company registration numbers.
+
+- `CompanyRegistrationNumberProbe` — extracts company registration numbers across supported regions.
 
 ### 🔐 Security & Auth
 
@@ -281,195 +411,11 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `StripeObjectIdProbe` — extracts Stripe object IDs across supported types.
 
-#### 🛂 Passports (MRZ)
-
-- `MrzTd1Probe` — extracts MRZ TD1 blocks (3 lines × 30 chars).
-
-- `MrzTd2Probe` — extracts MRZ TD2 blocks (2 lines × 36 chars).
-
-- `MrzTd3Probe` — extracts MRZ TD3 blocks (2 lines × 44 chars).
-
-- `InternationalPassportProbe` — extracts MRZ passport blocks across TD1/TD2/TD3 formats.
-
-#### 🧾 Tax Numbers
-
-- `DeSteuerIdProbe` — extracts German Steuer-ID numbers.
-
-- `DeSteuernummerProbe` — extracts German Steuernummer identifiers.
-
-- `FrNumeroFiscalReferenceProbe` — extracts French numero fiscal reference numbers.
-
-- `ItCodiceFiscaleProbe` — extracts Italian Codice Fiscale identifiers.
-
-- `EsNifProbe` — extracts Spanish NIF identifiers.
-
-- `NlBsnProbe` — extracts Dutch BSN numbers.
-
-- `PlPeselProbe` — extracts Polish PESEL numbers.
-
-- `PlNipProbe` — extracts Polish NIP numbers.
-
-- `SePersonnummerProbe` — extracts Swedish personnummer identifiers.
-
-- `NoFoedselsnummerProbe` — extracts Norwegian fødselsnummer identifiers.
-
-- `ChAhvNummerProbe` — extracts Swiss AHV numbers.
-
-- `GbUtrProbe` — extracts UK Unique Taxpayer Reference (UTR) numbers.
-
-- `RuInnProbe` — extracts Russian tax identification numbers (INN).
-
-- `UsEinProbe` — extracts US EIN numbers.
-
-- `TaxNumberProbe` — extracts tax numbers across supported regions.
-
-#### 🏥 Medical Policy
-
-- `DeKrankenversichertennummerProbe` — extracts German Krankenversichertennummer numbers.
-
-- `FrNirProbe` — extracts French NIR numbers.
-
-- `ItTesseraSanitariaProbe` — extracts Italian tessera sanitaria identifiers.
-
-- `EsSipNumberProbe` — extracts Spanish SIP numbers.
-
-- `NlBsnMedicalProbe` — extracts Dutch BSN medical identifiers.
-
-- `PlPeselMedicalProbe` — extracts Polish PESEL medical identifiers.
-
-- `SePersonnummerMedicalProbe` — extracts Swedish personnummer medical identifiers.
-
-- `NoFoedselsnummerMedicalProbe` — extracts Norwegian fødselsnummer medical identifiers.
-
-- `ChAhvMedicalProbe` — extracts Swiss AHV medical identifiers.
-
-- `GbNhsNumberProbe` — extracts UK NHS numbers.
-
-- `RuOmsEnp16Probe` — extracts Russian OMS ENP16 numbers.
-
-- `UsMemberIdProbe` — extracts US member identifiers.
-
-- `MedicalPolicyNumberProbe` — extracts medical policy numbers across supported regions.
-
-#### 📦 Tracking numbers
-
-- `Ups1ZTrackingProbe` — extracts UPS 1Z tracking numbers.
-
-- `Fedex12Probe` — extracts FedEx 12-digit tracking numbers.
-
-- `Fedex15Probe` — extracts FedEx 15-digit tracking numbers.
-
-- `Fedex20Probe` — extracts FedEx 20-digit tracking numbers.
-
-- `UspsNumeric20Probe` — extracts USPS 20-digit tracking numbers.
-
-- `UspsNumeric22Probe` — extracts USPS 22-digit tracking numbers.
-
-- `UspsIntlS10Probe` — extracts USPS S10-format tracking numbers.
-
-- `DhlExpress10Probe` — extracts DHL Express 10-digit tracking numbers.
-
-- `DpdTrackingProbe` — extracts DPD 14-digit tracking numbers.
-
-- `GlsTrackingProbe` — extracts GLS tracking numbers (11–14 digits).
-
-- `HermesEvriTrackingProbe` — extracts Hermes/Evri tracking numbers.
-
-- `RoyalMailS10Probe` — extracts Royal Mail S10 tracking numbers.
-
-- `LaPosteColissimoS10Probe` — extracts La Poste/Colissimo S10 tracking numbers.
-
-- `CorreosS10Probe` — extracts Correos S10 tracking numbers.
-
-- `PostnlTrackingProbe` — extracts PostNL tracking numbers.
-
-- `BpostS10Probe` — extracts bpost S10 tracking numbers.
-
-- `DeutschePostS10Probe` — extracts Deutsche Post S10 tracking numbers.
-
-- `SwissPostS10Probe` — extracts Swiss Post S10 tracking numbers.
-
-- `PosteItalianeS10Probe` — extracts Poste Italiane S10 tracking numbers.
-
-- `PocztaPolskaS10Probe` — extracts Poczta Polska S10 tracking numbers.
-
-- `PostNordS10Probe` — extracts PostNord S10 tracking numbers.
-
-- `RussiaPostS10Probe` — extracts Russia Post S10 tracking numbers.
-
-- `TrackingNumberProbe` — extracts tracking numbers across supported carriers.
-
-#### 🏷 Barcodes
-
-- `Ean13Probe` — extracts EAN-13 barcodes.
-
-- `UpcAProbe` — extracts UPC-A barcodes.
-
-- `BarcodeValueProbe` — extracts barcode values across supported formats.
-
-#### 🪪 Driver Licenses
-
-- `UkDrivingLicenceNumberProbe` — extracts UK driving licence numbers.
-
-- `DeFuehrerscheinnummerProbe` — extracts German driving licence numbers.
-
-- `FrNumeroPermisDeConduireProbe` — extracts French driving licence numbers.
-
-- `ItNumeroPatenteProbe` — extracts Italian driving licence numbers.
-
-- `EsNumeroPermisoConducirProbe` — extracts Spanish driving licence numbers.
-
-- `NlRijbewijsNummerProbe` — extracts Dutch driving licence numbers.
-
-- `PlNumerPrawaJazdyProbe` — extracts Polish driving licence numbers.
-
-- `SeKoerkortsnummerProbe` — extracts Swedish driving licence numbers.
-
-- `NoFoererkortnummerProbe` — extracts Norwegian driving licence numbers.
-
-- `ChFuehrerausweisNummerProbe` — extracts Swiss driving licence numbers.
-
-- `RuVoditelskoeUdostoverenieProbe` — extracts Russian driving licence numbers.
-
-- `UsDriverLicenseNumberProbe` — extracts US driving licence numbers.
-
-- `DriverLicenseProbe` — extracts driver licence numbers across supported regions.
-
 #### 🧾 Prices
 
 - `PriceProbe` — extracts price expressions combining numeric amounts with currency symbols (e.g., `$199`, `1 500₽`) or
   ISO currency codes, including slash-separated pairs (e.g., `100 USD`, `99 EUR/UAH`). Supports spaces or commas as
   thousand separators and dots or commas for decimal fractions.
-
-#### 🏢 Company Registration
-
-- `DeHandelsregisternummerProbe` — extracts German Handelsregister numbers.
-
-- `FrSirenProbe` — extracts French SIREN numbers.
-
-- `FrSiretProbe` — extracts French SIRET numbers.
-
-- `ItCodiceReaProbe` — extracts Italian codice REA numbers.
-
-- `EsCifProbe` — extracts Spanish CIF numbers.
-
-- `NlKvKNummerProbe` — extracts Dutch KvK numbers.
-
-- `PlKrsProbe` — extracts Polish KRS numbers.
-
-- `SeOrganisationsnummerProbe` — extracts Swedish organisation numbers.
-
-- `NoOrganisasjonsnummerProbe` — extracts Norwegian organisation numbers.
-
-- `ChUidiProbe` — extracts Swiss UIDI numbers.
-
-- `UkCompanyNumberProbe` — extracts UK company registration numbers.
-
-- `RuOgrnProbe` — extracts Russian OGRN numbers.
-
-- `UsCompanyRegistrationNumberProbe` — extracts US company registration numbers.
-
-- `CompanyRegistrationNumberProbe` — extracts company registration numbers across supported regions.
 
 #### 🏦 Bank Account
 
@@ -544,6 +490,64 @@ The library comes with several built-in probes to detect common patterns in text
 
 - `UsdtTrc20AddressProbe` — Extracts USDT TRC20 addresses (TRON-based, Base58, starts with 'T', 34 chars).
 
+### 📦 Logistics
+
+#### 📦 Tracking numbers
+
+- `Ups1ZTrackingProbe` — extracts UPS 1Z tracking numbers.
+
+- `Fedex12Probe` — extracts FedEx 12-digit tracking numbers.
+
+- `Fedex15Probe` — extracts FedEx 15-digit tracking numbers.
+
+- `Fedex20Probe` — extracts FedEx 20-digit tracking numbers.
+
+- `UspsNumeric20Probe` — extracts USPS 20-digit tracking numbers.
+
+- `UspsNumeric22Probe` — extracts USPS 22-digit tracking numbers.
+
+- `UspsIntlS10Probe` — extracts USPS S10-format tracking numbers.
+
+- `DhlExpress10Probe` — extracts DHL Express 10-digit tracking numbers.
+
+- `DpdTrackingProbe` — extracts DPD 14-digit tracking numbers.
+
+- `GlsTrackingProbe` — extracts GLS tracking numbers (11–14 digits).
+
+- `HermesEvriTrackingProbe` — extracts Hermes/Evri tracking numbers.
+
+- `RoyalMailS10Probe` — extracts Royal Mail S10 tracking numbers.
+
+- `LaPosteColissimoS10Probe` — extracts La Poste/Colissimo S10 tracking numbers.
+
+- `CorreosS10Probe` — extracts Correos S10 tracking numbers.
+
+- `PostnlTrackingProbe` — extracts PostNL tracking numbers.
+
+- `BpostS10Probe` — extracts bpost S10 tracking numbers.
+
+- `DeutschePostS10Probe` — extracts Deutsche Post S10 tracking numbers.
+
+- `SwissPostS10Probe` — extracts Swiss Post S10 tracking numbers.
+
+- `PosteItalianeS10Probe` — extracts Poste Italiane S10 tracking numbers.
+
+- `PocztaPolskaS10Probe` — extracts Poczta Polska S10 tracking numbers.
+
+- `PostNordS10Probe` — extracts PostNord S10 tracking numbers.
+
+- `RussiaPostS10Probe` — extracts Russia Post S10 tracking numbers.
+
+- `TrackingNumberProbe` — extracts tracking numbers across supported carriers.
+
+### 🏷 Barcodes
+
+- `Ean13Probe` — extracts EAN-13 barcodes.
+
+- `UpcAProbe` — extracts UPC-A barcodes.
+
+- `BarcodeValueProbe` — extracts barcode values across supported formats.
+
 ### 🗺 Geolocation
 
 - `GeoCoordinatesProbe` — extracts geographic coordinates in various formats (`decimal` or `degrees/minutes/seconds`,
@@ -595,6 +599,10 @@ The library comes with several built-in probes to detect common patterns in text
 - `SemanticVersionProbe` — extracts semantic version numbers in `MAJOR.MINOR.PATCH` format with optional pre-release
   identifiers and build metadata, ensuring numeric identifiers avoid leading zeros while supporting dot-separated
   alphanumeric segments.
+
+- `ComposerConstraintProbe` — extracts Composer constraint strings with operators, ranges, and wildcard segments.
+
+- `SemverRangeProbe` — extracts semantic version ranges, including Composer-style constraints.
 
 ### 🌐 Web & Network
 
