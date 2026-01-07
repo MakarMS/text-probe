@@ -109,6 +109,21 @@ class BankCardExpiryProbeTest extends TestCase
         $this->assertEquals('11/2025', $results[1]->getResult());
     }
 
+    public function testFindsExpiryAtEnd(): void
+    {
+        $probe = new BankCardExpiryProbe();
+
+        $text = 'Expires 09/27.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('09/27', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(13, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_CARD_EXPIRY_DATE, $results[0]->getProbeType());
+    }
+
     public function testEmptyStringIsInvalid(): void
     {
         $probe = new BankCardExpiryProbe();

@@ -95,4 +95,59 @@ class UsdtOmniAddressProbeTest extends TestCase
         $this->assertEquals(57, $results[0]->getEnd());
         $this->assertEquals(ProbeType::CRYPTO_USDT_OMNI_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new UsdtOmniAddressProbe();
+
+        $text = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT is main';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('1BoatSLRHtKNngkdXEeobR76b53LETtpyT', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(34, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_OMNI_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new UsdtOmniAddressProbe();
+
+        $text = 'Send to 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_OMNI_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressInParentheses(): void
+    {
+        $probe = new UsdtOmniAddressProbe();
+
+        $text = 'Use (3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5) now';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(39, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_OMNI_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testIgnoresWrongPrefix(): void
+    {
+        $probe = new UsdtOmniAddressProbe();
+
+        $text = 'Invalid: 4J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
 }

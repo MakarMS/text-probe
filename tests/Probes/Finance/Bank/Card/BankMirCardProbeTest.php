@@ -101,6 +101,51 @@ class BankMirCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_MIR_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankMirCardProbe();
+
+        $text = '2202018221284841 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('2202018221284841', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MIR_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankMirCardProbe();
+
+        $text = 'Use Mir 2202018221284841';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('2202018221284841', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MIR_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithParentheses(): void
+    {
+        $probe = new BankMirCardProbe();
+
+        $text = 'Mir(2202018221284841)';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('2202018221284841', $results[0]->getResult());
+        $this->assertEquals(4, $results[0]->getStart());
+        $this->assertEquals(20, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MIR_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankMirCardProbe();

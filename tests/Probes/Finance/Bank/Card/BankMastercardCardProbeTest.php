@@ -101,6 +101,51 @@ class BankMastercardCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_MASTERCARD_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankMastercardCardProbe();
+
+        $text = '5105105105105100 valid';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('5105105105105100', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MASTERCARD_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsSeries2CardNumber(): void
+    {
+        $probe = new BankMastercardCardProbe();
+
+        $text = 'Series2: 2223000048400011 works';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('2223000048400011', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MASTERCARD_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankMastercardCardProbe();
+
+        $text = 'Pay with 2221000000000009';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('2221000000000009', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MASTERCARD_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankMastercardCardProbe();

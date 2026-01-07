@@ -61,6 +61,61 @@ class BankRoutingNumberProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_ROUTING_NUMBER, $results[1]->getProbeType());
     }
 
+    public function testFindsRoutingNumberAtStart(): void
+    {
+        $probe = new BankRoutingNumberProbe();
+
+        $text = '111000025 is first';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('111000025', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(9, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_ROUTING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsRoutingNumberWithPunctuation(): void
+    {
+        $probe = new BankRoutingNumberProbe();
+
+        $text = 'Routing [021000021]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('021000021', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(18, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_ROUTING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsRoutingNumberAtEnd(): void
+    {
+        $probe = new BankRoutingNumberProbe();
+
+        $text = 'End number 026009593';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('026009593', $results[0]->getResult());
+        $this->assertEquals(11, $results[0]->getStart());
+        $this->assertEquals(20, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_ROUTING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testIgnoresInvalidChecksumRoutingNumber(): void
+    {
+        $probe = new BankRoutingNumberProbe();
+
+        $text = 'Bad routing 011000016';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
+
     public function testIgnoresNonDigits(): void
     {
         $probe = new BankRoutingNumberProbe();

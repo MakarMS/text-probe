@@ -27,6 +27,141 @@ class TrackingNumberProbeTest extends TestCase
         }
     }
 
+    public function testFindsTrackingNumberAtStart(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $trackingNumber = TrackingTestHelper::makeUps1Z('1Z12345E020527168');
+
+        $text = $trackingNumber . "\nSHIPPED";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($trackingNumber, $results[0]->getResult());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsTrackingNumberAtEnd(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $trackingNumber = TrackingTestHelper::makeS10('RA', '12345678', 'US');
+
+        $text = "HEADER\n" . $trackingNumber;
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($trackingNumber, $results[0]->getResult());
+        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
+        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsTrackingNumberWithPunctuation(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $trackingNumber = '12345678901234567890';
+
+        $text = "FEDEX\n" . $trackingNumber . "\nDELIVERED";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($trackingNumber, $results[0]->getResult());
+        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
+        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsTrackingNumberInParentheses(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $trackingNumber = '123456789012';
+
+        $text = "START\n" . $trackingNumber . "\nEND";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($trackingNumber, $results[0]->getResult());
+        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
+        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsMultipleTrackingNumbers(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $ups = TrackingTestHelper::makeUps1Z('1Z12345E020527168');
+        $dpd = '12345678901234';
+
+        $text = $ups . "\n" . $dpd;
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $this->assertSame($ups, $results[0]->getResult());
+        $this->assertSame(strpos($text, $ups), $results[0]->getStart());
+        $this->assertSame($results[0]->getStart() + strlen($ups), $results[0]->getEnd());
+
+        $this->assertSame($dpd, $results[1]->getResult());
+        $this->assertSame(strpos($text, $dpd), $results[1]->getStart());
+        $this->assertSame($results[1]->getStart() + strlen($dpd), $results[1]->getEnd());
+    }
+
+    public function testFindsDuplicateTrackingNumbers(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $trackingNumber = '1234567890';
+
+        $text = $trackingNumber . "\n" . $trackingNumber;
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+        $firstPos = strpos($text, $trackingNumber);
+        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
+
+        $this->assertSame($trackingNumber, $results[0]->getResult());
+        $this->assertSame($firstPos, $results[0]->getStart());
+        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+
+        $this->assertSame($trackingNumber, $results[1]->getResult());
+        $this->assertSame($secondPos, $results[1]->getStart());
+        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+    }
+
+    public function testIgnoresInvalidTrackingText(): void
+    {
+        $probe = new TrackingNumberProbe();
+
+        $text = 'Nothing to track here';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
+
+    public function testIgnoresShortNumericToken(): void
+    {
+        $probe = new TrackingNumberProbe();
+
+        $text = 'Short 12345 code';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
+
+    public function testFindsHermesTrackingNumber(): void
+    {
+        $probe = new TrackingNumberProbe();
+        $trackingNumber = 'H1234567890';
+
+        $text = "HERMES\n" . $trackingNumber . "\nSTATUS";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertSame($trackingNumber, $results[0]->getResult());
+        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
+        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
+    }
+
     public static function trackingNumberSamples(): array
     {
         $ups = TrackingTestHelper::makeUps1Z('1Z12345E020527168');

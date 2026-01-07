@@ -101,6 +101,51 @@ class BankDiscoverCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_DISCOVER_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankDiscoverCardProbe();
+
+        $text = '6011000990139424 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6011000990139424', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_DISCOVER_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankDiscoverCardProbe();
+
+        $text = 'Use Discover 6221260000000000';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6221260000000000', $results[0]->getResult());
+        $this->assertEquals(13, $results[0]->getStart());
+        $this->assertEquals(29, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_DISCOVER_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankDiscoverCardProbe();
+
+        $text = 'Discover[6011-0009-9013-9424]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6011-0009-9013-9424', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(28, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_DISCOVER_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankDiscoverCardProbe();

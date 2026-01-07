@@ -101,6 +101,51 @@ class BankMaestroCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_MAESTRO_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankMaestroCardProbe();
+
+        $text = '6759649826438453 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6759649826438453', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MAESTRO_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankMaestroCardProbe();
+
+        $text = 'Maestro 5018250000000000';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('5018250000000000', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MAESTRO_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankMaestroCardProbe();
+
+        $text = 'Maestro[6759-6498-2643-8453]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6759-6498-2643-8453', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(27, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_MAESTRO_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankMaestroCardProbe();

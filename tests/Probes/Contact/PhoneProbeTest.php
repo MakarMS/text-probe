@@ -160,4 +160,19 @@ class PhoneProbeTest extends TestCase
         $this->assertEquals(39, $results[0]->getEnd());
         $this->assertEquals(ProbeType::PHONE, $results[0]->getProbeType());
     }
+
+    public function testInternationalPhoneWithSpaces(): void
+    {
+        $probe = new PhoneProbe();
+
+        $text = 'UK office: +44 20 7946 0958';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('+44 20 7946 0958', $results[0]->getResult());
+        $this->assertEquals(11, $results[0]->getStart());
+        $this->assertEquals(27, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::PHONE, $results[0]->getProbeType());
+    }
 }

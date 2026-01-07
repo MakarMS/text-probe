@@ -131,4 +131,34 @@ class EthereumAddressProbeTest extends TestCase
         $this->assertEquals(55, $results[0]->getEnd());
         $this->assertEquals(ProbeType::CRYPTO_ETHEREUM_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new EthereumAddressProbe();
+
+        $text = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e in log';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0x742d35Cc6634C0532925a3b844Bc454e4438f44e', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_ETHEREUM_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new EthereumAddressProbe();
+
+        $text = 'Send to 0X53D284357EC70CE289D6D64134DFAC8E511C8A3D';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0X53D284357EC70CE289D6D64134DFAC8E511C8A3D', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(50, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_ETHEREUM_ADDRESS, $results[0]->getProbeType());
+    }
 }

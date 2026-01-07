@@ -76,6 +76,51 @@ class BankCardCvvCvcCodeProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_CARD_CVV_CVC_CODE, $results[1]->getProbeType());
     }
 
+    public function testFindsCvvWithBrackets(): void
+    {
+        $probe = new BankCardCvvCvcCodeProbe();
+
+        $text = 'CVV: [321]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('321', $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(9, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_CARD_CVV_CVC_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsCvvAtEnd(): void
+    {
+        $probe = new BankCardCvvCvcCodeProbe();
+
+        $text = 'Code 9876';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('9876', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(9, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_CARD_CVV_CVC_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsCvvInSentence(): void
+    {
+        $probe = new BankCardCvvCvcCodeProbe();
+
+        $text = 'At end 555';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('555', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(10, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_CARD_CVV_CVC_CODE, $results[0]->getProbeType());
+    }
+
     public function testIgnoresNonDigits(): void
     {
         $probe = new BankCardCvvCvcCodeProbe();

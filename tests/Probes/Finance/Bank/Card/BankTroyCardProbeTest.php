@@ -101,6 +101,51 @@ class BankTroyCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_TROY_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankTroyCardProbe();
+
+        $text = '9792096705533967 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('9792096705533967', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_TROY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankTroyCardProbe();
+
+        $text = 'Use Troy 9792349944986854';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('9792349944986854', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_TROY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankTroyCardProbe();
+
+        $text = 'Troy[9792-5628-6297-5812]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('9792-5628-6297-5812', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_TROY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankTroyCardProbe();

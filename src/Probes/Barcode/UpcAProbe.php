@@ -20,7 +20,7 @@ class UpcAProbe extends Probe implements IProbe
 
     public function probe(string $text): array
     {
-        return $this->findByRegex('/(?m)^\d{12}$/', $text);
+        return $this->findByRegex('/(?<!\d)\d{12}(?!\d)/', $text);
     }
 
     /**

@@ -123,4 +123,80 @@ class DiscordNewUsernameProbeTest extends TestCase
         $this->assertEquals(23, $results[1]->getEnd());
         $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[1]->getProbeType());
     }
+
+    public function testRejectsLeadingDotUsernames(): void
+    {
+        $probe = new DiscordNewUsernameProbe();
+
+        $text = 'Bad @.nope but @good.name works';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@good.name';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(15, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[0]->getProbeType());
+    }
+
+    public function testFindsUsernamesBeforePeriod(): void
+    {
+        $probe = new DiscordNewUsernameProbe();
+
+        $text = 'Skip @name. and accept @fine.name';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $first = '@name';
+        $this->assertEquals($first, $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(10, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[0]->getProbeType());
+
+        $second = '@fine.name';
+        $this->assertEquals($second, $results[1]->getResult());
+        $this->assertEquals(23, $results[1]->getStart());
+        $this->assertEquals(33, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[1]->getProbeType());
+    }
+
+    public function testRejectsTooShortUsernames(): void
+    {
+        $probe = new DiscordNewUsernameProbe();
+
+        $text = 'Too short @a but @ab is ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@ab';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(17, $results[0]->getStart());
+        $this->assertEquals(20, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[0]->getProbeType());
+    }
+
+    public function testMatchesUsernamesNextToCommas(): void
+    {
+        $probe = new DiscordNewUsernameProbe();
+
+        $text = 'Ping @user_123, @user.name2, and done.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $expectedFirst = '@user_123';
+        $this->assertEquals($expectedFirst, $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(14, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[0]->getProbeType());
+
+        $expectedSecond = '@user.name2';
+        $this->assertEquals($expectedSecond, $results[1]->getResult());
+        $this->assertEquals(16, $results[1]->getStart());
+        $this->assertEquals(27, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::DISCORD_NEW_USERNAME, $results[1]->getProbeType());
+    }
 }

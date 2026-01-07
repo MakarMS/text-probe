@@ -116,6 +116,36 @@ class BankVisaCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_VISA_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankVisaCardProbe();
+
+        $text = '4111111111111111 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('4111111111111111', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_VISA_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsVisaWithDifferentPrefix(): void
+    {
+        $probe = new BankVisaCardProbe();
+
+        $text = 'Visa 4000056655665556';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('4000056655665556', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(21, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_VISA_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankVisaCardProbe();

@@ -101,6 +101,51 @@ class BankRupayCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_RUPAY_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankRupayCardProbe();
+
+        $text = '6023540132499349 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6023540132499349', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_RUPAY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankRupayCardProbe();
+
+        $text = 'Use RuPay 5081816557732146';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('5081816557732146', $results[0]->getResult());
+        $this->assertEquals(10, $results[0]->getStart());
+        $this->assertEquals(26, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_RUPAY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankRupayCardProbe();
+
+        $text = 'RuPay[6023-5401-3249-9349]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6023-5401-3249-9349', $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_RUPAY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankRupayCardProbe();

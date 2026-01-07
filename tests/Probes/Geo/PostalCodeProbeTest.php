@@ -85,4 +85,74 @@ class PostalCodeProbeTest extends TestCase
         $this->assertEquals(16, $results[0]->getEnd());
         $this->assertEquals(ProbeType::POSTAL_CODE, $results[0]->getProbeType());
     }
+
+    public function testFindsUsZipFiveDigits(): void
+    {
+        $probe = new PostalCodeProbe();
+
+        $text = 'ZIP: 90210 Beverly Hills';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('90210', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(10, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::POSTAL_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsUkPostalCodeWithoutSpace(): void
+    {
+        $probe = new PostalCodeProbe();
+
+        $text = 'Code: SW1A1AA now';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('SW1A1AA', $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(13, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::POSTAL_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsCanadianPostalCodeWithSpace(): void
+    {
+        $probe = new PostalCodeProbe();
+
+        $text = 'CA: M5V 3L9 Toronto';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('M5V 3L9', $results[0]->getResult());
+        $this->assertEquals(4, $results[0]->getStart());
+        $this->assertEquals(11, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::POSTAL_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsDutchPostalCodeWithSpace(): void
+    {
+        $probe = new PostalCodeProbe();
+
+        $text = 'NL 1012 AB center';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('1012 AB', $results[0]->getResult());
+        $this->assertEquals(3, $results[0]->getStart());
+        $this->assertEquals(10, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::POSTAL_CODE, $results[0]->getProbeType());
+    }
+
+    public function testIgnoresTooShortCode(): void
+    {
+        $probe = new PostalCodeProbe();
+
+        $text = 'Invalid 123';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
 }

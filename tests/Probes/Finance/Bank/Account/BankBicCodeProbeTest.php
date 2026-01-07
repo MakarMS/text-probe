@@ -95,4 +95,64 @@ class BankBicCodeProbeTest extends TestCase
         $this->assertEquals(26, $results[0]->getEnd());
         $this->assertEquals(ProbeType::BANK_BIC_CODE, $results[0]->getProbeType());
     }
+
+    public function testFindsBicAtStart(): void
+    {
+        $probe = new BankBicCodeProbe();
+
+        $text = 'DEUTDEFF is bank';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('DEUTDEFF', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(8, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_BIC_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsBicWithPunctuation(): void
+    {
+        $probe = new BankBicCodeProbe();
+
+        $text = 'BIC [BARCGB22] ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('BARCGB22', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(13, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_BIC_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsBicWithBranchCode(): void
+    {
+        $probe = new BankBicCodeProbe();
+
+        $text = 'Branch code BOFAUS3NXXX here';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('BOFAUS3NXXX', $results[0]->getResult());
+        $this->assertEquals(12, $results[0]->getStart());
+        $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_BIC_CODE, $results[0]->getProbeType());
+    }
+
+    public function testFindsBicWithBranchCodeAtEnd(): void
+    {
+        $probe = new BankBicCodeProbe();
+
+        $text = 'Start: NEDSZAJJXXX';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('NEDSZAJJXXX', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(18, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_BIC_CODE, $results[0]->getProbeType());
+    }
 }

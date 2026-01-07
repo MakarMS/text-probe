@@ -81,6 +81,66 @@ class DateTimeProbeTest extends TestCase
         $this->assertEquals(ProbeType::DATETIME, $results[0]->getProbeType());
     }
 
+    public function testFindsIsoDateTimeWithTSeparator(): void
+    {
+        $probe = new DateTimeProbe();
+
+        $text = 'Timestamp: 2025-12-31T14:30:15';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $expected = '2025-12-31T14:30:15';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(11, $results[0]->getStart());
+        $this->assertEquals(30, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DATETIME, $results[0]->getProbeType());
+    }
+
+    public function testFindsDotSeparatedDateWithTimeFirst(): void
+    {
+        $probe = new DateTimeProbe();
+
+        $text = 'Check 23:59 31.12.2025 for midnight';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $expected = '23:59 31.12.2025';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DATETIME, $results[0]->getProbeType());
+    }
+
+    public function testFindsDateTimeWithAmPmAfterDate(): void
+    {
+        $probe = new DateTimeProbe();
+
+        $text = 'Planned: 2025-12-31 02:15 PM';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $expected = '2025-12-31 02:15 PM';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(28, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DATETIME, $results[0]->getProbeType());
+    }
+
+    public function testFindsDateFirstWithSlashes(): void
+    {
+        $probe = new DateTimeProbe();
+
+        $text = 'Starts 31/12/2025 23:05 sharp';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $expected = '31/12/2025 23:05';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DATETIME, $results[0]->getProbeType());
+    }
+
     public function testNoDateTimeFound(): void
     {
         $probe = new DateTimeProbe();

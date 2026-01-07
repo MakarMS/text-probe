@@ -101,6 +101,46 @@ class BankIbanNumberProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_IBAN_NUMBER, $results[1]->getProbeType());
     }
 
+    public function testFindsIbanWithParentheses(): void
+    {
+        $probe = new BankIbanNumberProbe();
+
+        $text = 'IBAN (GB82WEST12345698765432) ok.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('GB82WEST12345698765432', $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(28, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_IBAN_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsIbanAtStart(): void
+    {
+        $probe = new BankIbanNumberProbe();
+
+        $text = 'DE89370400440532013000.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('DE89370400440532013000', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_IBAN_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testIgnoresInvalidChecksumIban(): void
+    {
+        $probe = new BankIbanNumberProbe();
+
+        $text = 'Invalid IBAN: DE89370400440532013001';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
+
     public function testIgnoresNonIbanText(): void
     {
         $probe = new BankIbanNumberProbe();

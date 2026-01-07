@@ -20,7 +20,7 @@ class Ean13Probe extends Probe implements IProbe
 
     public function probe(string $text): array
     {
-        return $this->findByRegex('/(?m)^\d{13}$/', $text);
+        return $this->findByRegex('/(?<!\d)\d{13}(?!\d)/', $text);
     }
 
     /**

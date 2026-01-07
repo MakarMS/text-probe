@@ -27,6 +27,21 @@ class DockerCliFlagProbe extends Probe implements IProbe
     {
         $arg = '\S+(?<![.,;!?\)\]\}])';
 
+        $standaloneLong = '(?:'
+            . 'rm'
+            . '|tty'
+            . '|detach'
+            . '|interactive'
+            . '|init'
+            . '|privileged'
+            . '|read-only'
+            . '|publish-all'
+            . '|quiet'
+            . '|no-healthcheck'
+            . '|oom-kill-disable'
+            . '|no-new-privileges'
+            . ')';
+
         return $this->findByRegex(
             '/(?:'
             . '-[pve]\s+' . $arg
@@ -34,6 +49,8 @@ class DockerCliFlagProbe extends Probe implements IProbe
             . '-[A-Za-z](?![A-Za-z0-9_-])'
             . '|'
             . '--[A-Za-z0-9][A-Za-z0-9_-]*=' . $arg
+            . '|'
+            . '--' . $standaloneLong . '(?![A-Za-z0-9_-])'
             . '|'
             . '--[A-Za-z0-9][A-Za-z0-9_-]*\s+' . $arg
             . '|'

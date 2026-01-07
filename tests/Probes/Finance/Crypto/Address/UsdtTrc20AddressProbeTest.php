@@ -95,4 +95,59 @@ class UsdtTrc20AddressProbeTest extends TestCase
         $this->assertEquals(96, $results[0]->getEnd());
         $this->assertEquals(ProbeType::CRYPTO_USDT_TRC20_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new UsdtTrc20AddressProbe();
+
+        $text = 'TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3 is here';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(34, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_TRC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new UsdtTrc20AddressProbe();
+
+        $text = 'Send to TFr5s2gXCKsS4B5p2k6G2pQY6JvN9sJkLp';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('TFr5s2gXCKsS4B5p2k6G2pQY6JvN9sJkLp', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_TRC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressInParentheses(): void
+    {
+        $probe = new UsdtTrc20AddressProbe();
+
+        $text = 'Use (TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3) now';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(39, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_TRC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testIgnoresLowercasePrefix(): void
+    {
+        $probe = new UsdtTrc20AddressProbe();
+
+        $text = 'Lowercase: tq1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
 }

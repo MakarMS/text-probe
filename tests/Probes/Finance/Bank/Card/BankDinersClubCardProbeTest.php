@@ -101,6 +101,51 @@ class BankDinersClubCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_DINERS_CLUB_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankDinersClubCardProbe();
+
+        $text = '30569309025904 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('30569309025904', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(14, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_DINERS_CLUB_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankDinersClubCardProbe();
+
+        $text = 'Diners 38520000023237';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('38520000023237', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(21, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_DINERS_CLUB_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankDinersClubCardProbe();
+
+        $text = 'Diners[38-464089-882389]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('38-464089-882389', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_DINERS_CLUB_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankDinersClubCardProbe();

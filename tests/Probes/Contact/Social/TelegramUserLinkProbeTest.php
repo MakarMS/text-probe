@@ -110,4 +110,69 @@ class TelegramUserLinkProbeTest extends TestCase
         $this->assertEquals(64, $results[0]->getEnd());
         $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
     }
+
+    public function testIgnoresTooShortUsernames(): void
+    {
+        $probe = new TelegramUserLinkProbe();
+
+        $text = 'Bad https://t.me/abcd but ok https://t.me/abcde';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = 'https://t.me/abcde';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(29, $results[0]->getStart());
+        $this->assertEquals(47, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
+    }
+
+    public function testMatchesMaxLengthUsername(): void
+    {
+        $probe = new TelegramUserLinkProbe();
+
+        $username = str_repeat('a', 32);
+        $expected = "https://t.me/{$username}";
+        $text = "Max {$expected} end";
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(4, $results[0]->getStart());
+        $this->assertEquals(49, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
+    }
+
+    public function testFindsLinksWithTrailingPunctuation(): void
+    {
+        $probe = new TelegramUserLinkProbe();
+
+        $text = 'Links: https://t.me/user_ok, and https://telegram.me/user_ok2.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $first = 'https://t.me/user_ok';
+        $this->assertEquals($first, $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(27, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[0]->getProbeType());
+
+        $second = 'https://telegram.me/user_ok2';
+        $this->assertEquals($second, $results[1]->getResult());
+        $this->assertEquals(33, $results[1]->getStart());
+        $this->assertEquals(61, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::TELEGRAM_USER_LINK, $results[1]->getProbeType());
+    }
+
+    public function testIgnoresLinksWithoutScheme(): void
+    {
+        $probe = new TelegramUserLinkProbe();
+
+        $text = 'Visit t.me/username or telegram.me/user_name now.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
 }

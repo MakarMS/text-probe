@@ -101,6 +101,51 @@ class BankJcbCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_JBC_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankJcbCardProbe();
+
+        $text = '3566002020360505 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('3566002020360505', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_JBC_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankJcbCardProbe();
+
+        $text = 'JCB 3528000700000000';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('3528000700000000', $results[0]->getResult());
+        $this->assertEquals(4, $results[0]->getStart());
+        $this->assertEquals(20, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_JBC_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankJcbCardProbe();
+
+        $text = 'JCB[3566-0020-2036-0505]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('3566-0020-2036-0505', $results[0]->getResult());
+        $this->assertEquals(4, $results[0]->getStart());
+        $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_JBC_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankJcbCardProbe();

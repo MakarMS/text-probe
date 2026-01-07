@@ -93,4 +93,96 @@ class InstagramUsernameProbeTest extends TestCase
 
         $this->assertCount(0, $results);
     }
+
+    public function testFindsUsernamesWithNumbers(): void
+    {
+        $probe = new InstagramUsernameProbe();
+
+        $text = 'Join @user123 and @name_4you today.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $first = '@user123';
+        $this->assertEquals($first, $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(13, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[0]->getProbeType());
+
+        $second = '@name_4you';
+        $this->assertEquals($second, $results[1]->getResult());
+        $this->assertEquals(18, $results[1]->getStart());
+        $this->assertEquals(28, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[1]->getProbeType());
+    }
+
+    public function testFindsUsernamesAtStartAndEnd(): void
+    {
+        $probe = new InstagramUsernameProbe();
+
+        $text = '@startname in the middle @endname';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $first = '@startname';
+        $this->assertEquals($first, $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(10, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[0]->getProbeType());
+
+        $second = '@endname';
+        $this->assertEquals($second, $results[1]->getResult());
+        $this->assertEquals(25, $results[1]->getStart());
+        $this->assertEquals(33, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[1]->getProbeType());
+    }
+
+    public function testRejectsLeadingDotUsername(): void
+    {
+        $probe = new InstagramUsernameProbe();
+
+        $text = 'Bad @.nope but @okay.name works.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@okay.name';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(15, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[0]->getProbeType());
+    }
+
+    public function testRejectsUsernamesWithHyphens(): void
+    {
+        $probe = new InstagramUsernameProbe();
+
+        $text = 'Bad @user-name but @user_name is ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@user_name';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(19, $results[0]->getStart());
+        $this->assertEquals(29, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[0]->getProbeType());
+    }
+
+    public function testFindsUsernameAfterEmoji(): void
+    {
+        $probe = new InstagramUsernameProbe();
+
+        $text = 'Emoji 😊@smile_user!';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@smile_user';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(18, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::INSTAGRAM_USERNAME, $results[0]->getProbeType());
+    }
 }

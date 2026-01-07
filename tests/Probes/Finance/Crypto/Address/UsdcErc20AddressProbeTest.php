@@ -105,4 +105,49 @@ class UsdcErc20AddressProbeTest extends TestCase
 
         $this->assertCount(0, $results);
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new UsdcErc20AddressProbe();
+
+        $text = '0xAb5801a7D398351b8bE11C439e05C5B3259aec9B is contract';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0xAb5801a7D398351b8bE11C439e05C5B3259aec9B', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ERC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new UsdcErc20AddressProbe();
+
+        $text = 'Send to 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(50, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ERC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsUppercasePrefix(): void
+    {
+        $probe = new UsdcErc20AddressProbe();
+
+        $text = 'Uppercase: 0XDE0B295669A9FD93D5F28D9EC85E40F4CB697BAE';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0XDE0B295669A9FD93D5F28D9EC85E40F4CB697BAE', $results[0]->getResult());
+        $this->assertEquals(11, $results[0]->getStart());
+        $this->assertEquals(53, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ERC20_ADDRESS, $results[0]->getProbeType());
+    }
 }

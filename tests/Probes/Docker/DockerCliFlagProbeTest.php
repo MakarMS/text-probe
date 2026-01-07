@@ -176,6 +176,26 @@ class DockerCliFlagProbeTest extends TestCase
         $this->assertEquals(ProbeType::DOCKER_CLI_FLAG, $results[3]->getProbeType());
     }
 
+    public function testParsesEnvShortFlagAndTty(): void
+    {
+        $probe = new DockerCliFlagProbe();
+
+        $text = 'Flags: -e FOO=bar and --tty mode.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $this->assertEquals('-e FOO=bar', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(17, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DOCKER_CLI_FLAG, $results[0]->getProbeType());
+
+        $this->assertEquals('--tty', $results[1]->getResult());
+        $this->assertEquals(22, $results[1]->getStart());
+        $this->assertEquals(27, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::DOCKER_CLI_FLAG, $results[1]->getProbeType());
+    }
+
     public function testIgnoresTextWithoutFlags(): void
     {
         $probe = new DockerCliFlagProbe();

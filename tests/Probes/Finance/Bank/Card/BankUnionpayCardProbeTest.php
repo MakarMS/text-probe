@@ -101,6 +101,51 @@ class BankUnionpayCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_UNIONPAY_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankUnionpayCardProbe();
+
+        $text = '6249166746947115 ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6249166746947115', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_UNIONPAY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsLongCardNumberAtEnd(): void
+    {
+        $probe = new BankUnionpayCardProbe();
+
+        $text = 'UnionPay 629831196200679717';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('629831196200679717', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(27, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_UNIONPAY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithBrackets(): void
+    {
+        $probe = new BankUnionpayCardProbe();
+
+        $text = 'Check [6205590089026178861]';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6205590089026178861', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(26, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_UNIONPAY_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankUnionpayCardProbe();

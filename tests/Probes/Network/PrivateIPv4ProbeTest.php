@@ -95,4 +95,76 @@ class PrivateIPv4ProbeTest extends TestCase
         $this->assertEquals(35, $results[1]->getEnd());
         $this->assertEquals(ProbeType::PRIVATE_IPV4, $results[1]->getProbeType());
     }
+
+    public function testFindsPrivateIpAtStart(): void
+    {
+        $probe = new PrivateIPv4Probe();
+
+        $text = '192.168.1.10 is gateway';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertEquals('192.168.1.10', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(12, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::PRIVATE_IPV4, $results[0]->getProbeType());
+    }
+
+    public function testFindsPrivateIpAtEnd(): void
+    {
+        $probe = new PrivateIPv4Probe();
+
+        $text = 'Router uses 10.0.0.254';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertEquals('10.0.0.254', $results[0]->getResult());
+        $this->assertEquals(12, $results[0]->getStart());
+        $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::PRIVATE_IPV4, $results[0]->getProbeType());
+    }
+
+    public function testFindsPrivateIpWithPunctuation(): void
+    {
+        $probe = new PrivateIPv4Probe();
+
+        $text = 'Internal: 172.16.10.5, online';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+        $this->assertEquals('172.16.10.5', $results[0]->getResult());
+        $this->assertEquals(10, $results[0]->getStart());
+        $this->assertEquals(21, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::PRIVATE_IPV4, $results[0]->getProbeType());
+    }
+
+    public function testFindsDuplicatePrivateIps(): void
+    {
+        $probe = new PrivateIPv4Probe();
+
+        $text = 'Repeat 10.0.0.1 and 10.0.0.1';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $this->assertEquals('10.0.0.1', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(15, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::PRIVATE_IPV4, $results[0]->getProbeType());
+
+        $this->assertEquals('10.0.0.1', $results[1]->getResult());
+        $this->assertEquals(20, $results[1]->getStart());
+        $this->assertEquals(28, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::PRIVATE_IPV4, $results[1]->getProbeType());
+    }
+
+    public function testIgnoresIpv6Address(): void
+    {
+        $probe = new PrivateIPv4Probe();
+
+        $text = 'IPv6 fd00::1 is not IPv4';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
 }

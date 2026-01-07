@@ -101,6 +101,51 @@ class BankAmexCardProbeTest extends TestCase
         $this->assertEquals(ProbeType::BANK_AMEX_CARD_NUMBER, $results[0]->getProbeType());
     }
 
+    public function testFindsCardNumberAtStart(): void
+    {
+        $probe = new BankAmexCardProbe();
+
+        $text = '378282246310005 is Amex';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('378282246310005', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(15, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_AMEX_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberAtEnd(): void
+    {
+        $probe = new BankAmexCardProbe();
+
+        $text = 'Use Amex 371449635398431';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('371449635398431', $results[0]->getResult());
+        $this->assertEquals(9, $results[0]->getStart());
+        $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_AMEX_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsCardNumberWithParentheses(): void
+    {
+        $probe = new BankAmexCardProbe();
+
+        $text = 'Amex(378734493671000).';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('378734493671000', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(20, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::BANK_AMEX_CARD_NUMBER, $results[0]->getProbeType());
+    }
+
     public function testIgnoresShortNumbers(): void
     {
         $probe = new BankAmexCardProbe();

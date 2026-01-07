@@ -123,4 +123,74 @@ class SlackUsernameProbeTest extends TestCase
         $this->assertEquals(23, $results[1]->getEnd());
         $this->assertEquals(ProbeType::SLACK_USERNAME, $results[1]->getProbeType());
     }
+
+    public function testRejectsUsernamesWithDoubleDashes(): void
+    {
+        $probe = new SlackUsernameProbe();
+
+        $text = '@user--name @valid-name';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@valid-name';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(12, $results[0]->getStart());
+        $this->assertEquals(23, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::SLACK_USERNAME, $results[0]->getProbeType());
+    }
+
+    public function testRejectsTrailingDash(): void
+    {
+        $probe = new SlackUsernameProbe();
+
+        $text = 'Bad @user- but good @user_ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@user_ok';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(20, $results[0]->getStart());
+        $this->assertEquals(28, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::SLACK_USERNAME, $results[0]->getProbeType());
+    }
+
+    public function testAcceptsNumericStartUsernames(): void
+    {
+        $probe = new SlackUsernameProbe();
+
+        $text = 'Numbers @123user and @456_test are ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $first = '@123user';
+        $this->assertEquals($first, $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::SLACK_USERNAME, $results[0]->getProbeType());
+
+        $second = '@456_test';
+        $this->assertEquals($second, $results[1]->getResult());
+        $this->assertEquals(21, $results[1]->getStart());
+        $this->assertEquals(30, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::SLACK_USERNAME, $results[1]->getProbeType());
+    }
+
+    public function testRejectsLeadingDash(): void
+    {
+        $probe = new SlackUsernameProbe();
+
+        $text = 'Invalid @-dash and valid @dash_ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $expected = '@dash_ok';
+        $this->assertEquals($expected, $results[0]->getResult());
+        $this->assertEquals(25, $results[0]->getStart());
+        $this->assertEquals(33, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::SLACK_USERNAME, $results[0]->getProbeType());
+    }
 }

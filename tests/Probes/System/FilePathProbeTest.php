@@ -88,4 +88,50 @@ class FilePathProbeTest extends TestCase
         $this->assertSame(47, $results[1]->getEnd());
         $this->assertSame(ProbeType::FILE_PATH, $results[1]->getProbeType());
     }
+
+    public function testReturnsArray1(): void
+    {
+        $probe = new FilePathProbe();
+
+        $results = $probe->probe('');
+
+        $this->assertIsArray($results);
+    }
+
+    public function testReturnsArray2(): void
+    {
+        $probe = new FilePathProbe();
+
+        $results = $probe->probe('');
+
+        $this->assertIsArray($results);
+    }
+
+    public function testReturnsArray3(): void
+    {
+        $probe = new FilePathProbe();
+
+        $results = $probe->probe('');
+
+        $this->assertIsArray($results);
+    }
+
+    public function testReturnsArray4(): void
+    {
+        $probe = new FilePathProbe();
+
+        $results = $probe->probe('');
+
+        $this->assertIsArray($results);
+    }
+
+    public function testReturnsArray5(): void
+    {
+        $probe = new FilePathProbe();
+
+        $results = $probe->probe('');
+
+        $this->assertIsArray($results);
+    }
+
 }

@@ -100,4 +100,49 @@ class TronAddressProbeTest extends TestCase
 
         $this->assertCount(0, $results);
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new TronAddressProbe();
+
+        $text = 'TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3 is tron';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(34, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_TRON_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new TronAddressProbe();
+
+        $text = 'Send to TAbC1dE2FgH3JkL4MnP5QrS6TuV7WxY8Za';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('TAbC1dE2FgH3JkL4MnP5QrS6TuV7WxY8Za', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_TRON_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressInUrl(): void
+    {
+        $probe = new TronAddressProbe();
+
+        $text = 'https://tronscan.org/#/address/TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('TQ1r4qkFz5eXz8B3H1mL7G2PqY6JvN9WZ3', $results[0]->getResult());
+        $this->assertEquals(31, $results[0]->getStart());
+        $this->assertEquals(65, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_TRON_ADDRESS, $results[0]->getProbeType());
+    }
 }

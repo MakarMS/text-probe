@@ -100,4 +100,69 @@ class MacAddressProbeTest extends TestCase
         $this->assertEquals(46, $results[0]->getEnd());
         $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsMacWithUppercaseHex(): void
+    {
+        $probe = new MacAddressProbe();
+
+        $text = 'Gateway MAC: AA:BB:CC:DD:EE:FF';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('AA:BB:CC:DD:EE:FF', $results[0]->getResult());
+        $this->assertEquals(13, $results[0]->getStart());
+        $this->assertEquals(30, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsMacInParentheses(): void
+    {
+        $probe = new MacAddressProbe();
+
+        $text = 'Use (aa-bb-cc-dd-ee-ff) for access';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('aa-bb-cc-dd-ee-ff', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsMacAtEnd(): void
+    {
+        $probe = new MacAddressProbe();
+
+        $text = 'Device ends with 12:34:56:78:9A:BC';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('12:34:56:78:9A:BC', $results[0]->getResult());
+        $this->assertEquals(17, $results[0]->getStart());
+        $this->assertEquals(34, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsDuplicateMacAddresses(): void
+    {
+        $probe = new MacAddressProbe();
+
+        $text = 'Repeat 00:1A:2B:3C:4D:5E and 00:1A:2B:3C:4D:5E';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $this->assertEquals('00:1A:2B:3C:4D:5E', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(24, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[0]->getProbeType());
+
+        $this->assertEquals('00:1A:2B:3C:4D:5E', $results[1]->getResult());
+        $this->assertEquals(29, $results[1]->getStart());
+        $this->assertEquals(46, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::MAC_ADDRESS, $results[1]->getProbeType());
+    }
 }

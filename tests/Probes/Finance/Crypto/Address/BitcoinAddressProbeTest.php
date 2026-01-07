@@ -135,4 +135,34 @@ class BitcoinAddressProbeTest extends TestCase
         $this->assertEquals(47, $results[0]->getEnd());
         $this->assertEquals(ProbeType::CRYPTO_BITCOIN_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new BitcoinAddressProbe();
+
+        $text = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT is wallet';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('1BoatSLRHtKNngkdXEeobR76b53LETtpyT', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(34, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_BITCOIN_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new BitcoinAddressProbe();
+
+        $text = 'Send to 3Ai1JZ8pdJb2ksieUV8FsxSNVJCpoPi8W6';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('3Ai1JZ8pdJb2ksieUV8FsxSNVJCpoPi8W6', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_BITCOIN_ADDRESS, $results[0]->getProbeType());
+    }
 }

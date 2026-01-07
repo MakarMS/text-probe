@@ -75,4 +75,84 @@ class UsSocialSecurityNumberProbeTest extends TestCase
         $this->assertEquals(44, $results[1]->getEnd());
         $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[1]->getProbeType());
     }
+
+    public function testFindsSsnAtStart(): void
+    {
+        $probe = new UsSocialSecurityNumberProbe();
+
+        $text = '123-45-6789 assigned';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('123-45-6789', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(11, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsSsnAtEnd(): void
+    {
+        $probe = new UsSocialSecurityNumberProbe();
+
+        $text = 'Record ends with 321-54-9876';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('321-54-9876', $results[0]->getResult());
+        $this->assertEquals(17, $results[0]->getStart());
+        $this->assertEquals(28, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsSsnInParentheses(): void
+    {
+        $probe = new UsSocialSecurityNumberProbe();
+
+        $text = 'SSN (219-09-9999) ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('219-09-9999', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(16, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testFindsDuplicateSsns(): void
+    {
+        $probe = new UsSocialSecurityNumberProbe();
+
+        $text = 'Duplicate 123-45-6789 and 123-45-6789';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $this->assertEquals('123-45-6789', $results[0]->getResult());
+        $this->assertEquals(10, $results[0]->getStart());
+        $this->assertEquals(21, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[0]->getProbeType());
+
+        $this->assertEquals('123-45-6789', $results[1]->getResult());
+        $this->assertEquals(26, $results[1]->getStart());
+        $this->assertEquals(37, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[1]->getProbeType());
+    }
+
+    public function testFindsAnotherValidSsn(): void
+    {
+        $probe = new UsSocialSecurityNumberProbe();
+
+        $text = 'Secondary: 219-09-9999 confirmed';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('219-09-9999', $results[0]->getResult());
+        $this->assertEquals(11, $results[0]->getStart());
+        $this->assertEquals(22, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::US_SOCIAL_SECURITY_NUMBER, $results[0]->getProbeType());
+    }
 }

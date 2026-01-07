@@ -130,4 +130,34 @@ class LitecoinAddressProbeTest extends TestCase
         $this->assertEquals(59, $results[0]->getEnd());
         $this->assertEquals(ProbeType::CRYPTO_LITECOIN_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new LitecoinAddressProbe();
+
+        $text = 'ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m is here';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('ltc1q0c5l0z7r2dpw5hjr9jhdf5x8f7f3g5zv7v0s0m', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(43, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_LITECOIN_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new LitecoinAddressProbe();
+
+        $text = 'Send to M9Bszq7ZrZ7Bv9H7h1RfHJe1f8RpmQ7bB3';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('M9Bszq7ZrZ7Bv9H7h1RfHJe1f8RpmQ7bB3', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_LITECOIN_ADDRESS, $results[0]->getProbeType());
+    }
 }

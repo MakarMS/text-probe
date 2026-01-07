@@ -115,4 +115,19 @@ class DockerLabelProbeTest extends TestCase
         $this->assertEquals(20, $results[0]->getEnd());
         $this->assertEquals(ProbeType::DOCKER_LABEL, $results[0]->getProbeType());
     }
+
+    public function testFindsLabelWithSpacesAroundEquals(): void
+    {
+        $probe = new DockerLabelProbe();
+
+        $text = 'LABEL com.example.version = "2.0.1"';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('com.example.version = "2.0.1"', $results[0]->getResult());
+        $this->assertEquals(6, $results[0]->getStart());
+        $this->assertEquals(35, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DOCKER_LABEL, $results[0]->getProbeType());
+    }
 }

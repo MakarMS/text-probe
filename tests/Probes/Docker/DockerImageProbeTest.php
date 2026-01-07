@@ -86,6 +86,21 @@ class DockerImageProbeTest extends TestCase
         $this->assertEquals(ProbeType::DOCKER_IMAGE, $results[0]->getProbeType());
     }
 
+    public function testFindsImageWithUnderscoreNamespace(): void
+    {
+        $probe = new DockerImageProbe();
+
+        $text = 'Deploy my_app/service:rc1 now.';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('my_app/service:rc1', $results[0]->getResult());
+        $this->assertEquals(7, $results[0]->getStart());
+        $this->assertEquals(25, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::DOCKER_IMAGE, $results[0]->getProbeType());
+    }
+
     public function testIgnoresInvalidImage(): void
     {
         $probe = new DockerImageProbe();

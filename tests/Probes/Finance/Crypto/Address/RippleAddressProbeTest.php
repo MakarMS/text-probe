@@ -100,4 +100,44 @@ class RippleAddressProbeTest extends TestCase
 
         $this->assertCount(0, $results);
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new RippleAddressProbe();
+
+        $text = 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59 is wallet';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(34, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_RIPPLE_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new RippleAddressProbe();
+
+        $text = 'Send to rLUEXYuLiQptky37CqLcm9USQpPiz5rkpD';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('rLUEXYuLiQptky37CqLcm9USQpPiz5rkpD', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_RIPPLE_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testIgnoresEmbeddedAddress(): void
+    {
+        $probe = new RippleAddressProbe();
+
+        $text = 'Embedded xr9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59 value';
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
+    }
 }

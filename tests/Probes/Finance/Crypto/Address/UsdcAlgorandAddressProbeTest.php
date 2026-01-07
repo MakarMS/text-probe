@@ -100,4 +100,54 @@ class UsdcAlgorandAddressProbeTest extends TestCase
 
         $this->assertCount(0, $results);
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new UsdcAlgorandAddressProbe();
+
+        $text = '6BJ32SU3ABLWSBND7U5H2QICQ6GGXVD7AXSSMRYM2GO3RRNHCZIUT4ISAQ is wallet';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('6BJ32SU3ABLWSBND7U5H2QICQ6GGXVD7AXSSMRYM2GO3RRNHCZIUT4ISAQ', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(58, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ALGORAND_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new UsdcAlgorandAddressProbe();
+
+        $text = 'Send to NJY27OQ2ZXK6OWBN44LE4K43TA2AV3DPILPYTHAJAMKIVZDWTEJKZJKO4A';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('NJY27OQ2ZXK6OWBN44LE4K43TA2AV3DPILPYTHAJAMKIVZDWTEJKZJKO4A', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(66, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ALGORAND_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsDuplicateAddresses(): void
+    {
+        $probe = new UsdcAlgorandAddressProbe();
+
+        $text = 'Copy 6BJ32SU3ABLWSBND7U5H2QICQ6GGXVD7AXSSMRYM2GO3RRNHCZIUT4ISAQ and 6BJ32SU3ABLWSBND7U5H2QICQ6GGXVD7AXSSMRYM2GO3RRNHCZIUT4ISAQ';
+        $results = $probe->probe($text);
+
+        $this->assertCount(2, $results);
+
+        $this->assertEquals('6BJ32SU3ABLWSBND7U5H2QICQ6GGXVD7AXSSMRYM2GO3RRNHCZIUT4ISAQ', $results[0]->getResult());
+        $this->assertEquals(5, $results[0]->getStart());
+        $this->assertEquals(63, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ALGORAND_ADDRESS, $results[0]->getProbeType());
+
+        $this->assertEquals('6BJ32SU3ABLWSBND7U5H2QICQ6GGXVD7AXSSMRYM2GO3RRNHCZIUT4ISAQ', $results[1]->getResult());
+        $this->assertEquals(68, $results[1]->getStart());
+        $this->assertEquals(126, $results[1]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDC_ALGORAND_ADDRESS, $results[1]->getProbeType());
+    }
 }

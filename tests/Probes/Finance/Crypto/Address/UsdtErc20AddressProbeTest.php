@@ -110,4 +110,49 @@ class UsdtErc20AddressProbeTest extends TestCase
         $this->assertEquals(54, $results[0]->getEnd());
         $this->assertEquals(ProbeType::CRYPTO_USDT_ERC20_ADDRESS, $results[0]->getProbeType());
     }
+
+    public function testFindsAddressAtStart(): void
+    {
+        $probe = new UsdtErc20AddressProbe();
+
+        $text = '0xAbC1234567890abcdef1234567890ABCDEF12345 is main';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0xAbC1234567890abcdef1234567890ABCDEF12345', $results[0]->getResult());
+        $this->assertEquals(0, $results[0]->getStart());
+        $this->assertEquals(42, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_ERC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsAddressAtEnd(): void
+    {
+        $probe = new UsdtErc20AddressProbe();
+
+        $text = 'Send to 0xbadc0ffeea8b3c4d5e6f7a8b9c0d1e2f3a4b5c6d';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0xbadc0ffeea8b3c4d5e6f7a8b9c0d1e2f3a4b5c6d', $results[0]->getResult());
+        $this->assertEquals(8, $results[0]->getStart());
+        $this->assertEquals(50, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_ERC20_ADDRESS, $results[0]->getProbeType());
+    }
+
+    public function testFindsUppercasePrefix(): void
+    {
+        $probe = new UsdtErc20AddressProbe();
+
+        $text = 'Uppercase: 0XABCDEF1234567890ABCDEF1234567890ABCDEF12';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertEquals('0XABCDEF1234567890ABCDEF1234567890ABCDEF12', $results[0]->getResult());
+        $this->assertEquals(11, $results[0]->getStart());
+        $this->assertEquals(53, $results[0]->getEnd());
+        $this->assertEquals(ProbeType::CRYPTO_USDT_ERC20_ADDRESS, $results[0]->getProbeType());
+    }
 }

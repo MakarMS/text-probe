@@ -95,4 +95,59 @@ class RussianPassportNumberProbeTest extends TestCase
 
         $this->assertEmpty($results);
     }
+
+    public function testDetectsPassportAtStart(): void
+    {
+        $probe = new RussianPassportNumberProbe();
+
+        $text = '45 01 123456 issued';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertSame('45 01 123456', $results[0]->getResult());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(12, $results[0]->getEnd());
+        $this->assertSame(ProbeType::RUSSIAN_PASSPORT_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testDetectsPassportAtEnd(): void
+    {
+        $probe = new RussianPassportNumberProbe();
+
+        $text = 'Issued: 11-22-333444';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertSame('11-22-333444', $results[0]->getResult());
+        $this->assertSame(8, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
+        $this->assertSame(ProbeType::RUSSIAN_PASSPORT_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testDetectsPassportWithParentheses(): void
+    {
+        $probe = new RussianPassportNumberProbe();
+
+        $text = 'Doc (77 09 654321), ok';
+        $results = $probe->probe($text);
+
+        $this->assertCount(1, $results);
+
+        $this->assertSame('77 09 654321', $results[0]->getResult());
+        $this->assertSame(5, $results[0]->getStart());
+        $this->assertSame(17, $results[0]->getEnd());
+        $this->assertSame(ProbeType::RUSSIAN_PASSPORT_NUMBER, $results[0]->getProbeType());
+    }
+
+    public function testRejectsAllZeroSerial(): void
+    {
+        $probe = new RussianPassportNumberProbe();
+
+        $text = 'Invalid 12 34 000000 sample';
+        $results = $probe->probe($text);
+
+        $this->assertEmpty($results);
+    }
 }
