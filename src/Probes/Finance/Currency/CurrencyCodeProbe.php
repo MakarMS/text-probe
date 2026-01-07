@@ -12,7 +12,7 @@ use TextProbe\Validator\Finance\Currency\ISO4217WhitelistValidator;
 /**
  * Probe that extracts ISO-4217 currency codes.
  */
-class Iso4217CurrencyCodeProbe extends Probe implements IProbe
+class CurrencyCodeProbe extends Probe implements IProbe
 {
     /**
      * @param IValidator|null $validator optional validator to override ISO-4217
@@ -29,10 +29,10 @@ class Iso4217CurrencyCodeProbe extends Probe implements IProbe
     }
 
     /**
-     * @return ProbeType returns ProbeType::ISO4217_CURRENCY_CODE
+     * @return ProbeType returns ProbeType::CURRENCY_CODE
      */
     protected function getProbeType(): BackedEnum
     {
-        return ProbeType::ISO4217_CURRENCY_CODE;
+        return ProbeType::CURRENCY_CODE;
     }
 }

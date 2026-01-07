@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Probes\Vehicle;
+namespace Probes\Identity\Vehicle;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;

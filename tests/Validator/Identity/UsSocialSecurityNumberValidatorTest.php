@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Validator\Social;
+namespace Tests\Validator\Identity;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\Social\UsSocialSecurityNumberValidator;

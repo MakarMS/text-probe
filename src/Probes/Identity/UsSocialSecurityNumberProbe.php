@@ -1,6 +1,6 @@
 <?php
 
-namespace TextProbe\Probes\Social;
+namespace TextProbe\Probes\Identity;
 
 use BackedEnum;
 use TextProbe\Enums\ProbeType;

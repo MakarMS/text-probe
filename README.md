@@ -54,6 +54,9 @@ The library comes with several built-in probes to detect common patterns in text
 - `UsSocialSecurityNumberProbe` — extracts U.S. Social Security Numbers (SSN) in the `XXX-XX-XXXX` format while
   discarding structurally invalid area, group, or serial combinations.
 
+- `CarVinProbe` — extracts vehicle identification numbers (VINs), enforcing allowed characters and validating the
+  checksum digit.
+
 ### 🔐 Security & Auth
 
 - `ApiKeyProbe` — extracts API keys from common provider prefixes (Stripe, GitHub, Google, AWS).
@@ -586,8 +589,6 @@ The library comes with several built-in probes to detect common patterns in text
 - `UUIDv6Probe` — extracts UUID version 6, matching the format `xxxxxxxx-xxxx-6xxx-xxxx-xxxxxxxxxxxx`, an ordered
   version for better indexing and sorting.
 
-- `CarVinProbe` — extracts vehicle identification numbers (VINs), enforcing allowed characters and validating the
-  checksum digit.
 
 ### ⚙️ Versioning
 

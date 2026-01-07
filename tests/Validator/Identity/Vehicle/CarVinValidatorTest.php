@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Validator\Vehicle;
+namespace Tests\Validator\Identity\Vehicle;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Validator\Vehicle\CarVinValidator;

@@ -10,7 +10,7 @@ use TextProbe\Probes\Probe;
 /**
  * Probe that extracts strict PayPal transaction identifiers.
  */
-class PaypalTransactionIdProbeStrict extends Probe implements IProbe
+class PaypalTransactionIdProbe extends Probe implements IProbe
 {
     public function probe(string $text): array
     {
@@ -18,10 +18,10 @@ class PaypalTransactionIdProbeStrict extends Probe implements IProbe
     }
 
     /**
-     * @return ProbeType returns ProbeType::PAYPAL_TRANSACTION_ID_STRICT
+     * @return ProbeType returns ProbeType::PAYPAL_TRANSACTION_ID
      */
     protected function getProbeType(): BackedEnum
     {
-        return ProbeType::PAYPAL_TRANSACTION_ID_STRICT;
+        return ProbeType::PAYPAL_TRANSACTION_ID;
     }
 }

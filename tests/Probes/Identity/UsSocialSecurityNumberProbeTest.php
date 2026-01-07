@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Probes\Social;
+namespace Probes\Identity;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
-use TextProbe\Probes\Social\UsSocialSecurityNumberProbe;
+use TextProbe\Probes\Identity\UsSocialSecurityNumberProbe;
 
 /**
  * @internal
