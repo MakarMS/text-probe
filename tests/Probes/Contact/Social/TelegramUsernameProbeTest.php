@@ -190,7 +190,7 @@ class TelegramUsernameProbeTest extends TestCase
     {
         $probe = new TelegramUsernameProbe();
 
-        $text = "@lineuser is here";
+        $text = '@lineuser is here';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);

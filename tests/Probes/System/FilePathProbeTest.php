@@ -133,5 +133,4 @@ class FilePathProbeTest extends TestCase
 
         $this->assertIsArray($results);
     }
-
 }

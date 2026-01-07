@@ -24,6 +24,23 @@ class GraphqlOperationKeywordProbeTest extends TestCase
         $this->assertSame(strlen($value), $results[0]->getEnd());
         $this->assertSame(ProbeType::GRAPHQL_OPERATION_KEYWORD, $results[0]->getProbeType());
     }
+
+    public static function validSamples(): array
+    {
+        return [
+            ['query'],
+            ['mutation'],
+            ['subscription'],
+            ['query'],
+            ['mutation'],
+            ['subscription'],
+            ['query'],
+            ['mutation'],
+            ['subscription'],
+            ['query'],
+        ];
+    }
+
     public function testUsesSample1(): void
     {
         $sample = array_values(self::validSamples())[0];
@@ -76,23 +93,5 @@ class GraphqlOperationKeywordProbeTest extends TestCase
     {
         $sample = array_values(self::validSamples())[8];
         $this->testFindsMatches(...$sample);
-    }
-
-
-
-    public static function validSamples(): array
-    {
-        return [
-            ['query'],
-            ['mutation'],
-            ['subscription'],
-            ['query'],
-            ['mutation'],
-            ['subscription'],
-            ['query'],
-            ['mutation'],
-            ['subscription'],
-            ['query'],
-        ];
     }
 }

@@ -24,13 +24,30 @@ class PostnlTrackingProbeTest extends TestCase
         $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::POSTNL_TRACKING, $results[0]->getProbeType());
     }
+
+    public static function validTrackingNumbers(): array
+    {
+        return [
+            ['3S1234567890123'],
+            ['3S0000000000001'],
+            ['3S1111111111111'],
+            ['3S9876543210987'],
+            ['3S5555555555555'],
+            ['3S2222222222222'],
+            ['3S3333333333333'],
+            ['3S4444444444444'],
+            ['3S6666666666666'],
+            ['3S7777777777777'],
+        ];
+    }
+
     public function testFindsMatchAtStartLine(): void
     {
         $probe = new PostnlTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-NEXTLINE";
+        $text = $trackingNumber . '
+NEXTLINE';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -45,8 +62,8 @@ NEXTLINE";
         $probe = new PostnlTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "FIRSTLINE
-" . $trackingNumber;
+        $text = 'FIRSTLINE
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -61,9 +78,9 @@ NEXTLINE";
         $probe = new PostnlTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "HEADER
-" . $trackingNumber . "
-FOOTER";
+        $text = 'HEADER
+' . $trackingNumber . '
+FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -78,8 +95,8 @@ FOOTER";
         $probe = new PostnlTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-";
+        $text = $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -95,8 +112,8 @@ FOOTER";
         $trackingNumber = self::validTrackingNumbers()[0][0];
         $secondTrackingNumber = self::validTrackingNumbers()[1][0];
 
-        $text = $trackingNumber . "
-" . $secondTrackingNumber;
+        $text = $trackingNumber . '
+' . $secondTrackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -117,8 +134,8 @@ FOOTER";
         $probe = new PostnlTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-" . $trackingNumber;
+        $text = $trackingNumber . '
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -163,9 +180,9 @@ FOOTER";
         $probe = new PostnlTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "
-" . $trackingNumber . "
-";
+        $text = '
+' . $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -173,22 +190,5 @@ FOOTER";
         $this->assertSame(1, $results[0]->getStart());
         $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::POSTNL_TRACKING, $results[0]->getProbeType());
-    }
-
-
-    public static function validTrackingNumbers(): array
-    {
-        return [
-            ['3S1234567890123'],
-            ['3S0000000000001'],
-            ['3S1111111111111'],
-            ['3S9876543210987'],
-            ['3S5555555555555'],
-            ['3S2222222222222'],
-            ['3S3333333333333'],
-            ['3S4444444444444'],
-            ['3S6666666666666'],
-            ['3S7777777777777'],
-        ];
     }
 }

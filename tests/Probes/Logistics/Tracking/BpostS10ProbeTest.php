@@ -25,13 +25,30 @@ class BpostS10ProbeTest extends TestCase
         $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::BPOST_S10, $results[0]->getProbeType());
     }
+
+    public static function validTrackingNumbers(): array
+    {
+        return [
+            [TrackingTestHelper::makeS10('BP', '00000000', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '11111111', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '12345678', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '87654321', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '23456789', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '98765432', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '55555555', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '13579135', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '24680246', 'BE')],
+            [TrackingTestHelper::makeS10('BP', '10293847', 'BE')],
+        ];
+    }
+
     public function testFindsMatchAtStartLine(): void
     {
         $probe = new BpostS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-NEXTLINE";
+        $text = $trackingNumber . '
+NEXTLINE';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -46,8 +63,8 @@ NEXTLINE";
         $probe = new BpostS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "FIRSTLINE
-" . $trackingNumber;
+        $text = 'FIRSTLINE
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -62,9 +79,9 @@ NEXTLINE";
         $probe = new BpostS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "HEADER
-" . $trackingNumber . "
-FOOTER";
+        $text = 'HEADER
+' . $trackingNumber . '
+FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -79,8 +96,8 @@ FOOTER";
         $probe = new BpostS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-";
+        $text = $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -96,8 +113,8 @@ FOOTER";
         $trackingNumber = self::validTrackingNumbers()[0][0];
         $secondTrackingNumber = self::validTrackingNumbers()[1][0];
 
-        $text = $trackingNumber . "
-" . $secondTrackingNumber;
+        $text = $trackingNumber . '
+' . $secondTrackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -118,8 +135,8 @@ FOOTER";
         $probe = new BpostS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-" . $trackingNumber;
+        $text = $trackingNumber . '
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -164,9 +181,9 @@ FOOTER";
         $probe = new BpostS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "
-" . $trackingNumber . "
-";
+        $text = '
+' . $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -174,22 +191,5 @@ FOOTER";
         $this->assertSame(1, $results[0]->getStart());
         $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::BPOST_S10, $results[0]->getProbeType());
-    }
-
-
-    public static function validTrackingNumbers(): array
-    {
-        return [
-            [TrackingTestHelper::makeS10('BP', '00000000', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '11111111', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '12345678', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '87654321', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '23456789', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '98765432', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '55555555', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '13579135', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '24680246', 'BE')],
-            [TrackingTestHelper::makeS10('BP', '10293847', 'BE')],
-        ];
     }
 }

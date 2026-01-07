@@ -24,13 +24,30 @@ class DpdTrackingProbeTest extends TestCase
         $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::DPD_TRACKING, $results[0]->getProbeType());
     }
+
+    public static function validTrackingNumbers(): array
+    {
+        return [
+            ['12345678901234'],
+            ['00000000000001'],
+            ['11111111111111'],
+            ['98765432109876'],
+            ['55555555555555'],
+            ['22222222222222'],
+            ['33333333333333'],
+            ['44444444444444'],
+            ['66666666666666'],
+            ['77777777777777'],
+        ];
+    }
+
     public function testFindsMatchAtStartLine(): void
     {
         $probe = new DpdTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-NEXTLINE";
+        $text = $trackingNumber . '
+NEXTLINE';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -45,8 +62,8 @@ NEXTLINE";
         $probe = new DpdTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "FIRSTLINE
-" . $trackingNumber;
+        $text = 'FIRSTLINE
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -61,9 +78,9 @@ NEXTLINE";
         $probe = new DpdTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "HEADER
-" . $trackingNumber . "
-FOOTER";
+        $text = 'HEADER
+' . $trackingNumber . '
+FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -78,8 +95,8 @@ FOOTER";
         $probe = new DpdTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-";
+        $text = $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -95,8 +112,8 @@ FOOTER";
         $trackingNumber = self::validTrackingNumbers()[0][0];
         $secondTrackingNumber = self::validTrackingNumbers()[1][0];
 
-        $text = $trackingNumber . "
-" . $secondTrackingNumber;
+        $text = $trackingNumber . '
+' . $secondTrackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -117,8 +134,8 @@ FOOTER";
         $probe = new DpdTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-" . $trackingNumber;
+        $text = $trackingNumber . '
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -163,9 +180,9 @@ FOOTER";
         $probe = new DpdTrackingProbe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "
-" . $trackingNumber . "
-";
+        $text = '
+' . $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -173,22 +190,5 @@ FOOTER";
         $this->assertSame(1, $results[0]->getStart());
         $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::DPD_TRACKING, $results[0]->getProbeType());
-    }
-
-
-    public static function validTrackingNumbers(): array
-    {
-        return [
-            ['12345678901234'],
-            ['00000000000001'],
-            ['11111111111111'],
-            ['98765432109876'],
-            ['55555555555555'],
-            ['22222222222222'],
-            ['33333333333333'],
-            ['44444444444444'],
-            ['66666666666666'],
-            ['77777777777777'],
-        ];
     }
 }

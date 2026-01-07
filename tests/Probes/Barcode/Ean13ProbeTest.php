@@ -26,16 +26,6 @@ class Ean13ProbeTest extends TestCase
         $this->assertSame(ProbeType::EAN_13, $results[0]->getProbeType());
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('invalidSamples')]
-    public function testFindsNoMatches(string $text): void
-    {
-        $probe = new Ean13Probe();
-
-        $results = $probe->probe($text);
-
-        $this->assertCount(0, $results);
-    }
-
     public static function validCodes(): array
     {
         $values = [
@@ -63,6 +53,16 @@ class Ean13ProbeTest extends TestCase
             ["[{$values[8]}]", $values[8], 1, 14],
             ["{$values[9]}?", $values[9], 0, 13],
         ];
+    }
+
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidSamples')]
+    public function testFindsNoMatches(string $text): void
+    {
+        $probe = new Ean13Probe();
+
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
     }
 
     public static function invalidSamples(): array

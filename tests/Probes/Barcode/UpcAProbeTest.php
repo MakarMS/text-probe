@@ -26,16 +26,6 @@ class UpcAProbeTest extends TestCase
         $this->assertSame(ProbeType::UPC_A, $results[0]->getProbeType());
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('invalidSamples')]
-    public function testFindsNoMatches(string $text): void
-    {
-        $probe = new UpcAProbe();
-
-        $results = $probe->probe($text);
-
-        $this->assertCount(0, $results);
-    }
-
     public static function validCodes(): array
     {
         $values = [
@@ -63,6 +53,16 @@ class UpcAProbeTest extends TestCase
             ["[{$values[8]}]", $values[8], 1, 13],
             ["{$values[9]}?", $values[9], 0, 12],
         ];
+    }
+
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidSamples')]
+    public function testFindsNoMatches(string $text): void
+    {
+        $probe = new UpcAProbe();
+
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
     }
 
     public static function invalidSamples(): array

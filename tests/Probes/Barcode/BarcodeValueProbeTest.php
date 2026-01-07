@@ -26,16 +26,6 @@ class BarcodeValueProbeTest extends TestCase
         $this->assertSame(ProbeType::BARCODE_VALUE, $results[0]->getProbeType());
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('invalidSamples')]
-    public function testFindsNoMatches(string $text): void
-    {
-        $probe = new BarcodeValueProbe();
-
-        $results = $probe->probe($text);
-
-        $this->assertCount(0, $results);
-    }
-
     public static function barcodeSamples(): array
     {
         $eanValues = [
@@ -65,6 +55,16 @@ class BarcodeValueProbeTest extends TestCase
             ["[{$upcValues[3]}]", $upcValues[3], 1, 13],
             ["{$upcValues[4]}?", $upcValues[4], 0, 12],
         ];
+    }
+
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidSamples')]
+    public function testFindsNoMatches(string $text): void
+    {
+        $probe = new BarcodeValueProbe();
+
+        $results = $probe->probe($text);
+
+        $this->assertCount(0, $results);
     }
 
     public static function invalidSamples(): array

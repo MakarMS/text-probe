@@ -24,13 +24,30 @@ class UspsNumeric22ProbeTest extends TestCase
         $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::USPS_NUMERIC_22, $results[0]->getProbeType());
     }
+
+    public static function validTrackingNumbers(): array
+    {
+        return [
+            ['9205590164917314101012'],
+            ['9405500000000000000000'],
+            ['9274899999999999999999'],
+            ['9505501234567890123456'],
+            ['9303309876543210987654'],
+            ['9102022222222222222222'],
+            ['9205593333333333333333'],
+            ['9400114444444444444444'],
+            ['9274895555555555555555'],
+            ['9505516666666666666666'],
+        ];
+    }
+
     public function testFindsMatchAtStartLine(): void
     {
         $probe = new UspsNumeric22Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-NEXTLINE";
+        $text = $trackingNumber . '
+NEXTLINE';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -45,8 +62,8 @@ NEXTLINE";
         $probe = new UspsNumeric22Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "FIRSTLINE
-" . $trackingNumber;
+        $text = 'FIRSTLINE
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -61,9 +78,9 @@ NEXTLINE";
         $probe = new UspsNumeric22Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "HEADER
-" . $trackingNumber . "
-FOOTER";
+        $text = 'HEADER
+' . $trackingNumber . '
+FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -78,8 +95,8 @@ FOOTER";
         $probe = new UspsNumeric22Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-";
+        $text = $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -95,8 +112,8 @@ FOOTER";
         $trackingNumber = self::validTrackingNumbers()[0][0];
         $secondTrackingNumber = self::validTrackingNumbers()[1][0];
 
-        $text = $trackingNumber . "
-" . $secondTrackingNumber;
+        $text = $trackingNumber . '
+' . $secondTrackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -117,8 +134,8 @@ FOOTER";
         $probe = new UspsNumeric22Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-" . $trackingNumber;
+        $text = $trackingNumber . '
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -163,9 +180,9 @@ FOOTER";
         $probe = new UspsNumeric22Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "
-" . $trackingNumber . "
-";
+        $text = '
+' . $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -173,22 +190,5 @@ FOOTER";
         $this->assertSame(1, $results[0]->getStart());
         $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::USPS_NUMERIC_22, $results[0]->getProbeType());
-    }
-
-
-    public static function validTrackingNumbers(): array
-    {
-        return [
-            ['9205590164917314101012'],
-            ['9405500000000000000000'],
-            ['9274899999999999999999'],
-            ['9505501234567890123456'],
-            ['9303309876543210987654'],
-            ['9102022222222222222222'],
-            ['9205593333333333333333'],
-            ['9400114444444444444444'],
-            ['9274895555555555555555'],
-            ['9505516666666666666666'],
-        ];
     }
 }

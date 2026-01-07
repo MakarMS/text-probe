@@ -25,13 +25,30 @@ class CorreosS10ProbeTest extends TestCase
         $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
+
+    public static function validTrackingNumbers(): array
+    {
+        return [
+            [TrackingTestHelper::makeS10('CE', '00000000', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '11111111', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '12345678', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '87654321', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '23456789', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '98765432', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '55555555', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '13579135', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '24680246', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '10293847', 'ES')],
+        ];
+    }
+
     public function testFindsMatchAtStartLine(): void
     {
         $probe = new CorreosS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-NEXTLINE";
+        $text = $trackingNumber . '
+NEXTLINE';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -46,8 +63,8 @@ NEXTLINE";
         $probe = new CorreosS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "FIRSTLINE
-" . $trackingNumber;
+        $text = 'FIRSTLINE
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -62,9 +79,9 @@ NEXTLINE";
         $probe = new CorreosS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "HEADER
-" . $trackingNumber . "
-FOOTER";
+        $text = 'HEADER
+' . $trackingNumber . '
+FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -79,8 +96,8 @@ FOOTER";
         $probe = new CorreosS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-";
+        $text = $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -96,8 +113,8 @@ FOOTER";
         $trackingNumber = self::validTrackingNumbers()[0][0];
         $secondTrackingNumber = self::validTrackingNumbers()[1][0];
 
-        $text = $trackingNumber . "
-" . $secondTrackingNumber;
+        $text = $trackingNumber . '
+' . $secondTrackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -118,8 +135,8 @@ FOOTER";
         $probe = new CorreosS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-" . $trackingNumber;
+        $text = $trackingNumber . '
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -164,9 +181,9 @@ FOOTER";
         $probe = new CorreosS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "
-" . $trackingNumber . "
-";
+        $text = '
+' . $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -174,22 +191,5 @@ FOOTER";
         $this->assertSame(1, $results[0]->getStart());
         $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
-    }
-
-
-    public static function validTrackingNumbers(): array
-    {
-        return [
-            [TrackingTestHelper::makeS10('CE', '00000000', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '11111111', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '12345678', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '87654321', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '23456789', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '98765432', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '55555555', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '13579135', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '24680246', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '10293847', 'ES')],
-        ];
     }
 }

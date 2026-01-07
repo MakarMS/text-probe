@@ -25,13 +25,30 @@ class UspsIntlS10ProbeTest extends TestCase
         $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::USPS_INTL_S10, $results[0]->getProbeType());
     }
+
+    public static function validTrackingNumbers(): array
+    {
+        return [
+            [TrackingTestHelper::makeS10('RA', '00000000', 'US')],
+            [TrackingTestHelper::makeS10('RA', '11111111', 'US')],
+            [TrackingTestHelper::makeS10('RA', '12345678', 'US')],
+            [TrackingTestHelper::makeS10('RA', '87654321', 'US')],
+            [TrackingTestHelper::makeS10('RA', '23456789', 'US')],
+            [TrackingTestHelper::makeS10('RA', '98765432', 'US')],
+            [TrackingTestHelper::makeS10('RA', '55555555', 'US')],
+            [TrackingTestHelper::makeS10('RA', '13579135', 'US')],
+            [TrackingTestHelper::makeS10('RA', '24680246', 'US')],
+            [TrackingTestHelper::makeS10('RA', '10293847', 'US')],
+        ];
+    }
+
     public function testFindsMatchAtStartLine(): void
     {
         $probe = new UspsIntlS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-NEXTLINE";
+        $text = $trackingNumber . '
+NEXTLINE';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -46,8 +63,8 @@ NEXTLINE";
         $probe = new UspsIntlS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "FIRSTLINE
-" . $trackingNumber;
+        $text = 'FIRSTLINE
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -62,9 +79,9 @@ NEXTLINE";
         $probe = new UspsIntlS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "HEADER
-" . $trackingNumber . "
-FOOTER";
+        $text = 'HEADER
+' . $trackingNumber . '
+FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -79,8 +96,8 @@ FOOTER";
         $probe = new UspsIntlS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-";
+        $text = $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -96,8 +113,8 @@ FOOTER";
         $trackingNumber = self::validTrackingNumbers()[0][0];
         $secondTrackingNumber = self::validTrackingNumbers()[1][0];
 
-        $text = $trackingNumber . "
-" . $secondTrackingNumber;
+        $text = $trackingNumber . '
+' . $secondTrackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -118,8 +135,8 @@ FOOTER";
         $probe = new UspsIntlS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = $trackingNumber . "
-" . $trackingNumber;
+        $text = $trackingNumber . '
+' . $trackingNumber;
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
@@ -164,9 +181,9 @@ FOOTER";
         $probe = new UspsIntlS10Probe();
         $trackingNumber = self::validTrackingNumbers()[0][0];
 
-        $text = "
-" . $trackingNumber . "
-";
+        $text = '
+' . $trackingNumber . '
+';
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
@@ -174,22 +191,5 @@ FOOTER";
         $this->assertSame(1, $results[0]->getStart());
         $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
         $this->assertSame(ProbeType::USPS_INTL_S10, $results[0]->getProbeType());
-    }
-
-
-    public static function validTrackingNumbers(): array
-    {
-        return [
-            [TrackingTestHelper::makeS10('RA', '00000000', 'US')],
-            [TrackingTestHelper::makeS10('RA', '11111111', 'US')],
-            [TrackingTestHelper::makeS10('RA', '12345678', 'US')],
-            [TrackingTestHelper::makeS10('RA', '87654321', 'US')],
-            [TrackingTestHelper::makeS10('RA', '23456789', 'US')],
-            [TrackingTestHelper::makeS10('RA', '98765432', 'US')],
-            [TrackingTestHelper::makeS10('RA', '55555555', 'US')],
-            [TrackingTestHelper::makeS10('RA', '13579135', 'US')],
-            [TrackingTestHelper::makeS10('RA', '24680246', 'US')],
-            [TrackingTestHelper::makeS10('RA', '10293847', 'US')],
-        ];
     }
 }
