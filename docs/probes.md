@@ -1,3 +1,8 @@
+## Probe Index
+
+TextProbe is designed to be extensible. You can implement your own probes by creating classes that implement the `IProbe` interface. Each probe also supports custom validation by passing an `IValidator` instance to the probe's constructor.
+
+Built-in probes ship with sensible default validators, but these can be replaced to enforce stricter or domain-specific rules. For example, `BankCardNumberProbe` uses a Luhn-based validator by default which you can override to restrict allowed card issuers or formats.
 
 ### 🧑‍💻 Contact & Identity
 
@@ -746,11 +751,3 @@
 - `DockerImageDigestProbe` — extracts Docker image digests in the form `sha256:<64-hex>` from logs, Docker/registry
   output
   and SBOM metadata, including references like `image@sha256:<digest>`, while always returning only the digest value.
-
-You can implement your own probes by creating classes that implement the `IProbe` interface.
-Each probe also supports using a different validator for the returned values by passing an instance of a class
-implementing the `IValidator` interface to the probe’s constructor. This allows you to override the default validation
-logic.
-
-For example, `BankCardNumberProbe` uses a default validator based on the Luhn algorithm, but you can provide your
-own validator if you want to enforce additional rules, such as limiting to specific card issuers or formats.
