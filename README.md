@@ -23,7 +23,7 @@ composer require makarms/text-probe
 
 TextProbe includes a wide range of built-in probes. See [docs/probes.md](docs/probes.md) for the full categorized list.
 
-## Usage Example
+## Usage
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
