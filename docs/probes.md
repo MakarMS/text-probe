@@ -1,5 +1,5 @@
 <details open>
-<summary><strong><h2>Probe Index</h2></strong></summary>
+<summary><strong style="font-size:1.5em">Probe Index</strong></summary>
 
 - [Extensibility](#extensibility)
 - [Contact & Identity](#contact--identity)
