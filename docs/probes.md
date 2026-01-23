@@ -1,4 +1,44 @@
-## Probe Index
+<details open>
+<summary><strong>Probe Index</strong></summary>
+
+- [Extensibility](#extensibility)
+- [Contact & Identity](#contact--identity)
+  - [Vehicle](#-vehicle)
+  - [Passports (MRZ)](#-passports-mrz)
+  - [Tax Numbers](#-tax-numbers)
+  - [Medical Policy](#-medical-policy)
+  - [Driver Licenses](#-driver-licenses)
+  - [Company Registration](#-company-registration)
+- [Security & Auth](#-security--auth)
+- [Date & Time](#-date--time)
+- [Finance](#-finance)
+  - [Currency](#-currency)
+  - [Crypto Transaction IDs](#-crypto-transaction-ids)
+  - [Invoices & Payment References](#-invoices--payment-references)
+  - [VAT Numbers](#-vat-numbers)
+  - [SWIFT References](#-swift-references)
+  - [PayPal](#-paypal)
+  - [Stripe Object IDs](#-stripe-object-ids)
+  - [Prices](#-prices)
+  - [Bank Account](#-bank-account)
+  - [Bank Cards](#-bank-cards)
+  - [Card Security & Expiration](#-card-security--expiration)
+  - [Crypto](#-crypto)
+- [Logistics](#-logistics)
+  - [Tracking Numbers](#-tracking-numbers)
+- [Barcodes](#-barcodes)
+- [Geolocation](#-geolocation)
+- [Social & Tags](#-social--tags)
+- [Text](#-text)
+- [UUID & Identifiers](#-uuid--identifiers)
+- [Versioning](#-versioning)
+- [Web & Network](#-web--network)
+- [System & DevOps](#-system--devops)
+- [Docker](#-docker)
+
+</details>
+
+### 🔌 Extensibility
 
 TextProbe is designed to be extensible. You can implement your own probes by creating classes that implement the `IProbe` interface. Each probe also supports custom validation by passing an `IValidator` instance to the probe's constructor.
 
