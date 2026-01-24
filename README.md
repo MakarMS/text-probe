@@ -21,7 +21,7 @@ composer require makarms/text-probe
 
 ## Available Probes
 
-TextProbe includes a wide range of built-in probes. Probes are fully extensible and support custom validation via the `IProbe` and `IValidator` interfaces. 
+TextProbe includes a wide range of built-in probes. Probes are fully extensible and support custom validation via the `IProbe` and `IValidator` interfaces.
 See the [Probe Index](docs/probes.md) for the full categorized list.
 
 ## Usage
