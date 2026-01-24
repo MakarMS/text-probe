@@ -35,7 +35,7 @@
 - [System & DevOps](#-system--devops)
 - [Docker](#-docker)
 
-</details>
+---
 
 ### 🔌 Extensibility
 
