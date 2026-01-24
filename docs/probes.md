@@ -1,5 +1,4 @@
-<details open>
-<summary><strong>Probe Index</strong></summary>
+##Probe Index
 
 - [Extensibility](#extensibility)
 - [Contact & Identity](#contact--identity)
