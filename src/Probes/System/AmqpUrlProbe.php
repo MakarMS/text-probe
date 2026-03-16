@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class AmqpUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~amqps?://[^\s]+~i', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class MccMncProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{3}-\d{2,3}\b/', $text);

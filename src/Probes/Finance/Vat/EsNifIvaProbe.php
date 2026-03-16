@@ -23,6 +23,8 @@ class EsNifIvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new EsVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bES[A-Z0-9]\d{7}[A-Z0-9]\b/', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class NlKvKNummerProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{8}$/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class BankCardMaskedProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\S)(?:\*{4}[- ]?){3}\d{4}(?!\S)/', $text);

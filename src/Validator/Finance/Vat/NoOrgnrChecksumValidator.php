@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class NoOrgnrChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $value = substr($raw, 2, 9);

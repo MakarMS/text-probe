@@ -23,6 +23,8 @@ class GrAfmVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new GrAfmChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bEL\d{9}\b/', $text);

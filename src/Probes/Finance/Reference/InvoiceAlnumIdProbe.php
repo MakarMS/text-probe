@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class InvoiceAlnumIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z0-9][A-Z0-9\-\/]{5,31}\b/', $text);

@@ -23,6 +23,8 @@ class CzDicProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CzDicChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bCZ\d{8,10}\b/', $text);

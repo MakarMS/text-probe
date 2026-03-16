@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class CorsAllowCredentialsProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^Access-Control-Allow-Credentials:\s*(?:true|false)$/', $text);

@@ -15,6 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class ApiKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $patterns = [

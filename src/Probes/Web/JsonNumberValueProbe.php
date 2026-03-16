@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class JsonNumberValueProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/', $text);

@@ -18,6 +18,8 @@ class ChAhvNummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ChAhvChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^756\.\d{4}\.\d{4}\.\d{2}$/', $text);

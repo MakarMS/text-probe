@@ -18,6 +18,8 @@ class Ups1ZTrackingProbe extends Probe implements IProbe
         parent::__construct($validator ?? new Ups1ZCheckDigitValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^1Z[0-9A-Z]{16}$/', $text);

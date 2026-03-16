@@ -93,6 +93,8 @@ class ItCodiceFiscaleControlCharValidator implements IValidator
         'Z' => 25,
     ];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         if (preg_match('/^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/', $raw) !== 1) {

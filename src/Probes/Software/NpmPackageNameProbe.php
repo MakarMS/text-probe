@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class NpmPackageNameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:@[a-z0-9-~][a-z0-9-._~]*\/[a-z0-9-~][a-z0-9-._~]*|[a-z0-9-~]+(?:[.-][a-z0-9-~]+)+)/', $text);

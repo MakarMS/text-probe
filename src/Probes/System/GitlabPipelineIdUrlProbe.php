@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class GitlabPipelineIdUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^https:\/\/gitlab\.com\/[A-Za-z0-9_.\/-]+\/pipelines\/\d+$/', $text);

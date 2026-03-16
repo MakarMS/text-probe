@@ -27,6 +27,8 @@ class RgbRgbaColorProbe extends Probe implements IProbe
         parent::__construct(new RgbRgbaColorValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $pattern = '/(?<![0-9A-Za-z])(?:'

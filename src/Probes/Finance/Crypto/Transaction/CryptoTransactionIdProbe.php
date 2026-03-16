@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class CryptoTransactionIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:0x[a-fA-F0-9]{64}|[A-F0-9]{64}|[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{87,88}|[A-Z2-7]{52})\b/', $text);

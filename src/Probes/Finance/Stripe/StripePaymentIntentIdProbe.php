@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class StripePaymentIntentIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bpi_[A-Za-z0-9]{10,}\b/', $text);

@@ -13,6 +13,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class RgbRgbaColorValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $trimmed = trim($raw);

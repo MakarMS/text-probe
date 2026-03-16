@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class AwsAccessKeyIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/', $text);

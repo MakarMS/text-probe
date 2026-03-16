@@ -23,6 +23,8 @@ class FrNumeroTvaIntracommunautaireProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FrVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bFR[A-Z0-9]{2}\d{9}\b/', $text);

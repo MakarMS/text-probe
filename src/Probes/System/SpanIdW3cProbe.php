@@ -27,6 +27,8 @@ class SpanIdW3cProbe extends Probe implements IProbe
         parent::__construct($validator ?? new W3cSpanIdValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{16}\b/i', $text);

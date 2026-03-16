@@ -23,6 +23,8 @@ class CurrencyCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ISO4217WhitelistValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{3}\b/', $text);

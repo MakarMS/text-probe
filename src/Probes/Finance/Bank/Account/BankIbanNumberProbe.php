@@ -28,6 +28,8 @@ class BankIbanNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankIbanNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}\d{2}(?:[ -]?[A-Z0-9]){10,30}\b/i', $text);

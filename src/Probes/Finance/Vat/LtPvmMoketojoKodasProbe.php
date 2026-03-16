@@ -23,6 +23,8 @@ class LtPvmMoketojoKodasProbe extends Probe implements IProbe
         parent::__construct($validator ?? new LtVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bLT(?:\d{9}|\d{12})\b/', $text);

@@ -23,6 +23,8 @@ class XiVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new XiVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bXI\d{9}\b/', $text);

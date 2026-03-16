@@ -23,6 +23,8 @@ class SkDicVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SkVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bSK\d{10}\b/', $text);

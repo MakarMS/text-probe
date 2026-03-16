@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class HttpRequestLineProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)\s+\S+\s+HTTP\/\d\.\d/', $text);

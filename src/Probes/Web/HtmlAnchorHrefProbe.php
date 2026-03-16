@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class HtmlAnchorHrefProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<a\b[^>]*\bhref=["\'][^"\']+["\'][^>]*>.*?</a>~is', $text);

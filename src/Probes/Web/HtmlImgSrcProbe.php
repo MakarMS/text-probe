@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class HtmlImgSrcProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<img\b[^>]*\bsrc=["\'][^"\']+["\'][^>]*>~i', $text);

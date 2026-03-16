@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class UnixEpochTimestampProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:1\d{9}|1\d{12})\b/', $text);

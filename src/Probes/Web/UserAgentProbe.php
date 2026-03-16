@@ -17,6 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class UserAgentProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(

@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class FrSiretLuhnValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{14}$/', $raw) !== 1) {

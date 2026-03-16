@@ -18,6 +18,8 @@ class NoFoedselsnummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new NoFoedselsnummerChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{11}$/', $text);

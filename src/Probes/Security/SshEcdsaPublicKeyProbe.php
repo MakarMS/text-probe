@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class SshEcdsaPublicKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '~\becdsa-sha2-nistp(?:256|384|521)\s+[A-Za-z0-9+/]+={0,3}(?:\s+[^ \r\n]+)?\b~';

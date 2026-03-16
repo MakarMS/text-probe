@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class HtmlMetaRefreshUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<meta\b[^>]*http-equiv=["\']refresh["\'][^>]*content=["\'][^"\']*url=[^"\']+["\'][^>]*>~i', $text);

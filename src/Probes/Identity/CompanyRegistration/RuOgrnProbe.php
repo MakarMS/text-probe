@@ -18,6 +18,8 @@ class RuOgrnProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RuOgrnChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{13}$/', $text);

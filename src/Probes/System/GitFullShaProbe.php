@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class GitFullShaProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[0-9a-f]{40}$/', $text);

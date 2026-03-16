@@ -23,6 +23,8 @@ class CookieProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CookieValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $pattern = "/\\b(?:Set-Cookie:\\s*|Cookie:\\s*)?[!#$%&'*+.^_`|~0-9A-Za-z-]{1,128}=(\"[^\"]*\"|[!#$%&'*+.^_`|~0-9A-Za-z-]{1,2048})/i";

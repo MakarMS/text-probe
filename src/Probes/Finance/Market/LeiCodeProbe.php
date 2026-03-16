@@ -27,6 +27,8 @@ class LeiCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new LeiChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z0-9]{18}\d{2}\b/', $text);

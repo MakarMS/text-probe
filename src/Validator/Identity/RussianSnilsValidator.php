@@ -16,6 +16,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class RussianSnilsValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $normalized = preg_replace('/\D/', '', $raw);

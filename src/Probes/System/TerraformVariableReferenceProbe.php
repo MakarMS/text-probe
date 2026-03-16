@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class TerraformVariableReferenceProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bvar\.[a-zA-Z_][\w]*\b/', $text);

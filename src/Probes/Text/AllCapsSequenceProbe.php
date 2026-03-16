@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class AllCapsSequenceProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\\b\\p{Lu}{2,}\\b/u', $text);

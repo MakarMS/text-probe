@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class StripeObjectIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:pi|ch|cus|in|sub|pm|evt)_[A-Za-z0-9]{6,}\b/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class TwilioSidProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:AC|SM|PN|MG)[0-9a-fA-F]{32}\b/', $text);

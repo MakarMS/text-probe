@@ -23,6 +23,8 @@ class HrOibVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new HrOibChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bHR\d{11}\b/', $text);

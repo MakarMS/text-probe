@@ -27,6 +27,8 @@ class Gs1Gtin14Probe extends Probe implements IProbe
         parent::__construct($validator ?? new Gtin14ChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{14}\b/', $text);

@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class RuInnChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^(?:\d{10}|\d{12})$/', $raw) !== 1) {

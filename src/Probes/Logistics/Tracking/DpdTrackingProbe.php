@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class DpdTrackingProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{14}$/', $text);

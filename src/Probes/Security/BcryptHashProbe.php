@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class BcryptHashProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '~\$(?:2a|2b|2y)\$(?:0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{53}\b~';

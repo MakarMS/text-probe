@@ -23,6 +23,8 @@ class DeUstIdNrProbe extends Probe implements IProbe
         parent::__construct($validator ?? new DeUstIdNrChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bDE\d{9}\b/', $text);

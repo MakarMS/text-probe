@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class QueryParamPairProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Za-z0-9_-]{1,64}=[^\s&]*$/', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class StripeCustomerIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bcus_[A-Za-z0-9]{6,}\b/', $text);

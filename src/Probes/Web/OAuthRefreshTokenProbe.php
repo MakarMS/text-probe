@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class OAuthRefreshTokenProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $jwt = '[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+';

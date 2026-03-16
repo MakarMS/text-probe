@@ -28,6 +28,8 @@ class CusipCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CusipCheckDigitValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9A-Z*@#]{8}[0-9]\b/', $text);

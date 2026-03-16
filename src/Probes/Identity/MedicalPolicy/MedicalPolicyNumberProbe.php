@@ -13,6 +13,7 @@ use TextProbe\Result;
  */
 class MedicalPolicyNumberProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $probes = [

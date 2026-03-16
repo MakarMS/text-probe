@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class EuDrivingLicenseCategoryProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:AM|A1|A2|A|B1|B|BE|C1|C1E|C|CE|D1|D1E|D|DE|T)\b/', $text);

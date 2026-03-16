@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class Isbn10ChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $normalized = strtoupper((string) preg_replace('/[^0-9X]/i', '', $raw));

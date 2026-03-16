@@ -23,6 +23,8 @@ class GbVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new GbVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bGB\d{9}\b/', $text);

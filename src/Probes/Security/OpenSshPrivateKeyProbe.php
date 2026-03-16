@@ -23,6 +23,8 @@ class OpenSshPrivateKeyProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PrivateKeyBlockValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN OPENSSH PRIVATE KEY-----[\s\S]+?-----END OPENSSH PRIVATE KEY-----/';

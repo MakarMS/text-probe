@@ -11,6 +11,8 @@ class EsCifControlValidator implements IValidator
 {
     private const CONTROL_LETTERS = 'JABCDEFGHI';
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         if (preg_match('/^[A-Z]\d{7}[A-Z0-9]$/', $raw) !== 1) {

@@ -27,6 +27,8 @@ class SedolCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SedolCheckDigitValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9BCDFGHJKLMNPQRSTVWXYZ]{6}[0-9]\b/', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class CsrfTokenProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $hex = '[a-fA-F0-9]{32,128}';

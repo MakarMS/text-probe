@@ -29,6 +29,8 @@ class BankTroyCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)9792(?:[ -]?\d){12}(?!\d)/', $text);

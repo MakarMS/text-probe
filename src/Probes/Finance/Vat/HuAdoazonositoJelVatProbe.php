@@ -23,6 +23,8 @@ class HuAdoazonositoJelVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new HuVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bHU\d{8}\b/', $text);

@@ -23,6 +23,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerImageDigestProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(

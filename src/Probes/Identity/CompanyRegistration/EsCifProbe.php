@@ -18,6 +18,8 @@ class EsCifProbe extends Probe implements IProbe
         parent::__construct($validator ?? new EsCifControlValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]\d{7}[A-Z0-9]$/', $text);

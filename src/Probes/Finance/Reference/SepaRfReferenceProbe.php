@@ -23,6 +23,8 @@ class SepaRfReferenceProbe extends Probe implements IProbe
         parent::__construct($validator ?? new Mod97Validator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bRF\d{2}[A-Z0-9]{1,21}\b/i', $text);

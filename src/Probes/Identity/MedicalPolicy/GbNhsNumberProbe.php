@@ -18,6 +18,8 @@ class GbNhsNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new GbNhsChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?:\d{10}|\d{3}\s?\d{3}\s?\d{4})$/', $text);

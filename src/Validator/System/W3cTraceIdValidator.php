@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class W3cTraceIdValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $value = strtolower(trim($raw));

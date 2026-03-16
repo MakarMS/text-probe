@@ -12,6 +12,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class FrNirMod97Validator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         return preg_match('/^\d{13}$/', $raw) === 1;

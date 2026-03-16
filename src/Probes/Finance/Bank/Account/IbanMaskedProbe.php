@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class IbanMaskedProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}\d{2}[A-Z0-9* ]{10,30}\d{2,4}\b/', $text);

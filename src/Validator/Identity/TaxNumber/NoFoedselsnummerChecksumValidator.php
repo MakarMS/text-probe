@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class NoFoedselsnummerChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{11}$/', $raw) !== 1) {

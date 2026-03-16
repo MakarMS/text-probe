@@ -23,6 +23,8 @@ class PrivateKeyProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PrivateKeyBlockValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $patterns = [

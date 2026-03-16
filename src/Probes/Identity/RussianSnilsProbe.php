@@ -28,6 +28,8 @@ class RussianSnilsProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RussianSnilsValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{3}-?\d{3}-?\d{3}\s?\d{2}\b/u', $text);

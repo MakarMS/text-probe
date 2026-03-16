@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class SqlTableNameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:SELECT\s+\*\s+FROM\s+[A-Za-z_][A-Za-z0-9_.]*|(?:FROM|JOIN|UPDATE|INTO)\s+[A-Za-z_][A-Za-z0-9_.]*)/i', $text);

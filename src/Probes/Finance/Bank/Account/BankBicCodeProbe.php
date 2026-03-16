@@ -26,6 +26,8 @@ class BankBicCodeProbe extends Probe implements IProbe
         parent::__construct($validator);
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?\b/i', $text);

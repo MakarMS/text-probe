@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class YamlKeyPathProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z_][\w-]*(?:\.[a-zA-Z_][\w-]*)+\b/', $text);

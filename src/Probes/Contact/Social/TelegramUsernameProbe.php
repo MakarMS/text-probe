@@ -15,6 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class TelegramUsernameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/@[a-zA-Z0-9_]{5,32}/', $text);

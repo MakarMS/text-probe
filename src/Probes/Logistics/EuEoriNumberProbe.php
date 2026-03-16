@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class EuEoriNumberProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}[A-Z0-9]{8,15}\b/', $text);

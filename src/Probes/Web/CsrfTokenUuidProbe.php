@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class CsrfTokenUuidProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $pattern = '\\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}\\b';

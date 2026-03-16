@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class KubernetesPodNameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-z0-9](?:[-a-z0-9]*[a-z0-9])?(?:-[a-z0-9]{5,10})\b/', $text);

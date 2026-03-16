@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class NlVatChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^NL(?<digits>\d{9})B(?<suffix>\d{2})$/', $raw, $matches) !== 1) {

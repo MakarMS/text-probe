@@ -11,6 +11,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class CsrfTokenHexValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $length = strlen($raw);

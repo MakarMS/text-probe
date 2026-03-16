@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class SentryDsnProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://[0-9a-f]+@[A-Za-z0-9.-]+/\d+\b~i', $text);

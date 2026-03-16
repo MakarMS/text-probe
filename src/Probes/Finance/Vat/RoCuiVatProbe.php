@@ -23,6 +23,8 @@ class RoCuiVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RoVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bRO\d{2,10}\b/', $text);

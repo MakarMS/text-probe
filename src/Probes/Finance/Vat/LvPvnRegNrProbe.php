@@ -23,6 +23,8 @@ class LvPvnRegNrProbe extends Probe implements IProbe
         parent::__construct($validator ?? new LvVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bLV\d{11}\b/', $text);

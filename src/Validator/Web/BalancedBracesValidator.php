@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class BalancedBracesValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $balance = 0;

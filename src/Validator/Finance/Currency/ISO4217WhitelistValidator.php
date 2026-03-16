@@ -17,6 +17,8 @@ class ISO4217WhitelistValidator implements IValidator
         'CLP', 'COP', 'PEN', 'ZAR', 'NGN', 'KES', 'GHS',
     ];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         $code = strtoupper($raw);

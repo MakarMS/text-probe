@@ -27,6 +27,8 @@ class ImeiProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ImeiLuhnValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{15}\b/', $text);

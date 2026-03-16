@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class EthereumAddressProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b0x[a-fA-F0-9]{40}\b/i', $text);

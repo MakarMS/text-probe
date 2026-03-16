@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class UsdcAlgorandAddressProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z2-7]{58}\b/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class EmailHeaderMessageIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/Message-ID:\s*<[^>]+>/i', $text);

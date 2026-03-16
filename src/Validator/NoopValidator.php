@@ -19,6 +19,7 @@ class NoopValidator implements IValidator
      *
      * @return bool always true
      */
+    #[\Override]
     public function validate(string $raw): bool
     {
         return true;

@@ -26,6 +26,8 @@ class CarVinProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CarVinValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<![A-Z0-9])[A-HJ-NPR-Z0-9]{17}(?![A-Z0-9])/i', $text);

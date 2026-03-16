@@ -18,6 +18,8 @@ class Ean13Probe extends Probe implements IProbe
         parent::__construct($validator ?? new Ean13ChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)\d{13}(?!\d)/', $text);

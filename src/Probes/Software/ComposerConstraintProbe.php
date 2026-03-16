@@ -22,6 +22,8 @@ class ComposerConstraintProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ComposerConstraintTokenizerValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $version = 'v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?';

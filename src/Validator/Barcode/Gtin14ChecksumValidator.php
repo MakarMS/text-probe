@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class Gtin14ChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $digits = preg_replace('/\D+/', '', $raw);

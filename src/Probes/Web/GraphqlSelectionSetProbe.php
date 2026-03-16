@@ -18,6 +18,8 @@ class GraphqlSelectionSetProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BalancedBracesValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?ms)^\{.*}$/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class CronExpressionProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:\*|[0-5]?\d)(?:\/\d+)?\s+(?:\*|[01]?\d|2[0-3])(?:\/\d+)?\s+(?:\*|0?[1-9]|[12]\d|3[01])(?:\/\d+)?\s+(?:\*|0?[1-9]|1[0-2])(?:\/\d+)?\s+(?:\*|[0-6])(?:\/\d+)?/', $text);

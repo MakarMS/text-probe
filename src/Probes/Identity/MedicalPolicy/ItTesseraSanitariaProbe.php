@@ -18,6 +18,8 @@ class ItTesseraSanitariaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ItCodiceFiscaleControlCharValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/', $text);

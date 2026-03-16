@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class UsPassportNumberProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{9}\b/', $text);

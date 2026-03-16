@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class MarkdownLinkProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/i', $text);

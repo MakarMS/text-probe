@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class SePersonnummerLuhnValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^(?:\d{6}|\d{8})[-+]?\d{4}$/', $raw) !== 1) {

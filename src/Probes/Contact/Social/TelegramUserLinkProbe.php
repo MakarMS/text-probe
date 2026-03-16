@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class TelegramUserLinkProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(

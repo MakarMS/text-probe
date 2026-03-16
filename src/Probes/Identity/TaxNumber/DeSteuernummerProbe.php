@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class DeSteuernummerProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{2}\/\d{3}\/\d{5}$/', $text);

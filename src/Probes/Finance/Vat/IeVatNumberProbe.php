@@ -23,6 +23,8 @@ class IeVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new IeVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bIE(?:\d{7}[A-Z]{1,2}|\d[A-Z]\d{5}[A-Z])\b/', $text);

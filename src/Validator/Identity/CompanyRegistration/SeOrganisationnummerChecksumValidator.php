@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class SeOrganisationnummerChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{6}-\d{4}$/', $raw) !== 1) {

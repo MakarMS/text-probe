@@ -18,6 +18,8 @@ class UpcAProbe extends Probe implements IProbe
         parent::__construct($validator ?? new UpcAChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)\d{12}(?!\d)/', $text);

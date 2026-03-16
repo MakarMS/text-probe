@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class K8sDnsLabelProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?=.{1,63}$)[a-z0-9]([-a-z0-9]*[a-z0-9])?$/', $text);

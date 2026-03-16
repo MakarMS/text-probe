@@ -27,6 +27,8 @@ class Isbn10Probe extends Probe implements IProbe
         parent::__construct($validator ?? new Isbn10ChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:\d[- ]?){9}[\dX]\b/i', $text);

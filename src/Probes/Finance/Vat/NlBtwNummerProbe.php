@@ -23,6 +23,8 @@ class NlBtwNummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new NlVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bNL\d{9}B\d{2}\b/', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class SshRsaPublicKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '~\bssh-rsa\s+[A-Za-z0-9+/]+={0,3}(?:\s+[^ \r\n]+)?\b~';

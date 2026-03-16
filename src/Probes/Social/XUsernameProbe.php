@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class XUsernameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\w)@[A-Za-z0-9_]{1,15}\b/', $text);

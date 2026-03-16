@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class ImsiProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{15}\b/', $text);

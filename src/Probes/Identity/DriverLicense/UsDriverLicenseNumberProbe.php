@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class UsDriverLicenseNumberProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z0-9]{7,14}$/', $text);

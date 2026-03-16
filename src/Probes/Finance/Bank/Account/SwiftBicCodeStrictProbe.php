@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class SwiftBicCodeStrictProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{6}[A-Z0-9]{2}(?:[A-Z0-9]{3})?\b/', $text);

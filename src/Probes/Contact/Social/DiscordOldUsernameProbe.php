@@ -15,6 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class DiscordOldUsernameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\S)[^\s#]{2,32}#\d{4}(?!\S)/', $text);

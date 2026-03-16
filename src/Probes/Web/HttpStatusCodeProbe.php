@@ -13,6 +13,7 @@ use TextProbe\Result;
  */
 class HttpStatusCodeProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '/(?m)^(?:HTTP\/\d(?:\.\d)?\s)?([1-5]\d{2})$/';

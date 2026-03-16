@@ -30,6 +30,8 @@ class BankVerveCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)(?:5060|5061|650[0-9])(?:[ -]?\d){12,15}(?!\d)/', $text);

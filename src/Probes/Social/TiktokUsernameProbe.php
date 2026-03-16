@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class TiktokUsernameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\w)@[A-Za-z0-9._]{2,24}\b/', $text);

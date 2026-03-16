@@ -11,6 +11,8 @@ class EsNifControlValidator implements IValidator
 {
     private const DNI_LETTERS = 'TRWAGMYFPDXBNJZSQVHLCKE';
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         if (preg_match('/^[A-Z0-9]\d{7}[A-Z0-9]$/', $raw) !== 1) {

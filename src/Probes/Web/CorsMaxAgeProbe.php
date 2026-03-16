@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class CorsMaxAgeProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^Access-Control-Max-Age:\s*\d+$/', $text);

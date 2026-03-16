@@ -30,6 +30,8 @@ class PriceProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PriceValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $currencySymbols = '[$€£¥₽₴₹₺₼₾₫₦₵₲₱฿₸₡₨]';

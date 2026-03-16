@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class GitTagProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^v?[0-9A-Za-z][0-9A-Za-z._-]*$/', $text);

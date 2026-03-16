@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class UsdcAlgorandTxIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z2-7]{52}\b/', $text);

@@ -23,6 +23,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerCliFlagProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $arg = '\S+(?<![.,;!?\)\]\}])';

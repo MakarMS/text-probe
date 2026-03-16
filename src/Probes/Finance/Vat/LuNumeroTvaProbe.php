@@ -23,6 +23,8 @@ class LuNumeroTvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new LuVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bLU\d{8}\b/', $text);

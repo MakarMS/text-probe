@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class XiVatChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $value = 'GB' . substr($raw, 2);

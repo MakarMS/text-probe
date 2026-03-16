@@ -38,6 +38,8 @@ class Ups1ZCheckDigitValidator implements IValidator
         'Z' => 9,
     ];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         $raw = strtoupper($raw);

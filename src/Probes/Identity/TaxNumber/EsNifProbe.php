@@ -18,6 +18,8 @@ class EsNifProbe extends Probe implements IProbe
         parent::__construct($validator ?? new EsNifControlValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z0-9]\d{7}[A-Z0-9]$/', $text);

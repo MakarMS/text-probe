@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class YoutubeChannelUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://(?:www\.)?youtube\.com/(?:channel/[A-Za-z0-9_-]{24}|@[A-Za-z0-9._-]{3,30})/?~i', $text);

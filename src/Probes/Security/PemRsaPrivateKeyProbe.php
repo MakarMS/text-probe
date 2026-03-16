@@ -23,6 +23,8 @@ class PemRsaPrivateKeyProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PrivateKeyBlockValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN RSA PRIVATE KEY-----[\s\S]+?-----END RSA PRIVATE KEY-----/';

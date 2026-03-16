@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class ElasticsearchUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://[A-Za-z0-9.-]+:9200\b[^\s]*~i', $text);

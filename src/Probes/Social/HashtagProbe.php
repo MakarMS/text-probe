@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class HashtagProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/#[\p{L}\p{M}0-9_]+/u', $text);

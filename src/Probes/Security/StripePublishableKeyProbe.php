@@ -15,6 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class StripePublishableKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bpk_(?:live|test)_[A-Za-z0-9]{16,}\b/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class PostgresConnectionStringProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~postgres(?:ql)?://[^\s]+~i', $text);

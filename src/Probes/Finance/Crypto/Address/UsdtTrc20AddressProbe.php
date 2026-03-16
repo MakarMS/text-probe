@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class UsdtTrc20AddressProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bT[1-9A-Za-z]{33}\b/', $text);

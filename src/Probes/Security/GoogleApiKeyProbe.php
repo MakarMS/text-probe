@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class GoogleApiKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bAIza[0-9A-Za-z\-_]{30,}\b/', $text);

@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class IeVatChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $value = substr($raw, 2);

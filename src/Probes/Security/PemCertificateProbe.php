@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class PemCertificateProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN CERTIFICATE-----[\s\S]+?-----END CERTIFICATE-----/';

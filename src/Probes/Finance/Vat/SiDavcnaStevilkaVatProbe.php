@@ -23,6 +23,8 @@ class SiDavcnaStevilkaVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SiVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bSI\d{8}\b/', $text);

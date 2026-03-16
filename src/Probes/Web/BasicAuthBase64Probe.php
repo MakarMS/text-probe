@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class BasicAuthBase64Probe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~(?<![A-Za-z0-9+/=])[A-Za-z0-9+/]{8,}={0,2}(?![A-Za-z0-9+/=])~', $text);

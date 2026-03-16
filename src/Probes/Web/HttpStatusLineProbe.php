@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class HttpStatusLineProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^HTTP\/\d(?:\.\d)?\s[1-5]\d{2}$/', $text);

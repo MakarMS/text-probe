@@ -18,6 +18,8 @@ class SwissPostS10Probe extends Probe implements IProbe
         parent::__construct($validator ?? new UpuS10CheckDigitValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]{2}\d{9}CH$/', $text);

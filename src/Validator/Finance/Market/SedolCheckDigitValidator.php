@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class SedolCheckDigitValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $value = strtoupper(trim($raw));

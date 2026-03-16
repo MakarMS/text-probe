@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class KafkaBootstrapServerProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z0-9.-]+:\d{2,5}(?:,[a-zA-Z0-9.-]+:\d{2,5})+\b/', $text);

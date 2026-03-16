@@ -23,6 +23,8 @@ class FiAlvNumeroProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FiVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bFI\d{8}\b/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class LogTimestampIso8601Probe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+\-]\d{2}:\d{2})\b/', $text);

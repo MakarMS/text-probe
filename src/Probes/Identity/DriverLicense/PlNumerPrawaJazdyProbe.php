@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class PlNumerPrawaJazdyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]{5}\d{9}$/', $text);

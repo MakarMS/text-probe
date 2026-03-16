@@ -61,6 +61,8 @@ class CarVinValidator implements IValidator
      */
     private const WEIGHTS = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         $vin = strtoupper($raw);

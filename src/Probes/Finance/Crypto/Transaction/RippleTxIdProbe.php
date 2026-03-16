@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class RippleTxIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-F0-9]{64}\b/', $text);

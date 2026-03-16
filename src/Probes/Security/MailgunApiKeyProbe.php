@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class MailgunApiKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bkey-[0-9a-f]{32}\b/i', $text);

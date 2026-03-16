@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class LinkedInProfileUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://(?:[a-z]{2,3}\.)?linkedin\.com/in/[A-Za-z0-9_%.-]+/?~i', $text);

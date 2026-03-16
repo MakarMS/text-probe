@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class BitcoinAddressProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:1|3|bc1)[a-zA-HJ-NP-Z0-9]{25,62}\b/', $text);

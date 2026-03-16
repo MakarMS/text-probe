@@ -15,6 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class UUIDv4Probe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}\b/i', $text);

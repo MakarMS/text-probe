@@ -30,6 +30,8 @@ class BankVisaCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)4(?:[ -]?\d){12,18}(?!\d)/', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class PaypalTransactionIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z0-9]{17}\b/', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class JsonKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Za-z_][A-Za-z0-9_]*(?=\s*:)/', $text);

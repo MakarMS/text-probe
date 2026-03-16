@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class GraphqlOperationKeywordProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)\b(query|mutation|subscription)\b/', $text);

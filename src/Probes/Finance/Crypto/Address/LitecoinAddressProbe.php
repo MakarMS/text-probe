@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class LitecoinAddressProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[LM][a-zA-HJ-NP-Z0-9]{25,34}\b|\bltc1[a-z0-9]{25,62}\b/', $text);

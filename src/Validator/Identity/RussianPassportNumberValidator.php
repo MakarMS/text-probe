@@ -22,6 +22,7 @@ class RussianPassportNumberValidator implements IValidator
      *
      * @return bool true if the passport number follows expected length and series rules, false otherwise
      */
+    #[\Override]
     public function validate(string $raw): bool
     {
         $normalized = preg_replace('/\D+/', '', $raw);

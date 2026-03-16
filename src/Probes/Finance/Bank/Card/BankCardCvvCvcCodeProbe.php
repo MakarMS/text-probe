@@ -26,6 +26,8 @@ class BankCardCvvCvcCodeProbe extends Probe implements IProbe
         parent::__construct($validator);
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{3,4}\b/', $text);

@@ -24,6 +24,8 @@ class CookieValidator implements IValidator
         'comment',
     ];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         if (preg_match(

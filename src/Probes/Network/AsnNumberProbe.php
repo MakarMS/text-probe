@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class AsnNumberProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bAS(?:[1-9]\d{0,9})\b/i', $text);

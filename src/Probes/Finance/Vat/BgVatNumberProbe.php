@@ -23,6 +23,8 @@ class BgVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BgVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bBG\d{9,10}\b/', $text);

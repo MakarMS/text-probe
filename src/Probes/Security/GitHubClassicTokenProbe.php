@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class GitHubClassicTokenProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bghp_[A-Za-z0-9]{30,}\b/', $text);

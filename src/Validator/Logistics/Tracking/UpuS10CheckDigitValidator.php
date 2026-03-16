@@ -11,6 +11,8 @@ class UpuS10CheckDigitValidator implements IValidator
 {
     private const WEIGHTS = [8, 6, 4, 2, 3, 5, 9, 7];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         $raw = strtoupper($raw);

@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class ChAhvChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^756\.\d{4}\.\d{4}\.\d{2}$/', $raw) !== 1) {

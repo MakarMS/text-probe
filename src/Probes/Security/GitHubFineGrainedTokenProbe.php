@@ -15,6 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class GitHubFineGrainedTokenProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bgithub_pat_[A-Za-z0-9_]{30,}\b/', $text);

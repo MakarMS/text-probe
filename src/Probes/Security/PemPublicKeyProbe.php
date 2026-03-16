@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class PemPublicKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN PUBLIC KEY-----[\s\S]+?-----END PUBLIC KEY-----/';

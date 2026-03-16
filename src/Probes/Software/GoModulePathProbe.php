@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class GoModulePathProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~\b[a-z0-9.-]+\.[a-z]{2,}(?:/[A-Za-z0-9_.-]+)+\b~i', $text);

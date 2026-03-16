@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class Ean13ChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{13}$/', $raw) !== 1) {

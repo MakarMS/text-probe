@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class InvoiceNumericIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{6,}\b/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class AwsRegionProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:us|eu|ap|sa|ca|me|af)-[a-z]+-\d\b/', $text);

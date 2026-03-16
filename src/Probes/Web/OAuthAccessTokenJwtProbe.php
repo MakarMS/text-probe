@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class OAuthAccessTokenJwtProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $pattern = '(?<![A-Za-z0-9_-])[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+(?![A-Za-z0-9_-])';

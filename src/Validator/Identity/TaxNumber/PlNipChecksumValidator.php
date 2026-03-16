@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class PlNipChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{10}$/', $raw) !== 1) {

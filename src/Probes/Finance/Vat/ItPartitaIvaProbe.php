@@ -23,6 +23,8 @@ class ItPartitaIvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ItVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bIT\d{11}\b/', $text);

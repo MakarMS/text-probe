@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class AnsibleVariableProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\{\{\s*[a-zA-Z_][\w.]*\s*\}\}/', $text);

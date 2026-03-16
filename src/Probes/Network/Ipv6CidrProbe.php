@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class Ipv6CidrProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:[A-F0-9]{1,4}:){2,7}[A-F0-9]{1,4}\/(?:12[0-8]|1[01]\d|\d?\d)\b/i', $text);

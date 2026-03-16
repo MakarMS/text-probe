@@ -30,6 +30,8 @@ class BankUnionpayCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)62(?:[ -]?\d){14,17}(?!\d)/', $text);

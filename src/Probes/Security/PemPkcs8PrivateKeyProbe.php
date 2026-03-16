@@ -23,6 +23,8 @@ class PemPkcs8PrivateKeyProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PrivateKeyBlockValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN PRIVATE KEY-----[\s\S]+?-----END PRIVATE KEY-----/';

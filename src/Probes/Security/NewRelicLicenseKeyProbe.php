@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class NewRelicLicenseKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{40}\b/i', $text);

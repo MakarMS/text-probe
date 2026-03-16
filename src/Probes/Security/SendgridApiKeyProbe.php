@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class SendgridApiKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bSG\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\b/', $text);

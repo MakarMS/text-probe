@@ -25,6 +25,8 @@ class CsrfTokenHexProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CsrfTokenHexValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-fA-F0-9]{32,128}\b/', $text);

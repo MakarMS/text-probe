@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class SemverPreReleaseProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bv?\d+\.\d+\.\d+-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*\b/', $text);

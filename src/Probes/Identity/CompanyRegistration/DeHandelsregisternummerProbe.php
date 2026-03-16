@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class DeHandelsregisternummerProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^HR[AB]\s?\d{1,6}$/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class RustCrateNameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-z][a-z0-9_]{1,63}\b/', $text);

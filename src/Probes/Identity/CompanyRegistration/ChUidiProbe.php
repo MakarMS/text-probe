@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class ChUidiProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^CHE-\d{3}\.\d{3}\.\d{3}$/', $text);

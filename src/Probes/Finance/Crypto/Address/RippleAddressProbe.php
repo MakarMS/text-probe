@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class RippleAddressProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<![A-Za-z0-9])r[1-9A-HJ-NP-Za-km-z]{25,34}(?![A-Za-z0-9])/', $text);

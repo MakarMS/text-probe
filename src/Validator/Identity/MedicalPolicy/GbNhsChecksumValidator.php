@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class GbNhsChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (trim($raw) !== $raw) {

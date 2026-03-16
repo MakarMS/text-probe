@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class ItCodiceReaProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]{2}-\d{1,8}$/', $text);

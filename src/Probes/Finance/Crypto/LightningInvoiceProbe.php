@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class LightningInvoiceProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bln(?:bc|tb|bcrt)[0-9a-z]{20,}\b/i', $text);

@@ -23,6 +23,8 @@ class PtNifIvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PtNifChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bPT\d{9}\b/', $text);

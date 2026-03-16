@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class SshEd25519PublicKeyProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '~\bssh-ed25519\s+[A-Za-z0-9+/]+={0,3}(?:\s+[^ \r\n]+)?\b~';

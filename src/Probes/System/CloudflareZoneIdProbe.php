@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class CloudflareZoneIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-f0-9]{32}\b/i', $text);

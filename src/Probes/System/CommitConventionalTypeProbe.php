@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class CommitConventionalTypeProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:feat|fix|docs|style|refactor|perf|test|build|ci|chore)(?:\([\w.-]+\))?:\s[^\n]+/m', $text);

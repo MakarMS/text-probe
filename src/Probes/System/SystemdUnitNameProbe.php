@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class SystemdUnitNameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z0-9@_.-]+\.(?:service|timer|socket|target|mount)\b/', $text);

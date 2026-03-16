@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class GithubPullRequestUrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/pull/\d+\b~i', $text);

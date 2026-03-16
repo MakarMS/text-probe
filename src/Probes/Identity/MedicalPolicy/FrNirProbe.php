@@ -18,6 +18,8 @@ class FrNirProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FrNirMod97Validator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{13}$/', $text);

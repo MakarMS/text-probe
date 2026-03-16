@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class LicenseSpdxIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:MIT|Apache-2\.0|BSD-2-Clause|BSD-3-Clause|GPL-3\.0-only|LGPL-3\.0-only|MPL-2\.0)\b/', $text);

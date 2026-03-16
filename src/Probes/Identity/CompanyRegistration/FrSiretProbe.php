@@ -18,6 +18,8 @@ class FrSiretProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FrSiretLuhnValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{14}$/', $text);

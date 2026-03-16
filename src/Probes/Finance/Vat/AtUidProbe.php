@@ -23,6 +23,8 @@ class AtUidProbe extends Probe implements IProbe
         parent::__construct($validator ?? new AtUidChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bATU\d{8}\b/', $text);

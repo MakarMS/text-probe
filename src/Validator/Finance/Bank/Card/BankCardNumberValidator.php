@@ -27,6 +27,7 @@ class BankCardNumberValidator implements IValidator
      * @return bool true if the card number is of valid length and passes the Luhn check,
      *              false otherwise
      */
+    #[\Override]
     public function validate(string $raw): bool
     {
         $normalized = preg_replace('/\D+/', '', $raw);

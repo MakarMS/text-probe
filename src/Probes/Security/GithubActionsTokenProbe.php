@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class GithubActionsTokenProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bgh[rs]_[A-Za-z0-9]{20,255}\b/', $text);

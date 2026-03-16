@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class Argon2idHashProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         $regex = '~\$argon2id\$v=\d+\$m=[1-9]\d*,t=[1-9]\d*,p=[1-9]\d*\$[A-Za-z0-9+/]+={0,2}\$[A-Za-z0-9+/]+={0,2}~';

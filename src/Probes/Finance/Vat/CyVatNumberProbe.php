@@ -23,6 +23,8 @@ class CyVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CyVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bCY\d{8}[A-Z]\b/', $text);

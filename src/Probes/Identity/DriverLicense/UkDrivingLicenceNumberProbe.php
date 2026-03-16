@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class UkDrivingLicenceNumberProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$/', $text);

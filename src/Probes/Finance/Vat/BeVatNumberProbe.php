@@ -23,6 +23,8 @@ class BeVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BeVatChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bBE0?\d{9}\b/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class CorrelationIdProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:[A-F0-9]{16}|[A-F0-9]{32}|[0-9a-f]{8}-[0-9a-f-]{27})\b/i', $text);

@@ -21,6 +21,8 @@ class PriceValidator implements IValidator
         'CLP', 'COP', 'PEN', 'ZAR', 'NGN', 'KES', 'GHS',
     ];
 
+    #[\Override]
+
     public function validate(string $raw): bool
     {
         if (preg_match('/\d/u', $raw) !== 1) {

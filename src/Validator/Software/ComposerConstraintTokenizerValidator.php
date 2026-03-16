@@ -17,6 +17,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class ComposerConstraintTokenizerValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         $input = trim($raw);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class XmlTagProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<([A-Za-z_][A-Za-z0-9_.:-]*)(?:\s+[^>]*)?>.*?</\1>|<([A-Za-z_][A-Za-z0-9_.:-]*)(?:\s+[^>]*)?\s*/>~s', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class MrzTd2Probe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?<l1>[A-Z0-9<]{36})\r?\n(?<l2>[A-Z0-9<]{36})$/', $text);

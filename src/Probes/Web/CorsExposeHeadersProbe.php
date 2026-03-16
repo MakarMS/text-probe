@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class CorsExposeHeadersProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^Access-Control-Expose-Headers:\s*[A-Za-z0-9-]+(?:\s*,\s*[A-Za-z0-9-]+)*$/', $text);

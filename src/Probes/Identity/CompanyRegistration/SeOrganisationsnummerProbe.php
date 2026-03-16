@@ -18,6 +18,8 @@ class SeOrganisationsnummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SeOrganisationnummerChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{6}-\d{4}$/', $text);

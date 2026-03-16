@@ -9,6 +9,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class SeVatChecksumValidator implements IValidator
 {
+    #[\Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^SE(?<digits>\d{12})$/', $raw, $matches) !== 1) {

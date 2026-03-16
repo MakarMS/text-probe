@@ -14,6 +14,7 @@ use TextProbe\Probes\Probe;
  */
 class CsrfTokenBase64UrlProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Za-z0-9_-]{20,}\b/', $text);

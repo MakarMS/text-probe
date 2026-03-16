@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class RedditUsernameProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~(?:u/[A-Za-z0-9_-]{3,20}|https?://(?:www\.)?reddit\.com/user/[A-Za-z0-9_-]{3,20})~i', $text);

@@ -18,6 +18,8 @@ class SePersonnummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SePersonnummerLuhnValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?:\d{8}|\d{6})[-+]?\d{4}$/', $text);

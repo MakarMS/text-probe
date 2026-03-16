@@ -16,6 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class DomainProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b((?:[\p{L}0-9-]+\.)+\p{L}{2,})\b/u', $text);

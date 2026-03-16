@@ -18,6 +18,8 @@ class PlPeselProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PlPeselChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{11}$/', $text);

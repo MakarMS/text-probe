@@ -27,6 +27,8 @@ class IssnProbe extends Probe implements IProbe
         parent::__construct($validator ?? new IssnChecksumValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{4}-\d{3}[\dX]\b/i', $text);

@@ -12,6 +12,7 @@ use TextProbe\Probes\Probe;
  */
 class GitRefTagsProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^refs\/tags\/[A-Za-z0-9._-]+$/', $text);

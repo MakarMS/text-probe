@@ -23,6 +23,8 @@ class UsSocialSecurityNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new UsSocialSecurityNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)\d{3}-\d{2}-\d{4}(?!\d)/', $text);

@@ -20,6 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class MongoDbConnectionStringProbe extends Probe implements IProbe
 {
+    #[\Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~mongodb(?:\+srv)?://[^\s]+~i', $text);

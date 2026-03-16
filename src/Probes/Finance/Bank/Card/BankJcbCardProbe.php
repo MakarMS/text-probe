@@ -29,6 +29,8 @@ class BankJcbCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
+    #[\Override]
+
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)35(?:2[8-9]|[3-8]\d|89)(?:[ -]?\d){12}(?!\d)/', $text);
