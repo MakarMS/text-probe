@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Software\ComposerConstraintTokenizerValidator;
+use Override;
 
 /**
  * Probe that extracts Composer constraint strings from text.
@@ -22,8 +23,7 @@ class ComposerConstraintProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ComposerConstraintTokenizerValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $version = 'v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?';
@@ -41,7 +41,7 @@ class ComposerConstraintProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COMPOSER_CONSTRAINT
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::COMPOSER_CONSTRAINT;

@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\CompanyRegistration\FrSiretLuhnValidator;
+use Override;
 
 /**
  * Probe that extracts French SIRET numbers.
@@ -18,8 +19,7 @@ class FrSiretProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FrSiretLuhnValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{14}$/', $text);
@@ -28,7 +28,7 @@ class FrSiretProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_SIRET
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_SIRET;

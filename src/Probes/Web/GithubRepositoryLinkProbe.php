@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts GitHub repository links from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class GithubRepositoryLinkProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -28,7 +29,7 @@ class GithubRepositoryLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_REPOSITORY_LINK
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_REPOSITORY_LINK;

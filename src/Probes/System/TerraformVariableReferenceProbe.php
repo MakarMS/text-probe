@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Terraform Variable Reference values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class TerraformVariableReferenceProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bvar\.[a-zA-Z_][\w]*\b/', $text);
@@ -29,7 +30,7 @@ class TerraformVariableReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TERRAFORM_VARIABLE_REFERENCE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TERRAFORM_VARIABLE_REFERENCE;

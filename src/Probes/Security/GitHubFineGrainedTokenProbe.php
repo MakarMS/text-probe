@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts GitHub fine-grained personal access tokens.
@@ -15,7 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class GitHubFineGrainedTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bgithub_pat_[A-Za-z0-9_]{30,}\b/', $text);
@@ -24,7 +25,7 @@ class GitHubFineGrainedTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_FINE_GRAINED_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_FINE_GRAINED_TOKEN;

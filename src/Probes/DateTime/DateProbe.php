@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts dates in various human-readable formats.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class DateProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -35,7 +36,7 @@ class DateProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DATE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DATE;

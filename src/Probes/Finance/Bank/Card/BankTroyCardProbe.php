@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
+use Override;
 
 /**
  * Probe that extracts Troy card numbers from text.
@@ -29,8 +30,7 @@ class BankTroyCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)9792(?:[ -]?\d){12}(?!\d)/', $text);
@@ -39,7 +39,7 @@ class BankTroyCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_TROY_CARD_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_TROY_CARD_NUMBER;

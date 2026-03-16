@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Vehicle\CarVinValidator;
+use Override;
 
 /**
  * Probe that extracts and validates vehicle identification numbers (VINs).
@@ -26,8 +27,7 @@ class CarVinProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CarVinValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<![A-Z0-9])[A-HJ-NPR-Z0-9]{17}(?![A-Z0-9])/i', $text);
@@ -36,7 +36,7 @@ class CarVinProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CAR_VIN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CAR_VIN;

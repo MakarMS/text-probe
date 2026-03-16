@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Github Pull Request Url values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class GithubPullRequestUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/pull/\d+\b~i', $text);
@@ -29,7 +30,7 @@ class GithubPullRequestUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_PULL_REQUEST_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_PULL_REQUEST_URL;

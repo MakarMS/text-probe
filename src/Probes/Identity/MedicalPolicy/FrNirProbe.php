@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\MedicalPolicy\FrNirMod97Validator;
+use Override;
 
 /**
  * Probe that extracts French NIR numbers.
@@ -18,8 +19,7 @@ class FrNirProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FrNirMod97Validator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{13}$/', $text);
@@ -28,7 +28,7 @@ class FrNirProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_NIR
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_NIR;

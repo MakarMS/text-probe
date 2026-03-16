@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Ipv4 Cidr values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class Ipv4CidrProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}\/(?:3[0-2]|[12]?\d)\b/', $text);
@@ -29,7 +30,7 @@ class Ipv4CidrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IPV4_CIDR
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV4_CIDR;

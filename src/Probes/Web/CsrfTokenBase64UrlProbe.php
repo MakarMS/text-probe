@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts base64url-style CSRF tokens.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class CsrfTokenBase64UrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Za-z0-9_-]{20,}\b/', $text);
@@ -23,7 +24,7 @@ class CsrfTokenBase64UrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CSRF_TOKEN_BASE64URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CSRF_TOKEN_BASE64URL;

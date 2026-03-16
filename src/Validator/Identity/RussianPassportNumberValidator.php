@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Identity;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Russian internal passport numbers.
@@ -22,7 +23,7 @@ class RussianPassportNumberValidator implements IValidator
      *
      * @return bool true if the passport number follows expected length and series rules, false otherwise
      */
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $normalized = preg_replace('/\D+/', '', $raw);

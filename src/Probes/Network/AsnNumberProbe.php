@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Asn Number values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AsnNumberProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bAS(?:[1-9]\d{0,9})\b/i', $text);
@@ -29,7 +30,7 @@ class AsnNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ASN_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ASN_NUMBER;

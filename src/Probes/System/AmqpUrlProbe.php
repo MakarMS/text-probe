@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Amqp Url values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AmqpUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~amqps?://[^\s]+~i', $text);
@@ -29,7 +30,7 @@ class AmqpUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AMQP_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AMQP_URL;

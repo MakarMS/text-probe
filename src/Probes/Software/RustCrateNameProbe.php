@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Rust Crate Name values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class RustCrateNameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-z][a-z0-9_]{1,63}\b/', $text);
@@ -29,7 +30,7 @@ class RustCrateNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RUST_CRATE_NAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUST_CRATE_NAME;

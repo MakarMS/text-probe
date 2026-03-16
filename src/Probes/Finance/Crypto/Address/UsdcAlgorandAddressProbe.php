@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts USDC addresses on the Algorand network from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class UsdcAlgorandAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z2-7]{58}\b/', $text);
@@ -25,7 +26,7 @@ class UsdcAlgorandAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDC_ALGORAND_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDC_ALGORAND_ADDRESS;

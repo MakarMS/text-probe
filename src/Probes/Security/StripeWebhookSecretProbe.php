@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Stripe Webhook Secret values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class StripeWebhookSecretProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bwhsec_[A-Za-z0-9]{16,}\b/', $text);
@@ -29,7 +30,7 @@ class StripeWebhookSecretProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_WEBHOOK_SECRET
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_WEBHOOK_SECRET;

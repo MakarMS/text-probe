@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Yaml Key Path values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class YamlKeyPathProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z_][\w-]*(?:\.[a-zA-Z_][\w-]*)+\b/', $text);
@@ -29,7 +30,7 @@ class YamlKeyPathProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::YAML_KEY_PATH
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::YAML_KEY_PATH;

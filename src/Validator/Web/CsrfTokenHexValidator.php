@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Web;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for hexadecimal CSRF tokens.
@@ -11,7 +12,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class CsrfTokenHexValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $length = strlen($raw);

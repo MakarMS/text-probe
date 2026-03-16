@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Git tag names.
  */
 class GitTagProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^v?[0-9A-Za-z][0-9A-Za-z._-]*$/', $text);
@@ -21,7 +22,7 @@ class GitTagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_TAG
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_TAG;

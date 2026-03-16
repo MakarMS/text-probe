@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Bank\Account\BankIbanNumberValidator;
+use Override;
 
 /**
  * Probe that extracts IBAN (International Bank Account Number) values from text.
@@ -28,8 +29,7 @@ class BankIbanNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankIbanNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}\d{2}(?:[ -]?[A-Z0-9]){10,30}\b/i', $text);
@@ -38,7 +38,7 @@ class BankIbanNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_IBAN_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_IBAN_NUMBER;

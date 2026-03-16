@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Duration Iso8601 values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class DurationIso8601Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bP(?=\d|T\d)(?:\d+Y)?(?:\d+M)?(?:\d+W)?(?:\d+D)?(?:T(?:\d+H)?(?:\d+M)?(?:\d+S)?)?\b/', $text);
@@ -29,7 +30,7 @@ class DurationIso8601Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DURATION_ISO8601
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DURATION_ISO8601;

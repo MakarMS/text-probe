@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\CzDicChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for CzDicProbe.
@@ -23,8 +24,7 @@ class CzDicProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CzDicChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bCZ\d{8,10}\b/', $text);
@@ -33,7 +33,7 @@ class CzDicProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_CZ_DIC
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_CZ_DIC;

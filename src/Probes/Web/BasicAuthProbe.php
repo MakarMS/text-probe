@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts HTTP Basic auth base64 blobs.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class BasicAuthProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~(?<![A-Za-z0-9+/=])[A-Za-z0-9+/]{8,}={0,2}(?![A-Za-z0-9+/=])~', $text);
@@ -23,7 +24,7 @@ class BasicAuthProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BASIC_AUTH
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BASIC_AUTH;

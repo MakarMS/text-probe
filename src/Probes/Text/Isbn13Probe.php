@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Text\Isbn13ChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Isbn13 values from text.
@@ -27,8 +28,7 @@ class Isbn13Probe extends Probe implements IProbe
         parent::__construct($validator ?? new Isbn13ChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b97[89][-\d ]{10,16}\b/', $text);
@@ -37,7 +37,7 @@ class Isbn13Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ISBN_13
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ISBN_13;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Npm Package Name values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class NpmPackageNameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:@[a-z0-9-~][a-z0-9-._~]*\/[a-z0-9-~][a-z0-9-._~]*|[a-z0-9-~]+(?:[.-][a-z0-9-~]+)+)/', $text);
@@ -29,7 +30,7 @@ class NpmPackageNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NPM_PACKAGE_NAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NPM_PACKAGE_NAME;

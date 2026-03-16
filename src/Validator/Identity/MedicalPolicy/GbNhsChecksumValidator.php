@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\MedicalPolicy;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for UK NHS numbers.
  */
 class GbNhsChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (trim($raw) !== $raw) {

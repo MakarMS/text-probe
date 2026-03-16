@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Security\PrivateKeyBlockValidator;
+use Override;
 
 /**
  * Probe that extracts OpenSSH private key blocks.
@@ -23,8 +24,7 @@ class OpenSshPrivateKeyProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PrivateKeyBlockValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN OPENSSH PRIVATE KEY-----[\s\S]+?-----END OPENSSH PRIVATE KEY-----/';
@@ -35,7 +35,7 @@ class OpenSshPrivateKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::OPENSSH_PRIVATE_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::OPENSSH_PRIVATE_KEY;

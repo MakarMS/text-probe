@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Docker Compose Service Name values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerComposeServiceNameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-z][a-z0-9_-]*:/', $text);
@@ -29,7 +30,7 @@ class DockerComposeServiceNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_COMPOSE_SERVICE_NAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_COMPOSE_SERVICE_NAME;

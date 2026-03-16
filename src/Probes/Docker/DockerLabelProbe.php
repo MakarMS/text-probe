@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Docker labels from text.
@@ -21,7 +22,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerLabelProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -33,7 +34,7 @@ class DockerLabelProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_LABEL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_LABEL;

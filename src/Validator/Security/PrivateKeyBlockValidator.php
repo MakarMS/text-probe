@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Security;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for PEM/OpenSSH private key blocks.
@@ -11,7 +12,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class PrivateKeyBlockValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         return (bool) preg_match('~^[A-Za-z0-9+/=]+$~m', $raw);

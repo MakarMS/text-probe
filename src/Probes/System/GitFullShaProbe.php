@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts full-length Git commit SHAs.
  */
 class GitFullShaProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[0-9a-f]{40}$/', $text);
@@ -21,7 +22,7 @@ class GitFullShaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_FULL_SHA
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_FULL_SHA;

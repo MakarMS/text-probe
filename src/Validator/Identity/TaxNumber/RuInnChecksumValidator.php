@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\TaxNumber;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Russian tax identification numbers (INN).
  */
 class RuInnChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^(?:\d{10}|\d{12})$/', $raw) !== 1) {

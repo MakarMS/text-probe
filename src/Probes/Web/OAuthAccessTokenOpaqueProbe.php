@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts OAuth access tokens in opaque form.
  */
 class OAuthAccessTokenOpaqueProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $pattern = '(?<![A-Za-z0-9_-])[A-Za-z0-9_-]{20,}(?![A-Za-z0-9_-])';
@@ -23,7 +24,7 @@ class OAuthAccessTokenOpaqueProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::OAUTH_ACCESS_TOKEN_OPAQUE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::OAUTH_ACCESS_TOKEN_OPAQUE;

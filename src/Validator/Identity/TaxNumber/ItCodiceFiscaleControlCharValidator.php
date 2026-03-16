@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Identity\TaxNumber;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Italian Codice Fiscale control character.
@@ -93,8 +94,7 @@ class ItCodiceFiscaleControlCharValidator implements IValidator
         'Z' => 25,
     ];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/', $raw) !== 1) {

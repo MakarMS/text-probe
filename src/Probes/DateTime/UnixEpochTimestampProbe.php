@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Unix Epoch Timestamp values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class UnixEpochTimestampProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:1\d{9}|1\d{12})\b/', $text);
@@ -29,7 +30,7 @@ class UnixEpochTimestampProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UNIX_EPOCH_TIMESTAMP
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UNIX_EPOCH_TIMESTAMP;

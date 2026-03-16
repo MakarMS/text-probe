@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\TaxNumber;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Norwegian fødselsnummer.
  */
 class NoFoedselsnummerChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{11}$/', $raw) !== 1) {

@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates IMEI values with the Luhn checksum algorithm.
  */
 class ImeiLuhnValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $digits = preg_replace('/\D+/', '', $raw);

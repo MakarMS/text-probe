@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\MedicalPolicy\GbNhsChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts UK NHS numbers.
@@ -18,8 +19,7 @@ class GbNhsNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new GbNhsChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?:\d{10}|\d{3}\s?\d{3}\s?\d{4})$/', $text);
@@ -28,7 +28,7 @@ class GbNhsNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GB_NHS_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GB_NHS_NUMBER;

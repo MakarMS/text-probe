@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Barcode;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates GTIN-14 values using Mod-10 checksum.
  */
 class Gtin14ChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $digits = preg_replace('/\D+/', '', $raw);

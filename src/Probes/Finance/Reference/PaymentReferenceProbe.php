@@ -7,13 +7,14 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Result;
+use Override;
 
 /**
  * Probe that extracts payment references.
  */
 class PaymentReferenceProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $probes = [
@@ -43,7 +44,7 @@ class PaymentReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PAYMENT_REFERENCE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PAYMENT_REFERENCE;

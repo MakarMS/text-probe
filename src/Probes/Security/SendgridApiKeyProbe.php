@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Sendgrid Api Key values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class SendgridApiKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bSG\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\b/', $text);
@@ -29,7 +30,7 @@ class SendgridApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SENDGRID_API_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SENDGRID_API_KEY;

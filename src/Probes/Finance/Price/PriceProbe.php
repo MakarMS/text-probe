@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Price\PriceValidator;
+use Override;
 
 /**
  * Probe that extracts price expressions combining numeric amounts with
@@ -30,8 +31,7 @@ class PriceProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PriceValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $currencySymbols = '[$€£¥₽₴₹₺₼₾₫₦₵₲₱฿₸₡₨]';
@@ -49,7 +49,7 @@ class PriceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PRICE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PRICE;

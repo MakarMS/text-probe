@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Barcode\Gtin14ChecksumValidator;
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Probe that extracts Gs1 Gtin14 values from text.
@@ -27,8 +28,7 @@ class Gs1Gtin14Probe extends Probe implements IProbe
         parent::__construct($validator ?? new Gtin14ChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{14}\b/', $text);
@@ -37,7 +37,7 @@ class Gs1Gtin14Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GS1_GTIN_14
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GS1_GTIN_14;

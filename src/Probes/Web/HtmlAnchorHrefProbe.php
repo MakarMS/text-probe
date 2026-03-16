@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Html Anchor Href values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class HtmlAnchorHrefProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<a\b[^>]*\bhref=["\'][^"\']+["\'][^>]*>.*?</a>~is', $text);
@@ -29,7 +30,7 @@ class HtmlAnchorHrefProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTML_ANCHOR_HREF
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTML_ANCHOR_HREF;

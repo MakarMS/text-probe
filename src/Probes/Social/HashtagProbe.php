@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts hashtags from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class HashtagProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/#[\p{L}\p{M}0-9_]+/u', $text);
@@ -25,7 +26,7 @@ class HashtagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HASHTAG
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HASHTAG;

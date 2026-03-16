@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\TaxNumber\ChAhvChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Swiss AHV numbers.
@@ -18,8 +19,7 @@ class ChAhvNummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ChAhvChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^756\.\d{4}\.\d{4}\.\d{2}$/', $text);
@@ -28,7 +28,7 @@ class ChAhvNummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CH_AHV_NUMMER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CH_AHV_NUMMER;

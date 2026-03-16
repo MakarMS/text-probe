@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Sql Table Name values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class SqlTableNameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:SELECT\s+\*\s+FROM\s+[A-Za-z_][A-Za-z0-9_.]*|(?:FROM|JOIN|UPDATE|INTO)\s+[A-Za-z_][A-Za-z0-9_.]*)/i', $text);
@@ -29,7 +30,7 @@ class SqlTableNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SQL_TABLE_NAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SQL_TABLE_NAME;

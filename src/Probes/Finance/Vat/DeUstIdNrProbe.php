@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\DeUstIdNrChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for DeUstIdNrProbe.
@@ -23,8 +24,7 @@ class DeUstIdNrProbe extends Probe implements IProbe
         parent::__construct($validator ?? new DeUstIdNrChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bDE\d{9}\b/', $text);
@@ -33,7 +33,7 @@ class DeUstIdNrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_DE_UST_ID_NR
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_DE_UST_ID_NR;

@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
+use Override;
 
 /**
  * Probe that extracts RuPay card numbers from text.
@@ -30,8 +31,7 @@ class BankRupayCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)(?:508(?:[ -]?\d){13}|(?:60|65|81|82)(?:[ -]?\d){14})(?!\d)/', $text);
@@ -40,7 +40,7 @@ class BankRupayCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_RUPAY_CARD_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_RUPAY_CARD_NUMBER;

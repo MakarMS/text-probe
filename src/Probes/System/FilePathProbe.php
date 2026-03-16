@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts absolute file system paths from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class FilePathProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -36,7 +37,7 @@ class FilePathProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FILE_PATH
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FILE_PATH;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts IPv4 addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class IPv4Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -31,7 +32,7 @@ class IPv4Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IPV4
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV4;

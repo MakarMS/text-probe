@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Docker Volume Name values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerVolumeNameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z0-9]+(?:[_.-][a-zA-Z0-9]+)+\b/', $text);
@@ -29,7 +30,7 @@ class DockerVolumeNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_VOLUME_NAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_VOLUME_NAME;

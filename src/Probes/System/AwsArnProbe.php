@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Aws Arn values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AwsArnProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\barn:aws[a-z-]*:[a-z0-9-]*:[a-z0-9-]*:\d{12}:[^\s]+\b/i', $text);
@@ -29,7 +30,7 @@ class AwsArnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_ARN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_ARN;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Github Actions Token values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class GithubActionsTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bgh[rs]_[A-Za-z0-9]{20,255}\b/', $text);
@@ -29,7 +30,7 @@ class GithubActionsTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_ACTIONS_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_ACTIONS_TOKEN;

@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\TaxNumber;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Swedish personal identity numbers (personnummer).
  */
 class SePersonnummerLuhnValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^(?:\d{6}|\d{8})[-+]?\d{4}$/', $raw) !== 1) {

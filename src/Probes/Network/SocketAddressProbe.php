@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Socket Address values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class SocketAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:\[[A-F0-9:]+\]|[A-Za-z0-9.-]+):(?:6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[1-5]?\d{1,4})/i', $text);
@@ -29,7 +30,7 @@ class SocketAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SOCKET_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SOCKET_ADDRESS;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Crypto Xpub values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class CryptoXpubProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:xpub|ypub|zpub|tpub)[1-9A-HJ-NP-Za-km-z]{20,}\b/', $text);
@@ -29,7 +30,7 @@ class CryptoXpubProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_XPUB
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_XPUB;

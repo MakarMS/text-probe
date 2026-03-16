@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\XiVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for XiVatNumberProbe.
@@ -23,8 +24,7 @@ class XiVatNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new XiVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bXI\d{9}\b/', $text);
@@ -33,7 +33,7 @@ class XiVatNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_XI_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_XI_NUMBER;

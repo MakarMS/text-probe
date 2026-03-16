@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts JSON Web Tokens (JWT) in compact serialization form.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class JwtTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $pattern = '(?<![A-Za-z0-9_-])[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?![A-Za-z0-9_-])';
@@ -27,7 +28,7 @@ class JwtTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JWT_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JWT_TOKEN;

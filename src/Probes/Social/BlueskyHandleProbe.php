@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Bluesky Handle values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class BlueskyHandleProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-z0-9][a-z0-9-]{0,62}\.bsky\.social\b/i', $text);
@@ -29,7 +30,7 @@ class BlueskyHandleProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BLUESKY_HANDLE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BLUESKY_HANDLE;

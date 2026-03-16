@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Finance\Bank\Account;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for US bank routing (ABA) numbers.
@@ -30,7 +31,7 @@ class BankRoutingValidator implements IValidator
      *
      * @return bool true if the routing number is 9 digits and passes the checksum, false otherwise
      */
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $number = preg_replace('/\D/', '', $raw);

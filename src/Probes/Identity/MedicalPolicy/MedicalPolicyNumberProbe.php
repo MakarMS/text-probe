@@ -7,13 +7,14 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Result;
+use Override;
 
 /**
  * Probe that extracts medical policy numbers across supported regions.
  */
 class MedicalPolicyNumberProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $probes = [
@@ -64,7 +65,7 @@ class MedicalPolicyNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MEDICAL_POLICY_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MEDICAL_POLICY_NUMBER;

@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts absolute paths starting from the root.
  */
 class AbsolutePathProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\/[\S]*$/', $text);
@@ -21,7 +22,7 @@ class AbsolutePathProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ABSOLUTE_PATH
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ABSOLUTE_PATH;

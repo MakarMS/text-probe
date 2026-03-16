@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Finance\Reference;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for SEPA RF references using Mod-97.
  */
 class Mod97Validator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $value = strtoupper($raw);

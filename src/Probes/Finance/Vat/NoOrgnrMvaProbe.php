@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\NoOrgnrChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for NoOrgnrMvaProbe.
@@ -23,8 +24,7 @@ class NoOrgnrMvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new NoOrgnrChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bNO\d{9}MVA\b/', $text);
@@ -33,7 +33,7 @@ class NoOrgnrMvaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_NO_ORGNR_MVA
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_NO_ORGNR_MVA;

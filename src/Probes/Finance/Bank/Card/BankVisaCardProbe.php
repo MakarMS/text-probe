@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
+use Override;
 
 /**
  * Probe that extracts Visa card numbers from text.
@@ -30,8 +31,7 @@ class BankVisaCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)4(?:[ -]?\d){12,18}(?!\d)/', $text);
@@ -40,7 +40,7 @@ class BankVisaCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_VISA_CARD_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_VISA_CARD_NUMBER;

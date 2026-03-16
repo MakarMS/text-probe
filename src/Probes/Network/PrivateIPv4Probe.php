@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts private IPv4 addresses from text.
@@ -21,7 +22,7 @@ use TextProbe\Probes\Probe;
  */
 class PrivateIPv4Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $octet = '(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)';
@@ -41,7 +42,7 @@ class PrivateIPv4Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PRIVATE_IPV4
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PRIVATE_IPV4;

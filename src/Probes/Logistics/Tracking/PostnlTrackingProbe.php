@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts PostNL Tracking tracking numbers.
  */
 class PostnlTrackingProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^3S\d{13}$/', $text);
@@ -21,7 +22,7 @@ class PostnlTrackingProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTNL_TRACKING
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTNL_TRACKING;

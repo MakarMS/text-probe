@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Vehicle;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Vehicle Identification Numbers (VIN).
@@ -61,8 +62,7 @@ class CarVinValidator implements IValidator
      */
     private const WEIGHTS = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         $vin = strtoupper($raw);

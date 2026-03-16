@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Html Script Src values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class HtmlScriptSrcProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<script\b[^>]*\bsrc=["\'][^"\']+["\'][^>]*>.*?</script>~is', $text);
@@ -29,7 +30,7 @@ class HtmlScriptSrcProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTML_SCRIPT_SRC
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTML_SCRIPT_SRC;

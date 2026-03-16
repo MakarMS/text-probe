@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Google API keys.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class GoogleApiKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bAIza[0-9A-Za-z\-_]{30,}\b/', $text);
@@ -23,7 +24,7 @@ class GoogleApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GOOGLE_API_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GOOGLE_API_KEY;

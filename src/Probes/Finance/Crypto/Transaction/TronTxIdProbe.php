@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Tron transaction Id values.
  */
 class TronTxIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-fA-F0-9]{64}\b/', $text);
@@ -21,7 +22,7 @@ class TronTxIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_TRON_TX_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_TRON_TX_ID;

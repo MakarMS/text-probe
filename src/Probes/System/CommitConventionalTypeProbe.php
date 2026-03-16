@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Commit Conventional Type values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class CommitConventionalTypeProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:feat|fix|docs|style|refactor|perf|test|build|ci|chore)(?:\([\w.-]+\))?:\s[^\n]+/m', $text);
@@ -29,7 +30,7 @@ class CommitConventionalTypeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COMMIT_CONVENTIONAL_TYPE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::COMMIT_CONVENTIONAL_TYPE;

@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts quoted JSON keys.
  */
 class JsonQuotedKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^"(?:\\\\.|[^"\\\\])*"(?=\s*:)/', $text);
@@ -21,7 +22,7 @@ class JsonQuotedKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JSON_QUOTED_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JSON_QUOTED_KEY;

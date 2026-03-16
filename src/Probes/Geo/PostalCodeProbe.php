@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts postal codes from text.
@@ -19,7 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class PostalCodeProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -41,7 +42,7 @@ class PostalCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTAL_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTAL_CODE;

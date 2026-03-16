@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Web;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates that curly braces are balanced and properly nested.
  */
 class BalancedBracesValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $balance = 0;

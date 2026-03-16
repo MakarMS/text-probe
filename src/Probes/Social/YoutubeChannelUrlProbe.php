@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Youtube Channel Url values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class YoutubeChannelUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://(?:www\.)?youtube\.com/(?:channel/[A-Za-z0-9_-]{24}|@[A-Za-z0-9._-]{3,30})/?~i', $text);
@@ -29,7 +30,7 @@ class YoutubeChannelUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::YOUTUBE_CHANNEL_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::YOUTUBE_CHANNEL_URL;

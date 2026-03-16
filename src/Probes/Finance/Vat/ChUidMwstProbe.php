@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\ChUidChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for ChUidMwstProbe.
@@ -23,8 +24,7 @@ class ChUidMwstProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ChUidChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bCHE\d{9}(?:MWST|TVA|IVA)\b/', $text);
@@ -33,7 +33,7 @@ class ChUidMwstProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_CH_UID_MWST
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_CH_UID_MWST;

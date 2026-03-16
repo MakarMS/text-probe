@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts consecutive ALL CAPS sequences from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class AllCapsSequenceProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\\b\\p{Lu}{2,}\\b/u', $text);
@@ -25,7 +26,7 @@ class AllCapsSequenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ALL_CAPS_SEQUENCE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ALL_CAPS_SEQUENCE;

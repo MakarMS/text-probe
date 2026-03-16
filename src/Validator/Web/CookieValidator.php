@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Web;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator that ensures matched cookie fragments look like real cookie
@@ -24,8 +25,7 @@ class CookieValidator implements IValidator
         'comment',
     ];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match(

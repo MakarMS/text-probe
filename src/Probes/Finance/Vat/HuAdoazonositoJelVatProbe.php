@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\HuVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for HuAdoazonositoJelVatProbe.
@@ -23,8 +24,7 @@ class HuAdoazonositoJelVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new HuVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bHU\d{8}\b/', $text);
@@ -33,7 +33,7 @@ class HuAdoazonositoJelVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_HU_ADOAZONOSITO_JEL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_HU_ADOAZONOSITO_JEL;

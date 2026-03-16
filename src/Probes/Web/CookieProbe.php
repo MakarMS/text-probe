@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Web\CookieValidator;
+use Override;
 
 /**
  * Probe that extracts HTTP cookies (key=value pairs) from text.
@@ -23,8 +24,7 @@ class CookieProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CookieValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $pattern = "/\\b(?:Set-Cookie:\\s*|Cookie:\\s*)?[!#$%&'*+.^_`|~0-9A-Za-z-]{1,128}=(\"[^\"]*\"|[!#$%&'*+.^_`|~0-9A-Za-z-]{1,2048})/i";
@@ -35,7 +35,7 @@ class CookieProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTTP_COOKIE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTTP_COOKIE;

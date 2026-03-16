@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Market\LeiChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Lei Code values from text.
@@ -27,8 +28,7 @@ class LeiCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new LeiChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z0-9]{18}\d{2}\b/', $text);
@@ -37,7 +37,7 @@ class LeiCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LEI_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LEI_CODE;

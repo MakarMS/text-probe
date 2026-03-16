@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Text;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates ISBN-13 values using EAN-13 checksum.
  */
 class Isbn13ChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $digits = preg_replace('/\D+/', '', $raw);

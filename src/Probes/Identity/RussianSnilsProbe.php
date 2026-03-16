@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Identity\RussianSnilsValidator;
+use Override;
 
 /**
  * Probe that extracts Russian SNILS numbers from text.
@@ -28,8 +29,7 @@ class RussianSnilsProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RussianSnilsValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{3}-?\d{3}-?\d{3}\s?\d{2}\b/u', $text);
@@ -38,7 +38,7 @@ class RussianSnilsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SNILS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUSSIAN_SNILS;

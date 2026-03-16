@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts CSRF tokens in hex, base64url, or UUID form.
  */
 class CsrfTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $hex = '[a-fA-F0-9]{32,128}';
@@ -25,7 +26,7 @@ class CsrfTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CSRF_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CSRF_TOKEN;

@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\TaxNumber\RuInnChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Russian tax identification numbers (INN).
@@ -18,8 +19,7 @@ class RuInnProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RuInnChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?:\d{10}|\d{12})$/', $text);
@@ -28,7 +28,7 @@ class RuInnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RU_INN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RU_INN;

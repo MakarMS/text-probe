@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts domain names from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class DomainProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b((?:[\p{L}0-9-]+\.)+\p{L}{2,})\b/u', $text);
@@ -25,7 +26,7 @@ class DomainProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOMAIN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOMAIN;

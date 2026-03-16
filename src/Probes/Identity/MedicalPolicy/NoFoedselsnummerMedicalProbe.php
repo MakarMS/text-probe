@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\TaxNumber\NoFoedselsnummerChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Norwegian fødselsnummer medical identifiers.
@@ -18,8 +19,7 @@ class NoFoedselsnummerMedicalProbe extends Probe implements IProbe
         parent::__construct($validator ?? new NoFoedselsnummerChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{11}$/', $text);
@@ -28,7 +28,7 @@ class NoFoedselsnummerMedicalProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NO_FOEDSELSNUMMER_MEDICAL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NO_FOEDSELSNUMMER_MEDICAL;

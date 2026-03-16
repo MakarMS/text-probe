@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Firebase Server Key values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class FirebaseServerKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bAAAA[A-Za-z0-9_-]{7}:[A-Za-z0-9_-]{20,}\b/', $text);
@@ -29,7 +30,7 @@ class FirebaseServerKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FIREBASE_SERVER_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FIREBASE_SERVER_KEY;

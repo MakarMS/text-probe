@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts GitHub classic personal access tokens.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class GitHubClassicTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bghp_[A-Za-z0-9]{30,}\b/', $text);
@@ -23,7 +24,7 @@ class GitHubClassicTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_CLASSIC_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_CLASSIC_TOKEN;

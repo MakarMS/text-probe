@@ -3,6 +3,7 @@
 namespace TextProbe\Validator;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator that unconditionally accepts all values.
@@ -19,7 +20,7 @@ class NoopValidator implements IValidator
      *
      * @return bool always true
      */
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         return true;

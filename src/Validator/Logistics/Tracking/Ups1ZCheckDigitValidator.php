@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Logistics\Tracking;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates UPS 1Z tracking numbers using the UPS mod10 check digit scheme.
@@ -38,8 +39,7 @@ class Ups1ZCheckDigitValidator implements IValidator
         'Z' => 9,
     ];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         $raw = strtoupper($raw);

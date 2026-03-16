@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts MRZ TD1 blocks.
  */
 class MrzTd1Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?<l1>[A-Z0-9<]{30})\r?\n(?<l2>[A-Z0-9<]{30})\r?\n(?<l3>[A-Z0-9<]{30})$/', $text);
@@ -21,7 +22,7 @@ class MrzTd1Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MRZ_TD1
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MRZ_TD1;

@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\ItVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for ItPartitaIvaProbe.
@@ -23,8 +24,7 @@ class ItPartitaIvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ItVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bIT\d{11}\b/', $text);
@@ -33,7 +33,7 @@ class ItPartitaIvaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_IT_PARTITA_IVA
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_IT_PARTITA_IVA;

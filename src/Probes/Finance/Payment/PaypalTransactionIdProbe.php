@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts strict PayPal transaction identifiers.
  */
 class PaypalTransactionIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z0-9]{17}\b/', $text);
@@ -21,7 +22,7 @@ class PaypalTransactionIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PAYPAL_TRANSACTION_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PAYPAL_TRANSACTION_ID;

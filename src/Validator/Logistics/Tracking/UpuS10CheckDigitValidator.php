@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Logistics\Tracking;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates UPU S10 tracking numbers using the standard check digit rules.
@@ -11,8 +12,7 @@ class UpuS10CheckDigitValidator implements IValidator
 {
     private const WEIGHTS = [8, 6, 4, 2, 3, 5, 9, 7];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         $raw = strtoupper($raw);

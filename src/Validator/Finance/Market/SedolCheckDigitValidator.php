@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Finance\Market;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates SEDOL values using weighted Mod-10 checksum.
  */
 class SedolCheckDigitValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $value = strtoupper(trim($raw));
@@ -21,6 +22,7 @@ class SedolCheckDigitValidator implements IValidator
         $sum = 0;
         for ($i = 0; $i < 6; $i++) {
             $weight = $this->weightByIndex($i);
+
             if ($weight === 0) {
                 return false;
             }

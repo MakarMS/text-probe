@@ -7,13 +7,14 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Result;
+use Override;
 
 /**
  * Probe that extracts WebSocket URLs.
  */
 class WebsocketUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $probes = [
@@ -54,7 +55,7 @@ class WebsocketUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::WEBSOCKET_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::WEBSOCKET_URL;

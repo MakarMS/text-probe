@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Sentry Dsn values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class SentryDsnProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://[0-9a-f]+@[A-Za-z0-9.-]+/\d+\b~i', $text);
@@ -29,7 +30,7 @@ class SentryDsnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SENTRY_DSN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SENTRY_DSN;

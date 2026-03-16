@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Cron Expression values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class CronExpressionProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:\*|[0-5]?\d)(?:\/\d+)?\s+(?:\*|[01]?\d|2[0-3])(?:\/\d+)?\s+(?:\*|0?[1-9]|[12]\d|3[01])(?:\/\d+)?\s+(?:\*|0?[1-9]|1[0-2])(?:\/\d+)?\s+(?:\*|[0-6])(?:\/\d+)?/', $text);
@@ -29,7 +30,7 @@ class CronExpressionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRON_EXPRESSION
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRON_EXPRESSION;

@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts cryptocurrency transaction identifiers.
  */
 class CryptoTransactionIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:0x[a-fA-F0-9]{64}|[A-F0-9]{64}|[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{87,88}|[A-Z2-7]{52})\b/', $text);
@@ -21,7 +22,7 @@ class CryptoTransactionIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_TRANSACTION_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_TRANSACTION_ID;

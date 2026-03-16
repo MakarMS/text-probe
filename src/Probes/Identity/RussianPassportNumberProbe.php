@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Identity\RussianPassportNumberValidator;
+use Override;
 
 /**
  * Probe that extracts Russian internal passport numbers from text.
@@ -30,8 +31,7 @@ class RussianPassportNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RussianPassportNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -43,7 +43,7 @@ class RussianPassportNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RUSSIAN_PASSPORT_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUSSIAN_PASSPORT_NUMBER;

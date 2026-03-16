@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\TaxNumber\EsNifControlValidator;
+use Override;
 
 /**
  * Probe that extracts Spanish NIF identifiers.
@@ -18,8 +19,7 @@ class EsNifProbe extends Probe implements IProbe
         parent::__construct($validator ?? new EsNifControlValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z0-9]\d{7}[A-Z0-9]$/', $text);
@@ -28,7 +28,7 @@ class EsNifProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ES_NIF
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ES_NIF;

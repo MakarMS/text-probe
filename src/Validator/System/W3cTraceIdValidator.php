@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\System;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates W3C trace-id values.
  */
 class W3cTraceIdValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $value = strtolower(trim($raw));

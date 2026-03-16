@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts JSON boolean values.
  */
 class JsonBooleanValueProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?:true|false)$/', $text);
@@ -21,7 +22,7 @@ class JsonBooleanValueProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JSON_BOOLEAN_VALUE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JSON_BOOLEAN_VALUE;

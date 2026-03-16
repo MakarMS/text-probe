@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Jenkins Api Token values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class JenkinsApiTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{32}\b/i', $text);
@@ -29,7 +30,7 @@ class JenkinsApiTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JENKINS_API_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JENKINS_API_TOKEN;

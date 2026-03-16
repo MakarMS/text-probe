@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Eu Eori Number values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class EuEoriNumberProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}[A-Z0-9]{8,15}\b/', $text);
@@ -29,7 +30,7 @@ class EuEoriNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EU_EORI_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EU_EORI_NUMBER;

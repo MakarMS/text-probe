@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Mastodon Handle values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class MastodonHandleProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\w)@[A-Za-z0-9_]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/', $text);
@@ -29,7 +30,7 @@ class MastodonHandleProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MASTODON_HANDLE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MASTODON_HANDLE;

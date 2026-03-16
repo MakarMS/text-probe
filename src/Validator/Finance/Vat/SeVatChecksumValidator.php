@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Finance\Vat;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Swedish VAT numbers.
  */
 class SeVatChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^SE(?<digits>\d{12})$/', $raw, $matches) !== 1) {

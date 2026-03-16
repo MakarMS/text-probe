@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Identity\MedicalPolicy;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for French NIR numbers without key digits.
@@ -12,7 +13,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class FrNirMod97Validator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         return preg_match('/^\d{13}$/', $raw) === 1;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Markdown Link values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class MarkdownLinkProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/i', $text);
@@ -29,7 +30,7 @@ class MarkdownLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MARKDOWN_LINK
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MARKDOWN_LINK;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Docker image digests from text.
@@ -23,7 +24,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerImageDigestProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -35,7 +36,7 @@ class DockerImageDigestProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_IMAGE_DIGEST
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_IMAGE_DIGEST;

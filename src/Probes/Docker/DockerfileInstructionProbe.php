@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Dockerfile instructions from arbitrary text.
@@ -19,7 +20,7 @@ use TextProbe\Probes\Probe;
  */
 class DockerfileInstructionProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -34,7 +35,7 @@ class DockerfileInstructionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKERFILE_INSTRUCTION
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKERFILE_INSTRUCTION;

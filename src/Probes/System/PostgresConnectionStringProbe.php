@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Postgres Connection String values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class PostgresConnectionStringProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~postgres(?:ql)?://[^\s]+~i', $text);
@@ -29,7 +30,7 @@ class PostgresConnectionStringProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTGRES_CONNECTION_STRING
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTGRES_CONNECTION_STRING;

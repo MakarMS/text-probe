@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts German Handelsregisternummer identifiers.
  */
 class DeHandelsregisternummerProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^HR[AB]\s?\d{1,6}$/', $text);
@@ -21,7 +22,7 @@ class DeHandelsregisternummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DE_HANDELSREGISTERNUMMER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DE_HANDELSREGISTERNUMMER;

@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\AtUidChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for AtUidProbe.
@@ -23,8 +24,7 @@ class AtUidProbe extends Probe implements IProbe
         parent::__construct($validator ?? new AtUidChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bATU\d{8}\b/', $text);
@@ -33,7 +33,7 @@ class AtUidProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_AT_UID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_AT_UID;

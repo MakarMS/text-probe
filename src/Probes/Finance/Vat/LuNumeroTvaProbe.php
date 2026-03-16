@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\LuVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for LuNumeroTvaProbe.
@@ -23,8 +24,7 @@ class LuNumeroTvaProbe extends Probe implements IProbe
         parent::__construct($validator ?? new LuVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bLU\d{8}\b/', $text);
@@ -33,7 +33,7 @@ class LuNumeroTvaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_LU_NUMERO_TVA
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_LU_NUMERO_TVA;

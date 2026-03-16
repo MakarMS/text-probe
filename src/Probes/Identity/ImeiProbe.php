@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Identity\ImeiLuhnValidator;
+use Override;
 
 /**
  * Probe that extracts Imei values from text.
@@ -27,8 +28,7 @@ class ImeiProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ImeiLuhnValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{15}\b/', $text);
@@ -37,7 +37,7 @@ class ImeiProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IMEI
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IMEI;

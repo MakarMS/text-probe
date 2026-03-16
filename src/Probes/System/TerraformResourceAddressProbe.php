@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Terraform Resource Address values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class TerraformResourceAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z_][\w]*\.[a-zA-Z_][\w]*(?:\[[0-9]+\])?/', $text);
@@ -29,7 +30,7 @@ class TerraformResourceAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TERRAFORM_RESOURCE_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TERRAFORM_RESOURCE_ADDRESS;

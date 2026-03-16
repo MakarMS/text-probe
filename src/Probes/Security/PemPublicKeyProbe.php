@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts PEM-encoded public key blocks.
  */
 class PemPublicKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN PUBLIC KEY-----[\s\S]+?-----END PUBLIC KEY-----/';
@@ -23,7 +24,7 @@ class PemPublicKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PEM_PUBLIC_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PEM_PUBLIC_KEY;

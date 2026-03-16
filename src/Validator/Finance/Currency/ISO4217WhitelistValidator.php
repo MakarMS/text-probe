@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Finance\Currency;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator that accepts only ISO-4217 currency codes.
@@ -17,8 +18,7 @@ class ISO4217WhitelistValidator implements IValidator
         'CLP', 'COP', 'PEN', 'ZAR', 'NGN', 'KES', 'GHS',
     ];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         $code = strtoupper($raw);

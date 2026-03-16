@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts French driver licence numbers.
  */
 class FrNumeroPermisDeConduireProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{12}$/', $text);
@@ -21,7 +22,7 @@ class FrNumeroPermisDeConduireProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_NUMERO_PERMIS_DE_CONDUIRE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_NUMERO_PERMIS_DE_CONDUIRE;

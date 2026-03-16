@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Telegram user links in the form of t.me-style URLs.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class TelegramUserLinkProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -28,7 +29,7 @@ class TelegramUserLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TELEGRAM_USER_LINK
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TELEGRAM_USER_LINK;

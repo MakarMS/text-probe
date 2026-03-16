@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts USDT Omni Layer addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class UsdtOmniAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[13][a-zA-HJ-NP-Z0-9]{25,34}\b/', $text);
@@ -25,7 +26,7 @@ class UsdtOmniAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDT_OMNI_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDT_OMNI_ADDRESS;

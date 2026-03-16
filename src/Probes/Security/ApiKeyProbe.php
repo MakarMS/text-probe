@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts API keys for common providers.
@@ -15,7 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class ApiKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $patterns = [
@@ -33,7 +34,7 @@ class ApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::API_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::API_KEY;

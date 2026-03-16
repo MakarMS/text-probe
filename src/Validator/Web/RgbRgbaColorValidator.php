@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Web;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for RGB/RGBA color strings.
@@ -13,7 +14,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class RgbRgbaColorValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $trimmed = trim($raw);

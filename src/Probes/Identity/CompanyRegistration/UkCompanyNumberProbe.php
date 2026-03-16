@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts UK company registration numbers.
  */
 class UkCompanyNumberProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^(?:\d{8}|[A-Z]{2}\d{6})$/', $text);
@@ -21,7 +22,7 @@ class UkCompanyNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GB_COMPANY_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GB_COMPANY_NUMBER;

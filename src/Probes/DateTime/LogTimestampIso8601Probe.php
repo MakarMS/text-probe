@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Log Timestamp Iso8601 values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class LogTimestampIso8601Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+\-]\d{2}:\d{2})\b/', $text);
@@ -29,7 +30,7 @@ class LogTimestampIso8601Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LOG_TIMESTAMP_ISO8601
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LOG_TIMESTAMP_ISO8601;

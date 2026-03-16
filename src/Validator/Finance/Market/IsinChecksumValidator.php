@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Finance\Market;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates ISIN values using the ISO 6166 checksum algorithm.
  */
 class IsinChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $value = strtoupper(trim($raw));

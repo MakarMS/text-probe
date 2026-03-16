@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Kubernetes Annotation Key values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class KubernetesAnnotationKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-z0-9](?:[-a-z0-9]*[a-z0-9])?(?:\.[a-z0-9](?:[-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9](?:[-.A-Za-z0-9]*[A-Za-z0-9])\b/', $text);
@@ -29,7 +30,7 @@ class KubernetesAnnotationKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KUBERNETES_ANNOTATION_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KUBERNETES_ANNOTATION_KEY;

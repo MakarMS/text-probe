@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts HTTP User-Agent strings from text.
@@ -17,7 +18,7 @@ use TextProbe\Probes\Probe;
  */
 class UserAgentProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -29,7 +30,7 @@ class UserAgentProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::USER_AGENT
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::USER_AGENT;

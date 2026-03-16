@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Bank\Card\BankCardNumberValidator;
+use Override;
 
 /**
  * Probe that extracts Discover card numbers from text.
@@ -30,8 +31,7 @@ class BankDiscoverCardProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankCardNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $pattern = '(?<!\d)'
@@ -49,7 +49,7 @@ class BankDiscoverCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_DISCOVER_CARD_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_DISCOVER_CARD_NUMBER;

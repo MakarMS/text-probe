@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Market\SedolCheckDigitValidator;
+use Override;
 
 /**
  * Probe that extracts Sedol Code values from text.
@@ -27,8 +28,7 @@ class SedolCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SedolCheckDigitValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9BCDFGHJKLMNPQRSTVWXYZ]{6}[0-9]\b/', $text);
@@ -37,7 +37,7 @@ class SedolCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEDOL_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEDOL_CODE;

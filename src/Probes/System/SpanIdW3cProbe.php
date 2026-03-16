@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\System\W3cSpanIdValidator;
+use Override;
 
 /**
  * Probe that extracts Span Id W3c values from text.
@@ -27,8 +28,7 @@ class SpanIdW3cProbe extends Probe implements IProbe
         parent::__construct($validator ?? new W3cSpanIdValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{16}\b/i', $text);
@@ -37,7 +37,7 @@ class SpanIdW3cProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SPAN_ID_W3C
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SPAN_ID_W3C;

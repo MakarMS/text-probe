@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\System\W3cTraceIdValidator;
+use Override;
 
 /**
  * Probe that extracts Trace Id W3c values from text.
@@ -27,8 +28,7 @@ class TraceIdW3cProbe extends Probe implements IProbe
         parent::__construct($validator ?? new W3cTraceIdValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{32}\b/i', $text);
@@ -37,7 +37,7 @@ class TraceIdW3cProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TRACE_ID_W3C
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TRACE_ID_W3C;

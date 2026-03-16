@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Logistics\Tracking\UpuS10CheckDigitValidator;
+use Override;
 
 /**
  * Probe that extracts PostNord  S10 tracking numbers.
@@ -18,8 +19,7 @@ class PostNordS10Probe extends Probe implements IProbe
         parent::__construct($validator ?? new UpuS10CheckDigitValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]{2}\d{9}(?:SE|NO|DK|FI)$/', $text);
@@ -28,7 +28,7 @@ class PostNordS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POST_NORD_S10
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POST_NORD_S10;

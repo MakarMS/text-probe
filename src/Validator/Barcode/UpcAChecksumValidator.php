@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Barcode;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates UPC-A barcodes using the standard checksum algorithm.
  */
 class UpcAChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{12}$/', $raw) !== 1) {

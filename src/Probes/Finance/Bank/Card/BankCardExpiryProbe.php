@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Probe that extracts bank card expiration dates from text.
@@ -27,8 +28,7 @@ class BankCardExpiryProbe extends Probe implements IProbe
         parent::__construct($validator);
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(0?[1-9]|1[0-2])[\/\-. ]?(?:\d{2}|\d{4})\b/', $text);
@@ -37,7 +37,7 @@ class BankCardExpiryProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_CARD_EXPIRY_DATE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_CARD_EXPIRY_DATE;

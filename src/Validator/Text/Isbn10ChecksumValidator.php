@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Text;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates ISBN-10 values using Mod-11 checksum.
  */
 class Isbn10ChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $normalized = strtoupper((string) preg_replace('/[^0-9X]/i', '', $raw));

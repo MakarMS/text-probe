@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts HTML tags from text.
@@ -17,7 +18,7 @@ use TextProbe\Probes\Probe;
  */
 class HtmlTagProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -31,7 +32,7 @@ class HtmlTagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTML_TAG
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTML_TAG;

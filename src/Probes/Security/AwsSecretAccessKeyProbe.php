@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Aws Secret Access Key values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AwsSecretAccessKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Za-z0-9\/+]{40}\b/', $text);
@@ -29,7 +30,7 @@ class AwsSecretAccessKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_SECRET_ACCESS_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_SECRET_ACCESS_KEY;

@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts OpenSSH public key lines.
  */
 class SshPublicKeyProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $patterns = [
@@ -27,7 +28,7 @@ class SshPublicKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SSH_PUBLIC_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SSH_PUBLIC_KEY;

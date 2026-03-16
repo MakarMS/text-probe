@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Discord usernames in the new global format (e.g. "@username").
@@ -15,7 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class DiscordNewUsernameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -27,7 +28,7 @@ class DiscordNewUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DISCORD_NEW_USERNAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DISCORD_NEW_USERNAME;

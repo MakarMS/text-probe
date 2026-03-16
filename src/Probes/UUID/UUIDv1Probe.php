@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts version 1 UUIDs from text.
@@ -15,7 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class UUIDv1Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9a-f]{8}-[0-9a-f]{4}-1[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}\b/i', $text);
@@ -24,7 +25,7 @@ class UUIDv1Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UUID_V1
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UUID_V1;

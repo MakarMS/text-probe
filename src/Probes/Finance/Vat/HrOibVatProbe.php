@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\HrOibChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for HrOibVatProbe.
@@ -23,8 +24,7 @@ class HrOibVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new HrOibChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bHR\d{11}\b/', $text);
@@ -33,7 +33,7 @@ class HrOibVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_HR_OIB
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_HR_OIB;

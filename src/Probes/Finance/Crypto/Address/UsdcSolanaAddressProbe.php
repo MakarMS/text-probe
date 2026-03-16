@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts USDC addresses on the Solana network from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class UsdcSolanaAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[1-9A-HJ-NP-Za-km-z]{32,44}\b/', $text);
@@ -25,7 +26,7 @@ class UsdcSolanaAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDC_SOLANA_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDC_SOLANA_ADDRESS;

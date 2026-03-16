@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Mcc Mnc values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class MccMncProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{3}-\d{2,3}\b/', $text);
@@ -29,7 +30,7 @@ class MccMncProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MCC_MNC
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MCC_MNC;

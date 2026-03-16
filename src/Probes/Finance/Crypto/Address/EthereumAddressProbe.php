@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Ethereum addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class EthereumAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b0x[a-fA-F0-9]{40}\b/i', $text);
@@ -25,7 +26,7 @@ class EthereumAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_ETHEREUM_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_ETHEREUM_ADDRESS;

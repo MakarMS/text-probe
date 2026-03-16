@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts AWS access key IDs.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class AwsAccessKeyIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/', $text);
@@ -23,7 +24,7 @@ class AwsAccessKeyIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_ACCESS_KEY_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_ACCESS_KEY_ID;

@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Social;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for U.S. Social Security Numbers (SSN) in the `XXX-XX-XXXX` format.
@@ -22,7 +23,7 @@ class UsSocialSecurityNumberValidator implements IValidator
      * the SSA-issued constraints on area, group, and serial parts to eliminate
      * structurally invalid numbers.
      */
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^(\d{3})-(\d{2})-(\d{4})$/', $raw, $matches) !== 1) {

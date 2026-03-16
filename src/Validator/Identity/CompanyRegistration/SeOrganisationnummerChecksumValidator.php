@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\CompanyRegistration;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Swedish organisation numbers.
  */
 class SeOrganisationnummerChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{6}-\d{4}$/', $raw) !== 1) {

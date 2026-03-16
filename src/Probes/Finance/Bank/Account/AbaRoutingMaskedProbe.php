@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Aba Routing Masked values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AbaRoutingMaskedProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\S)\*{5}\d{4}(?!\S)/', $text);
@@ -29,7 +30,7 @@ class AbaRoutingMaskedProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ABA_ROUTING_MASKED
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ABA_ROUTING_MASKED;

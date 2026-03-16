@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts PEM-encoded certificate blocks.
  */
 class PemCertificateProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $regex = '/-----BEGIN CERTIFICATE-----[\s\S]+?-----END CERTIFICATE-----/';
@@ -23,7 +24,7 @@ class PemCertificateProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PEM_CERTIFICATE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PEM_CERTIFICATE;

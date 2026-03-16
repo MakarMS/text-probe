@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts GitLab pipeline URLs.
  */
 class GitlabPipelineIdUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^https:\/\/gitlab\.com\/[A-Za-z0-9_.\/-]+\/pipelines\/\d+$/', $text);
@@ -21,7 +22,7 @@ class GitlabPipelineIdUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITLAB_PIPELINE_ID_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITLAB_PIPELINE_ID_URL;

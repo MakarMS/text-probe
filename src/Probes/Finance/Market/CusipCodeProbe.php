@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Market\CusipCheckDigitValidator;
+use Override;
 
 /**
  * Probe that extracts Cusip Code values from text.
@@ -28,8 +29,7 @@ class CusipCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CusipCheckDigitValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[0-9A-Z*@#]{8}[0-9]\b/', $text);
@@ -38,7 +38,7 @@ class CusipCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CUSIP_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CUSIP_CODE;

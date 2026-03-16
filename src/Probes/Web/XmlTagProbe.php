@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Xml Tag values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class XmlTagProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~<([A-Za-z_][A-Za-z0-9_.:-]*)(?:\s+[^>]*)?>.*?</\1>|<([A-Za-z_][A-Za-z0-9_.:-]*)(?:\s+[^>]*)?\s*/>~s', $text);
@@ -29,7 +30,7 @@ class XmlTagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::XML_TAG
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::XML_TAG;

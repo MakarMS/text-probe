@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Web\RgbRgbaColorValidator;
+use Override;
 
 /**
  * Probe that extracts colors in RGB or RGBA notation.
@@ -27,8 +28,7 @@ class RgbRgbaColorProbe extends Probe implements IProbe
         parent::__construct(new RgbRgbaColorValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $pattern = '/(?<![0-9A-Za-z])(?:'
@@ -45,7 +45,7 @@ class RgbRgbaColorProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COLOR
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RGB_RGBA_COLOR;

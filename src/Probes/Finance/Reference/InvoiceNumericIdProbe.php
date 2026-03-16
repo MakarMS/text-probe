@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts numeric invoice identifiers.
  */
 class InvoiceNumericIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{6,}\b/', $text);
@@ -21,7 +22,7 @@ class InvoiceNumericIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::INVOICE_NUMERIC_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::INVOICE_NUMERIC_ID;

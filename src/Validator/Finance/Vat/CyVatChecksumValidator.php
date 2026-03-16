@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Finance\Vat;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for CyVatChecksumValidator.
  */
 class CyVatChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $value = substr($raw, 2);

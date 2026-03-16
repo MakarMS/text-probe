@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts common password hash formats.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class PasswordHashProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $bcrypt = '\\$(?:2a|2b|2y)\\$(?:0[4-9]|[12][0-9]|3[01])\\$[./A-Za-z0-9]{53}';
@@ -27,7 +28,7 @@ class PasswordHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PASSWORD_HASH
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PASSWORD_HASH;

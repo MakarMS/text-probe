@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Ripple (XRP) addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class RippleAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<![A-Za-z0-9])r[1-9A-HJ-NP-Za-km-z]{25,34}(?![A-Za-z0-9])/', $text);
@@ -25,7 +26,7 @@ class RippleAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_RIPPLE_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_RIPPLE_ADDRESS;

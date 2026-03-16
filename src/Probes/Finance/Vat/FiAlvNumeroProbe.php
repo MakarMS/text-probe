@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\FiVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for FiAlvNumeroProbe.
@@ -23,8 +24,7 @@ class FiAlvNumeroProbe extends Probe implements IProbe
         parent::__construct($validator ?? new FiVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bFI\d{8}\b/', $text);
@@ -33,7 +33,7 @@ class FiAlvNumeroProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_FI_ALV_NUMERO
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_FI_ALV_NUMERO;

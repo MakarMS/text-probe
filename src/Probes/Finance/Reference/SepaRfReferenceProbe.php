@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Reference\Mod97Validator;
+use Override;
 
 /**
  * Probe that extracts SEPA RF references.
@@ -23,8 +24,7 @@ class SepaRfReferenceProbe extends Probe implements IProbe
         parent::__construct($validator ?? new Mod97Validator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bRF\d{2}[A-Z0-9]{1,21}\b/i', $text);
@@ -33,7 +33,7 @@ class SepaRfReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEPA_RF_REFERENCE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEPA_RF_REFERENCE;

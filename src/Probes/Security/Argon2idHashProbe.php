@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Argon2id password hashes.
@@ -14,7 +15,7 @@ use TextProbe\Probes\Probe;
  */
 class Argon2idHashProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $regex = '~\$argon2id\$v=\d+\$m=[1-9]\d*,t=[1-9]\d*,p=[1-9]\d*\$[A-Za-z0-9+/]+={0,2}\$[A-Za-z0-9+/]+={0,2}~';
@@ -25,7 +26,7 @@ class Argon2idHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ARGON2ID_HASH
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ARGON2ID_HASH;

@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\PlNipChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for PlNipVatProbe.
@@ -23,8 +24,7 @@ class PlNipVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PlNipChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bPL\d{10}\b/', $text);
@@ -33,7 +33,7 @@ class PlNipVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_PL_NIP
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_PL_NIP;

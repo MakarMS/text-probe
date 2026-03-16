@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts MAC addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class MacAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -28,7 +29,7 @@ class MacAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MAC_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MAC_ADDRESS;

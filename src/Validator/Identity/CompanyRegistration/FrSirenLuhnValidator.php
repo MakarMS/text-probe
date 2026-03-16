@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\CompanyRegistration;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for French SIREN numbers.
  */
 class FrSirenLuhnValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{9}$/', $raw) !== 1) {

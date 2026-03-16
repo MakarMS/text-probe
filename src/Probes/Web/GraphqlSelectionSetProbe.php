@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Web\BalancedBracesValidator;
+use Override;
 
 /**
  * Probe that extracts GraphQL selection sets.
@@ -18,8 +19,7 @@ class GraphqlSelectionSetProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BalancedBracesValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?ms)^\{.*}$/', $text);
@@ -28,7 +28,7 @@ class GraphqlSelectionSetProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GRAPHQL_SELECTION_SET
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GRAPHQL_SELECTION_SET;

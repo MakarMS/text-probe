@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Barcode\Ean13ChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts EAN-13 barcodes.
@@ -18,8 +19,7 @@ class Ean13Probe extends Probe implements IProbe
         parent::__construct($validator ?? new Ean13ChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)\d{13}(?!\d)/', $text);
@@ -28,7 +28,7 @@ class Ean13Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EAN_13
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EAN_13;

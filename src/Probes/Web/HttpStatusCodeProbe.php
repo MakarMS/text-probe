@@ -7,13 +7,14 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Result;
+use Override;
 
 /**
  * Probe that extracts HTTP status codes from lines.
  */
 class HttpStatusCodeProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $regex = '/(?m)^(?:HTTP\/\d(?:\.\d)?\s)?([1-5]\d{2})$/';
@@ -42,7 +43,7 @@ class HttpStatusCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTTP_STATUS_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTTP_STATUS_CODE;

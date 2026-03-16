@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Market\IsinChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Isin Code values from text.
@@ -27,8 +28,7 @@ class IsinCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new IsinChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}[A-Z0-9]{9}\d\b/', $text);
@@ -37,7 +37,7 @@ class IsinCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ISIN_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ISIN_CODE;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Imsi values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class ImsiProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{15}\b/', $text);
@@ -29,7 +30,7 @@ class ImsiProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IMSI
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IMSI;

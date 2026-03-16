@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\SiVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for SiDavcnaStevilkaVatProbe.
@@ -23,8 +24,7 @@ class SiDavcnaStevilkaVatProbe extends Probe implements IProbe
         parent::__construct($validator ?? new SiVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bSI\d{8}\b/', $text);
@@ -33,7 +33,7 @@ class SiDavcnaStevilkaVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_SI_DAVCNA_STEVILKA
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_SI_DAVCNA_STEVILKA;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts bearer token strings without the "Bearer" prefix.
@@ -15,7 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class BearerTokenProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $jwt = '[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+';
@@ -28,7 +29,7 @@ class BearerTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BEARER_TOKEN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BEARER_TOKEN;

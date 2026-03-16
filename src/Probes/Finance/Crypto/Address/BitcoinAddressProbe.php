@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Bitcoin addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class BitcoinAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:1|3|bc1)[a-zA-HJ-NP-Z0-9]{25,62}\b/', $text);
@@ -25,7 +26,7 @@ class BitcoinAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_BITCOIN_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_BITCOIN_ADDRESS;

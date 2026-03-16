@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\EeKmkrChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for EeKmkrProbe.
@@ -23,8 +24,7 @@ class EeKmkrProbe extends Probe implements IProbe
         parent::__construct($validator ?? new EeKmkrChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bEE\d{9}\b/', $text);
@@ -33,7 +33,7 @@ class EeKmkrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_EE_KMKR
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_EE_KMKR;

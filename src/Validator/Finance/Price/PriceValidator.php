@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Finance\Price;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for price-like strings containing numeric amounts and currencies.
@@ -21,8 +22,7 @@ class PriceValidator implements IValidator
         'CLP', 'COP', 'PEN', 'ZAR', 'NGN', 'KES', 'GHS',
     ];
 
-    #[\Override]
-
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/\d/u', $raw) !== 1) {

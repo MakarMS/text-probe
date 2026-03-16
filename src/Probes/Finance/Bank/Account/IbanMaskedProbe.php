@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Iban Masked values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class IbanMaskedProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{2}\d{2}[A-Z0-9* ]{10,30}\d{2,4}\b/', $text);
@@ -29,7 +30,7 @@ class IbanMaskedProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IBAN_MASKED
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IBAN_MASKED;

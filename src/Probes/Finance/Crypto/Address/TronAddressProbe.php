@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts TRON (TRX / TRC-20) addresses from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class TronAddressProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bT[1-9A-HJ-NP-Za-km-z]{33}\b/', $text);
@@ -25,7 +26,7 @@ class TronAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_TRON_ADDRESS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_TRON_ADDRESS;

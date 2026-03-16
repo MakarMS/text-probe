@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Gradle Dependency Notation values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class GradleDependencyNotationProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-zA-Z0-9_.-]+:[a-zA-Z0-9_.-]+:[a-zA-Z0-9_.-]+\b/', $text);
@@ -29,7 +30,7 @@ class GradleDependencyNotationProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GRADLE_DEPENDENCY_NOTATION
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GRADLE_DEPENDENCY_NOTATION;

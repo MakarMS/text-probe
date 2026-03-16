@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Finance\Market;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates LEI values according to ISO 17442 (mod-97-10).
  */
 class LeiChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $value = strtoupper(trim($raw));

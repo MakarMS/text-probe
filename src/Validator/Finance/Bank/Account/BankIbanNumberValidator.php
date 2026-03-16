@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Finance\Bank\Account;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for IBAN (International Bank Account Number) strings.
@@ -23,7 +24,7 @@ class BankIbanNumberValidator implements IValidator
      * @return bool true if the IBAN is structurally valid and passes the Mod-97 check,
      *              false otherwise
      */
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $iban = $this->normalize($raw);

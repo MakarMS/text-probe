@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Correlation Id values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class CorrelationIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:[A-F0-9]{16}|[A-F0-9]{32}|[0-9a-f]{8}-[0-9a-f-]{27})\b/i', $text);
@@ -29,7 +30,7 @@ class CorrelationIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORRELATION_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORRELATION_ID;

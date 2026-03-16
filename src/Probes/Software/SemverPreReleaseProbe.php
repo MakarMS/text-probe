@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Semver Pre Release values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class SemverPreReleaseProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bv?\d+\.\d+\.\d+-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*\b/', $text);
@@ -29,7 +30,7 @@ class SemverPreReleaseProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEMVER_PRE_RELEASE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEMVER_PRE_RELEASE;

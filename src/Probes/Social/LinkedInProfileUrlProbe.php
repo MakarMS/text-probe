@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Linked In Profile Url values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class LinkedInProfileUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://(?:[a-z]{2,3}\.)?linkedin\.com/in/[A-Za-z0-9_%.-]+/?~i', $text);
@@ -29,7 +30,7 @@ class LinkedInProfileUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LINKEDIN_PROFILE_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LINKEDIN_PROFILE_URL;

@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Security\PrivateKeyBlockValidator;
+use Override;
 
 /**
  * Probe that extracts private key blocks in PEM or OpenSSH formats.
@@ -23,8 +24,7 @@ class PrivateKeyProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PrivateKeyBlockValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         $patterns = [
@@ -39,7 +39,7 @@ class PrivateKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PRIVATE_KEY
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PRIVATE_KEY;

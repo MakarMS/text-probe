@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Web\CsrfTokenHexValidator;
+use Override;
 
 /**
  * Probe that extracts hexadecimal CSRF tokens.
@@ -25,8 +26,7 @@ class CsrfTokenHexProbe extends Probe implements IProbe
         parent::__construct($validator ?? new CsrfTokenHexValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-fA-F0-9]{32,128}\b/', $text);
@@ -35,7 +35,7 @@ class CsrfTokenHexProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CSRF_TOKEN_HEX
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CSRF_TOKEN_HEX;

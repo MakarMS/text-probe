@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Aws Region values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AwsRegionProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b(?:us|eu|ap|sa|ca|me|af)-[a-z]+-\d\b/', $text);
@@ -29,7 +30,7 @@ class AwsRegionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_REGION
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_REGION;

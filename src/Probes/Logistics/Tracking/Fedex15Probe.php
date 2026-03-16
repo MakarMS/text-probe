@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts FedEx 15 tracking numbers.
  */
 class Fedex15Probe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{15}$/', $text);
@@ -21,7 +22,7 @@ class Fedex15Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FEDEX_15
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FEDEX_15;

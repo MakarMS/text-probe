@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts hexadecimal color codes from text.
@@ -16,7 +17,7 @@ use TextProbe\Probes\Probe;
  */
 class HexColorProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex(
@@ -28,7 +29,7 @@ class HexColorProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HEX_COLOR
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HEX_COLOR;

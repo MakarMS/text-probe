@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Bank\Account\BankRoutingValidator;
+use Override;
 
 /**
  * Probe that extracts US bank routing numbers from text.
@@ -29,8 +30,7 @@ class BankRoutingNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new BankRoutingValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{9}\b/', $text);
@@ -39,7 +39,7 @@ class BankRoutingNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_ROUTING_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_ROUTING_NUMBER;

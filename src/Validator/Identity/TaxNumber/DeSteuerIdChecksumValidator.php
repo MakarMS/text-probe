@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\TaxNumber;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for German tax identification numbers (Steuer-ID).
  */
 class DeSteuerIdChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{11}$/', $raw) !== 1) {

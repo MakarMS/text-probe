@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Barcode;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validates EAN-13 barcodes using the standard checksum algorithm.
  */
 class Ean13ChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^\d{13}$/', $raw) !== 1) {

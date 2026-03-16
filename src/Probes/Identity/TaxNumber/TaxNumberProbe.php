@@ -7,13 +7,14 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Result;
+use Override;
 
 /**
  * Probe that extracts tax numbers across supported regions.
  */
 class TaxNumberProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         $probes = [
@@ -61,7 +62,7 @@ class TaxNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TAX_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TAX_NUMBER;

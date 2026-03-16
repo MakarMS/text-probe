@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Polish KRS numbers.
  */
 class PlKrsProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{10}$/', $text);
@@ -21,7 +22,7 @@ class PlKrsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PL_KRS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PL_KRS;

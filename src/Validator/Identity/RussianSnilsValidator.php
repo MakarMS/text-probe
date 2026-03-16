@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Identity;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Russian SNILS (11-digit personal insurance) numbers.
@@ -16,7 +17,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class RussianSnilsValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $normalized = preg_replace('/\D/', '', $raw);

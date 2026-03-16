@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Nuget Package Id values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class NugetPackageIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z0-9][A-Za-z0-9]*)+\b/', $text);
@@ -29,7 +30,7 @@ class NugetPackageIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NUGET_PACKAGE_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NUGET_PACKAGE_ID;

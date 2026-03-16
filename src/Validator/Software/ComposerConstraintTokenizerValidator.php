@@ -3,6 +3,7 @@
 namespace TextProbe\Validator\Software;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Composer version constraint strings using tokenization.
@@ -17,7 +18,7 @@ use TextProbe\Validator\Contracts\IValidator;
  */
 class ComposerConstraintTokenizerValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         $input = trim($raw);

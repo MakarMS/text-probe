@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Cloudflare Zone Id values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class CloudflareZoneIdProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[a-f0-9]{32}\b/i', $text);
@@ -29,7 +30,7 @@ class CloudflareZoneIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CLOUDFLARE_ZONE_ID
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CLOUDFLARE_ZONE_ID;

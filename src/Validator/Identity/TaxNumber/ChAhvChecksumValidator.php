@@ -3,13 +3,14 @@
 namespace TextProbe\Validator\Identity\TaxNumber;
 
 use TextProbe\Validator\Contracts\IValidator;
+use Override;
 
 /**
  * Validator for Swiss AHV numbers.
  */
 class ChAhvChecksumValidator implements IValidator
 {
-    #[\Override]
+    #[Override]
     public function validate(string $raw): bool
     {
         if (preg_match('/^756\.\d{4}\.\d{4}\.\d{2}$/', $raw) !== 1) {

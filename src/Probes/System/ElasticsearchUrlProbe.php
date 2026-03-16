@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Elasticsearch Url values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class ElasticsearchUrlProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('~https?://[A-Za-z0-9.-]+:9200\b[^\s]*~i', $text);
@@ -29,7 +30,7 @@ class ElasticsearchUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ELASTICSEARCH_URL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ELASTICSEARCH_URL;

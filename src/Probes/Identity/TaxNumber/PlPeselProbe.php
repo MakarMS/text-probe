@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\TaxNumber\PlPeselChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Polish PESEL numbers.
@@ -18,8 +19,7 @@ class PlPeselProbe extends Probe implements IProbe
         parent::__construct($validator ?? new PlPeselChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{11}$/', $text);
@@ -28,7 +28,7 @@ class PlPeselProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PL_PESEL
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PL_PESEL;

@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Http Request Line values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class HttpRequestLineProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?:GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)\s+\S+\s+HTTP\/\d\.\d/', $text);
@@ -29,7 +30,7 @@ class HttpRequestLineProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTTP_REQUEST_LINE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTTP_REQUEST_LINE;

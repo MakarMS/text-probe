@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Identity\CompanyRegistration\RuOgrnChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Russian OGRN numbers.
@@ -18,8 +19,7 @@ class RuOgrnProbe extends Probe implements IProbe
         parent::__construct($validator ?? new RuOgrnChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^\d{13}$/', $text);
@@ -28,7 +28,7 @@ class RuOgrnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RU_OGRN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RU_OGRN;

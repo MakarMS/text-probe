@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Currency\ISO4217WhitelistValidator;
+use Override;
 
 /**
  * Probe that extracts ISO-4217 currency codes.
@@ -23,8 +24,7 @@ class CurrencyCodeProbe extends Probe implements IProbe
         parent::__construct($validator ?? new ISO4217WhitelistValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b[A-Z]{3}\b/', $text);
@@ -33,7 +33,7 @@ class CurrencyCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CURRENCY_CODE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CURRENCY_CODE;

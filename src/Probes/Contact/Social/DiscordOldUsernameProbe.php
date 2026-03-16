@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts classic Discord usernames in the "username#1234" format.
@@ -15,7 +16,7 @@ use TextProbe\Probes\Probe;
  */
 class DiscordOldUsernameProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\S)[^\s#]{2,32}#\d{4}(?!\S)/', $text);
@@ -24,7 +25,7 @@ class DiscordOldUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DISCORD_OLD_USERNAME
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DISCORD_OLD_USERNAME;

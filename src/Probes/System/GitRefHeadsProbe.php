@@ -6,13 +6,14 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Git refs/heads references.
  */
 class GitRefHeadsProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^refs\/heads\/[A-Za-z0-9._\/-]+$/', $text);
@@ -21,7 +22,7 @@ class GitRefHeadsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_REF_HEADS
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_REF_HEADS;

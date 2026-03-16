@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Text\IssnChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts Issn values from text.
@@ -27,8 +28,7 @@ class IssnProbe extends Probe implements IProbe
         parent::__construct($validator ?? new IssnChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\b\d{4}-\d{3}[\dX]\b/i', $text);
@@ -37,7 +37,7 @@ class IssnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ISSN
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ISSN;

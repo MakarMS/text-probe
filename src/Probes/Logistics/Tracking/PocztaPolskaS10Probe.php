@@ -7,6 +7,7 @@ use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Logistics\Tracking\UpuS10CheckDigitValidator;
+use Override;
 
 /**
  * Probe that extracts Poczta Polska  S10 tracking numbers.
@@ -18,8 +19,7 @@ class PocztaPolskaS10Probe extends Probe implements IProbe
         parent::__construct($validator ?? new UpuS10CheckDigitValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?m)^[A-Z]{2}\d{9}PL$/', $text);
@@ -28,7 +28,7 @@ class PocztaPolskaS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POCZTA_POLSKA_S10
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POCZTA_POLSKA_S10;

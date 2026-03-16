@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Social\UsSocialSecurityNumberValidator;
+use Override;
 
 /**
  * Probe that extracts U.S. Social Security Numbers (SSN) from text.
@@ -23,8 +24,7 @@ class UsSocialSecurityNumberProbe extends Probe implements IProbe
         parent::__construct($validator ?? new UsSocialSecurityNumberValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/(?<!\d)\d{3}-\d{2}-\d{4}(?!\d)/', $text);
@@ -33,7 +33,7 @@ class UsSocialSecurityNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::US_SOCIAL_SECURITY_NUMBER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::US_SOCIAL_SECURITY_NUMBER;

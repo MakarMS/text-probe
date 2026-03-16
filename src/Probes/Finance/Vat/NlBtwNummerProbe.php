@@ -8,6 +8,7 @@ use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
 use TextProbe\Validator\Contracts\IValidator;
 use TextProbe\Validator\Finance\Vat\NlVatChecksumValidator;
+use Override;
 
 /**
  * Probe that extracts VAT numbers for NlBtwNummerProbe.
@@ -23,8 +24,7 @@ class NlBtwNummerProbe extends Probe implements IProbe
         parent::__construct($validator ?? new NlVatChecksumValidator());
     }
 
-    #[\Override]
-
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\bNL\d{9}B\d{2}\b/', $text);
@@ -33,7 +33,7 @@ class NlBtwNummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_NL_BTW_NUMMER
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_NL_BTW_NUMMER;

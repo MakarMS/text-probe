@@ -6,6 +6,7 @@ use BackedEnum;
 use TextProbe\Enums\ProbeType;
 use TextProbe\Probes\Contracts\IProbe;
 use TextProbe\Probes\Probe;
+use Override;
 
 /**
  * Probe that extracts Ansible Variable values from text.
@@ -20,7 +21,7 @@ use TextProbe\Probes\Probe;
  */
 class AnsibleVariableProbe extends Probe implements IProbe
 {
-    #[\Override]
+    #[Override]
     public function probe(string $text): array
     {
         return $this->findByRegex('/\{\{\s*[a-zA-Z_][\w.]*\s*\}\}/', $text);
@@ -29,7 +30,7 @@ class AnsibleVariableProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ANSIBLE_VARIABLE
      */
-    #[\Override]
+    #[Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ANSIBLE_VARIABLE;
