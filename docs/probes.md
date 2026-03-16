@@ -14,6 +14,7 @@
 - [Date & Time](#-date--time)
 - [Finance](#-finance)
   - [Currency](#-currency)
+  - [Market Identifiers](#-market-identifiers)
   - [Crypto Transaction IDs](#-crypto-transaction-ids)
   - [Invoices & Payment References](#-invoices--payment-references)
   - [VAT Numbers](#-vat-numbers)
@@ -27,12 +28,14 @@
   - [Crypto](#-crypto)
 - [Logistics](#-logistics)
   - [Tracking Numbers](#-tracking-numbers)
+  - [Trade Identifiers](#-trade-identifiers)
 - [Barcodes](#-barcodes)
 - [Geolocation](#-geolocation)
 - [Social & Tags](#-social--tags)
 - [Text](#-text)
 - [UUID & Identifiers](#-uuid--identifiers)
 - [Versioning](#-versioning)
+- [Software & Config](#-software--config)
 - [Web & Network](#-web--network)
 - [System & DevOps](#-system--devops)
 - [Docker](#-docker)
@@ -54,6 +57,8 @@ Built-in probes ship with sensible default validators, but these can be replaced
   structure and valid discriminator.
 
 - `EmailProbe` — extracts email addresses.
+
+- `EmailHeaderMessageIdProbe` — extracts RFC 5322 `Message-ID` values (angle-bracket identifiers).
 
 - `RussianPassportNumberProbe` — extracts Russian internal passport numbers (series and six-digit number), supporting
   spaces or dashes between parts with basic structure validation.
@@ -90,6 +95,8 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `MrzTd3Probe` — extracts MRZ TD3 blocks (2 lines × 44 chars).
 
 - `InternationalPassportProbe` — extracts MRZ passport blocks across TD1/TD2/TD3 formats.
+
+- `UsPassportNumberProbe` — extracts U.S. passport numbers.
 
 #### 🧾 Tax Numbers
 
@@ -177,7 +184,11 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `UsDriverLicenseNumberProbe` — extracts US driving licence numbers.
 
+- `EuDrivingLicenseCategoryProbe` — extracts EU driving licence categories (`AM`, `A1`, `B`, `C+E`, etc.).
+
 - `DriverLicenseProbe` — extracts driver licence numbers across supported regions.
+
+- `ImeiProbe` — extracts IMEI device identifiers (15 digits with checksum).
 
 #### 🏢 Company Registration
 
@@ -224,6 +235,32 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `GoogleApiKeyProbe` — extracts Google API keys starting with `AIza`.
 
 - `AwsAccessKeyIdProbe` — extracts AWS access key IDs (`AKIA`/`ASIA` + 16 chars).
+
+- `AwsSecretAccessKeyProbe` — extracts AWS secret access keys in common assignment formats.
+
+- `FirebaseServerKeyProbe` — extracts Firebase server keys.
+
+- `DatadogApiKeyProbe` — extracts Datadog API keys.
+
+- `SendgridApiKeyProbe` — extracts SendGrid API keys.
+
+- `MailgunApiKeyProbe` — extracts Mailgun API keys.
+
+- `NewRelicLicenseKeyProbe` — extracts New Relic license keys.
+
+- `TwilioSidProbe` — extracts Twilio SID identifiers.
+
+- `TwilioAuthTokenProbe` — extracts Twilio auth tokens.
+
+- `JenkinsApiTokenProbe` — extracts Jenkins API tokens.
+
+- `GithubActionsTokenProbe` — extracts GitHub Actions runtime tokens.
+
+- `GitlabPersonalAccessTokenProbe` — extracts GitLab personal access tokens.
+
+- `SentryDsnProbe` — extracts Sentry DSN URLs.
+
+- `StripeWebhookSecretProbe` — extracts Stripe webhook signing secrets (`whsec_...`).
 
 - `BearerTokenProbe` — extracts bearer token strings (JWT or opaque).
 
@@ -291,11 +328,27 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `TimeProbe` — extracts times (e.g., `14:30`, `14:30:15`, optional AM/PM).
 
+- `DurationIso8601Probe` — extracts ISO 8601 durations (e.g., `PT15M`, `P3DT4H`).
+
+- `LogTimestampIso8601Probe` — extracts ISO 8601 timestamps used in logs.
+
+- `UnixEpochTimestampProbe` — extracts Unix epoch timestamps (seconds/milliseconds).
+
 ### 💰 Finance
 
 #### 💱 Currency
 
 - `CurrencyCodeProbe` — extracts ISO-4217 currency codes (e.g., `USD`, `EUR`) using a whitelist validator.
+
+#### 📈 Market identifiers
+
+- `CusipCodeProbe` — extracts CUSIP securities identifiers.
+
+- `SedolCodeProbe` — extracts SEDOL securities identifiers.
+
+- `IsinCodeProbe` — extracts ISIN securities identifiers.
+
+- `LeiCodeProbe` — extracts LEI (Legal Entity Identifier) codes.
 
 #### 🔗 Crypto transaction IDs
 
@@ -443,9 +496,15 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `BankBicCodeProbe` — Extracts SWIFT/BIC codes (8–11 characters, e.g., `DEUTDEFF500`).
 
+- `SwiftBicCodeStrictProbe` — extracts strictly formatted SWIFT/BIC codes (8 or 11 chars, uppercase).
+
 - `BankIbanNumberProbe` — Extracts IBAN numbers, supports spaces, validates using Mod-97.
 
+- `IbanMaskedProbe` — extracts masked IBAN values.
+
 - `BankRoutingNumberProbe` — Extracts US Routing Numbers (9 digits), validates the checksum.
+
+- `AbaRoutingMaskedProbe` — extracts masked ABA routing numbers.
 
 #### 💳 Bank Cards
 
@@ -455,6 +514,8 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `BankCardNumberProbe` — extracts major card schemes like Visa, Mastercard, Amex, and all other supported schemes
   listed below.
+
+- `BankCardMaskedProbe` — extracts masked bank card numbers.
 
 - `BankAmexCardProbe` — American Express (prefixes: 34, 37), 15 digits.
 
@@ -512,6 +573,10 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `UsdtTrc20AddressProbe` — Extracts USDT TRC20 addresses (TRON-based, Base58, starts with 'T', 34 chars).
 
+- `CryptoXpubProbe` — extracts BIP32 extended public keys (`xpub`, `ypub`, `zpub`, `tpub`).
+
+- `LightningInvoiceProbe` — extracts BOLT11 Lightning invoices.
+
 ### 📦 Logistics
 
 #### 📦 Tracking numbers
@@ -562,6 +627,10 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `TrackingNumberProbe` — extracts tracking numbers across supported carriers.
 
+#### 🛃 Trade identifiers
+
+- `EuEoriNumberProbe` — extracts EU EORI customs registration numbers.
+
 ### 🏷 Barcodes
 
 - `Ean13Probe` — extracts EAN-13 barcodes.
@@ -569,6 +638,8 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `UpcAProbe` — extracts UPC-A barcodes.
 
 - `BarcodeValueProbe` — extracts barcode values across supported formats.
+
+- `Gs1Gtin14Probe` — extracts GS1 GTIN-14 barcodes.
 
 ### 🗺 Geolocation
 
@@ -583,10 +654,30 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `HashtagProbe` — extracts hashtags from text (e.g., `#example`), supporting Unicode letters, numbers, and underscores,
   detecting hashtags in any position of the text.
 
+- `MastodonHandleProbe` — extracts Mastodon handles (e.g., `@user@instance.tld`).
+
+- `XUsernameProbe` — extracts X/Twitter usernames.
+
+- `RedditUsernameProbe` — extracts Reddit usernames.
+
+- `TiktokUsernameProbe` — extracts TikTok usernames.
+
+- `BlueskyHandleProbe` — extracts Bluesky handles (e.g., `name.bsky.social`).
+
+- `LinkedInProfileUrlProbe` — extracts LinkedIn profile URLs.
+
+- `YoutubeChannelUrlProbe` — extracts YouTube channel URLs.
+
 ### ✍️ Text
 
 - `AllCapsSequenceProbe` — extracts sequences of two or more consecutive uppercase letters (Unicode-aware), making it
   easy to detect acronyms or emphasised ALL CAPS tokens in text.
+
+- `Isbn10Probe` — extracts ISBN-10 numbers.
+
+- `Isbn13Probe` — extracts ISBN-13 numbers.
+
+- `IssnProbe` — extracts ISSN identifiers.
 
 ### 🆔 UUID & Identifiers
 
@@ -625,6 +716,34 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `SemverRangeProbe` — extracts semantic version ranges, including Composer-style constraints.
 
+- `SemverPreReleaseProbe` — extracts semantic version pre-release identifiers.
+
+### 🧩 Software & Config
+
+- `ComposerPackageNameProbe` — extracts Composer package names (`vendor/package`).
+
+- `NpmPackageNameProbe` — extracts npm package names (including scoped names).
+
+- `PypiPackageNameProbe` — extracts PyPI package names.
+
+- `NugetPackageIdProbe` — extracts NuGet package identifiers.
+
+- `GoModulePathProbe` — extracts Go module paths.
+
+- `RustCrateNameProbe` — extracts Rust crate names.
+
+- `MavenCoordinateProbe` — extracts Maven coordinates.
+
+- `GradleDependencyNotationProbe` — extracts Gradle dependency notations.
+
+- `IniSectionProbe` — extracts INI section headers.
+
+- `YamlKeyPathProbe` — extracts YAML key paths.
+
+- `SqlTableNameProbe` — extracts SQL table names.
+
+- `LicenseSpdxIdProbe` — extracts SPDX license identifiers.
+
 ### 🌐 Web & Network
 
 - `DomainProbe` — extracts domain names, including internationalized (Unicode) domains.
@@ -635,6 +754,22 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `IPv6Probe` — extracts IPv6 addresses, including compressed formats, IPv4-mapped addresses, and zone indexes (e.g.,
   `%eth0`).
+
+- `Ipv4CidrProbe` — extracts IPv4 CIDR notations.
+
+- `Ipv6CidrProbe` — extracts IPv6 CIDR notations.
+
+- `AsnNumberProbe` — extracts autonomous system numbers (ASN).
+
+- `MccMncProbe` — extracts MCC/MNC network operator codes.
+
+- `ImsiProbe` — extracts IMSI subscriber identifiers.
+
+- `PortNumberProbe` — extracts standalone port numbers.
+
+- `HostPortProbe` — extracts `host:port` pairs.
+
+- `SocketAddressProbe` — extracts socket addresses (host and port).
 
 - `LinkProbe` — extracts hyperlinks, including ones with IP addresses, ports, or without a protocol.
 
@@ -648,6 +783,20 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `HtmlTagProbe` — extracts HTML tags, returning full paired segments with their content or standalone/self-closing
   tags.
+
+- `HtmlAnchorHrefProbe` — extracts `href` values from HTML `<a>` tags.
+
+- `HtmlImgSrcProbe` — extracts `src` values from HTML `<img>` tags.
+
+- `HtmlScriptSrcProbe` — extracts `src` values from HTML `<script>` tags.
+
+- `HtmlMetaRefreshUrlProbe` — extracts redirect URLs from HTML meta refresh tags.
+
+- `MarkdownLinkProbe` — extracts Markdown links (`[text](url)`).
+
+- `MarkdownImageProbe` — extracts Markdown image links (`![alt](url)`).
+
+- `XmlTagProbe` — extracts XML tags.
 
 - `HexColorProbe` — extracts CSS-style hexadecimal color codes (`#fff`, `#ffffff`), ensuring only 3- or 6-digit values
   are matched while ignoring longer hexadecimal tokens.
@@ -669,6 +818,8 @@ Built-in probes ship with sensible default validators, but these can be replaced
   formats.
 
 - `HttpStatusLineProbe` — extracts HTTP status lines like `HTTP/1.1 200` with valid status ranges.
+
+- `HttpRequestLineProbe` — extracts HTTP request lines (e.g., `GET /path HTTP/1.1`).
 
 - `HttpStatusCodeProbe` — extracts HTTP status codes from status lines or standalone numeric codes.
 
@@ -752,6 +903,8 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 - `CiPipelineIdProbe` — extracts CI pipeline IDs.
 
+- `CommitConventionalTypeProbe` — extracts Conventional Commit types (`feat`, `fix`, `chore`, etc.).
+
 - `GitFullShaProbe` — extracts 40-character Git commit SHAs.
 
 - `GitShortShaProbe` — extracts short Git commit SHAs.
@@ -765,6 +918,56 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `GitRefTagsProbe` — extracts `refs/tags/*` Git references.
 
 - `GitTagProbe` — extracts Git tag names.
+
+- `GithubIssueUrlProbe` — extracts GitHub issue URLs.
+
+- `GithubPullRequestUrlProbe` — extracts GitHub pull request URLs.
+
+- `GitlabMergeRequestUrlProbe` — extracts GitLab merge request URLs.
+
+- `AnsibleVariableProbe` — extracts Ansible/Jinja variable expressions.
+
+- `TerraformResourceAddressProbe` — extracts Terraform resource addresses.
+
+- `TerraformVariableReferenceProbe` — extracts Terraform variable references.
+
+- `CronExpressionProbe` — extracts cron expressions.
+
+- `SystemdUnitNameProbe` — extracts systemd unit names.
+
+- `KubernetesAnnotationKeyProbe` — extracts Kubernetes annotation keys.
+
+- `KubernetesLabelSelectorProbe` — extracts Kubernetes label selectors.
+
+- `KubernetesPodNameProbe` — extracts Kubernetes pod names.
+
+- `HelmReleaseNameProbe` — extracts Helm release names.
+
+- `AwsArnProbe` — extracts AWS ARN identifiers.
+
+- `AwsRegionProbe` — extracts AWS region codes.
+
+- `CloudflareZoneIdProbe` — extracts Cloudflare Zone IDs.
+
+- `CorrelationIdProbe` — extracts correlation IDs.
+
+- `TraceIdW3cProbe` — extracts W3C trace IDs.
+
+- `SpanIdW3cProbe` — extracts W3C span IDs.
+
+- `AmqpUrlProbe` — extracts AMQP URLs.
+
+- `KafkaBootstrapServerProbe` — extracts Kafka bootstrap server endpoints.
+
+- `ElasticsearchUrlProbe` — extracts Elasticsearch URLs.
+
+- `MongoDbConnectionStringProbe` — extracts MongoDB connection strings.
+
+- `MysqlConnectionStringProbe` — extracts MySQL connection strings.
+
+- `PostgresConnectionStringProbe` — extracts PostgreSQL connection strings.
+
+- `RedisConnectionStringProbe` — extracts Redis connection strings.
 
 ### 🐳 Docker
 
@@ -792,3 +995,9 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `DockerImageDigestProbe` — extracts Docker image digests in the form `sha256:<64-hex>` from logs, Docker/registry
   output
   and SBOM metadata, including references like `image@sha256:<digest>`, while always returning only the digest value.
+
+- `DockerComposeServiceNameProbe` — extracts Docker Compose service names.
+
+- `DockerNetworkNameProbe` — extracts Docker network names.
+
+- `DockerVolumeNameProbe` — extracts Docker volume names.

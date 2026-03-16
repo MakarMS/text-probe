@@ -1,6 +1,6 @@
 <?php
 
-namespace TextProbe\Probes\Vehicle;
+namespace TextProbe\Probes\Identity\Vehicle;
 
 use BackedEnum;
 use TextProbe\Enums\ProbeType;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Probes\Identity\Vehicle;
+namespace Tests\Probes\Identity\Vehicle;
 
 use PHPUnit\Framework\TestCase;
 use TextProbe\Enums\ProbeType;
-use TextProbe\Probes\Vehicle\CarVinProbe;
+use TextProbe\Probes\Identity\Vehicle\CarVinProbe;
 use TextProbe\Validator\Vehicle\CarVinValidator;
 
 /**
