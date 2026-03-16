@@ -28,6 +28,7 @@ class KubernetesAnnotationKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KUBERNETES_ANNOTATION_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KUBERNETES_ANNOTATION_KEY;

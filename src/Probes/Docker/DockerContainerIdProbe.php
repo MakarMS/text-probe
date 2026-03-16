@@ -30,6 +30,7 @@ class DockerContainerIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_CONTAINER_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_CONTAINER_ID;

@@ -40,6 +40,7 @@ class PrivateIPv4Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PRIVATE_IPV4
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PRIVATE_IPV4;

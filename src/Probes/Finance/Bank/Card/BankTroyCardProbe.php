@@ -37,6 +37,7 @@ class BankTroyCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_TROY_CARD_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_TROY_CARD_NUMBER;

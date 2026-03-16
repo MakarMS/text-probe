@@ -33,6 +33,7 @@ class PemRsaPrivateKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PEM_RSA_PRIVATE_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PEM_RSA_PRIVATE_KEY;

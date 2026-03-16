@@ -35,6 +35,7 @@ class Gs1Gtin14Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GS1_GTIN_14
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GS1_GTIN_14;

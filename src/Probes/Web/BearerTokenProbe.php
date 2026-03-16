@@ -27,6 +27,7 @@ class BearerTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BEARER_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BEARER_TOKEN;

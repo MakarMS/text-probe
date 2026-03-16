@@ -24,6 +24,7 @@ class BcryptHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BCRYPT_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BCRYPT_HASH;

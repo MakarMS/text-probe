@@ -31,6 +31,7 @@ class HuAdoazonositoJelVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_HU_ADOAZONOSITO_JEL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_HU_ADOAZONOSITO_JEL;

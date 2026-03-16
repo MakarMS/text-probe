@@ -23,6 +23,7 @@ class SolanaAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_SOLANA_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_SOLANA_ADDRESS;

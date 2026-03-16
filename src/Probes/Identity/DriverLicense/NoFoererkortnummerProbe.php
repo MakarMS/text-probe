@@ -20,6 +20,7 @@ class NoFoererkortnummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NO_FOERERKORTNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NO_FOERERKORTNUMMER;

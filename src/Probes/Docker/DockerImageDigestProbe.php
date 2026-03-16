@@ -34,6 +34,7 @@ class DockerImageDigestProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_IMAGE_DIGEST
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_IMAGE_DIGEST;

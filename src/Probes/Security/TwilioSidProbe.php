@@ -28,6 +28,7 @@ class TwilioSidProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TWILIO_SID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TWILIO_SID;

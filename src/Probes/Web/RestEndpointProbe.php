@@ -53,6 +53,7 @@ class RestEndpointProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::REST_ENDPOINT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::REST_ENDPOINT;

@@ -31,6 +31,7 @@ class SkDicVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_SK_DIC
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_SK_DIC;

@@ -20,6 +20,7 @@ class Fedex12Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FEDEX_12
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FEDEX_12;

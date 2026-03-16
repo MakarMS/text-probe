@@ -22,6 +22,7 @@ class BasicAuthBase64Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BASIC_AUTH_BASE64
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BASIC_AUTH_BASE64;

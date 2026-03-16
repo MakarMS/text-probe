@@ -20,6 +20,7 @@ class UsdtErc20TxHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDT_ERC20_TX_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDT_ERC20_TX_HASH;

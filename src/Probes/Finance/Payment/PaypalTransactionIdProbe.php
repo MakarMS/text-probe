@@ -20,6 +20,7 @@ class PaypalTransactionIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PAYPAL_TRANSACTION_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PAYPAL_TRANSACTION_ID;

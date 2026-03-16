@@ -28,6 +28,7 @@ class RustCrateNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RUST_CRATE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUST_CRATE_NAME;

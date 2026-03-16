@@ -26,6 +26,7 @@ class Ups1ZTrackingProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UPS_1Z_TRACKING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UPS_1Z_TRACKING;

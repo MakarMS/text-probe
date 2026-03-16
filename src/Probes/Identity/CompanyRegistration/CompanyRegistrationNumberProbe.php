@@ -59,6 +59,7 @@ class CompanyRegistrationNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COMPANY_REGISTRATION_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::COMPANY_REGISTRATION_NUMBER;

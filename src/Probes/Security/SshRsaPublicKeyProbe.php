@@ -22,6 +22,7 @@ class SshRsaPublicKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SSH_RSA_PUBLIC_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SSH_RSA_PUBLIC_KEY;

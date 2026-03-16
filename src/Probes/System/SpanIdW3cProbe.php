@@ -35,6 +35,7 @@ class SpanIdW3cProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SPAN_ID_W3C
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SPAN_ID_W3C;

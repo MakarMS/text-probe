@@ -31,6 +31,7 @@ class FiAlvNumeroProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_FI_ALV_NUMERO
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_FI_ALV_NUMERO;

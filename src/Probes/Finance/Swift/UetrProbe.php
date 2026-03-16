@@ -20,6 +20,7 @@ class UetrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SWIFT_UETR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SWIFT_UETR;

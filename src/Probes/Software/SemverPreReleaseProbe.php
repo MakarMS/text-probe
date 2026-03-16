@@ -28,6 +28,7 @@ class SemverPreReleaseProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEMVER_PRE_RELEASE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEMVER_PRE_RELEASE;

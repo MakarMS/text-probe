@@ -20,6 +20,7 @@ class GitTagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_TAG
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_TAG;

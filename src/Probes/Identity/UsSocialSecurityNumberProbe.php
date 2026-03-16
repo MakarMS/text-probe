@@ -31,6 +31,7 @@ class UsSocialSecurityNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::US_SOCIAL_SECURITY_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::US_SOCIAL_SECURITY_NUMBER;

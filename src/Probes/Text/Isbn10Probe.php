@@ -35,6 +35,7 @@ class Isbn10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ISBN_10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ISBN_10;

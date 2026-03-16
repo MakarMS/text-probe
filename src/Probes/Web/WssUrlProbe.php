@@ -20,6 +20,7 @@ class WssUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::WSS_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::WSS_URL;

@@ -24,6 +24,7 @@ class BitcoinAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_BITCOIN_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_BITCOIN_ADDRESS;

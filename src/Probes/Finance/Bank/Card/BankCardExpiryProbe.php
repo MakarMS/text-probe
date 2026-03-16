@@ -35,6 +35,7 @@ class BankCardExpiryProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_CARD_EXPIRY_DATE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_CARD_EXPIRY_DATE;

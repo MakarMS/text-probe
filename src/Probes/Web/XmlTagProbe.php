@@ -28,6 +28,7 @@ class XmlTagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::XML_TAG
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::XML_TAG;

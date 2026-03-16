@@ -28,6 +28,7 @@ class YoutubeChannelUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::YOUTUBE_CHANNEL_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::YOUTUBE_CHANNEL_URL;

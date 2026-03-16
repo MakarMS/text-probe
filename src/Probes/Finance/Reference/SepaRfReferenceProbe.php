@@ -31,6 +31,7 @@ class SepaRfReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEPA_RF_REFERENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEPA_RF_REFERENCE;

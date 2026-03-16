@@ -35,6 +35,7 @@ class SlackUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SLACK_USERNAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SLACK_USERNAME;

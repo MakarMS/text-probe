@@ -26,6 +26,7 @@ class ItCodiceFiscaleProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IT_CODICE_FISCALE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IT_CODICE_FISCALE;

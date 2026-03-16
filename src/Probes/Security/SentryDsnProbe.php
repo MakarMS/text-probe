@@ -28,6 +28,7 @@ class SentryDsnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SENTRY_DSN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SENTRY_DSN;

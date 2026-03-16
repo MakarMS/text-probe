@@ -28,6 +28,7 @@ class UnixEpochTimestampProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UNIX_EPOCH_TIMESTAMP
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UNIX_EPOCH_TIMESTAMP;

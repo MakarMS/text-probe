@@ -31,6 +31,7 @@ class CzDicProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_CZ_DIC
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_CZ_DIC;

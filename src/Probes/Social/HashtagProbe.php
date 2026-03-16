@@ -24,6 +24,7 @@ class HashtagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HASHTAG
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HASHTAG;

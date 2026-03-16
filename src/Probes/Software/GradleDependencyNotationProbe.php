@@ -28,6 +28,7 @@ class GradleDependencyNotationProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GRADLE_DEPENDENCY_NOTATION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GRADLE_DEPENDENCY_NOTATION;

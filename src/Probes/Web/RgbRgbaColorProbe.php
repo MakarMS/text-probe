@@ -43,6 +43,7 @@ class RgbRgbaColorProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COLOR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RGB_RGBA_COLOR;

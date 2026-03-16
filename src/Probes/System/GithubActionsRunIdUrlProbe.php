@@ -20,6 +20,7 @@ class GithubActionsRunIdUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_ACTIONS_RUN_ID_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_ACTIONS_RUN_ID_URL;

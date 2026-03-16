@@ -23,6 +23,7 @@ class GitHubFineGrainedTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_FINE_GRAINED_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_FINE_GRAINED_TOKEN;

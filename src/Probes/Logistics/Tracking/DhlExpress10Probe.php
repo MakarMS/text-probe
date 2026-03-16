@@ -20,6 +20,7 @@ class DhlExpress10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DHL_EXPRESS_10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DHL_EXPRESS_10;

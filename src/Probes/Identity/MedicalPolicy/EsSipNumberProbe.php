@@ -20,6 +20,7 @@ class EsSipNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ES_SIP_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ES_SIP_NUMBER;

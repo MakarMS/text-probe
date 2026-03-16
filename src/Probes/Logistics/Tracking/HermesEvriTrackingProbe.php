@@ -20,6 +20,7 @@ class HermesEvriTrackingProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HERMES_EVRI_TRACKING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HERMES_EVRI_TRACKING;

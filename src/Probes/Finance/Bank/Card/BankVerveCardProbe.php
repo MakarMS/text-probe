@@ -38,6 +38,7 @@ class BankVerveCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_VERVE_CARD_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_VERVE_CARD_NUMBER;

@@ -20,6 +20,7 @@ class FrNumeroFiscalReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_NUMERO_FISCAL_REFERENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_NUMERO_FISCAL_REFERENCE;

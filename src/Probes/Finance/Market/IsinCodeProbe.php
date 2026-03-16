@@ -35,6 +35,7 @@ class IsinCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ISIN_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ISIN_CODE;

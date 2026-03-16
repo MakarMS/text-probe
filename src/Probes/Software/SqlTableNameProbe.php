@@ -28,6 +28,7 @@ class SqlTableNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SQL_TABLE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SQL_TABLE_NAME;

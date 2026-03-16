@@ -26,6 +26,7 @@ class PocztaPolskaS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POCZTA_POLSKA_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POCZTA_POLSKA_S10;

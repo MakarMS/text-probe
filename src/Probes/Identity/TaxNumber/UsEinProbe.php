@@ -20,6 +20,7 @@ class UsEinProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::US_EIN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::US_EIN;

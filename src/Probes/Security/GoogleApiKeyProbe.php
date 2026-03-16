@@ -22,6 +22,7 @@ class GoogleApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GOOGLE_API_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GOOGLE_API_KEY;

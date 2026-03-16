@@ -28,6 +28,7 @@ class GithubIssueUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_ISSUE_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_ISSUE_URL;

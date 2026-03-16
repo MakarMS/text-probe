@@ -27,6 +27,7 @@ class TelegramUserLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TELEGRAM_USER_LINK
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TELEGRAM_USER_LINK;

@@ -20,6 +20,7 @@ class InvoiceAlnumIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::INVOICE_ALNUM_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::INVOICE_ALNUM_ID;

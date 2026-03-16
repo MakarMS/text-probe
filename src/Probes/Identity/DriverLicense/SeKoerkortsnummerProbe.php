@@ -20,6 +20,7 @@ class SeKoerkortsnummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SE_KOERKORTSNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SE_KOERKORTSNUMMER;

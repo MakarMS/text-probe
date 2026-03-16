@@ -33,6 +33,7 @@ class OpenSshPrivateKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::OPENSSH_PRIVATE_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::OPENSSH_PRIVATE_KEY;

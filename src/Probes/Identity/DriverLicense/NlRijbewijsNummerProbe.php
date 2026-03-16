@@ -20,6 +20,7 @@ class NlRijbewijsNummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NL_RIJBEWIJS_NUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NL_RIJBEWIJS_NUMMER;

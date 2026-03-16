@@ -20,6 +20,7 @@ class ItNumeroPatenteProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IT_NUMERO_PATENTE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IT_NUMERO_PATENTE;

@@ -28,6 +28,7 @@ class HtmlMetaRefreshUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTML_META_REFRESH_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTML_META_REFRESH_URL;

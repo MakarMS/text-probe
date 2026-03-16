@@ -31,6 +31,7 @@ class DeUstIdNrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_DE_UST_ID_NR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_DE_UST_ID_NR;

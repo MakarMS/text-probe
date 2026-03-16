@@ -20,6 +20,7 @@ class GraphqlOperationKeywordProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GRAPHQL_OPERATION_KEYWORD
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GRAPHQL_OPERATION_KEYWORD;

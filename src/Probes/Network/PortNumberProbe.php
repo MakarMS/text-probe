@@ -28,6 +28,7 @@ class PortNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PORT_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PORT_NUMBER;

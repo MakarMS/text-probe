@@ -24,6 +24,7 @@ class RippleAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_RIPPLE_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_RIPPLE_ADDRESS;

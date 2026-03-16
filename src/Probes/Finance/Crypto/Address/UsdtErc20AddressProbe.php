@@ -23,6 +23,7 @@ class UsdtErc20AddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDT_ERC20_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDT_ERC20_ADDRESS;

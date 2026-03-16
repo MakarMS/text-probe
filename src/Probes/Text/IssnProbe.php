@@ -35,6 +35,7 @@ class IssnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ISSN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ISSN;

@@ -28,6 +28,7 @@ class TerraformVariableReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TERRAFORM_VARIABLE_REFERENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TERRAFORM_VARIABLE_REFERENCE;

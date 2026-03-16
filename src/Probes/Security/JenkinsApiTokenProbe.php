@@ -28,6 +28,7 @@ class JenkinsApiTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JENKINS_API_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JENKINS_API_TOKEN;

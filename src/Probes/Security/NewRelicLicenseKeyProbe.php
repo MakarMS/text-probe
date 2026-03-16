@@ -28,6 +28,7 @@ class NewRelicLicenseKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NEW_RELIC_LICENSE_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NEW_RELIC_LICENSE_KEY;

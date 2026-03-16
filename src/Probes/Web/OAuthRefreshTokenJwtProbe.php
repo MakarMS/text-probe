@@ -22,6 +22,7 @@ class OAuthRefreshTokenJwtProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::OAUTH_REFRESH_TOKEN_JWT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::OAUTH_REFRESH_TOKEN_JWT;

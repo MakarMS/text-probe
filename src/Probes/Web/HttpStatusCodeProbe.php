@@ -41,6 +41,7 @@ class HttpStatusCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTTP_STATUS_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTTP_STATUS_CODE;

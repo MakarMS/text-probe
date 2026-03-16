@@ -26,6 +26,7 @@ class UspsIntlS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::USPS_INTL_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::USPS_INTL_S10;

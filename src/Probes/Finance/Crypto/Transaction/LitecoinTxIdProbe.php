@@ -20,6 +20,7 @@ class LitecoinTxIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_LITECOIN_TX_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_LITECOIN_TX_ID;

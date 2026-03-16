@@ -28,6 +28,7 @@ class RedisConnectionStringProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::REDIS_CONNECTION_STRING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::REDIS_CONNECTION_STRING;

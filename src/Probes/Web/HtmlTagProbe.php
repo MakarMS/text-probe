@@ -30,6 +30,7 @@ class HtmlTagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTML_TAG
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTML_TAG;

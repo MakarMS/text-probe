@@ -53,6 +53,7 @@ class QueryParameterProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::QUERY_PARAMETER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::QUERY_PARAMETER;

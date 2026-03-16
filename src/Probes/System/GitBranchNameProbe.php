@@ -20,6 +20,7 @@ class GitBranchNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_BRANCH_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_BRANCH_NAME;

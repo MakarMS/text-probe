@@ -28,6 +28,7 @@ class NugetPackageIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NUGET_PACKAGE_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NUGET_PACKAGE_ID;

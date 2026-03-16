@@ -20,6 +20,7 @@ class DeFuehrerscheinnummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DE_FUEHRERSCHEINNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DE_FUEHRERSCHEINNUMMER;

@@ -20,6 +20,7 @@ class SwiftField20ReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SWIFT_FIELD20_REFERENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SWIFT_FIELD20_REFERENCE;

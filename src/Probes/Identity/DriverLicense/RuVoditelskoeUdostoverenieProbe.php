@@ -20,6 +20,7 @@ class RuVoditelskoeUdostoverenieProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RU_VODITELSKOE_UDOSTOVERENIE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RU_VODITELSKOE_UDOSTOVERENIE;

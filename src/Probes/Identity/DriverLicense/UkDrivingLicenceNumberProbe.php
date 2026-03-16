@@ -20,6 +20,7 @@ class UkDrivingLicenceNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UK_DRIVING_LICENCE_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UK_DRIVING_LICENCE_NUMBER;

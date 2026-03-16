@@ -26,6 +26,7 @@ class RussiaPostS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RUSSIA_POST_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUSSIA_POST_S10;

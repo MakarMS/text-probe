@@ -23,6 +23,7 @@ class StripeSecretKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_SECRET_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_SECRET_KEY;

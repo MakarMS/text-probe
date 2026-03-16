@@ -20,6 +20,7 @@ class PlKrsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PL_KRS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PL_KRS;

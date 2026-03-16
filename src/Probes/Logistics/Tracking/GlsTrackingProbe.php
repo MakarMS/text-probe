@@ -20,6 +20,7 @@ class GlsTrackingProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GLS_TRACKING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GLS_TRACKING;

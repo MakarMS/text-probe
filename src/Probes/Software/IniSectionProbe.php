@@ -28,6 +28,7 @@ class IniSectionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::INI_SECTION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::INI_SECTION;

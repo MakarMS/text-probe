@@ -28,6 +28,7 @@ class MccMncProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MCC_MNC
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MCC_MNC;

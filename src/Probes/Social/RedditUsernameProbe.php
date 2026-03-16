@@ -28,6 +28,7 @@ class RedditUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::REDDIT_USERNAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::REDDIT_USERNAME;

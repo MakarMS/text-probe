@@ -31,6 +31,7 @@ class CurrencyCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CURRENCY_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CURRENCY_CODE;

@@ -20,6 +20,7 @@ class CryptoTransactionIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_TRANSACTION_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_TRANSACTION_ID;

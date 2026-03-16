@@ -28,6 +28,7 @@ class EuEoriNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EU_EORI_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EU_EORI_NUMBER;

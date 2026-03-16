@@ -36,6 +36,7 @@ class CusipCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CUSIP_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CUSIP_CODE;

@@ -28,6 +28,7 @@ class MavenCoordinateProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MAVEN_COORDINATE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MAVEN_COORDINATE;

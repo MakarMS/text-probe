@@ -57,6 +57,7 @@ class CorsHeaderProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORS_HEADER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORS_HEADER;

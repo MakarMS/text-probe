@@ -28,6 +28,7 @@ class DurationIso8601Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DURATION_ISO8601
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DURATION_ISO8601;

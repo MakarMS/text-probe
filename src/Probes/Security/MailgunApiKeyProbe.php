@@ -28,6 +28,7 @@ class MailgunApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MAILGUN_API_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MAILGUN_API_KEY;

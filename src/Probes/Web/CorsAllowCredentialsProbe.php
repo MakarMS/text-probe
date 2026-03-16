@@ -20,6 +20,7 @@ class CorsAllowCredentialsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORS_ALLOW_CREDENTIALS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORS_ALLOW_CREDENTIALS;

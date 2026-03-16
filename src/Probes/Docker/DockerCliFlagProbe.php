@@ -63,6 +63,7 @@ class DockerCliFlagProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_CLI_FLAG
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_CLI_FLAG;

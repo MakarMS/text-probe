@@ -28,6 +28,7 @@ class TerraformResourceAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TERRAFORM_RESOURCE_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TERRAFORM_RESOURCE_ADDRESS;

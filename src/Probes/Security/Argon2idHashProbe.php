@@ -24,6 +24,7 @@ class Argon2idHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ARGON2ID_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ARGON2ID_HASH;

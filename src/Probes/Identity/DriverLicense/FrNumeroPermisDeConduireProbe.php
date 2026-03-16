@@ -20,6 +20,7 @@ class FrNumeroPermisDeConduireProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_NUMERO_PERMIS_DE_CONDUIRE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_NUMERO_PERMIS_DE_CONDUIRE;

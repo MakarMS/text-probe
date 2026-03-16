@@ -20,6 +20,7 @@ class PlNumerPrawaJazdyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PL_NUMER_PRAWA_JAZDY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PL_NUMER_PRAWA_JAZDY;

@@ -53,6 +53,7 @@ class BarcodeValueProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BARCODE_VALUE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BARCODE_VALUE;

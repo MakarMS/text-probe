@@ -32,6 +32,7 @@ class ApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::API_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::API_KEY;

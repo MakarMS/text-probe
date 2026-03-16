@@ -28,6 +28,7 @@ class AwsSecretAccessKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_SECRET_ACCESS_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_SECRET_ACCESS_KEY;

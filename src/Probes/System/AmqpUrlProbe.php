@@ -28,6 +28,7 @@ class AmqpUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AMQP_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AMQP_URL;

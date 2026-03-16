@@ -20,6 +20,7 @@ class StripeInvoiceIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_INVOICE_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_INVOICE_ID;

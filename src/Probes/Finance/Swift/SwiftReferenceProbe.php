@@ -48,6 +48,7 @@ class SwiftReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SWIFT_REFERENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SWIFT_REFERENCE;

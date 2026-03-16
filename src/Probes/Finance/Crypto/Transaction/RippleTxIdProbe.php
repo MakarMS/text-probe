@@ -20,6 +20,7 @@ class RippleTxIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_RIPPLE_TX_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_RIPPLE_TX_ID;

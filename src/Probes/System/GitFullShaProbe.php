@@ -20,6 +20,7 @@ class GitFullShaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_FULL_SHA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_FULL_SHA;

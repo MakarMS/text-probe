@@ -26,6 +26,7 @@ class CorreosS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORREOS_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORREOS_S10;

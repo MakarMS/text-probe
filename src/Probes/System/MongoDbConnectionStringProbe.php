@@ -28,6 +28,7 @@ class MongoDbConnectionStringProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MONGODB_CONNECTION_STRING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MONGODB_CONNECTION_STRING;

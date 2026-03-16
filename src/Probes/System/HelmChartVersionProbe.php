@@ -20,6 +20,7 @@ class HelmChartVersionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HELM_CHART_VERSION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HELM_CHART_VERSION;

@@ -37,6 +37,7 @@ class GeoCoordinatesProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GEO_COORDINATES
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GEO_COORDINATES;

@@ -28,6 +28,7 @@ class CloudflareZoneIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CLOUDFLARE_ZONE_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CLOUDFLARE_ZONE_ID;

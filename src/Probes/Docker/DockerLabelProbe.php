@@ -32,6 +32,7 @@ class DockerLabelProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_LABEL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_LABEL;

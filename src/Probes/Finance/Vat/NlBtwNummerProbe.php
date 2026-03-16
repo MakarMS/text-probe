@@ -31,6 +31,7 @@ class NlBtwNummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_NL_BTW_NUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_NL_BTW_NUMMER;

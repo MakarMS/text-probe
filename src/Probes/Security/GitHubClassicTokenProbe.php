@@ -22,6 +22,7 @@ class GitHubClassicTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_CLASSIC_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_CLASSIC_TOKEN;

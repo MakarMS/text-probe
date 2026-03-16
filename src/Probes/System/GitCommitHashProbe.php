@@ -20,6 +20,7 @@ class GitCommitHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_COMMIT_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_COMMIT_HASH;

@@ -28,6 +28,7 @@ class IbanMaskedProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IBAN_MASKED
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IBAN_MASKED;

@@ -28,6 +28,7 @@ class GoModulePathProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GO_MODULE_PATH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GO_MODULE_PATH;

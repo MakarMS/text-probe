@@ -26,6 +26,7 @@ class LaPosteColissimoS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LA_POSTE_COLISSIMO_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LA_POSTE_COLISSIMO_S10;

@@ -22,6 +22,7 @@ class AwsAccessKeyIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_ACCESS_KEY_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_ACCESS_KEY_ID;

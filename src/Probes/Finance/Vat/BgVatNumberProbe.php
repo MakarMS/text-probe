@@ -31,6 +31,7 @@ class BgVatNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_BG_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_BG_NUMBER;

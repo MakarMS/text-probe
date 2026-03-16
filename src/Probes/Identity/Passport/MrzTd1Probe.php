@@ -20,6 +20,7 @@ class MrzTd1Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MRZ_TD1
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MRZ_TD1;

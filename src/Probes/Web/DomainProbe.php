@@ -24,6 +24,7 @@ class DomainProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOMAIN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOMAIN;

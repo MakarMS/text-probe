@@ -28,6 +28,7 @@ class CommitConventionalTypeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COMMIT_CONVENTIONAL_TYPE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::COMMIT_CONVENTIONAL_TYPE;

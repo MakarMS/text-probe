@@ -28,6 +28,7 @@ class LicenseSpdxIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LICENSE_SPDX_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LICENSE_SPDX_ID;

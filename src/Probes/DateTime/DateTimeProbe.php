@@ -41,6 +41,7 @@ class DateTimeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DATETIME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DATETIME;

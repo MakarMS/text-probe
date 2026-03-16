@@ -28,6 +28,7 @@ class KubernetesPodNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KUBERNETES_POD_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KUBERNETES_POD_NAME;

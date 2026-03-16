@@ -20,6 +20,7 @@ class ItCodiceReaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IT_CODICE_REA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IT_CODICE_REA;

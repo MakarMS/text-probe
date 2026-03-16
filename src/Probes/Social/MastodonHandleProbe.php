@@ -28,6 +28,7 @@ class MastodonHandleProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MASTODON_HANDLE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MASTODON_HANDLE;

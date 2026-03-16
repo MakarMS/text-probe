@@ -26,6 +26,7 @@ class DeutschePostS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DEUTSCHE_POST_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DEUTSCHE_POST_S10;

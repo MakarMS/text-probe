@@ -28,6 +28,7 @@ class SystemdUnitNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SYSTEMD_UNIT_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SYSTEMD_UNIT_NAME;

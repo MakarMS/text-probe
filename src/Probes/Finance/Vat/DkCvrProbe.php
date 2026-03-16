@@ -31,6 +31,7 @@ class DkCvrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_DK_CVR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_DK_CVR;

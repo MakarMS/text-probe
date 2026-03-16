@@ -26,6 +26,7 @@ class PosteItalianeS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTE_ITALIANE_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTE_ITALIANE_S10;

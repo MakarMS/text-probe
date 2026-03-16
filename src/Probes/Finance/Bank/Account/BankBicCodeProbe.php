@@ -34,6 +34,7 @@ class BankBicCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_BIC_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_BIC_CODE;

@@ -28,6 +28,7 @@ class EmailHeaderMessageIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EMAIL_HEADER_MESSAGE_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EMAIL_HEADER_MESSAGE_ID;

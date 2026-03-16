@@ -31,6 +31,7 @@ class InstagramUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::INSTAGRAM_USERNAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::INSTAGRAM_USERNAME;

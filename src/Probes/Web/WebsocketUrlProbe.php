@@ -53,6 +53,7 @@ class WebsocketUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::WEBSOCKET_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::WEBSOCKET_URL;

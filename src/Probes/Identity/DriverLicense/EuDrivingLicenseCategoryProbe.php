@@ -28,6 +28,7 @@ class EuDrivingLicenseCategoryProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EU_DRIVING_LICENSE_CATEGORY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EU_DRIVING_LICENSE_CATEGORY;

@@ -26,6 +26,7 @@ class UpcAProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UPC_A
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UPC_A;

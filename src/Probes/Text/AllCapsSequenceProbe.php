@@ -24,6 +24,7 @@ class AllCapsSequenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ALL_CAPS_SEQUENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ALL_CAPS_SEQUENCE;

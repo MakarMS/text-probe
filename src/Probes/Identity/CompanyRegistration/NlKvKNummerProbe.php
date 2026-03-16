@@ -20,6 +20,7 @@ class NlKvKNummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NL_KVK_NUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NL_KVK_NUMMER;

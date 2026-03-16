@@ -22,6 +22,7 @@ class SshEcdsaPublicKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SSH_ECDSA_PUBLIC_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SSH_ECDSA_PUBLIC_KEY;

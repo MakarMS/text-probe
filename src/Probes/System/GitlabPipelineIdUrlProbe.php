@@ -20,6 +20,7 @@ class GitlabPipelineIdUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITLAB_PIPELINE_ID_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITLAB_PIPELINE_ID_URL;

@@ -31,6 +31,7 @@ class EeKmkrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_EE_KMKR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_EE_KMKR;

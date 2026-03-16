@@ -23,6 +23,7 @@ class DiscordOldUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DISCORD_OLD_USERNAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DISCORD_OLD_USERNAME;

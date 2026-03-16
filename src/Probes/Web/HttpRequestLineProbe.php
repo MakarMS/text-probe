@@ -28,6 +28,7 @@ class HttpRequestLineProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTTP_REQUEST_LINE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTTP_REQUEST_LINE;

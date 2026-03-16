@@ -28,6 +28,7 @@ class LogTimestampIso8601Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LOG_TIMESTAMP_ISO8601
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LOG_TIMESTAMP_ISO8601;

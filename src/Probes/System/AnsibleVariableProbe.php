@@ -28,6 +28,7 @@ class AnsibleVariableProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ANSIBLE_VARIABLE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ANSIBLE_VARIABLE;

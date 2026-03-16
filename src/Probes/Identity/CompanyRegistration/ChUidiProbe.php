@@ -20,6 +20,7 @@ class ChUidiProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CH_UIDI
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CH_UIDI;

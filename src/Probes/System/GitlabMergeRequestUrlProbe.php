@@ -28,6 +28,7 @@ class GitlabMergeRequestUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITLAB_MERGE_REQUEST_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITLAB_MERGE_REQUEST_URL;

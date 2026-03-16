@@ -26,6 +26,7 @@ class RuInnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RU_INN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RU_INN;

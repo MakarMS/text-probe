@@ -31,6 +31,7 @@ class EsNifIvaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_ES_NIF_IVA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_ES_NIF_IVA;

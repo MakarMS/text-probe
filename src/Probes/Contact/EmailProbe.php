@@ -23,6 +23,7 @@ class EmailProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EMAIL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EMAIL;

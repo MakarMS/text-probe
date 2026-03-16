@@ -28,6 +28,7 @@ class MarkdownLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MARKDOWN_LINK
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MARKDOWN_LINK;

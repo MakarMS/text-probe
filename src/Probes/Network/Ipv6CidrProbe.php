@@ -28,6 +28,7 @@ class Ipv6CidrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IPV6_CIDR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV6_CIDR;

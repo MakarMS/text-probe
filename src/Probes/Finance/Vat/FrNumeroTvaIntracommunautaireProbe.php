@@ -31,6 +31,7 @@ class FrNumeroTvaIntracommunautaireProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_FR_NUMERO_TVA_INTRACOMMUNAUTAIRE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_FR_NUMERO_TVA_INTRACOMMUNAUTAIRE;

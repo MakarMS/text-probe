@@ -39,6 +39,7 @@ class ComposerConstraintProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COMPOSER_CONSTRAINT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::COMPOSER_CONSTRAINT;

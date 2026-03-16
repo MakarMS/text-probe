@@ -35,6 +35,7 @@ class ImeiProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IMEI
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IMEI;

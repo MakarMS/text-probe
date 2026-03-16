@@ -20,6 +20,7 @@ class KubernetesResourceNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KUBERNETES_RESOURCE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KUBERNETES_RESOURCE_NAME;

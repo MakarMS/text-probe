@@ -34,6 +34,7 @@ class BankCardCvvCvcCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_CARD_CVV_CVC_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_CARD_CVV_CVC_CODE;

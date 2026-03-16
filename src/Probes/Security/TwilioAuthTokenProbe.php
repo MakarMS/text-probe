@@ -28,6 +28,7 @@ class TwilioAuthTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TWILIO_AUTH_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TWILIO_AUTH_TOKEN;

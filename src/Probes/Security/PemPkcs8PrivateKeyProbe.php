@@ -33,6 +33,7 @@ class PemPkcs8PrivateKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PEM_PKCS8_PRIVATE_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PEM_PKCS8_PRIVATE_KEY;

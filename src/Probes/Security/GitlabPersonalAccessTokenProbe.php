@@ -28,6 +28,7 @@ class GitlabPersonalAccessTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITLAB_PERSONAL_ACCESS_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITLAB_PERSONAL_ACCESS_TOKEN;

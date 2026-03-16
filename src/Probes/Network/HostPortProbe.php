@@ -28,6 +28,7 @@ class HostPortProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HOST_PORT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HOST_PORT;

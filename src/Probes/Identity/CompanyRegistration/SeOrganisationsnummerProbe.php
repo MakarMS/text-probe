@@ -26,6 +26,7 @@ class SeOrganisationsnummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SE_ORGANISATIONSNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SE_ORGANISATIONSNUMMER;

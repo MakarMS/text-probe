@@ -28,6 +28,7 @@ class LinkedInProfileUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LINKEDIN_PROFILE_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LINKEDIN_PROFILE_URL;

@@ -31,6 +31,7 @@ class PlNipVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_PL_NIP
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_PL_NIP;

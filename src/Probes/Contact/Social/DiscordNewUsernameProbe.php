@@ -26,6 +26,7 @@ class DiscordNewUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DISCORD_NEW_USERNAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DISCORD_NEW_USERNAME;

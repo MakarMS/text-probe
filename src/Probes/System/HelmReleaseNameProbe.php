@@ -28,6 +28,7 @@ class HelmReleaseNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HELM_RELEASE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HELM_RELEASE_NAME;

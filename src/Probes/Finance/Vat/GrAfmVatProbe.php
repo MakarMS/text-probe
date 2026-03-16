@@ -31,6 +31,7 @@ class GrAfmVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_GR_AFM
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_GR_AFM;

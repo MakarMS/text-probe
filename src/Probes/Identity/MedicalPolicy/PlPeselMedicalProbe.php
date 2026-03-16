@@ -26,6 +26,7 @@ class PlPeselMedicalProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PL_PESEL_MEDICAL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PL_PESEL_MEDICAL;

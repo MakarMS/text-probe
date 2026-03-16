@@ -28,6 +28,7 @@ class CryptoXpubProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_XPUB
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_XPUB;

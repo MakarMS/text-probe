@@ -28,6 +28,7 @@ class ElasticsearchUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ELASTICSEARCH_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ELASTICSEARCH_URL;

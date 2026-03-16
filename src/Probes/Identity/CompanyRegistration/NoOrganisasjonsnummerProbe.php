@@ -26,6 +26,7 @@ class NoOrganisasjonsnummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NO_ORGANISASJONSNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NO_ORGANISASJONSNUMMER;

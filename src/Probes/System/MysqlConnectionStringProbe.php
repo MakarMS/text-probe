@@ -28,6 +28,7 @@ class MysqlConnectionStringProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::MYSQL_CONNECTION_STRING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::MYSQL_CONNECTION_STRING;

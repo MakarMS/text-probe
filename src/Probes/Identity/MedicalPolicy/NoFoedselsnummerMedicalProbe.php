@@ -26,6 +26,7 @@ class NoFoedselsnummerMedicalProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NO_FOEDSELSNUMMER_MEDICAL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NO_FOEDSELSNUMMER_MEDICAL;

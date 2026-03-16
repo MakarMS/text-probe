@@ -28,6 +28,7 @@ class AsnNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ASN_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ASN_NUMBER;

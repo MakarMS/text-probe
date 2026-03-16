@@ -20,6 +20,7 @@ class EnvAssignmentProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ENV_ASSIGNMENT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ENV_ASSIGNMENT;

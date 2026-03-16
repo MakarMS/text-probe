@@ -20,6 +20,7 @@ class UkCompanyNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GB_COMPANY_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GB_COMPANY_NUMBER;

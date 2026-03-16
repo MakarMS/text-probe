@@ -20,6 +20,7 @@ class DeKrankenversichertennummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DE_KRANKENVERSICHERTENNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DE_KRANKENVERSICHERTENNUMMER;

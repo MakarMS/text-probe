@@ -42,6 +42,7 @@ class InvoiceNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::INVOICE_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::INVOICE_NUMBER;

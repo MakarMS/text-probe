@@ -28,6 +28,7 @@ class HexHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HEX_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HEX_HASH;

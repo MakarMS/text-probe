@@ -24,6 +24,7 @@ class OpaqueTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::OPAQUE_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::OPAQUE_TOKEN;

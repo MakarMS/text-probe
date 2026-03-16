@@ -26,6 +26,7 @@ class NlBsnMedicalProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NL_BSN_MEDICAL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NL_BSN_MEDICAL;

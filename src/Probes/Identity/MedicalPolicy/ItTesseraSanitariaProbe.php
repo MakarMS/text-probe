@@ -26,6 +26,7 @@ class ItTesseraSanitariaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IT_TESSERA_SANITARIA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IT_TESSERA_SANITARIA;

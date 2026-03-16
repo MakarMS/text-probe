@@ -26,6 +26,7 @@ class PostNordS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POST_NORD_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POST_NORD_S10;

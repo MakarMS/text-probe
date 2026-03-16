@@ -36,6 +36,7 @@ class RussianSnilsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SNILS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUSSIAN_SNILS;

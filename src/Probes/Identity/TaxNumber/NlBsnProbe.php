@@ -26,6 +26,7 @@ class NlBsnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NL_BSN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NL_BSN;

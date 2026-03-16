@@ -49,6 +49,7 @@ class IPv6Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IPV6
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV6;

@@ -26,6 +26,7 @@ class BpostS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BPOST_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BPOST_S10;

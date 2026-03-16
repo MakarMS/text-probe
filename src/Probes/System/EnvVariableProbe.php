@@ -20,6 +20,7 @@ class EnvVariableProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ENV_VARIABLE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ENV_VARIABLE;

@@ -42,6 +42,7 @@ class PaymentReferenceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PAYMENT_REFERENCE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PAYMENT_REFERENCE;

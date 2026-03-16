@@ -28,6 +28,7 @@ class LightningInvoiceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::LIGHTNING_INVOICE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::LIGHTNING_INVOICE;

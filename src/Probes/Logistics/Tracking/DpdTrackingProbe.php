@@ -20,6 +20,7 @@ class DpdTrackingProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DPD_TRACKING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DPD_TRACKING;

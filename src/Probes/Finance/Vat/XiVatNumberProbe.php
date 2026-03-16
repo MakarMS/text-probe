@@ -31,6 +31,7 @@ class XiVatNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_XI_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_XI_NUMBER;

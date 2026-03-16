@@ -28,6 +28,7 @@ class FirebaseServerKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FIREBASE_SERVER_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FIREBASE_SERVER_KEY;

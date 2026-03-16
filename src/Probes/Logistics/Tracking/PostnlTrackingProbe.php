@@ -20,6 +20,7 @@ class PostnlTrackingProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTNL_TRACKING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTNL_TRACKING;

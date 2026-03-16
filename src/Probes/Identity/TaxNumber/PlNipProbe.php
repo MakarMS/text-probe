@@ -26,6 +26,7 @@ class PlNipProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PL_NIP
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PL_NIP;

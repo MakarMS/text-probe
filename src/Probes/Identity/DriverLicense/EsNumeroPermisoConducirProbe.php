@@ -20,6 +20,7 @@ class EsNumeroPermisoConducirProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ES_NUMERO_PERMISO_CONDUCIR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ES_NUMERO_PERMISO_CONDUCIR;

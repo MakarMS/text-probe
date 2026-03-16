@@ -28,6 +28,7 @@ class AwsRegionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_REGION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_REGION;

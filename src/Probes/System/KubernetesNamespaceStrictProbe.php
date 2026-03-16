@@ -20,6 +20,7 @@ class KubernetesNamespaceStrictProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KUBERNETES_NAMESPACE_STRICT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KUBERNETES_NAMESPACE_STRICT;

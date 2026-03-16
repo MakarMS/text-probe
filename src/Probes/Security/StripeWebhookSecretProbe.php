@@ -28,6 +28,7 @@ class StripeWebhookSecretProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_WEBHOOK_SECRET
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_WEBHOOK_SECRET;

@@ -40,6 +40,7 @@ class PostalCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTAL_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTAL_CODE;

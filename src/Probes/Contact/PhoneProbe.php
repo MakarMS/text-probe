@@ -27,6 +27,7 @@ class PhoneProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PHONE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PHONE;

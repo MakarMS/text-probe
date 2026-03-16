@@ -24,6 +24,7 @@ class OAuthAccessTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::OAUTH_ACCESS_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::OAUTH_ACCESS_TOKEN;

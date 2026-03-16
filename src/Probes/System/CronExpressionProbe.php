@@ -28,6 +28,7 @@ class CronExpressionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRON_EXPRESSION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRON_EXPRESSION;

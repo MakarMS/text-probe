@@ -26,6 +26,7 @@ class PasswordHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PASSWORD_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PASSWORD_HASH;

@@ -20,6 +20,7 @@ class CircleciWorkflowUuidProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CIRCLECI_WORKFLOW_UUID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CIRCLECI_WORKFLOW_UUID;

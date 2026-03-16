@@ -28,6 +28,7 @@ class Ipv4CidrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IPV4_CIDR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV4_CIDR;

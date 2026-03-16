@@ -20,6 +20,7 @@ class RuOmsEnp16Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RU_OMS_ENP16
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RU_OMS_ENP16;

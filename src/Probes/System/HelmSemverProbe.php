@@ -20,6 +20,7 @@ class HelmSemverProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HELM_SEMVER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HELM_SEMVER;

@@ -28,6 +28,7 @@ class DockerVolumeNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_VOLUME_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_VOLUME_NAME;

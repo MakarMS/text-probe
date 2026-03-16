@@ -20,6 +20,7 @@ class AbsoluteHttpUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ABSOLUTE_HTTP_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ABSOLUTE_HTTP_URL;

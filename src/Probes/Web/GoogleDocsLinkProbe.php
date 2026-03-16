@@ -26,6 +26,7 @@ class GoogleDocsLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GOOGLE_DOCS_LINK
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GOOGLE_DOCS_LINK;

@@ -36,6 +36,7 @@ class BankIbanNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_IBAN_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_IBAN_NUMBER;

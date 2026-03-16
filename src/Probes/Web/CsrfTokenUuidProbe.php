@@ -24,6 +24,7 @@ class CsrfTokenUuidProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CSRF_TOKEN_UUID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CSRF_TOKEN_UUID;

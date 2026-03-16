@@ -20,6 +20,7 @@ class AbsolutePathProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ABSOLUTE_PATH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ABSOLUTE_PATH;

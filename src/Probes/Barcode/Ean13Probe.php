@@ -26,6 +26,7 @@ class Ean13Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::EAN_13
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::EAN_13;

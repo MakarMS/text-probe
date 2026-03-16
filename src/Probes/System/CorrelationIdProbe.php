@@ -28,6 +28,7 @@ class CorrelationIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORRELATION_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORRELATION_ID;

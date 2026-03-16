@@ -41,6 +41,7 @@ class BankDinersClubCardProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_DINERS_CLUB_CARD_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_DINERS_CLUB_CARD_NUMBER;

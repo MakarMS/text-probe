@@ -28,6 +28,7 @@ class XUsernameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::X_USERNAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::X_USERNAME;

@@ -20,6 +20,7 @@ class GitShortShaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_SHORT_SHA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_SHORT_SHA;

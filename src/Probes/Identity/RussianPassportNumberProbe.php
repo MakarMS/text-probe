@@ -41,6 +41,7 @@ class RussianPassportNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::RUSSIAN_PASSPORT_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::RUSSIAN_PASSPORT_NUMBER;

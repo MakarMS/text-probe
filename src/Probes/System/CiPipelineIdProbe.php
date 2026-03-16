@@ -20,6 +20,7 @@ class CiPipelineIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CI_PIPELINE_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CI_PIPELINE_ID;

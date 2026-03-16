@@ -24,6 +24,7 @@ class LitecoinAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_LITECOIN_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_LITECOIN_ADDRESS;

@@ -28,6 +28,7 @@ class DatadogApiKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DATADOG_API_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DATADOG_API_KEY;

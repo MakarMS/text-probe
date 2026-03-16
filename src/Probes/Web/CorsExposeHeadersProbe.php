@@ -20,6 +20,7 @@ class CorsExposeHeadersProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORS_EXPOSE_HEADERS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORS_EXPOSE_HEADERS;

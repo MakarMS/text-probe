@@ -20,6 +20,7 @@ class UspsNumeric22Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::USPS_NUMERIC_22
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::USPS_NUMERIC_22;

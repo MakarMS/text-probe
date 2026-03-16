@@ -31,6 +31,7 @@ class NoOrgnrMvaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_NO_ORGNR_MVA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_NO_ORGNR_MVA;

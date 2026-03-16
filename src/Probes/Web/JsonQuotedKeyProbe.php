@@ -20,6 +20,7 @@ class JsonQuotedKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JSON_QUOTED_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JSON_QUOTED_KEY;

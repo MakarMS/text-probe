@@ -20,6 +20,7 @@ class GitRefHeadsProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GIT_REF_HEADS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GIT_REF_HEADS;

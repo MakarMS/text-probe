@@ -24,6 +24,7 @@ class UsdtTrc20AddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDT_TRC20_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDT_TRC20_ADDRESS;

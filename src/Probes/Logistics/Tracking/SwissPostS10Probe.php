@@ -26,6 +26,7 @@ class SwissPostS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SWISS_POST_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SWISS_POST_S10;

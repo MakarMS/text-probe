@@ -31,6 +31,7 @@ class SiDavcnaStevilkaVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_SI_DAVCNA_STEVILKA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_SI_DAVCNA_STEVILKA;

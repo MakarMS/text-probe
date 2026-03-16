@@ -20,6 +20,7 @@ class CorsMaxAgeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORS_MAX_AGE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORS_MAX_AGE;

@@ -26,6 +26,7 @@ class EsNifProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ES_NIF
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ES_NIF;

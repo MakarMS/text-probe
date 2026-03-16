@@ -28,6 +28,7 @@ class NpmPackageNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::NPM_PACKAGE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::NPM_PACKAGE_NAME;

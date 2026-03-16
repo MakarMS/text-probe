@@ -30,6 +30,7 @@ class IPv4Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IPV4
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IPV4;

@@ -26,6 +26,7 @@ class RoyalMailS10Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::ROYAL_MAIL_S10
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::ROYAL_MAIL_S10;

@@ -27,6 +27,7 @@ class HexColorProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HEX_COLOR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HEX_COLOR;

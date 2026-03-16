@@ -20,6 +20,7 @@ class DeSteuernummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DE_STEUERNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DE_STEUERNUMMER;

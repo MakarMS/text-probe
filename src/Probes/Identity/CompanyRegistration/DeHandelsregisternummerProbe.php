@@ -20,6 +20,7 @@ class DeHandelsregisternummerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DE_HANDELSREGISTERNUMMER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DE_HANDELSREGISTERNUMMER;

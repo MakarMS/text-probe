@@ -28,6 +28,7 @@ class ImsiProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::IMSI
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::IMSI;

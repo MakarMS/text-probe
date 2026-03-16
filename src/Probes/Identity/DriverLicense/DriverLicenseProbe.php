@@ -52,6 +52,7 @@ class DriverLicenseProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DRIVER_LICENSE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DRIVER_LICENSE;

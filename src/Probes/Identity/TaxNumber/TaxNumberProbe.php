@@ -60,6 +60,7 @@ class TaxNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TAX_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TAX_NUMBER;

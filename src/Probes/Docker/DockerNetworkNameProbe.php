@@ -28,6 +28,7 @@ class DockerNetworkNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_NETWORK_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_NETWORK_NAME;

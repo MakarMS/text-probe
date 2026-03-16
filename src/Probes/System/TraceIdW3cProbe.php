@@ -35,6 +35,7 @@ class TraceIdW3cProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::TRACE_ID_W3C
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::TRACE_ID_W3C;

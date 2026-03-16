@@ -28,6 +28,7 @@ class UserAgentProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::USER_AGENT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::USER_AGENT;

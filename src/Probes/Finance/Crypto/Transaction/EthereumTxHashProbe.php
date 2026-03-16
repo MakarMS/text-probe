@@ -20,6 +20,7 @@ class EthereumTxHashProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_ETHEREUM_TX_HASH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_ETHEREUM_TX_HASH;

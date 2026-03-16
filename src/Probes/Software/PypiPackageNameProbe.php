@@ -28,6 +28,7 @@ class PypiPackageNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PYPI_PACKAGE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PYPI_PACKAGE_NAME;

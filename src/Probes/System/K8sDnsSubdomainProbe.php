@@ -20,6 +20,7 @@ class K8sDnsSubdomainProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::K8S_DNS_SUBDOMAIN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::K8S_DNS_SUBDOMAIN;

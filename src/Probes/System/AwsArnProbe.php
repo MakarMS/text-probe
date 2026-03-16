@@ -28,6 +28,7 @@ class AwsArnProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::AWS_ARN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::AWS_ARN;

@@ -22,6 +22,7 @@ class PemPublicKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PEM_PUBLIC_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PEM_PUBLIC_KEY;

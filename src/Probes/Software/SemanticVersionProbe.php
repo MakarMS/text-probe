@@ -36,6 +36,7 @@ class SemanticVersionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEMANTIC_VERSION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEMANTIC_VERSION;

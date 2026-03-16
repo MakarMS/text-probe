@@ -47,6 +47,7 @@ class PriceProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::PRICE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::PRICE;

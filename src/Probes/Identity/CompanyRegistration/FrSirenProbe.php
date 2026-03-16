@@ -26,6 +26,7 @@ class FrSirenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_SIREN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_SIREN;

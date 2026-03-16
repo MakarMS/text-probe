@@ -22,6 +22,7 @@ class CsrfTokenBase64UrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CSRF_TOKEN_BASE64URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CSRF_TOKEN_BASE64URL;

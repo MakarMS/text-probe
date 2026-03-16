@@ -27,6 +27,7 @@ class GithubRepositoryLinkProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_REPOSITORY_LINK
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_REPOSITORY_LINK;

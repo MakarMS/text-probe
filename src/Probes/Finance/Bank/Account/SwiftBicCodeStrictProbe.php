@@ -28,6 +28,7 @@ class SwiftBicCodeStrictProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SWIFT_BIC_CODE_STRICT
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SWIFT_BIC_CODE_STRICT;

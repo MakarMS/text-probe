@@ -28,6 +28,7 @@ class KafkaBootstrapServerProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KAFKA_BOOTSTRAP_SERVER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KAFKA_BOOTSTRAP_SERVER;

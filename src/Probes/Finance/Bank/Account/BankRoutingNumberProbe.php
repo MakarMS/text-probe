@@ -37,6 +37,7 @@ class BankRoutingNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::BANK_ROUTING_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::BANK_ROUTING_NUMBER;

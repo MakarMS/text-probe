@@ -31,6 +31,7 @@ class ChUidMwstProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_CH_UID_MWST
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_CH_UID_MWST;

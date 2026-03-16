@@ -20,6 +20,7 @@ class StripeEventIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_EVENT_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_EVENT_ID;

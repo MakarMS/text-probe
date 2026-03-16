@@ -20,6 +20,7 @@ class HttpStatusLineProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::HTTP_STATUS_LINE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::HTTP_STATUS_LINE;

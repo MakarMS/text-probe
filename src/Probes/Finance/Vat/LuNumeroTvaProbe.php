@@ -31,6 +31,7 @@ class LuNumeroTvaProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_LU_NUMERO_TVA
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_LU_NUMERO_TVA;

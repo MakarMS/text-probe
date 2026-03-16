@@ -35,6 +35,7 @@ class SedolCodeProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SEDOL_CODE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SEDOL_CODE;

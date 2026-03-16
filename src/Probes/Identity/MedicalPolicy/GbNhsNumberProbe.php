@@ -26,6 +26,7 @@ class GbNhsNumberProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GB_NHS_NUMBER
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GB_NHS_NUMBER;

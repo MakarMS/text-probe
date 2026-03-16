@@ -31,6 +31,7 @@ class RoCuiVatProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_RO_CUI
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_RO_CUI;

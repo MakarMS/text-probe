@@ -23,6 +23,7 @@ class StripePublishableKeyProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_PUBLISHABLE_KEY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_PUBLISHABLE_KEY;

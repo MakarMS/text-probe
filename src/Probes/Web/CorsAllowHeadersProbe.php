@@ -20,6 +20,7 @@ class CorsAllowHeadersProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CORS_ALLOW_HEADERS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CORS_ALLOW_HEADERS;

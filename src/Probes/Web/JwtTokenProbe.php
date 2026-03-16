@@ -26,6 +26,7 @@ class JwtTokenProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JWT_TOKEN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JWT_TOKEN;

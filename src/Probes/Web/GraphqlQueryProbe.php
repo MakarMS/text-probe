@@ -53,6 +53,7 @@ class GraphqlQueryProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GRAPHQL_QUERY
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GRAPHQL_QUERY;

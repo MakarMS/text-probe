@@ -20,6 +20,7 @@ class JsonNullValueProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::JSON_NULL_VALUE
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::JSON_NULL_VALUE;

@@ -33,6 +33,7 @@ class DockerfileInstructionProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKERFILE_INSTRUCTION
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKERFILE_INSTRUCTION;

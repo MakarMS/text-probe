@@ -28,6 +28,7 @@ class YamlKeyPathProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::YAML_KEY_PATH
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::YAML_KEY_PATH;

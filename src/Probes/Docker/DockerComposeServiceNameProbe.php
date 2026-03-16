@@ -28,6 +28,7 @@ class DockerComposeServiceNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::DOCKER_COMPOSE_SERVICE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::DOCKER_COMPOSE_SERVICE_NAME;

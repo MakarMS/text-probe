@@ -31,6 +31,7 @@ class LvPvnRegNrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_LV_PVN_REG_NR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_LV_PVN_REG_NR;

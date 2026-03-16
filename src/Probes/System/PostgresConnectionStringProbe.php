@@ -28,6 +28,7 @@ class PostgresConnectionStringProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::POSTGRES_CONNECTION_STRING
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::POSTGRES_CONNECTION_STRING;

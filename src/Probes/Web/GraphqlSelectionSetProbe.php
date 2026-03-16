@@ -26,6 +26,7 @@ class GraphqlSelectionSetProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GRAPHQL_SELECTION_SET
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GRAPHQL_SELECTION_SET;

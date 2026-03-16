@@ -24,6 +24,7 @@ class UsdcSolanaAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDC_SOLANA_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDC_SOLANA_ADDRESS;

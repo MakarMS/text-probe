@@ -24,6 +24,7 @@ class UUIDv6Probe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::UUID_V6
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::UUID_V6;

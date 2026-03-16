@@ -20,6 +20,7 @@ class StripePaymentMethodIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_PAYMENT_METHOD_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_PAYMENT_METHOD_ID;

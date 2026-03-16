@@ -31,6 +31,7 @@ class AtUidProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::VAT_AT_UID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::VAT_AT_UID;

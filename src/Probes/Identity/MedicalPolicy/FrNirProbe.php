@@ -26,6 +26,7 @@ class FrNirProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::FR_NIR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::FR_NIR;

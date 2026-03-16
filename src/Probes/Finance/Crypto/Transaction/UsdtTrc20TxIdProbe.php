@@ -20,6 +20,7 @@ class UsdtTrc20TxIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDT_TRC20_TX_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDT_TRC20_TX_ID;

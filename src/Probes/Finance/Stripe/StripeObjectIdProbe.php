@@ -20,6 +20,7 @@ class StripeObjectIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::STRIPE_OBJECT_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::STRIPE_OBJECT_ID;

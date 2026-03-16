@@ -28,6 +28,7 @@ class KubernetesLabelSelectorProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::KUBERNETES_LABEL_SELECTOR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::KUBERNETES_LABEL_SELECTOR;

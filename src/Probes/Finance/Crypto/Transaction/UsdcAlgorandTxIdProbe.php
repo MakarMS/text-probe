@@ -20,6 +20,7 @@ class UsdcAlgorandTxIdProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CRYPTO_USDC_ALGORAND_TX_ID
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CRYPTO_USDC_ALGORAND_TX_ID;

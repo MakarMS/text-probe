@@ -34,6 +34,7 @@ class CarVinProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::CAR_VIN
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::CAR_VIN;

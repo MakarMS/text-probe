@@ -20,6 +20,7 @@ class GbUtrProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GB_UTR
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GB_UTR;

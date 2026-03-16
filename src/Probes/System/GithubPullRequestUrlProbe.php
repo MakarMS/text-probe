@@ -28,6 +28,7 @@ class GithubPullRequestUrlProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::GITHUB_PULL_REQUEST_URL
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::GITHUB_PULL_REQUEST_URL;

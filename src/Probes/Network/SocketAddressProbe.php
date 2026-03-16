@@ -28,6 +28,7 @@ class SocketAddressProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::SOCKET_ADDRESS
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::SOCKET_ADDRESS;

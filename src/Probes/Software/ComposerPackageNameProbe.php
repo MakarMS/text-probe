@@ -28,6 +28,7 @@ class ComposerPackageNameProbe extends Probe implements IProbe
     /**
      * @return ProbeType returns ProbeType::COMPOSER_PACKAGE_NAME
      */
+    #[\Override]
     protected function getProbeType(): BackedEnum
     {
         return ProbeType::COMPOSER_PACKAGE_NAME;
