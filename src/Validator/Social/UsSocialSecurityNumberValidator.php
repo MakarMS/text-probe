@@ -32,14 +32,14 @@ class UsSocialSecurityNumberValidator implements IValidator
 
         [, $area, $group, $serial] = $matches;
 
-        if ($area === '000' || $area === '666' || (int) $area >= 900) {
+        if ((int) $area === 0 || (int) $area === 666 || (int) $area >= 900) {
             return false;
         }
 
-        if ($group === '00') {
+        if ((int) $group === 0) {
             return false;
         }
 
-        return !($serial === '0000');
+        return (int) $serial !== 0;
     }
 }
