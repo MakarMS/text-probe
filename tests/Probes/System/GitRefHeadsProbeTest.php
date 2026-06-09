@@ -12,7 +12,7 @@ use TextProbe\Probes\System\GitRefHeadsProbe;
 class GitRefHeadsProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new GitRefHeadsProbe();
 
@@ -21,23 +21,23 @@ class GitRefHeadsProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::GIT_REF_HEADS, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['refs/heads/main'],
-            ['refs/heads/develop'],
-            ['refs/heads/feature/test'],
-            ['refs/heads/bugfix/issue-1'],
-            ['refs/heads/release/v1.0'],
-            ['refs/heads/hotfix/urgent'],
-            ['refs/heads/feature/api/v2'],
-            ['refs/heads/experiment/alpha'],
-            ['refs/heads/chore/cleanup'],
-            ['refs/heads/feature/long_branch_name'],
+            ['refs/heads/main', 15],
+            ['refs/heads/develop', 18],
+            ['refs/heads/feature/test', 23],
+            ['refs/heads/bugfix/issue-1', 25],
+            ['refs/heads/release/v1.0', 23],
+            ['refs/heads/hotfix/urgent', 24],
+            ['refs/heads/feature/api/v2', 25],
+            ['refs/heads/experiment/alpha', 27],
+            ['refs/heads/chore/cleanup', 24],
+            ['refs/heads/feature/long_branch_name', 35],
         ];
     }
 }

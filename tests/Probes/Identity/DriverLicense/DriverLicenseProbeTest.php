@@ -21,8 +21,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Value:\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Value:\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(23, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -36,8 +36,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(16, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -51,8 +51,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(16, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -66,8 +66,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(17, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -81,8 +81,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(21, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -96,8 +96,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(17, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -111,8 +111,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(19, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -126,8 +126,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Header\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Header\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 
@@ -141,18 +141,13 @@ class DriverLicenseProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstStart = strpos($text, $expectedFirst);
-        $firstEnd = $firstStart + strlen($expectedFirst);
         $this->assertSame($expectedFirst, $results[0]->getResult());
-        $this->assertSame($firstStart, $results[0]->getStart());
-        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(22, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
-
-        $secondStart = strpos($text, $expectedSecond, $firstEnd);
-        $secondEnd = $secondStart + strlen($expectedSecond);
         $this->assertSame($expectedSecond, $results[1]->getResult());
-        $this->assertSame($secondStart, $results[1]->getStart());
-        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(28, $results[1]->getStart());
+        $this->assertSame(44, $results[1]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[1]->getProbeType());
     }
 
@@ -166,8 +161,8 @@ class DriverLicenseProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen("Start\n"), $results[0]->getStart());
-        $this->assertSame(strlen("Start\n") + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(22, $results[0]->getEnd());
         $this->assertSame(ProbeType::DRIVER_LICENSE, $results[0]->getProbeType());
     }
 

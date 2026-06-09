@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\HttpStatusCodeProbe;
 class HttpStatusCodeProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('statusSamples')]
-    public function testFindsStatusCodes(string $text, string $expected): void
+    public function testFindsStatusCodes(string $text, string $expected, int $expectedStart, int $expectedEnd): void
     {
         $probe = new HttpStatusCodeProbe();
 
@@ -20,24 +20,24 @@ class HttpStatusCodeProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strpos($text, $expected), $results[0]->getStart());
-        $this->assertSame(strpos($text, $expected) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame($expectedStart, $results[0]->getStart());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::HTTP_STATUS_CODE, $results[0]->getProbeType());
     }
 
     public static function statusSamples(): array
     {
         return [
-            ['HTTP/1.1 200', '200'],
-            ['HTTP/1.0 404', '404'],
-            ['HTTP/2 204', '204'],
-            ['HTTP/1.1 500', '500'],
-            ['HTTP/1.1 301', '301'],
-            ['HTTP/1.1 100', '100'],
-            ['HTTP/1.1 599', '599'],
-            ['418', '418'],
-            ['302', '302'],
-            ['503', '503'],
+            ['HTTP/1.1 200', '200', 9, 12],
+            ['HTTP/1.0 404', '404', 9, 12],
+            ['HTTP/2 204', '204', 7, 10],
+            ['HTTP/1.1 500', '500', 9, 12],
+            ['HTTP/1.1 301', '301', 9, 12],
+            ['HTTP/1.1 100', '100', 9, 12],
+            ['HTTP/1.1 599', '599', 9, 12],
+            ['418', '418', 0, 3],
+            ['302', '302', 0, 3],
+            ['503', '503', 0, 3],
         ];
     }
 }

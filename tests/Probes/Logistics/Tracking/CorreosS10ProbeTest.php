@@ -13,7 +13,7 @@ use TextProbe\Probes\Logistics\Tracking\CorreosS10Probe;
 class CorreosS10ProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validTrackingNumbers')]
-    public function testFindsMatches(string $trackingNumber): void
+    public function testFindsMatches(string $trackingNumber, int $expectedEnd): void
     {
         $probe = new CorreosS10Probe();
 
@@ -22,23 +22,23 @@ class CorreosS10ProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
 
     public static function validTrackingNumbers(): array
     {
         return [
-            [TrackingTestHelper::makeS10('CE', '00000000', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '11111111', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '12345678', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '87654321', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '23456789', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '98765432', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '55555555', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '13579135', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '24680246', 'ES')],
-            [TrackingTestHelper::makeS10('CE', '10293847', 'ES')],
+            [TrackingTestHelper::makeS10('CE', '00000000', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '11111111', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '12345678', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '87654321', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '23456789', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '98765432', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '55555555', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '13579135', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '24680246', 'ES'), 13],
+            [TrackingTestHelper::makeS10('CE', '10293847', 'ES'), 13],
         ];
     }
 
@@ -54,7 +54,7 @@ NEXTLINE';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
 
@@ -69,8 +69,8 @@ NEXTLINE';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getStart());
+        $this->assertSame(23, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
 
@@ -86,8 +86,8 @@ FOOTER';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
 
@@ -103,7 +103,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
 
@@ -121,12 +121,12 @@ FOOTER';
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
 
         $this->assertSame($secondTrackingNumber, $results[1]->getResult());
-        $this->assertSame(strpos($text, $secondTrackingNumber), $results[1]->getStart());
-        $this->assertSame($results[1]->getStart() + strlen($secondTrackingNumber), $results[1]->getEnd());
+        $this->assertSame(14, $results[1]->getStart());
+        $this->assertSame(27, $results[1]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[1]->getProbeType());
     }
 
@@ -140,17 +140,15 @@ FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstPos = strpos($text, $trackingNumber);
-        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame($firstPos, $results[0]->getStart());
-        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
 
         $this->assertSame($trackingNumber, $results[1]->getResult());
-        $this->assertSame($secondPos, $results[1]->getStart());
-        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+        $this->assertSame(14, $results[1]->getStart());
+        $this->assertSame(27, $results[1]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[1]->getProbeType());
     }
 
@@ -189,7 +187,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(1, $results[0]->getStart());
-        $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(14, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORREOS_S10, $results[0]->getProbeType());
     }
 }

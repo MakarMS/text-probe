@@ -23,8 +23,8 @@ class FrSiretProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen($prefix), $results[0]->getStart());
-        $this->assertSame(strlen($prefix) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(21, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
     }
 
@@ -40,8 +40,8 @@ class FrSiretProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen($prefix), $results[0]->getStart());
-        $this->assertSame(strlen($prefix) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(21, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
     }
 
@@ -58,19 +58,13 @@ then
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-
-        $firstStart = strpos($text, $expectedFirst);
-        $firstEnd = $firstStart + strlen($expectedFirst);
         $this->assertSame($expectedFirst, $results[0]->getResult());
-        $this->assertSame($firstStart, $results[0]->getStart());
-        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
-
-        $secondStart = strpos($text, $expectedSecond, $firstEnd);
-        $secondEnd = $secondStart + strlen($expectedSecond);
         $this->assertSame($expectedSecond, $results[1]->getResult());
-        $this->assertSame($secondStart, $results[1]->getStart());
-        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(26, $results[1]->getStart());
+        $this->assertSame(40, $results[1]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[1]->getProbeType());
     }
 
@@ -86,7 +80,7 @@ Tail';
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($expected), $results[0]->getEnd());
+        $this->assertSame(14, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
     }
 
@@ -102,8 +96,8 @@ Tail';
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen($prefix), $results[0]->getStart());
-        $this->assertSame(strlen($prefix) + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(5, $results[0]->getStart());
+        $this->assertSame(19, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
     }
 
@@ -119,10 +113,8 @@ End.';
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen('Check
-'), $results[0]->getStart());
-        $this->assertSame(strlen('Check
-') + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
     }
 
@@ -138,17 +130,13 @@ AND
 
         $this->assertCount(2, $results);
         $firstStart = 0;
-        $firstEnd = strlen($expected);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame($firstStart, $results[0]->getStart());
-        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(14, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
-
-        $secondStart = strpos($text, $expected, $firstEnd);
-        $secondEnd = $secondStart + strlen($expected);
         $this->assertSame($expected, $results[1]->getResult());
-        $this->assertSame($secondStart, $results[1]->getStart());
-        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(19, $results[1]->getStart());
+        $this->assertSame(33, $results[1]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[1]->getProbeType());
     }
 
@@ -164,10 +152,8 @@ Suffix';
 
         $this->assertCount(1, $results);
         $this->assertSame($expected, $results[0]->getResult());
-        $this->assertSame(strlen('Prefix
-'), $results[0]->getStart());
-        $this->assertSame(strlen('Prefix
-') + strlen($expected), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(21, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
     }
 
@@ -185,18 +171,13 @@ End.';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstStart = strpos($text, $expectedFirst);
-        $firstEnd = $firstStart + strlen($expectedFirst);
         $this->assertSame($expectedFirst, $results[0]->getResult());
-        $this->assertSame($firstStart, $results[0]->getStart());
-        $this->assertSame($firstEnd, $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(21, $results[0]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[0]->getProbeType());
-
-        $secondStart = strpos($text, $expectedSecond, $firstEnd);
-        $secondEnd = $secondStart + strlen($expectedSecond);
         $this->assertSame($expectedSecond, $results[1]->getResult());
-        $this->assertSame($secondStart, $results[1]->getStart());
-        $this->assertSame($secondEnd, $results[1]->getEnd());
+        $this->assertSame(27, $results[1]->getStart());
+        $this->assertSame(41, $results[1]->getEnd());
         $this->assertSame(ProbeType::FR_SIRET, $results[1]->getProbeType());
     }
 

@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\JsonBooleanValueProbe;
 class JsonBooleanValueProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validSamples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new JsonBooleanValueProbe();
 
@@ -21,23 +21,23 @@ class JsonBooleanValueProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::JSON_BOOLEAN_VALUE, $results[0]->getProbeType());
     }
 
     public static function validSamples(): array
     {
         return [
-            ['true'],
-            ['false'],
-            ['true'],
-            ['false'],
-            ['true'],
-            ['false'],
-            ['true'],
-            ['false'],
-            ['true'],
-            ['false'],
+            ['true', 4],
+            ['false', 5],
+            ['true', 4],
+            ['false', 5],
+            ['true', 4],
+            ['false', 5],
+            ['true', 4],
+            ['false', 5],
+            ['true', 4],
+            ['false', 5],
         ];
     }
 }

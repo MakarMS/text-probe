@@ -75,7 +75,7 @@ class TrackingNumberProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
     }
 
@@ -89,8 +89,8 @@ class TrackingNumberProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
     }
 
@@ -104,8 +104,8 @@ class TrackingNumberProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(26, $results[0]->getEnd());
         $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
     }
 
@@ -119,8 +119,8 @@ class TrackingNumberProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(6, $results[0]->getStart());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
     }
 
@@ -135,12 +135,12 @@ class TrackingNumberProbeTest extends TestCase
 
         $this->assertCount(2, $results);
         $this->assertSame($ups, $results[0]->getResult());
-        $this->assertSame(strpos($text, $ups), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($ups), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(18, $results[0]->getEnd());
 
         $this->assertSame($dpd, $results[1]->getResult());
-        $this->assertSame(strpos($text, $dpd), $results[1]->getStart());
-        $this->assertSame($results[1]->getStart() + strlen($dpd), $results[1]->getEnd());
+        $this->assertSame(19, $results[1]->getStart());
+        $this->assertSame(33, $results[1]->getEnd());
     }
 
     public function testFindsDuplicateTrackingNumbers(): void
@@ -152,16 +152,14 @@ class TrackingNumberProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstPos = strpos($text, $trackingNumber);
-        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame($firstPos, $results[0]->getStart());
-        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(10, $results[0]->getEnd());
 
         $this->assertSame($trackingNumber, $results[1]->getResult());
-        $this->assertSame($secondPos, $results[1]->getStart());
-        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+        $this->assertSame(11, $results[1]->getStart());
+        $this->assertSame(21, $results[1]->getEnd());
     }
 
     public function testIgnoresInvalidTrackingText(): void
@@ -194,8 +192,8 @@ class TrackingNumberProbeTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::TRACKING_NUMBER, $results[0]->getProbeType());
     }
 }

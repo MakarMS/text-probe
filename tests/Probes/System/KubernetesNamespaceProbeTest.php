@@ -12,7 +12,7 @@ use TextProbe\Probes\System\KubernetesNamespaceProbe;
 class KubernetesNamespaceProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new KubernetesNamespaceProbe();
 
@@ -21,23 +21,23 @@ class KubernetesNamespaceProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::KUBERNETES_NAMESPACE, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['default'],
-            ['kube-system'],
-            ['team-a'],
-            ['team-b'],
-            ['org.dev'],
-            ['org.prod'],
-            ['alpha.beta'],
-            ['ns1'],
-            ['ns2'],
-            ['namespace.dev'],
+            ['default', 7],
+            ['kube-system', 11],
+            ['team-a', 6],
+            ['team-b', 6],
+            ['org.dev', 7],
+            ['org.prod', 8],
+            ['alpha.beta', 10],
+            ['ns1', 3],
+            ['ns2', 3],
+            ['namespace.dev', 13],
         ];
     }
 }

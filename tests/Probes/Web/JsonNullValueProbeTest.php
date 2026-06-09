@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\JsonNullValueProbe;
 class JsonNullValueProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validSamples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new JsonNullValueProbe();
 
@@ -21,23 +21,23 @@ class JsonNullValueProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::JSON_NULL_VALUE, $results[0]->getProbeType());
     }
 
     public static function validSamples(): array
     {
         return [
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
-            ['null'],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
+            ['null', 4],
         ];
     }
 }

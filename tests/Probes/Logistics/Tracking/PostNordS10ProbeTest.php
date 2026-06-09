@@ -13,7 +13,7 @@ use TextProbe\Probes\Logistics\Tracking\PostNordS10Probe;
 class PostNordS10ProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validTrackingNumbers')]
-    public function testFindsMatches(string $trackingNumber): void
+    public function testFindsMatches(string $trackingNumber, int $expectedEnd): void
     {
         $probe = new PostNordS10Probe();
 
@@ -22,23 +22,23 @@ class PostNordS10ProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
     }
 
     public static function validTrackingNumbers(): array
     {
         return [
-            [TrackingTestHelper::makeS10('PN', '00000000', 'SE')],
-            [TrackingTestHelper::makeS10('PN', '11111111', 'NO')],
-            [TrackingTestHelper::makeS10('PN', '12345678', 'DK')],
-            [TrackingTestHelper::makeS10('PN', '87654321', 'FI')],
-            [TrackingTestHelper::makeS10('PN', '23456789', 'SE')],
-            [TrackingTestHelper::makeS10('PN', '98765432', 'NO')],
-            [TrackingTestHelper::makeS10('PN', '55555555', 'DK')],
-            [TrackingTestHelper::makeS10('PN', '13579135', 'FI')],
-            [TrackingTestHelper::makeS10('PN', '24680246', 'SE')],
-            [TrackingTestHelper::makeS10('PN', '10293847', 'NO')],
+            [TrackingTestHelper::makeS10('PN', '00000000', 'SE'), 13],
+            [TrackingTestHelper::makeS10('PN', '11111111', 'NO'), 13],
+            [TrackingTestHelper::makeS10('PN', '12345678', 'DK'), 13],
+            [TrackingTestHelper::makeS10('PN', '87654321', 'FI'), 13],
+            [TrackingTestHelper::makeS10('PN', '23456789', 'SE'), 13],
+            [TrackingTestHelper::makeS10('PN', '98765432', 'NO'), 13],
+            [TrackingTestHelper::makeS10('PN', '55555555', 'DK'), 13],
+            [TrackingTestHelper::makeS10('PN', '13579135', 'FI'), 13],
+            [TrackingTestHelper::makeS10('PN', '24680246', 'SE'), 13],
+            [TrackingTestHelper::makeS10('PN', '10293847', 'NO'), 13],
         ];
     }
 
@@ -54,7 +54,7 @@ NEXTLINE';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
     }
 
@@ -69,8 +69,8 @@ NEXTLINE';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getStart());
+        $this->assertSame(23, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
     }
 
@@ -86,8 +86,8 @@ FOOTER';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
     }
 
@@ -103,7 +103,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
     }
 
@@ -121,12 +121,12 @@ FOOTER';
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
 
         $this->assertSame($secondTrackingNumber, $results[1]->getResult());
-        $this->assertSame(strpos($text, $secondTrackingNumber), $results[1]->getStart());
-        $this->assertSame($results[1]->getStart() + strlen($secondTrackingNumber), $results[1]->getEnd());
+        $this->assertSame(14, $results[1]->getStart());
+        $this->assertSame(27, $results[1]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[1]->getProbeType());
     }
 
@@ -140,17 +140,15 @@ FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstPos = strpos($text, $trackingNumber);
-        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame($firstPos, $results[0]->getStart());
-        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(13, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
 
         $this->assertSame($trackingNumber, $results[1]->getResult());
-        $this->assertSame($secondPos, $results[1]->getStart());
-        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+        $this->assertSame(14, $results[1]->getStart());
+        $this->assertSame(27, $results[1]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[1]->getProbeType());
     }
 
@@ -189,7 +187,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(1, $results[0]->getStart());
-        $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(14, $results[0]->getEnd());
         $this->assertSame(ProbeType::POST_NORD_S10, $results[0]->getProbeType());
     }
 }

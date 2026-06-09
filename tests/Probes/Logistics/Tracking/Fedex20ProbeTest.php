@@ -12,7 +12,7 @@ use TextProbe\Probes\Logistics\Tracking\Fedex20Probe;
 class Fedex20ProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validTrackingNumbers')]
-    public function testFindsMatches(string $trackingNumber): void
+    public function testFindsMatches(string $trackingNumber, int $expectedEnd): void
     {
         $probe = new Fedex20Probe();
 
@@ -21,23 +21,23 @@ class Fedex20ProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
     }
 
     public static function validTrackingNumbers(): array
     {
         return [
-            ['12345678901234567890'],
-            ['00000000000000000001'],
-            ['11111111111111111111'],
-            ['98765432109876543210'],
-            ['55555555555555555555'],
-            ['22222222222222222222'],
-            ['33333333333333333333'],
-            ['44444444444444444444'],
-            ['66666666666666666666'],
-            ['77777777777777777777'],
+            ['12345678901234567890', 20],
+            ['00000000000000000001', 20],
+            ['11111111111111111111', 20],
+            ['98765432109876543210', 20],
+            ['55555555555555555555', 20],
+            ['22222222222222222222', 20],
+            ['33333333333333333333', 20],
+            ['44444444444444444444', 20],
+            ['66666666666666666666', 20],
+            ['77777777777777777777', 20],
         ];
     }
 
@@ -53,7 +53,7 @@ NEXTLINE';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
     }
 
@@ -68,8 +68,8 @@ NEXTLINE';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getStart());
+        $this->assertSame(30, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
     }
 
@@ -85,8 +85,8 @@ FOOTER';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(27, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
     }
 
@@ -102,7 +102,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
     }
 
@@ -120,12 +120,12 @@ FOOTER';
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
 
         $this->assertSame($secondTrackingNumber, $results[1]->getResult());
-        $this->assertSame(strpos($text, $secondTrackingNumber), $results[1]->getStart());
-        $this->assertSame($results[1]->getStart() + strlen($secondTrackingNumber), $results[1]->getEnd());
+        $this->assertSame(21, $results[1]->getStart());
+        $this->assertSame(41, $results[1]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[1]->getProbeType());
     }
 
@@ -139,17 +139,15 @@ FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstPos = strpos($text, $trackingNumber);
-        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame($firstPos, $results[0]->getStart());
-        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
 
         $this->assertSame($trackingNumber, $results[1]->getResult());
-        $this->assertSame($secondPos, $results[1]->getStart());
-        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+        $this->assertSame(21, $results[1]->getStart());
+        $this->assertSame(41, $results[1]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[1]->getProbeType());
     }
 
@@ -188,7 +186,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(1, $results[0]->getStart());
-        $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(21, $results[0]->getEnd());
         $this->assertSame(ProbeType::FEDEX_20, $results[0]->getProbeType());
     }
 }

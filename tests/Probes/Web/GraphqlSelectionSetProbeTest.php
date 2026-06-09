@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\GraphqlSelectionSetProbe;
 class GraphqlSelectionSetProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validSamples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new GraphqlSelectionSetProbe();
 
@@ -21,23 +21,23 @@ class GraphqlSelectionSetProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::GRAPHQL_SELECTION_SET, $results[0]->getProbeType());
     }
 
     public static function validSamples(): array
     {
         return [
-            ['{field}'],
-            ['{field subfield}'],
-            ['{user { id name }}'],
-            ['{a { b { c } }}'],
-            ['{items { edges { node { id } } }}'],
-            ['{query { nodes { id } }}'],
-            ['{root { left right }}'],
-            ['{foo { bar baz }}'],
-            ['{alpha { beta { gamma } }}'],
-            ['{nested { level1 { level2 { level3 } } }}'],
+            ['{field}', 7],
+            ['{field subfield}', 16],
+            ['{user { id name }}', 18],
+            ['{a { b { c } }}', 15],
+            ['{items { edges { node { id } } }}', 33],
+            ['{query { nodes { id } }}', 24],
+            ['{root { left right }}', 21],
+            ['{foo { bar baz }}', 17],
+            ['{alpha { beta { gamma } }}', 26],
+            ['{nested { level1 { level2 { level3 } } }}', 41],
         ];
     }
 }

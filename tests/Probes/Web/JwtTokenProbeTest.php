@@ -108,7 +108,7 @@ class JwtTokenProbeTest extends TestCase
         $results = $probe->probe($text);
 
         $this->assertCount(1, $results);
-        $this->assertSame(mb_strlen('head '), $results[0]->getStart());
+        $this->assertSame(5, $results[0]->getStart());
     }
 
     public function testHandlesDuplicateMatches(): void

@@ -12,7 +12,7 @@ use TextProbe\Probes\System\EnvVariableProbe;
 class EnvVariableProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new EnvVariableProbe();
 
@@ -21,23 +21,23 @@ class EnvVariableProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::ENV_VARIABLE, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['PATH'],
-            ['HOME'],
-            ['DEBUG'],
-            ['PORT'],
-            ['API_KEY'],
-            ['DATABASE_URL'],
-            ['NODE_ENV'],
-            ['LOG_LEVEL'],
-            ['FEATURE_FLAG'],
-            ['SERVICE_NAME'],
+            ['PATH', 4],
+            ['HOME', 4],
+            ['DEBUG', 5],
+            ['PORT', 4],
+            ['API_KEY', 7],
+            ['DATABASE_URL', 12],
+            ['NODE_ENV', 8],
+            ['LOG_LEVEL', 9],
+            ['FEATURE_FLAG', 12],
+            ['SERVICE_NAME', 12],
         ];
     }
 }

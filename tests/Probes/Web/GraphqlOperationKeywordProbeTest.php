@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\GraphqlOperationKeywordProbe;
 class GraphqlOperationKeywordProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validSamples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new GraphqlOperationKeywordProbe();
 
@@ -21,23 +21,23 @@ class GraphqlOperationKeywordProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::GRAPHQL_OPERATION_KEYWORD, $results[0]->getProbeType());
     }
 
     public static function validSamples(): array
     {
         return [
-            ['query'],
-            ['mutation'],
-            ['subscription'],
-            ['query'],
-            ['mutation'],
-            ['subscription'],
-            ['query'],
-            ['mutation'],
-            ['subscription'],
-            ['query'],
+            ['query', 5],
+            ['mutation', 8],
+            ['subscription', 12],
+            ['query', 5],
+            ['mutation', 8],
+            ['subscription', 12],
+            ['query', 5],
+            ['mutation', 8],
+            ['subscription', 12],
+            ['query', 5],
         ];
     }
 

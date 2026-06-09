@@ -129,7 +129,7 @@ class TimeProbeTest extends TestCase
         $expected = '06:45';
         $this->assertEquals($expected, $results[0]->getResult());
         $this->assertEquals(0, $results[0]->getStart());
-        $this->assertEquals(strlen($expected), $results[0]->getEnd());
+        $this->assertEquals(5, $results[0]->getEnd());
         $this->assertEquals(ProbeType::TIME, $results[0]->getProbeType());
     }
 

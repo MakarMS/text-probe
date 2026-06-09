@@ -12,7 +12,7 @@ use TextProbe\Probes\System\CiPipelineIdProbe;
 class CiPipelineIdProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new CiPipelineIdProbe();
 
@@ -21,23 +21,23 @@ class CiPipelineIdProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::CI_PIPELINE_ID, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['1'],
-            ['42'],
-            ['123'],
-            ['999'],
-            ['1000'],
-            ['54321'],
-            ['987654'],
-            ['314159'],
-            ['271828'],
-            ['808080'],
+            ['1', 1],
+            ['42', 2],
+            ['123', 3],
+            ['999', 3],
+            ['1000', 4],
+            ['54321', 5],
+            ['987654', 6],
+            ['314159', 6],
+            ['271828', 6],
+            ['808080', 6],
         ];
     }
 }

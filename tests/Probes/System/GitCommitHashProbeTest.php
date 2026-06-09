@@ -12,7 +12,7 @@ use TextProbe\Probes\System\GitCommitHashProbe;
 class GitCommitHashProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new GitCommitHashProbe();
 
@@ -21,23 +21,23 @@ class GitCommitHashProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::GIT_COMMIT_HASH, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['abcdef1'],
-            ['1234567'],
-            ['deadbee'],
-            ['feed1234'],
-            ['cafebabe1'],
-            ['0f0f0f0f'],
-            ['a1b2c3d4e5f'],
-            ['abcdef123456'],
-            ['0123456789abcdef0123456789abcdef01234567'],
-            ['deadbeefdeadbeefdeadbeefdeadbeefdeadbeef'],
+            ['abcdef1', 7],
+            ['1234567', 7],
+            ['deadbee', 7],
+            ['feed1234', 8],
+            ['cafebabe1', 9],
+            ['0f0f0f0f', 8],
+            ['a1b2c3d4e5f', 11],
+            ['abcdef123456', 12],
+            ['0123456789abcdef0123456789abcdef01234567', 40],
+            ['deadbeefdeadbeefdeadbeefdeadbeefdeadbeef', 40],
         ];
     }
 }

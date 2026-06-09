@@ -2,8 +2,8 @@
 
 ## Probe Index
 
-- [Extensibility](#extensibility)
-- [Contact & Identity](#contact--identity)
+- [Extensibility](#-extensibility)
+- [Contact & Identity](#-contact--identity)
   - [Vehicle](#-vehicle)
   - [Passports (MRZ)](#-passports-mrz)
   - [Tax Numbers](#-tax-numbers)
@@ -32,12 +32,16 @@
 - [Barcodes](#-barcodes)
 - [Geolocation](#-geolocation)
 - [Social & Tags](#-social--tags)
-- [Text](#-text)
+- [Text](#️-text)
 - [UUID & Identifiers](#-uuid--identifiers)
-- [Versioning](#-versioning)
+- [Versioning](#️-versioning)
 - [Software & Config](#-software--config)
 - [Web & Network](#-web--network)
-- [System & DevOps](#-system--devops)
+  - [DNS & TLS](#dns--tls)
+- [System & DevOps](#️-system--devops)
+  - [Cloud IDs](#cloud-ids)
+  - [Platform & IaC](#platform--iac)
+  - [Observability](#observability)
 - [Docker](#-docker)
 
 ---
@@ -319,6 +323,42 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `SshEd25519PublicKeyProbe` — extracts ssh-ed25519 public keys.
 
 - `SshEcdsaPublicKeyProbe` — extracts ECDSA OpenSSH public keys.
+
+- `Sha256FingerprintProbe` — extracts SHA-256 fingerprints in plain hex or colon-separated form.
+
+- `RsaFingerprintProbe` — extracts OpenSSH-style RSA SHA-256 fingerprints.
+
+- `PemCsrProbe` — extracts PEM certificate signing request blocks.
+
+- `SentryEventIdProbe` — extracts Sentry event IDs.
+
+- `OpenAiApiKeyProbe` — extracts OpenAI API keys (`sk-...` and `sk-proj-...`).
+
+- `AnthropicApiKeyProbe` — extracts Anthropic API keys (`sk-ant-api03-...`).
+
+- `HuggingFaceTokenProbe` — extracts Hugging Face access tokens (`hf_...`).
+
+- `SlackTokenProbe` — extracts Slack app and bot tokens (`xox...` and `xapp-...`).
+
+- `DiscordBotTokenProbe` — extracts Discord bot tokens in segmented and MFA-like forms.
+
+- `TelegramBotTokenProbe` — extracts Telegram bot tokens (`digits:secret`).
+
+- `NpmTokenProbe` — extracts npm access tokens (`npm_...`).
+
+- `PypiTokenProbe` — extracts PyPI API tokens (`pypi-...`).
+
+- `DockerHubTokenProbe` — extracts Docker Hub personal access tokens (`dckr_pat_...`).
+
+- `CloudflareApiTokenProbe` — extracts 40-character Cloudflare API token candidates.
+
+- `GoogleOAuthClientIdProbe` — extracts Google OAuth client IDs.
+
+- `GoogleOAuthClientSecretProbe` — extracts Google OAuth client secrets (`GOCSPX-...`).
+
+- `GoogleServiceAccountEmailProbe` — extracts Google service account email addresses.
+
+- `AzureStorageConnectionStringProbe` — extracts Azure Storage connection strings.
 
 ### 📅 Date & Time
 
@@ -746,7 +786,55 @@ Built-in probes ship with sensible default validators, but these can be replaced
 
 ### 🌐 Web & Network
 
+#### DNS & TLS
+
+- `DnsRecordAProbe` — extracts DNS A record lines.
+
+- `DnsRecordAaaaProbe` — extracts DNS AAAA record lines.
+
+- `DnsRecordMxProbe` — extracts DNS MX record lines.
+
+- `DnsRecordTxtProbe` — extracts DNS TXT record lines.
+
+- `DnsRecordCnameProbe` — extracts DNS CNAME record lines.
+
+- `DnsSrvRecordProbe` — extracts DNS SRV record lines.
+
+- `EmailMxHostProbe` — extracts common mail exchanger hostnames.
+
+- `TlsCertificateFingerprintSha256Probe` — extracts SHA-256 TLS certificate fingerprints.
+
 - `DomainProbe` — extracts domain names, including internationalized (Unicode) domains.
+
+- `HttpHeaderProbe` — extracts HTTP-style header lines.
+
+- `HttpMethodProbe` — extracts HTTP method names.
+
+- `MimeTypeProbe` — extracts MIME type values.
+
+- `ContentTypeHeaderProbe` — extracts Content-Type HTTP headers.
+
+- `AuthorizationHeaderProbe` — extracts Authorization HTTP headers.
+
+- `EtagHeaderProbe` — extracts ETag HTTP headers.
+
+- `CspHeaderProbe` — extracts Content-Security-Policy headers.
+
+- `ReferrerPolicyHeaderProbe` — extracts Referrer-Policy headers.
+
+- `CacheControlHeaderProbe` — extracts Cache-Control headers.
+
+- `OpenGraphMetaProbe` — extracts Open Graph meta tags.
+
+- `TwitterCardMetaProbe` — extracts Twitter Card meta tags.
+
+- `CanonicalLinkProbe` — extracts canonical link tags.
+
+- `RobotsMetaProbe` — extracts robots meta tags.
+
+- `SitemapUrlProbe` — extracts sitemap XML URLs.
+
+- `UrlWithCredentialsProbe` — extracts URLs that embed user credentials.
 
 - `IPv4Probe` — extracts IPv4 addresses, supporting standard formats and excluding reserved/bogus ranges if necessary.
 
@@ -876,6 +964,74 @@ Built-in probes ship with sensible default validators, but these can be replaced
 - `CorsHeaderProbe` — extracts CORS headers across supported variants.
 
 ### ⚙️ System & DevOps
+
+#### Cloud IDs
+
+- `AwsAccountIdProbe` — extracts AWS account IDs.
+
+- `AwsS3BucketNameProbe` — extracts AWS S3 bucket names.
+
+- `AwsEc2InstanceIdProbe` — extracts AWS EC2 instance IDs.
+
+- `AwsLambdaArnProbe` — extracts AWS Lambda function ARNs.
+
+- `AwsIamRoleArnProbe` — extracts AWS IAM role ARNs.
+
+- `AwsKmsKeyIdProbe` — extracts AWS KMS key UUIDs.
+
+- `GcpProjectIdProbe` — extracts Google Cloud project IDs.
+
+- `GcpServiceAccountEmailProbe` — extracts Google Cloud service account email addresses.
+
+- `GcpPubSubTopicProbe` — extracts Google Cloud Pub/Sub topic resource names.
+
+- `AzureResourceIdProbe` — extracts Azure resource IDs.
+
+- `AzureSubscriptionIdProbe` — extracts Azure subscription UUIDs.
+
+- `AzureTenantIdProbe` — extracts Azure tenant UUIDs.
+
+#### Platform & IaC
+
+- `KubernetesServiceNameProbe` — extracts Kubernetes service names.
+
+- `KubernetesDeploymentNameProbe` — extracts Kubernetes deployment names.
+
+- `KubernetesContainerImageProbe` — extracts tagged Kubernetes container image references.
+
+- `KubernetesSecretNameProbe` — extracts Kubernetes secret names.
+
+- `KubernetesConfigMapNameProbe` — extracts Kubernetes ConfigMap names.
+
+- `HelmChartNameProbe` — extracts Helm chart names in repository/chart form.
+
+- `TerraformModuleSourceProbe` — extracts Terraform module sources.
+
+- `TerraformOutputReferenceProbe` — extracts Terraform output references.
+
+- `TerraformBackendS3Probe` — extracts Terraform S3 backend declarations.
+
+- `AnsibleInventoryHostProbe` — extracts Ansible inventory host lines.
+
+#### Observability
+
+- `LogLevelProbe` — extracts common log level tokens.
+
+- `SyslogPriorityProbe` — extracts syslog priority values.
+
+- `SyslogTimestampProbe` — extracts traditional syslog timestamps.
+
+- `OpenTelemetryTraceparentProbe` — extracts W3C traceparent headers.
+
+- `OpenTelemetryTracestateProbe` — extracts W3C tracestate values.
+
+- `JaegerTraceIdProbe` — extracts Jaeger trace IDs.
+
+- `PrometheusMetricNameProbe` — extracts Prometheus metric names.
+
+- `PrometheusLabelSetProbe` — extracts Prometheus label sets.
+
+- `GrafanaDashboardUrlProbe` — extracts Grafana dashboard URLs.
 
 - `K8sDnsLabelProbe` — extracts Kubernetes DNS labels (RFC1123 label format).
 

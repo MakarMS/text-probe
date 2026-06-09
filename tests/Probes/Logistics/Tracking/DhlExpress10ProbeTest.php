@@ -12,7 +12,7 @@ use TextProbe\Probes\Logistics\Tracking\DhlExpress10Probe;
 class DhlExpress10ProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validTrackingNumbers')]
-    public function testFindsMatches(string $trackingNumber): void
+    public function testFindsMatches(string $trackingNumber, int $expectedEnd): void
     {
         $probe = new DhlExpress10Probe();
 
@@ -21,23 +21,23 @@ class DhlExpress10ProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
     }
 
     public static function validTrackingNumbers(): array
     {
         return [
-            ['1234567890'],
-            ['0000000001'],
-            ['1111111111'],
-            ['9876543210'],
-            ['5555555555'],
-            ['2222222222'],
-            ['3333333333'],
-            ['4444444444'],
-            ['6666666666'],
-            ['7777777777'],
+            ['1234567890', 10],
+            ['0000000001', 10],
+            ['1111111111', 10],
+            ['9876543210', 10],
+            ['5555555555', 10],
+            ['2222222222', 10],
+            ['3333333333', 10],
+            ['4444444444', 10],
+            ['6666666666', 10],
+            ['7777777777', 10],
         ];
     }
 
@@ -53,7 +53,7 @@ NEXTLINE';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
     }
 
@@ -68,8 +68,8 @@ NEXTLINE';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getStart());
+        $this->assertSame(20, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
     }
 
@@ -85,8 +85,8 @@ FOOTER';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(17, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
     }
 
@@ -102,7 +102,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
     }
 
@@ -120,12 +120,12 @@ FOOTER';
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
 
         $this->assertSame($secondTrackingNumber, $results[1]->getResult());
-        $this->assertSame(strpos($text, $secondTrackingNumber), $results[1]->getStart());
-        $this->assertSame($results[1]->getStart() + strlen($secondTrackingNumber), $results[1]->getEnd());
+        $this->assertSame(11, $results[1]->getStart());
+        $this->assertSame(21, $results[1]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[1]->getProbeType());
     }
 
@@ -139,17 +139,15 @@ FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstPos = strpos($text, $trackingNumber);
-        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame($firstPos, $results[0]->getStart());
-        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(10, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
 
         $this->assertSame($trackingNumber, $results[1]->getResult());
-        $this->assertSame($secondPos, $results[1]->getStart());
-        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+        $this->assertSame(11, $results[1]->getStart());
+        $this->assertSame(21, $results[1]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[1]->getProbeType());
     }
 
@@ -188,7 +186,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(1, $results[0]->getStart());
-        $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(11, $results[0]->getEnd());
         $this->assertSame(ProbeType::DHL_EXPRESS_10, $results[0]->getProbeType());
     }
 }

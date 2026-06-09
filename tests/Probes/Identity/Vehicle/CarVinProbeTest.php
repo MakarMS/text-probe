@@ -22,7 +22,7 @@ class CarVinProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame('1HGCM82633A004352', $results[0]->getResult());
         $this->assertSame(ProbeType::CAR_VIN, $results[0]->getProbeType());
-        $this->assertSame(strpos($text, '1HGCM82633A004352'), $results[0]->getStart());
+        $this->assertSame(5, $results[0]->getStart());
         $this->assertSame($results[0]->getStart() + 17, $results[0]->getEnd());
     }
 

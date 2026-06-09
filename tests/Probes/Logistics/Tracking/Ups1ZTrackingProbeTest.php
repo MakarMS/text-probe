@@ -13,7 +13,7 @@ use TextProbe\Probes\Logistics\Tracking\Ups1ZTrackingProbe;
 class Ups1ZTrackingProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validTrackingNumbers')]
-    public function testFindsMatches(string $trackingNumber): void
+    public function testFindsMatches(string $trackingNumber, int $expectedEnd): void
     {
         $probe = new Ups1ZTrackingProbe();
 
@@ -22,7 +22,7 @@ class Ups1ZTrackingProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
     }
 
@@ -42,7 +42,7 @@ class Ups1ZTrackingProbeTest extends TestCase
         ];
 
         return array_map(
-            static fn (string $body) => [TrackingTestHelper::makeUps1Z($body)],
+            static fn (string $body) => [TrackingTestHelper::makeUps1Z($body), 18],
             $bodies,
         );
     }
@@ -59,7 +59,7 @@ NEXTLINE';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
     }
 
@@ -74,8 +74,8 @@ NEXTLINE';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(10, $results[0]->getStart());
+        $this->assertSame(28, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
     }
 
@@ -91,8 +91,8 @@ FOOTER';
 
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame(strpos($text, $trackingNumber), $results[0]->getStart());
-        $this->assertSame($results[0]->getStart() + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(7, $results[0]->getStart());
+        $this->assertSame(25, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
     }
 
@@ -108,7 +108,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
     }
 
@@ -126,12 +126,12 @@ FOOTER';
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
 
         $this->assertSame($secondTrackingNumber, $results[1]->getResult());
-        $this->assertSame(strpos($text, $secondTrackingNumber), $results[1]->getStart());
-        $this->assertSame($results[1]->getStart() + strlen($secondTrackingNumber), $results[1]->getEnd());
+        $this->assertSame(19, $results[1]->getStart());
+        $this->assertSame(37, $results[1]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[1]->getProbeType());
     }
 
@@ -145,17 +145,15 @@ FOOTER';
         $results = $probe->probe($text);
 
         $this->assertCount(2, $results);
-        $firstPos = strpos($text, $trackingNumber);
-        $secondPos = strpos($text, $trackingNumber, $firstPos + 1);
 
         $this->assertSame($trackingNumber, $results[0]->getResult());
-        $this->assertSame($firstPos, $results[0]->getStart());
-        $this->assertSame($firstPos + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(0, $results[0]->getStart());
+        $this->assertSame(18, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
 
         $this->assertSame($trackingNumber, $results[1]->getResult());
-        $this->assertSame($secondPos, $results[1]->getStart());
-        $this->assertSame($secondPos + strlen($trackingNumber), $results[1]->getEnd());
+        $this->assertSame(19, $results[1]->getStart());
+        $this->assertSame(37, $results[1]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[1]->getProbeType());
     }
 
@@ -194,7 +192,7 @@ FOOTER';
         $this->assertCount(1, $results);
         $this->assertSame($trackingNumber, $results[0]->getResult());
         $this->assertSame(1, $results[0]->getStart());
-        $this->assertSame(1 + strlen($trackingNumber), $results[0]->getEnd());
+        $this->assertSame(19, $results[0]->getEnd());
         $this->assertSame(ProbeType::UPS_1Z_TRACKING, $results[0]->getProbeType());
     }
 }

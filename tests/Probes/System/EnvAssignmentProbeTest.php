@@ -12,7 +12,7 @@ use TextProbe\Probes\System\EnvAssignmentProbe;
 class EnvAssignmentProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new EnvAssignmentProbe();
 
@@ -21,23 +21,23 @@ class EnvAssignmentProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::ENV_ASSIGNMENT, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['PATH=/usr/bin'],
-            ['HOME=/home/user'],
-            ['DEBUG=true'],
-            ['PORT=8080'],
-            ['API_KEY=abc123'],
-            ['EMPTY='],
-            ['DATABASE_URL=postgres://localhost/db'],
-            ['NODE_ENV=production'],
-            ['LOG_LEVEL=info'],
-            ['FEATURE_FLAG=enabled'],
+            ['PATH=/usr/bin', 13],
+            ['HOME=/home/user', 15],
+            ['DEBUG=true', 10],
+            ['PORT=8080', 9],
+            ['API_KEY=abc123', 14],
+            ['EMPTY=', 6],
+            ['DATABASE_URL=postgres://localhost/db', 36],
+            ['NODE_ENV=production', 19],
+            ['LOG_LEVEL=info', 14],
+            ['FEATURE_FLAG=enabled', 20],
         ];
     }
 }

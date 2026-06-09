@@ -10,7 +10,7 @@ parameters:
 
     phpVersion:
         min: 80100
-        max: 80400
+        max: 80500
 
     checkUninitializedProperties: true
     checkMissingCallableSignature: true

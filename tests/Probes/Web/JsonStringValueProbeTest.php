@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\JsonStringValueProbe;
 class JsonStringValueProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('validSamples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new JsonStringValueProbe();
 
@@ -21,23 +21,23 @@ class JsonStringValueProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(mb_strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::JSON_STRING_VALUE, $results[0]->getProbeType());
     }
 
     public static function validSamples(): array
     {
         return [
-            ['"value"'],
-            ['"with space"'],
-            ['"123"'],
-            ['"true"'],
-            ['"null"'],
-            ['"hello-world"'],
-            ['"underscore_value"'],
-            ['"emoji 🚀"'],
-            ['"escaped \"quote\""'],
-            ['"slashes \/"'],
+            ['"value"', 7],
+            ['"with space"', 12],
+            ['"123"', 5],
+            ['"true"', 6],
+            ['"null"', 6],
+            ['"hello-world"', 13],
+            ['"underscore_value"', 18],
+            ['"emoji 🚀"', 9],
+            ['"escaped \"quote\""', 19],
+            ['"slashes \/"', 12],
         ];
     }
 }

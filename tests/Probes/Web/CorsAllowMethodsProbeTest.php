@@ -12,7 +12,7 @@ use TextProbe\Probes\Web\CorsAllowMethodsProbe;
 class CorsAllowMethodsProbeTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\DataProvider('samples')]
-    public function testFindsMatches(string $value): void
+    public function testFindsMatches(string $value, int $expectedEnd): void
     {
         $probe = new CorsAllowMethodsProbe();
 
@@ -21,23 +21,23 @@ class CorsAllowMethodsProbeTest extends TestCase
         $this->assertCount(1, $results);
         $this->assertSame($value, $results[0]->getResult());
         $this->assertSame(0, $results[0]->getStart());
-        $this->assertSame(strlen($value), $results[0]->getEnd());
+        $this->assertSame($expectedEnd, $results[0]->getEnd());
         $this->assertSame(ProbeType::CORS_ALLOW_METHODS, $results[0]->getProbeType());
     }
 
     public static function samples(): array
     {
         return [
-            ['Access-Control-Allow-Methods: GET'],
-            ['Access-Control-Allow-Methods: POST'],
-            ['Access-Control-Allow-Methods: GET, POST'],
-            ['Access-Control-Allow-Methods: PUT, PATCH'],
-            ['Access-Control-Allow-Methods: DELETE, OPTIONS'],
-            ['Access-Control-Allow-Methods: HEAD'],
-            ['Access-Control-Allow-Methods: CONNECT, TRACE'],
-            ['Access-Control-Allow-Methods: GET,POST,PUT'],
-            ['Access-Control-Allow-Methods: OPTIONS, GET'],
-            ['Access-Control-Allow-Methods: PATCH, DELETE, POST'],
+            ['Access-Control-Allow-Methods: GET', 33],
+            ['Access-Control-Allow-Methods: POST', 34],
+            ['Access-Control-Allow-Methods: GET, POST', 39],
+            ['Access-Control-Allow-Methods: PUT, PATCH', 40],
+            ['Access-Control-Allow-Methods: DELETE, OPTIONS', 45],
+            ['Access-Control-Allow-Methods: HEAD', 34],
+            ['Access-Control-Allow-Methods: CONNECT, TRACE', 44],
+            ['Access-Control-Allow-Methods: GET,POST,PUT', 42],
+            ['Access-Control-Allow-Methods: OPTIONS, GET', 42],
+            ['Access-Control-Allow-Methods: PATCH, DELETE, POST', 49],
         ];
     }
 }
