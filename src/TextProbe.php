@@ -52,6 +52,52 @@ class TextProbe
     }
 
     /**
+     * Replaces all non-overlapping matches found by registered probes.
+     *
+     * Replacement is applied to validated probe results using the character
+     * offsets stored in {@see Result}.
+     *
+     * @param string $text        input text to transform
+     * @param string $replacement literal replacement text
+     */
+    public function replace(string $text, string $replacement): string
+    {
+        $results = $this->analyze($text);
+
+        if ($results === []) {
+            return $text;
+        }
+
+        usort(
+            $results,
+            static fn (Result $left, Result $right): int => [
+                $left->getStart(),
+                $left->getEnd(),
+            ] <=> [
+                $right->getStart(),
+                $right->getEnd(),
+            ],
+        );
+
+        $replaced = '';
+        $cursor = 0;
+
+        foreach ($results as $result) {
+            $start = $result->getStart();
+            $end = $result->getEnd();
+
+            if ($start < $cursor || $end < $start) {
+                continue;
+            }
+
+            $replaced .= mb_substr($text, $cursor, $start - $cursor) . $replacement;
+            $cursor = $end;
+        }
+
+        return $replaced . mb_substr($text, $cursor);
+    }
+
+    /**
      * Removes all registered probes.
      *
      * After calling this method, {@see analyze()} will return an empty result
