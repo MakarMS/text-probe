@@ -48,10 +48,13 @@ foreach ($results as $result) {
         $result->getEnd()
     );
 }
+
+echo $probe->replace($text, '*email*');
 ```
 
 ### Expected output
 
 ```text
 [EMAIL] info@example.com (position 21-37)
+Please contact us at *email* for more details.
 ```
