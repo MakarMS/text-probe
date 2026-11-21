@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Project Standards">
-    <description>PHPCS configuration with PHPCompatibility for PHP 8.1–8.5</description>
+    <description>PHPCS configuration with PHPCompatibility for PHP 8.1–8.6</description>
 
     <file>src</file>
     <file>tests</file>
@@ -9,11 +9,12 @@
     <arg name="colors"/>
     <arg value="p"/>
 
-    <rule ref="PHPCompatibility">
-        <exclude name="PHPCompatibility.Miscellaneous.ValidIntegers"/>
+    <rule ref="PHPCompatibility"/>
+    <rule ref="PHPCompatibility.Numbers.RemovedHexadecimalNumericStrings">
+        <exclude-pattern>*/tests/Probes/Finance/Crypto/*</exclude-pattern>
     </rule>
 
-    <config name="testVersion" value="8.1-8.5"/>
+    <config name="testVersion" value="8.1-8.6"/>
 
     <exclude-pattern>*/vendor/*</exclude-pattern>
 </ruleset>

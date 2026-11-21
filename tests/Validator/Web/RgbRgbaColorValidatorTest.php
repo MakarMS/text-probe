@@ -85,5 +85,7 @@ class RgbRgbaColorValidatorTest extends TestCase
         $this->assertFalse($validator->validate('not a color'));
         $this->assertFalse($validator->validate('rgb()'));
         $this->assertFalse($validator->validate('rgba()'));
+        $this->assertFalse($validator->validate("\f rgb(255,0,0)"));
+        $this->assertFalse($validator->validate("rgb(255,0,0) \f"));
     }
 }

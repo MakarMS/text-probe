@@ -10,41 +10,69 @@ permissions:
   contents: read
 
 jobs:
-  tests:
+  compatibility:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
+        include:
+          - php-version: '8.1'
+            phpunit-version: '10.5'
+          - php-version: '8.2'
+            phpunit-version: '11.5'
+          - php-version: '8.3'
+            phpunit-version: '12.5'
+          - php-version: '8.4'
+            phpunit-version: '13.4'
+          - php-version: '8.5'
+            phpunit-version: '13.4'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Setup PHP and standalone PHPUnit
+        uses: shivammathur/setup-php@2.40.0
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: mbstring, dom, xdebug
+          extensions: mbstring, dom
+          tools: composer, phpunit:${{ matrix.phpunit-version }}
+          coverage: none
+
+      - name: Install library dependencies
+        env:
+          COMPOSER: composer.runtime.json
+        run: |
+          jq 'del(."require-dev", .scripts)' composer.json > "$COMPOSER"
+          composer install --no-dev --no-interaction --prefer-dist --no-progress
+
+      - name: Run PHPUnit tests
+        run: |
+          phpunit --no-configuration --bootstrap vendor/autoload.php \
+            --disallow-test-output --fail-on-risky --fail-on-warning tests
+
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.40.0
+        with:
+          php-version: '8.6'
+          extensions: mbstring, dom
           coverage: xdebug
 
-      - name: Enable xdebug coverage mode
-        run: echo "XDEBUG_MODE=coverage" >> $GITHUB_ENV
-
-      - name: Cache Composer packages
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --no-interaction --prefer-dist --no-progress
 
       - name: Run PHPUnit tests with coverage
-        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+        env:
+          XDEBUG_MODE: coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v7.1.1
         with:
           files: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}

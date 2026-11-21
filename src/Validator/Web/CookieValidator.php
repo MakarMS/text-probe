@@ -30,7 +30,7 @@ class CookieValidator implements IValidator
     {
         if (preg_match(
             "/^(?:Set-Cookie:\\s*|Cookie:\\s*)?(?<name>[!#$%&'*+.^_`|~0-9A-Za-z-]{1,128})\\s*=\\s*(?<value>\\\"[^\\\"]*\\\"|[!#$%&'*+.^_`|~0-9A-Za-z-]{1,2048})/i",
-            trim($raw),
+            trim($raw, " \n\r\t\v\0"),
             $matches,
         ) !== 1) {
             return false;

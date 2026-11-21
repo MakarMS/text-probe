@@ -13,7 +13,7 @@ class W3cTraceIdValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        $value = strtolower(trim($raw));
+        $value = strtolower(trim($raw, " \n\r\t\v\0"));
 
         if (preg_match('/^[0-9a-f]{32}$/', $value) !== 1) {
             return false;

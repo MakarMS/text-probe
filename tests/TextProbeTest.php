@@ -21,12 +21,12 @@ class TextProbeTest extends TestCase
     public function testAnalyzeWithProbe(): void
     {
         $probe = new TextProbe();
-        $mock = $this->createMock(IProbe::class);
+        $stub = $this->createStub(IProbe::class);
 
         $expected = new Result(ProbeType::EMAIL, 'email', 0, 0);
-        $mock->method('probe')->willReturn([$expected]);
+        $stub->method('probe')->willReturn([$expected]);
 
-        $probe->addProbe($mock);
+        $probe->addProbe($stub);
         $results = $probe->analyze('email');
 
         $this->assertCount(1, $results);
@@ -47,12 +47,12 @@ class TextProbeTest extends TestCase
     public function testCleanRemovesProbes(): void
     {
         $probe = new TextProbe();
-        $mock = $this->createMock(IProbe::class);
+        $stub = $this->createStub(IProbe::class);
 
         $expected = new Result(ProbeType::EMAIL, 'email', 0, 0);
-        $mock->method('probe')->willReturn([$expected]);
+        $stub->method('probe')->willReturn([$expected]);
 
-        $probe->addProbe($mock);
+        $probe->addProbe($stub);
 
         $resultsBefore = $probe->analyze('email');
         $this->assertEquals([$expected], $resultsBefore);
@@ -109,8 +109,8 @@ class TextProbeTest extends TestCase
     public function testReplaceUsesAllRegisteredProbes(): void
     {
         $probe = new TextProbe();
-        $emailProbe = $this->createMock(IProbe::class);
-        $domainProbe = $this->createMock(IProbe::class);
+        $emailProbe = $this->createStub(IProbe::class);
+        $domainProbe = $this->createStub(IProbe::class);
 
         $emailProbe->method('probe')->willReturn([
             new Result(ProbeType::EMAIL, 'abc', 0, 3),
@@ -142,15 +142,15 @@ class TextProbeTest extends TestCase
     public function testReplaceSkipsOverlappingProbeResults(): void
     {
         $probe = new TextProbe();
-        $mock = $this->createMock(IProbe::class);
+        $stub = $this->createStub(IProbe::class);
 
-        $mock->method('probe')->willReturn([
+        $stub->method('probe')->willReturn([
             new Result(ProbeType::EMAIL, 'abc', 0, 3),
             new Result(ProbeType::DOMAIN, 'bcd', 1, 4),
             new Result(ProbeType::LINK, 'ef', 4, 6),
         ]);
 
-        $probe->addProbe($mock);
+        $probe->addProbe($stub);
 
         $result = $probe->replace('abcdef', '[x]');
 

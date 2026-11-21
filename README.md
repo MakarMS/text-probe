@@ -13,6 +13,9 @@ developers probe, parse, and manipulate text efficiently using customizable rule
 
 ## Installation
 
+TextProbe supports PHP 8.1 through PHP 8.6 and requires the `mbstring` extension.
+CI runs static analysis on PHP 8.6 and PHP CS Fixer on PHP 8.5.
+
 You can install the library via [Composer](https://getcomposer.org/):
 
 ```bash

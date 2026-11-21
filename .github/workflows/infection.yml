@@ -10,21 +10,14 @@ jobs:
   infection:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@2.40.0
         with:
-          php-version: 8.5
+          php-version: '8.6'
           coverage: xdebug
           extensions: pcntl
-
-      - name: Cache vendor
-        uses: actions/cache@v4
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: composer install --no-interaction --no-progress --prefer-dist
@@ -39,4 +32,4 @@ jobs:
           XDEBUG_MODE: coverage
 
       - name: Run Infection
-        run: vendor/bin/infection --threads=4 --coverage=build --no-progress
+        run: php -d memory_limit=512M vendor/bin/infection --threads=4 --coverage=build --no-progress

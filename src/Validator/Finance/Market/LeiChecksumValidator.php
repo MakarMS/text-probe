@@ -13,7 +13,7 @@ class LeiChecksumValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        $value = strtoupper(trim($raw));
+        $value = strtoupper(trim($raw, " \n\r\t\v\0"));
 
         if (preg_match('/^[A-Z0-9]{18}\d{2}$/', $value) !== 1) {
             return false;

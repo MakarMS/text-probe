@@ -13,7 +13,7 @@ class CusipCheckDigitValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        $value = strtoupper(trim($raw));
+        $value = strtoupper(trim($raw, " \n\r\t\v\0"));
 
         if (preg_match('/^[0-9A-Z*@#]{8}[0-9]$/', $value) !== 1) {
             return false;

@@ -17,7 +17,7 @@ class RgbRgbaColorValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        $trimmed = trim($raw);
+        $trimmed = trim($raw, " \n\r\t\v\0");
 
         if ($this->isRgb($trimmed)) {
             return true;

@@ -13,7 +13,7 @@ class IsinChecksumValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        $value = strtoupper(trim($raw));
+        $value = strtoupper(trim($raw, " \n\r\t\v\0"));
 
         if (preg_match('/^[A-Z]{2}[A-Z0-9]{9}\d$/', $value) !== 1) {
             return false;

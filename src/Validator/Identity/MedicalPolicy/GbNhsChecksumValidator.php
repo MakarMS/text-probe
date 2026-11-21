@@ -13,7 +13,7 @@ class GbNhsChecksumValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        if (trim($raw) !== $raw) {
+        if (trim($raw, " \n\r\t\v\0") !== $raw) {
             return false;
         }
 

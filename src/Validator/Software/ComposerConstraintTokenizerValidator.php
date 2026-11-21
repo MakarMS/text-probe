@@ -21,7 +21,7 @@ class ComposerConstraintTokenizerValidator implements IValidator
     #[Override]
     public function validate(string $raw): bool
     {
-        $input = trim($raw);
+        $input = trim($raw, " \n\r\t\v\0");
 
         if ($input === '') {
             return false;

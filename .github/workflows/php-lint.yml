@@ -9,32 +9,36 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@2.40.0
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: '8.6'
           extensions: mbstring, dom
 
-      - name: Cache Composer packages
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --no-interaction --prefer-dist --no-progress
 
       - name: Run PHPStan
         run: composer phpstan
+
+  style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - name: Setup PHP for PHP CS Fixer
+        uses: shivammathur/setup-php@2.40.0
+        with:
+          php-version: '8.5'
+          extensions: mbstring, dom
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
 
       - name: Check code style (PHP-CS-Fixer)
         run: composer cs:check
