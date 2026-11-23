@@ -17,7 +17,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^1.2.1",
     "ergebnis/composer-normalize": "^2.58",
     "friendsofphp/php-cs-fixer": "^3.95.32",
-    "icanhazstring/composer-unused": "^0.9.7",
+    "icanhazstring/composer-unused": "^0.9.9",
     "infection/infection": "^0.35.12",
     "phpcompatibility/php-compatibility": "10.0.0-alpha3",
     "phpstan/phpstan": "^2.3.7",
